@@ -1,0 +1,168 @@
+unit_op,count
+enzymatic_hydrolysis,100
+fermentation,100
+distillation,100
+dehydration,100
+raw corn stover source,99
+pretreatment,97
+fuel_grade ethanol sink,82
+feedstock_preparation,78
+yeast culture source,66
+waste_management,47
+dilute acid solution source,44
+carbon dioxide sink,41
+enzyme solution source,41
+treated waste sink,37
+waste_treatment,21
+water sink,19
+cellulase enzyme source,19
+stillage sink,18
+biogas sink,15
+enzyme source,13
+lignin residue source,12
+feedstock_handling_and_preparation,11
+pretreatment chemicals source,11
+treated effluent sink,10
+enzyme mixture source,10
+lignin residues source,10
+anhydrous ethanol sink,9
+denatured ethanol sink,9
+acid/steam source,8
+acid or steam source,8
+denaturant source,7
+microorganism source,6
+denaturing,6
+treated wastewater sink,6
+processed waste sink,5
+animal feed sink,5
+water stream sink,5
+solid residues sink,5
+wastewater sink,5
+microorganism culture source,4
+distillation bottoms sink,4
+dilute acid source,4
+waste_management_and_by-product_recovery,4
+cellulase enzymes source,4
+lignin_rich residue sink,4
+pretreatment agent source,4
+carbon dioxide source,4
+byproduct gases sink,4
+dehydrated water sink,4
+gaseous emissions sink,3
+treated waste streams sink,3
+distillation residue sink,3
+recovered lignin sink,3
+denaturing_and_storage,3
+waste_management_and_byproduct_recovery,3
+off_gas sink,3
+lignin_rich stream sink,3
+residual lignin source,3
+water source,3
+enzyme cocktail source,3
+recovered by_products sink,2
+recovered water sink,2
+microbial culture source,2
+processed stillage sink,2
+residual solids sink,2
+waste_treatment_and_by-product_recovery,2
+treated water sink,2
+lignin by_product sink,2
+enzyme addition source,2
+solubilized hemicellulose sink,2
+pretreatment effluent sink,2
+energy recovery sink,2
+chemical agent source,2
+pretreatment off_gas sink,2
+preprocessing,2
+acid solution source,2
+water vapor sink,2
+carbon dioxide gas sink,2
+waste sink,2
+enzyme addition,2
+pre-treatment,2
+solid waste sink,2
+process residues source,2
+chemical solution source,2
+chemical pretreatment agent source,2
+microbial biomass source,1
+soluble degradation products sink,1
+digestate sink,1
+unconverted biomass source,1
+lignin by_products sink,1
+recovered energy sink,1
+dehydration waste sink,1
+chemical additives source,1
+neutralization agent source,1
+acid recovery sink,1
+yeast or microorganism culture source,1
+solid by_products sink,1
+non_condensable gases sink,1
+neutralizing agent source,1
+process waste stream source,1
+distilled ethanol source,1
+ethanol sink,1
+fermentation microorganisms source,1
+acid hydrolysate sink,1
+additional process waste source,1
+by_products from fermentation source,1
+by_products from pretreatment source,1
+byproduct sink,1
+solid residues source,1
+yeast inoculum source,1
+lignin residue sink,1
+waste_management_and_by-product_utilization,1
+feedstock_preprocessing,1
+byproduct gas emissions sink,1
+byproduct gas sink,1
+off_gas treatment sink,1
+nutrient solution source,1
+yeast inoculum,1
+water or acid source,1
+lignin cake sink,1
+soluble sugars sink,1
+feedstock_handling,1
+animal feed additives sink,1
+waste stream sink,1
+yeast source,1
+chemical_pre-treatment,1
+soluble byproducts sink,1
+denaturant addition,1
+microorganism inoculum source,1
+acid_containing effluent sink,1
+acid or alkali solution source,1
+process water source,1
+dilute acid or steam source,1
+waste water sink,1
+yeast or microorganisms source,1
+degradation products sink,1
+energy recovery unit,1
+yeast or microorganism inoculum source,1
+pretreatment by_products sink,1
+waste gas sink,1
+pretreatment catalyst/agent source,1
+off_gases sink,1
+corn stover feedstock source,1
+pre_treatment chemicals source,1
+waste treatment sink,1
+boiler flue gas sink,1
+lignin and degradation products sink,1
+boiler fuel sink,1
+pre_treatment residue sink,1
+acid/alkali solution source,1
+gasoline source,1
+microorganisms source,1
+pretreatment reagents source,1
+water/acid or steam source,1
+dilute acid/steam source,1
+water and acid source,1
+moisture sink,1
+waste disposal sink,1
+process residuals source,1
+byproduct removal sink,1
+solubilized hemicellulose and lignin sink,1
+energy sink,1
+steam source,1
+lignin fuel sink,1
+waste gas treatment sink,1
+waste_treatment_and_management,1
+acid or alkaline solution source,1
