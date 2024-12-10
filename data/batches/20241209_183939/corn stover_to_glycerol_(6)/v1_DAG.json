@@ -1,0 +1,587 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Primarily composed of cellulose (40-50%), hemicellulose (25-35%), and lignin (15-20%)",
+      "key_specs": "Typically requires pre-treatment to break down lignocellulosic structure for fermentation. Moisture content is usually around 10-15%.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Glycerol",
+      "composition": "Purity typically greater than 95% glycerol with minor impurities such as water and residual sugars",
+      "key_specs": "Industrial-grade glycerol suitable for use in pharmaceuticals, cosmetics, and food industries. Requires purification steps to achieve high purity.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover feedstock is initially prepared for processing. This involves size reduction through mechanical milling to increase the surface area and improve the efficiency of subsequent pretreatment steps. The moisture content is adjusted to the desired level, typically around 10-15%, to optimize the pretreatment process.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Size reduction is crucial for enhancing the efficiency of the pretreatment process by increasing the surface area."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down the lignocellulosic structure, making the cellulose and hemicellulose more accessible for enzymatic hydrolysis. This step often involves chemical or steam explosion methods to disrupt the lignin matrix.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Catalyst/Chemical Agent"
+      ],
+      "output_streams": [
+        "Pretreated Biomass",
+        "Effluent/Byproduct Stream"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "The prepared corn stover is treated with a chemical catalyst, causing a disruption of the lignin matrix, releasing cellulose and hemicellulose.",
+            "inputComponent": "lignin",
+            "outputComponent": "dissolved lignin",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "Hemicellulose undergoes chemical reactions resulting in various degradation products, making sugars more accessible for enzymatic hydrolysis.",
+            "inputComponent": "hemicellulose",
+            "outputComponent": "degradation products",
+            "conversionRate": 0.2
+          }
+        ]
+      },
+      "additional_info": "Common pretreatment methods include dilute acid, alkaline, or steam explosion. The choice of method affects the downstream processing efficiency and cost."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "The pretreated biomass is subjected to enzymatic hydrolysis, where specific enzymes break down cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This step is critical for converting the structural carbohydrates into soluble sugars.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose is broken down by cellulase enzymes into glucose during enzymatic hydrolysis, with a conversion efficiency of 80%.",
+            "inputComponent": "cellulose",
+            "outputComponent": "glucose",
+            "conversionRate": 0.8
+          },
+          {
+            "description": "Hemicellulose is broken down by hemicellulase enzymes into xylose during enzymatic hydrolysis, with a conversion efficiency of 70%.",
+            "inputComponent": "hemicellulose",
+            "outputComponent": "xylose",
+            "conversionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "Enzymes such as cellulases and hemicellulases are used. The efficiency of this step is crucial for maximizing sugar yield."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The sugar solution undergoes anaerobic fermentation using specialized bacteria capable of converting sugars into glycerol. This biological process occurs in a controlled environment where the bacteria metabolize the sugars, producing glycerol as the primary product along with minor by-products.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Sugar Solution",
+        "Bacterial Inoculum"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of glucose into glycerol during fermentation process.",
+            "inputComponent": "glucose",
+            "outputComponent": "glycerol",
+            "conversionRate": 0.75
+          },
+          {
+            "description": "Conversion of xylose into glycerol during fermentation process.",
+            "inputComponent": "xylose",
+            "outputComponent": "glycerol",
+            "conversionRate": 0.6
+          },
+          {
+            "description": "Remaining glucose that did not convert into glycerol ends up as residual sugars.",
+            "inputComponent": "glucose",
+            "outputComponent": "residual sugars",
+            "conversionRate": 0.25
+          },
+          {
+            "description": "Remaining xylose that did not convert into glycerol ends up as residual sugars.",
+            "inputComponent": "xylose",
+            "outputComponent": "residual sugars",
+            "conversionRate": 0.4
+          }
+        ]
+      },
+      "additional_info": "Anaerobic conditions are maintained to optimize glycerol production. The choice of bacterial strain is crucial for high glycerol yield."
+    },
+    "separation": {
+      "unit_operation_id": "separation",
+      "name": "Separation",
+      "description": "The fermentation broth is subjected to a separation process to isolate glycerol from the mixture. This typically involves centrifugation to remove bacterial biomass and filtration to separate solids from the liquid phase.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Glycerol Stream",
+        "Solid Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of glycerol from fermentation broth using centrifugation, optimizing the process by exploiting density differences.",
+            "component": "glycerol",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Removal of bacterial biomass from fermentation broth, primarily through centrifugation, leading to a solid waste stream.",
+            "component": "bacterial biomass",
+            "extractionRate": 0.98
+          }
+        ]
+      },
+      "additional_info": "Efficient separation is key to minimizing glycerol losses and ensuring high purity in subsequent purification steps."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude glycerol stream undergoes purification to achieve industrial-grade glycerol purity. This involves distillation to remove water and residual sugars, followed by additional purification techniques such as ion exchange or activated carbon treatment to remove trace impurities.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Glycerol Stream"
+      ],
+      "output_streams": [
+        "Purified Glycerol",
+        "Waste Water",
+        "Impurity Removal Output"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of glycerol from crude glycerol stream using distillation based on boiling point differences.",
+            "component": "glycerol",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of water and residual sugars from the crude glycerol stream during distillation which forms the waste water stream.",
+            "component": "water",
+            "extractionRate": 0.05
+          },
+          {
+            "description": "Residual sugars are partially separated from glycerol and mostly end up in the waste water after the distillation process.",
+            "component": "residual sugars",
+            "extractionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The purity of glycerol is critical for its application in pharmaceuticals, cosmetics, and food industries. The choice of purification method impacts the final product quality and process economics."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as a source for the Raw Corn Stover stream, which consists of unprocessed corn stover containing cellulose, hemicellulose, and lignin. The stream is characterized by its natural moisture content, typically ranging from 10-15%. It is delivered at an industrial scale of 100,000 kg/day, providing the necessary feedstock for subsequent processing steps in the production of glycerol.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid waste sink": {
+      "unit_operation_id": "solid waste sink",
+      "name": "Solid Waste Sink",
+      "description": "This unit operation serves as a sink for the Solid Waste stream, which consists of separated solids including bacterial biomass and unreacted lignin. The Solid Waste Sink is designed to collect and manage the byproducts from the fermentation and separation processes. It ensures that the solid waste is properly contained and can be directed for further processing, disposal, or potential valorization into other products.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified glycerol sink": {
+      "unit_operation_id": "purified glycerol sink",
+      "name": "Purified Glycerol Sink",
+      "description": "This unit operation serves as the final sink for the purified glycerol stream, which is produced after the purification process. The purified glycerol is of high purity, suitable for various industrial applications including pharmaceuticals, cosmetics, and food industries. This sink ensures the safe collection and storage of the purified glycerol, maintaining its quality and preventing contamination.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Glycerol"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste water sink": {
+      "unit_operation_id": "waste water sink",
+      "name": "Waste Water Sink",
+      "description": "This unit operation serves as the sink for the Waste Water stream, which is generated during the purification of crude glycerol. The Waste Water contains residual sugars and water, representing the byproducts of the purification process. This unit operation is designed to handle the disposal or treatment of the Waste Water, ensuring that any residual impurities are managed in compliance with environmental regulations.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Water"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "catalyst/chemical agent source": {
+      "unit_operation_id": "catalyst/chemical agent source",
+      "name": "Catalyst/Chemical Agent Source",
+      "description": "This unit operation serves as a source for the Catalyst/Chemical Agent stream, which is essential for the pretreatment process in biomass conversion. The stream consists of chemical agents such as acids or alkalis, along with water, which are utilized to facilitate the breakdown of the lignocellulosic structure of feedstocks like corn stover. This stream is critical for enhancing the efficiency of subsequent processing steps by ensuring optimal conditions for the pretreatment of biomass.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Catalyst/Chemical Agent"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "effluent/byproduct sink": {
+      "unit_operation_id": "effluent/byproduct sink",
+      "name": "Effluent/Byproduct Sink",
+      "description": "This unit operation serves as a sink for the Effluent/Byproduct Stream generated during the pretreatment process. It captures and contains the byproducts, which primarily consist of dissolved lignin, degradation products, and water. The effluent stream is crucial for managing waste and ensuring that the overall process remains efficient and environmentally compliant. Proper handling and treatment of this stream are essential to minimize environmental impact and recover valuable components if feasible.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Effluent/Byproduct Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as the source for the Enzyme Solution, which is essential for the enzymatic hydrolysis process. The enzyme solution contains cellulase and hemicellulase enzymes suspended in water, which are critical for breaking down the cellulose and hemicellulose present in the pretreated biomass into fermentable sugars. This stream is supplied at a volumetric scale necessary to support the enzymatic hydrolysis stage of the process flow.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial inoculum source": {
+      "unit_operation_id": "bacterial inoculum source",
+      "name": "Bacterial Inoculum Source",
+      "description": "This unit operation serves as a source for the Bacterial Inoculum stream, which provides the necessary bacteria for the fermentation process. The inoculum is crucial for enabling the conversion of sugars derived from the enzymatic hydrolysis of pretreated biomass into glycerol during fermentation. The stream is produced at an industrial scale, ensuring a consistent supply of active bacterial cultures to optimize fermentation efficiency.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Bacterial Inoculum"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "impurity removal sink": {
+      "unit_operation_id": "impurity removal sink",
+      "name": "Impurity Removal Sink",
+      "description": "This unit operation serves as the final sink for the \"Impurity Removal Output\" stream, which consists of trace impurities, potential catalyst residues, and salts that have been separated from the purified glycerol during the purification process. The sink is designed to safely collect and manage these byproducts, ensuring that they are properly handled and disposed of in accordance with environmental regulations. This operation plays a critical role in maintaining the overall integrity and quality of the glycerol production process by ensuring that impurities are effectively removed.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Impurity Removal Output"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover with natural moisture content.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover that has been milled and adjusted for moisture content, ready for pretreatment.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, facilitating enzymatic access to cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars derived from cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "glucose": 0,
+        "xylose": 0,
+        "lignin": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing glycerol, residual sugars, bacterial biomass, and minor by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "separation",
+      "flow_rate": 0.0,
+      "components": {
+        "glycerol": 0,
+        "residual sugars": 0,
+        "bacterial biomass": 0
+      }
+    },
+    "Crude Glycerol Stream": {
+      "name": "Crude Glycerol Stream",
+      "stream_id": "crude glycerol stream",
+      "description": "A liquid stream enriched in glycerol with some impurities.",
+      "stream_type": "core",
+      "source": "separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "glycerol": 0,
+        "water": 0,
+        "residual sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Separated solids including bacterial biomass and unreacted lignin.",
+      "stream_type": "core",
+      "source": "separation",
+      "target": "solid waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "bacterial biomass": 0,
+        "lignin": 0
+      }
+    },
+    "Purified Glycerol": {
+      "name": "Purified Glycerol",
+      "stream_id": "purified glycerol",
+      "description": "High-purity glycerol suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "purified glycerol sink",
+      "flow_rate": 0.0,
+      "components": {
+        "glycerol": 0
+      }
+    },
+    "Waste Water": {
+      "name": "Waste Water",
+      "stream_id": "waste water",
+      "description": "Water containing residual impurities removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste water sink",
+      "flow_rate": 0.0,
+      "components": {
+        "water": 0,
+        "residual sugars": 0
+      }
+    },
+    "Catalyst/Chemical Agent": {
+      "name": "Catalyst/Chemical Agent",
+      "stream_id": "catalyst/chemical agent",
+      "description": "The pretreatment process often involves the use of chemical agents such as acids, alkalis, or steam to help break down the lignocellulosic structure. This stream would account for the chemical inputs necessary for the pretreatment process.",
+      "stream_type": "aux",
+      "source": "catalyst/chemical agent source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "acid or alkali": 0,
+        "water": 0
+      }
+    },
+    "Effluent/Byproduct Stream": {
+      "name": "Effluent/Byproduct Stream",
+      "stream_id": "effluent/byproduct stream",
+      "description": "During the pretreatment process, there may be generation of byproducts or effluents that contain dissolved lignin or other degradation products. This stream would capture any waste products generated during pretreatment.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "effluent/byproduct sink",
+      "flow_rate": 0.0,
+      "components": {
+        "dissolved lignin": 0,
+        "degradation products": 0,
+        "water": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "The enzyme solution is necessary for the enzymatic hydrolysis process to facilitate the breakdown of cellulose and hemicellulose into fermentable sugars.",
+      "stream_type": "aux",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulase": 0,
+        "hemicellulase": 0,
+        "water": 0
+      }
+    },
+    "Bacterial Inoculum": {
+      "name": "Bacterial Inoculum",
+      "stream_id": "bacterial inoculum",
+      "description": "This stream provides the necessary bacteria for the fermentation process, enabling the conversion of sugars into glycerol.",
+      "stream_type": "aux",
+      "source": "bacterial inoculum source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "bacteria": 0
+      }
+    },
+    "Impurity Removal Output": {
+      "name": "Impurity Removal Output",
+      "stream_id": "impurity removal output",
+      "description": "This stream includes trace impurities that are removed during purification processes such as ion exchange or activated carbon treatment, which are not accounted for in the \"Purified Glycerol\" and \"Waste Water\" streams.",
+      "stream_type": "aux",
+      "source": "purification",
+      "target": "impurity removal sink",
+      "flow_rate": 0.0,
+      "components": {
+        "trace impurities": 0,
+        "potential catalyst residues": 0,
+        "salts": 0
+      }
+    }
+  },
+  "components": {
+    "cellulose": {
+      "name": "cellulose",
+      "properties": {}
+    },
+    "hemicellulose": {
+      "name": "hemicellulose",
+      "properties": {}
+    },
+    "lignin": {
+      "name": "lignin",
+      "properties": {}
+    },
+    "glucose": {
+      "name": "glucose",
+      "properties": {}
+    },
+    "xylose": {
+      "name": "xylose",
+      "properties": {}
+    },
+    "glycerol": {
+      "name": "glycerol",
+      "properties": {}
+    },
+    "residual sugars": {
+      "name": "residual sugars",
+      "properties": {}
+    },
+    "bacterial biomass": {
+      "name": "bacterial biomass",
+      "properties": {}
+    },
+    "water": {
+      "name": "water",
+      "properties": {}
+    },
+    "acid or alkali": {
+      "name": "acid or alkali",
+      "properties": {}
+    },
+    "dissolved lignin": {
+      "name": "dissolved lignin",
+      "properties": {}
+    },
+    "degradation products": {
+      "name": "degradation products",
+      "properties": {}
+    },
+    "cellulase": {
+      "name": "cellulase",
+      "properties": {}
+    },
+    "hemicellulase": {
+      "name": "hemicellulase",
+      "properties": {}
+    },
+    "bacteria": {
+      "name": "bacteria",
+      "properties": {}
+    },
+    "trace impurities": {
+      "name": "trace impurities",
+      "properties": {}
+    },
+    "potential catalyst residues": {
+      "name": "potential catalyst residues",
+      "properties": {}
+    },
+    "salts": {
+      "name": "salts",
+      "properties": {}
+    }
+  }
+}

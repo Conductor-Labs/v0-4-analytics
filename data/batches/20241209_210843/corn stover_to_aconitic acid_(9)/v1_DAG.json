@@ -1,0 +1,635 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Primarily composed of cellulose (35-45%), hemicellulose (25-35%), and lignin (15-20%)",
+      "key_specs": "Typically requires pretreatment to break down lignocellulosic structure for fermentation. Moisture content is usually around 10-15%.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Aconitic Acid",
+      "composition": "Primarily cis-aconitic acid with minor amounts of trans-aconitic acid",
+      "key_specs": "Commercial grade with purity typically above 95%. Used in food, beverage, and chemical industries.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover, which is primarily composed of cellulose, hemicellulose, and lignin, is first collected and prepared for processing. This involves size reduction through mechanical milling to increase the surface area, making it more amenable to subsequent pretreatment processes. The moisture content is adjusted to the optimal level for pretreatment, typically around 10-15%.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Size reduction is crucial for enhancing the efficiency of the pretreatment process."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down its lignocellulosic structure. This is typically achieved through chemical, physical, or a combination of methods such as steam explosion or acid hydrolysis. The goal is to make cellulose and hemicellulose more accessible for enzymatic hydrolysis.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Pretreatment Chemicals"
+      ],
+      "output_streams": [
+        "Pretreated Biomass",
+        "Gaseous Emissions"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method can significantly impact the efficiency of subsequent hydrolysis and fermentation steps."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "The pretreated biomass is subjected to enzymatic hydrolysis where cellulases and hemicellulases break down cellulose and hemicellulose into fermentable sugars such as glucose and xylose. This step is crucial for converting the structural carbohydrates into a form that can be metabolized by microorganisms during fermentation.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Addition"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Enzymatic hydrolysis of cellulose into glucose during biomass processing.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Enzymatic hydrolysis of hemicellulose into xylose during biomass processing.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "Enzyme loading and reaction time are critical parameters that affect the yield of fermentable sugars."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The sugar solution is fermented using a selected strain of yeast or fungi capable of converting sugars into aconitic acid under aerobic conditions. The microorganisms metabolize the sugars, producing aconitic acid as a primary metabolite. Aeration and agitation are controlled to maintain optimal growth and production conditions.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Sugar Solution",
+        "Air"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "Carbon Dioxide"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Fermentation of glucose to aconitic acid by specialized microorganisms in an aerobic environment.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Aconitic Acid",
+            "conversionRate": 0.6
+          },
+          {
+            "description": "Fermentation of xylose to aconitic acid by specialized microorganisms in an aerobic environment.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Aconitic Acid",
+            "conversionRate": 0.4
+          },
+          {
+            "description": "Metabolic conversion of glucose to carbon dioxide during fermentation process.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.2
+          },
+          {
+            "description": "Metabolic conversion of xylose to carbon dioxide during fermentation process.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The choice of microorganism and the control of fermentation parameters are crucial for maximizing aconitic acid yield."
+    },
+    "broth_separation": {
+      "unit_operation_id": "broth_separation",
+      "name": "Broth Separation",
+      "description": "The fermentation broth is subjected to a separation process to remove microbial biomass and other solids. This is typically achieved through centrifugation or filtration. The goal is to obtain a clarified solution containing aconitic acid and residual sugars.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Solution",
+        "Solid Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of Microbial Biomass from the fermentation broth using centrifugation or filtration.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Retention of Aconitic Acid in the clarified liquid solution during the separation process.",
+            "component": "Aconitic Acid",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "Solid waste can be processed further for potential recovery of by-products or used as a bioenergy source."
+    },
+    "aconitic_acid_recovery": {
+      "unit_operation_id": "aconitic_acid_recovery",
+      "name": "Aconitic Acid Recovery",
+      "description": "The clarified solution undergoes a recovery process to isolate aconitic acid. This can involve crystallization or solvent extraction techniques to achieve the desired purity level. The process is designed to maximize recovery while minimizing impurities.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Clarified Solution"
+      ],
+      "output_streams": [
+        "Crude Aconitic Acid",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of aconitic acid from a clarified solution containing residual sugars and water.",
+            "component": "Aconitic Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of residual sugars from the clarified solution during the aconitic acid extraction process.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The choice of recovery method affects the purity and yield of aconitic acid."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude aconitic acid is purified to achieve commercial-grade quality, typically above 95% purity. This may involve recrystallization or additional solvent extraction steps to remove impurities and achieve the desired product specifications.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Crude Aconitic Acid"
+      ],
+      "output_streams": [
+        "Purified Aconitic Acid"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Recrystallization to separate aconitic acid from soluble impurities by cooling and crystallization.",
+            "component": "Aconitic Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Use of selective solvent for extraction, preferentially dissolving aconitic acid and leaving impurities behind.",
+            "component": "Impurities",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "Purification steps are optimized to balance purity, yield, and cost-effectiveness."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is collected corn stover with a natural moisture content. The stream primarily consists of cellulose, hemicellulose, lignin, and moisture, and is crucial for the subsequent processing steps in the production of Aconitic Acid. The feedstock is typically delivered at a volumetric scale of 100,000 kg/day, ensuring a consistent supply for the feedstock preparation unit operation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid waste sink": {
+      "unit_operation_id": "solid waste sink",
+      "name": "Solid Waste Sink",
+      "description": "This unit operation serves as a sink for the solid waste stream generated during the fermentation and broth separation processes. It collects and manages the solid waste, which primarily consists of microbial biomass and lignin residue. The solid waste is typically disposed of or processed further for potential recovery of valuable components or energy.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as the sink for the Waste Stream, which consists of residual sugars, water, and impurities generated during the Aconitic Acid production process. The Waste Stream is a byproduct of the purification and recovery stages, and it is typically directed to waste management systems for treatment or disposal. This operation ensures that the residual materials are effectively removed from the process flow, minimizing environmental impact and adhering to regulatory requirements.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified aconitic acid sink": {
+      "unit_operation_id": "purified aconitic acid sink",
+      "name": "Purified Aconitic Acid Sink",
+      "description": "This unit operation serves as the final sink for the purified aconitic acid stream, which is produced at a commercial purity level suitable for various applications in the food, beverage, and chemical industries. The stream consists primarily of aconitic acid, with a purity typically above 95%. This sink ensures that the purified product is collected and stored for distribution, while also allowing for any necessary quality control checks before the product is dispatched to end-users.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Aconitic Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment chemicals source": {
+      "unit_operation_id": "pretreatment chemicals source",
+      "name": "Pretreatment Chemicals Source",
+      "description": "This unit operation serves as a source for the pretreatment chemicals required in the biomass pretreatment process. The chemicals include acids (such as sulfuric acid or hydrochloric acid), alkalis (like sodium hydroxide), and water. These components are essential for breaking down the lignocellulosic structure of the feedstock, facilitating the subsequent enzymatic hydrolysis and fermentation stages in the production of Aconitic Acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Pretreatment Chemicals"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "gaseous emissions sink": {
+      "unit_operation_id": "gaseous emissions sink",
+      "name": "Gaseous Emissions Sink",
+      "description": "This unit operation serves as a sink for gaseous emissions generated during the pretreatment processes of biomass. It collects and manages the gaseous byproducts, which primarily include carbon dioxide, water vapor, and other volatile compounds. The sink ensures that these emissions are safely handled, potentially allowing for further treatment or release in compliance with environmental regulations.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Gaseous Emissions"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme addition source": {
+      "unit_operation_id": "enzyme addition source",
+      "name": "Enzyme Addition Source",
+      "description": "This unit operation serves as a source for the Enzyme Addition stream, which includes enzymes such as cellulases and hemicellulases. These enzymes are critical for catalyzing the breakdown of cellulose and hemicellulose into fermentable sugars during the enzymatic hydrolysis process. The addition of these enzymes enhances the efficiency of sugar extraction from pretreated biomass, facilitating subsequent fermentation steps.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Addition"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "air supply unit": {
+      "unit_operation_id": "air supply unit",
+      "name": "Air Supply Unit",
+      "description": "The Air Supply Unit is a source unit operation that provides the necessary air for the fermentation process. It ensures a continuous supply of air containing oxygen, which is crucial for the aerobic metabolism of microorganisms. This unit operation is designed to deliver air at the required flow rate to maintain optimal conditions for the conversion of sugars into aconitic acid, facilitating efficient fermentation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Air"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "carbon dioxide sink": {
+      "unit_operation_id": "carbon dioxide sink",
+      "name": "Carbon Dioxide Sink",
+      "description": "This unit operation serves as a sink for the carbon dioxide produced during the fermentation process. It collects the carbon dioxide released as a byproduct of microbial metabolism when sugars are converted into aconitic acid. The sink is designed to capture and manage the gaseous emissions, ensuring that carbon dioxide is safely handled, either for potential reuse in other processes or for appropriate disposal, minimizing environmental impact.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Carbon Dioxide"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Collected corn stover with natural moisture content.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Moisture": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover that has been milled and adjusted for moisture content.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, ready for enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Moisture": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution containing fermentable sugars derived from cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin Residue": 0,
+        "Moisture": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A broth containing aconitic acid, unconverted sugars, and microbial biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Aconitic Acid": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0,
+        "Water": 0
+      }
+    },
+    "Clarified Solution": {
+      "name": "Clarified Solution",
+      "stream_id": "clarified solution",
+      "description": "A solution containing aconitic acid and residual sugars, free from solids.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "aconitic_acid_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Aconitic Acid": 0,
+        "Residual Sugars": 0,
+        "Water": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Solid waste consisting of microbial biomass and other particulates.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "solid waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0,
+        "Lignin Residue": 0
+      }
+    },
+    "Crude Aconitic Acid": {
+      "name": "Crude Aconitic Acid",
+      "stream_id": "crude aconitic acid",
+      "description": "Aconitic acid with impurities, requiring further purification.",
+      "stream_type": "core",
+      "source": "aconitic_acid_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Aconitic Acid": 0,
+        "Impurities": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing residual sugars and other impurities.",
+      "stream_type": "core",
+      "source": "aconitic_acid_recovery",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Water": 0,
+        "Impurities": 0
+      }
+    },
+    "Purified Aconitic Acid": {
+      "name": "Purified Aconitic Acid",
+      "stream_id": "purified aconitic acid",
+      "description": "High-purity aconitic acid suitable for commercial use.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "purified aconitic acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Aconitic Acid": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Chemicals used in the pretreatment process to break down the lignocellulosic structure, which could include acids or alkalis depending on the method used (e.g., acid hydrolysis).",
+      "stream_type": "aux",
+      "source": "pretreatment chemicals source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Acid (e.g., sulfuric acid or hydrochloric acid)": 0,
+        "Alkali (e.g., sodium hydroxide)": 0,
+        "Water": 0
+      }
+    },
+    "Gaseous Emissions": {
+      "name": "Gaseous Emissions",
+      "stream_id": "gaseous emissions",
+      "description": "Gaseous byproducts that may be released during pretreatment processes such as steam explosion or acid hydrolysis.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "gaseous emissions sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon dioxide": 0,
+        "Water vapor": 0,
+        "Other volatile compounds": 0
+      }
+    },
+    "Enzyme Addition": {
+      "name": "Enzyme Addition",
+      "stream_id": "enzyme addition",
+      "description": "Enzymes such as cellulases and hemicellulases are added to catalyze the breakdown of cellulose and hemicellulose into fermentable sugars during the enzymatic hydrolysis process.",
+      "stream_type": "aux",
+      "source": "enzyme addition source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Air": {
+      "name": "Air",
+      "stream_id": "air",
+      "description": "Air is required to provide the necessary oxygen for aerobic fermentation. Oxygen is essential for the metabolism of the microorganisms, enabling them to convert sugars into aconitic acid efficiently.",
+      "stream_type": "aux",
+      "source": "air supply unit",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0,
+        "Nitrogen": 0,
+        "Argon": 0,
+        "Carbon Dioxide": 0
+      }
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "stream_id": "carbon dioxide",
+      "description": "Carbon dioxide is a byproduct of the microbial metabolism during the fermentation process. It is released as the microorganisms convert sugars into aconitic acid.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "carbon dioxide sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Lignin Residue": {
+      "name": "Lignin Residue",
+      "properties": {}
+    },
+    "Aconitic Acid": {
+      "name": "Aconitic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Acid (e.g., sulfuric acid or hydrochloric acid)": {
+      "name": "Acid (e.g., sulfuric acid or hydrochloric acid)",
+      "properties": {}
+    },
+    "Alkali (e.g., sodium hydroxide)": {
+      "name": "Alkali (e.g., sodium hydroxide)",
+      "properties": {}
+    },
+    "Carbon dioxide": {
+      "name": "Carbon dioxide",
+      "properties": {}
+    },
+    "Water vapor": {
+      "name": "Water vapor",
+      "properties": {}
+    },
+    "Other volatile compounds": {
+      "name": "Other volatile compounds",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    },
+    "Nitrogen": {
+      "name": "Nitrogen",
+      "properties": {}
+    },
+    "Argon": {
+      "name": "Argon",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    }
+  }
+}

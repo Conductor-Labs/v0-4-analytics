@@ -1,0 +1,114 @@
+[2024-12-09 18:45:28] INFO - Starting run 14 for user prompt: Process that converts corn stover to Threonine via bacterial aerobic fermentation
+[2024-12-09 18:45:28] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Threonine via bacterial aerobic fermentation
+[2024-12-09 18:45:28] INFO - Starting process description agent.
+[2024-12-09 18:45:28] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Threonine via bacterial aerobic fermentation
+[2024-12-09 18:45:32] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Corn stover is a lignocellulosic biomass, typically requiring pretreatment to break down cellulose and hemicellulose into fermentable sugars.","volumetric_scale":"100,000 kg/day"}],"products":[{"name":"Threonine","composition":"L-Threonine (98-99%), Moisture (0.5-1%), Impurities (0.5-1%)","key_specs":"Threonine is an essential amino acid, typically produced at a high purity suitable for animal feed or pharmaceutical applications.","volumetric_scale":"10,000 kg/day"}]}
+[2024-12-09 18:45:32] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:45:32] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Corn stover is a lignocellulosic biomass, typically requiring pretreatment to break down cellulose and hemicellulose into fermentable sugars.', 'volumetric_scale': '100,000 kg/day'}], 'products': [{'name': 'Threonine', 'composition': 'L-Threonine (98-99%), Moisture (0.5-1%), Impurities (0.5-1%)', 'key_specs': 'Threonine is an essential amino acid, typically produced at a high purity suitable for animal feed or pharmaceutical applications.', 'volumetric_scale': '10,000 kg/day'}]}
+[2024-12-09 18:45:50] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover into simpler components, primarily focusing on cellulose and hemicellulose. This step is crucial as it enhances the accessibility of enzymes to the polysaccharides, facilitating their conversion into fermentable sugars. The process typically involves mechanical, chemical, or a combination of methods such as steam explosion or acid hydrolysis. The choice of pretreatment method impacts the efficiency of subsequent enzymatic hydrolysis and fermentation.","input_streams":[{"name":"Raw Corn Stover","description":"The raw lignocellulosic biomass feedstock, consisting of cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"The biomass after pretreatment, with disrupted lignocellulosic structure, making cellulose and hemicellulose more accessible.","components":["Cellulose","Hemicellulose","Lignin","Degradation Products"]}],"additional_info":"The pretreatment process may generate inhibitory compounds that need to be managed in subsequent steps."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Enzymes such as cellulases and hemicellulases are employed to catalyze the breakdown of polysaccharides into monosaccharides. This step is critical for maximizing sugar yield, which directly influences the efficiency of the fermentation process.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted structure, ready for enzymatic action.","components":["Cellulose","Hemicellulose","Lignin","Degradation Products"]},{"name":"Enzyme Solution","description":"A solution containing cellulases and hemicellulases to facilitate the breakdown of polysaccharides.","components":["Cellulases","Hemicellulases"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars, primarily glucose and xylose, ready for fermentation.","components":["Glucose","Xylose","Lignin","Residual Enzymes"]}],"additional_info":"The enzymatic hydrolysis is typically conducted at specific temperature and pH conditions to optimize enzyme activity."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the aerobic conversion of sugars into L-Threonine using a genetically engineered bacterial strain. This bioprocess is carried out in a bioreactor where conditions such as oxygen supply, temperature, and pH are tightly controlled to optimize the growth and metabolic activity of the bacteria, ensuring high yield and productivity of L-Threonine.","input_streams":[{"name":"Sugar Solution","description":"A solution containing fermentable sugars derived from enzymatic hydrolysis.","components":["Glucose","Xylose","Residual Enzymes"]},{"name":"Bacterial Culture","description":"A culture of genetically engineered bacteria capable of producing L-Threonine.","components":["Bacterial Cells"]}],"output_streams":[{"name":"Fermentation Broth","description":"The broth containing L-Threonine, bacterial biomass, and residual sugars.","components":["L-Threonine","Bacterial Biomass","Residual Sugars"]}],"additional_info":"Aerobic conditions are maintained to support bacterial growth and threonine production."},{"name":"Cell Separation","order":4,"description":"This unit operation involves the separation of bacterial cells from the fermentation broth. Typically, centrifugation or filtration techniques are employed to achieve this separation. The removal of biomass is essential to facilitate the downstream purification of L-Threonine.","input_streams":[{"name":"Fermentation Broth","description":"The broth containing L-Threonine, bacterial biomass, and residual sugars.","components":["L-Threonine","Bacterial Biomass","Residual Sugars"]}],"output_streams":[{"name":"Cell-Free Broth","description":"The broth after removal of bacterial biomass, containing L-Threonine and residual sugars.","components":["L-Threonine","Residual Sugars"]},{"name":"Bacterial Biomass","description":"Separated bacterial cells, which may be processed further or disposed of.","components":["Bacterial Cells"]}],"additional_info":"The separated biomass can be used as a nutrient source or disposed of as waste."},{"name":"Purification","order":5,"description":"The purification unit operation focuses on isolating and concentrating L-Threonine from the cell-free broth. Techniques such as crystallization, ion-exchange chromatography, or membrane filtration may be employed to achieve the desired purity levels. This step is crucial to meet the specifications for pharmaceutical or animal feed applications.","input_streams":[{"name":"Cell-Free Broth","description":"The broth containing L-Threonine and residual sugars, free of bacterial biomass.","components":["L-Threonine","Residual Sugars"]}],"output_streams":[{"name":"Purified L-Threonine","description":"High-purity L-Threonine suitable for end-use applications.","components":["L-Threonine"]},{"name":"Waste Stream","description":"Residual impurities and by-products removed during purification.","components":["Residual Sugars","Impurities"]}],"additional_info":"The choice of purification method impacts the purity and yield of L-Threonine."},{"name":"Drying","order":6,"description":"In the drying unit operation, the purified L-Threonine is dried to achieve the desired moisture content, typically using techniques such as spray drying or freeze drying. This step is essential to ensure product stability and ease of handling during packaging and distribution.","input_streams":[{"name":"Purified L-Threonine","description":"High-purity L-Threonine from the purification step.","components":["L-Threonine"]}],"output_streams":[{"name":"Dried L-Threonine","description":"L-Threonine with reduced moisture content, ready for packaging.","components":["L-Threonine"]}],"additional_info":"The drying process parameters are optimized to prevent degradation of L-Threonine."}]}
+[2024-12-09 18:45:50] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Bacterial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Cell Separation'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Cell-Free Broth' for output of unit operation 'Cell Separation'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Bacterial Biomass' for output of unit operation 'Cell Separation'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Cell Separation' with ID 'cell_separation' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Cell-Free Broth' for input of unit operation 'Purification'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Purified L-Threonine' for output of unit operation 'Purification'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Waste Stream' for output of unit operation 'Purification'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Purified L-Threonine' for input of unit operation 'Drying'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Dried L-Threonine' for output of unit operation 'Drying'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Drying' with ID 'drying' to process flow.
+[2024-12-09 18:45:50] INFO - Process flow built successfully.
+[2024-12-09 18:45:50] INFO - Starting v1 DAG agent.
+[2024-12-09 18:45:50] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:45:50] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:45:50] DEBUG - Stream 'Bacterial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'fermentation' to 'cell_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'cell_separation' to 'purification' via stream 'Cell-Free Broth'.
+[2024-12-09 18:45:50] DEBUG - Stream 'Bacterial Biomass' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'purification' to 'drying' via stream 'Purified L-Threonine'.
+[2024-12-09 18:45:50] DEBUG - Stream 'Waste Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Stream 'Dried L-Threonine' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:45:50] DEBUG - No missing streams identified for unit operation: Pretreatment
+[2024-12-09 18:45:50] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:45:56] DEBUG - Added auxiliary input stream 'Oxygen Supply' to unit operation 'Fermentation'
+  - Description: Oxygen is supplied to the bioreactor to maintain aerobic conditions necessary for the bacterial metabolism and conversion of sugars into L-Threonine.
+  - Components: Oxygen
+[2024-12-09 18:45:56] DEBUG - Added auxiliary output stream 'Carbon Dioxide' to unit operation 'Fermentation'
+  - Description: Carbon dioxide is a by-product of the aerobic fermentation process, resulting from the metabolic activity of the bacteria.
+  - Components: Carbon Dioxide
+[2024-12-09 18:45:56] DEBUG - No missing streams identified for unit operation: Cell Separation
+[2024-12-09 18:45:57] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:45:57] DEBUG - No missing streams identified for unit operation: Drying
+[2024-12-09 18:45:58] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:46:00] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:46:01] DEBUG - Added source unit operation 'Bacterial Culture Source' with ID 'bacterial culture source' for stream 'Bacterial Culture'
+[2024-12-09 18:46:02] DEBUG - Added sink unit operation 'Bacterial Biomass Sink' with ID 'bacterial biomass sink' for stream 'Bacterial Biomass'
+[2024-12-09 18:46:03] DEBUG - Added sink unit operation 'Waste Stream Sink' with ID 'waste stream sink' for stream 'Waste Stream'
+[2024-12-09 18:46:04] DEBUG - Added sink unit operation 'Dried L-Threonine Sink' with ID 'dried l_threonine sink' for stream 'Dried L-Threonine'
+[2024-12-09 18:46:06] DEBUG - Added source unit operation 'Oxygen Supply' with ID 'oxygen supply' for stream 'Oxygen Supply'
+[2024-12-09 18:46:07] DEBUG - Added sink unit operation 'Carbon Dioxide Sink' with ID 'carbon dioxide sink' for stream 'Carbon Dioxide'
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'bacterial culture source' to 'fermentation' via stream 'Bacterial Culture'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'fermentation' to 'cell_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'cell_separation' to 'purification' via stream 'Cell-Free Broth'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'cell_separation' to 'bacterial biomass sink' via stream 'Bacterial Biomass'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'purification' to 'drying' via stream 'Purified L-Threonine'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'purification' to 'waste stream sink' via stream 'Waste Stream'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'drying' to 'dried l_threonine sink' via stream 'Dried L-Threonine'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'oxygen supply' to 'fermentation' via stream 'Oxygen Supply'.
+[2024-12-09 18:46:07] DEBUG - Adding edge from 'fermentation' to 'carbon dioxide sink' via stream 'Carbon Dioxide'.
+[2024-12-09 18:46:07] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:46:07] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:46:14] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Cellulose → Degradation Products (rate: 10.0%)
+  2. Converting Hemicellulose → Degradation Products (rate: 15.0%)
+  3. Converting Lignin → Degradation Products (rate: 10.0%)
+[2024-12-09 18:46:20] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 65.0%)
+[2024-12-09 18:46:30] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → L-Threonine (rate: 65.0%)
+  2. Converting Glucose → Carbon Dioxide (rate: 25.0%)
+  3. Converting Xylose → L-Threonine (rate: 50.0%)
+  4. Converting Xylose → Carbon Dioxide (rate: 20.0%)
+[2024-12-09 18:46:36] DEBUG - Processing separation unit operation: Cell Separation
+Separation operations:
+  1. Separating L-Threonine (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 95.0%)
+  3. Separating Bacterial Biomass (extraction rate: 99.0%)
+[2024-12-09 18:46:43] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating L-Threonine (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 5.0%)
+[2024-12-09 18:46:46] DEBUG - No conversion or separation parameters identified for unit operation: Drying
+[2024-12-09 18:46:46] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:46:46] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:46:46] DEBUG - Skipping operational parameters for unit operation 'Bacterial Culture Source' of type 'source'
+[2024-12-09 18:46:46] DEBUG - Skipping operational parameters for unit operation 'Bacterial Biomass Sink' of type 'sink'
+[2024-12-09 18:46:46] DEBUG - Skipping operational parameters for unit operation 'Waste Stream Sink' of type 'sink'
+[2024-12-09 18:46:46] DEBUG - Skipping operational parameters for unit operation 'Dried L-Threonine Sink' of type 'sink'
+[2024-12-09 18:46:46] DEBUG - Skipping operational parameters for unit operation 'Oxygen Supply' of type 'source'
+[2024-12-09 18:46:46] DEBUG - Skipping operational parameters for unit operation 'Carbon Dioxide Sink' of type 'sink'
+[2024-12-09 18:46:46] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:46:46] INFO - Workflow completed successfully.

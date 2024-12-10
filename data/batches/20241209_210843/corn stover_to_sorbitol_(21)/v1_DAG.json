@@ -1,0 +1,626 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Sorbitol",
+      "composition": "C6H14O6 (100%)",
+      "key_specs": "Food-grade, >99% purity, used as a sweetener and humectant in food and pharmaceutical industries",
+      "volumetric_scale": "50,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to prepare the corn stover for enzymatic hydrolysis by breaking down the lignocellulosic structure. This involves a combination of physical, chemical, or biological methods to disrupt the lignin matrix and increase the accessibility of cellulose and hemicellulose. Common methods include steam explosion, acid hydrolysis, or alkaline treatment. The goal is to produce a slurry rich in cellulose and hemicellulose, while minimizing the formation of inhibitors that could affect subsequent fermentation processes.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Water or Steam"
+      ],
+      "output_streams": [
+        "Pretreated Biomass Slurry",
+        "Inhibitors or By-products"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Breaking down the lignocellulosic structure of raw corn stover using water or steam to enhance the accessibility of cellulose and hemicellulose for enzymatic hydrolysis, while producing various inhibitors and by-products.",
+            "inputComponent": "Raw Corn Stover",
+            "outputComponent": "Pretreated Biomass Slurry",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "Conversion of hemicellulose to acetic acid as a by-product of lignocellulose breakdown.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Acetic Acid",
+            "conversionRate": 0.1
+          },
+          {
+            "description": "Conversion of hemicellulose to furfural as a by-product of lignocellulose breakdown.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Furfural",
+            "conversionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The choice of pretreatment method can significantly affect the efficiency of the downstream processes and the overall economics of the process."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass slurry undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Enzymes such as cellulases and hemicellulases are added to catalyze the breakdown of polysaccharides into monosaccharides. The reaction is typically carried out in a stirred tank reactor to ensure adequate mixing and contact between enzymes and substrates.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass Slurry",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose from the pretreated biomass slurry is catalyzed by cellulase enzymes to produce glucose.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Hemicellulose from the pretreated biomass slurry is catalyzed by hemicellulase enzymes to produce xylose.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "The efficiency of enzymatic hydrolysis is influenced by factors such as enzyme loading, reaction time, and temperature."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of sugars into sorbitol by genetically engineered bacteria. The sugar solution is inoculated with a bacterial culture capable of converting glucose into sorbitol under aerobic conditions. The process is carried out in a bioreactor equipped with aeration and agitation systems to maintain optimal conditions for bacterial growth and product formation.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Bacterial Culture",
+        "Air"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "Carbon Dioxide"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "The bacteria transform a portion of the available glucose into sorbitol, a sugar alcohol.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Sorbitol",
+            "conversionRate": 0.5
+          },
+          {
+            "description": "As a byproduct of the aerobic fermentation process, carbon dioxide gas is released from the remaining glucose.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.4
+          },
+          {
+            "description": "Some of the glucose is utilized in the growth of the bacteria, resulting in the production of bacterial biomass.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Bacterial Biomass",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The choice of bacterial strain and fermentation conditions are critical to achieving high yields and productivities."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of bacterial cells and other solids from the fermentation broth. Techniques such as centrifugation or microfiltration are employed to clarify the broth and recover the bacterial biomass. The clarified broth, rich in sorbitol, is then subjected to further purification steps.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Biomass Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Retention of sorbitol in the clarified broth.",
+            "component": "Sorbitol",
+            "extractionRate": 1.0
+          },
+          {
+            "description": "Retention of glucose in the clarified broth.",
+            "component": "Glucose",
+            "extractionRate": 1.0
+          },
+          {
+            "description": "Retention of water in the clarified broth.",
+            "component": "Water",
+            "extractionRate": 1.0
+          },
+          {
+            "description": "Separation of bacterial biomass into the biomass waste stream.",
+            "component": "Bacterial Biomass",
+            "extractionRate": 0.9
+          }
+        ]
+      },
+      "additional_info": "The separated biomass can be processed for potential use as a nutrient source or disposed of as waste."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to isolate and purify sorbitol from the clarified broth. This typically involves a series of steps such as evaporation, crystallization, and filtration to achieve the desired purity levels. The goal is to produce food-grade sorbitol with a purity of greater than 99%.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth"
+      ],
+      "output_streams": [
+        "Purified Sorbitol",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation process aimed at extracting sorbitol from clarified broth.",
+            "component": "Sorbitol",
+            "extractionRate": 0.99
+          },
+          {
+            "description": "Includes the remaining impurities separated during the crystallization process.",
+            "component": "Glucose",
+            "extractionRate": 0.01
+          },
+          {
+            "description": "The water removed during the evaporation process.",
+            "component": "Water",
+            "extractionRate": 0.01
+          }
+        ]
+      },
+      "additional_info": "The choice of purification methods affects the quality and yield of the final product."
+    },
+    "drying": {
+      "unit_operation_id": "drying",
+      "name": "Drying",
+      "description": "The drying unit operation involves the removal of residual moisture from the purified sorbitol to produce a stable, dry product. This is typically achieved using techniques such as spray drying or vacuum drying, depending on the desired final product form.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Sorbitol"
+      ],
+      "output_streams": [
+        "Dried Sorbitol"
+      ],
+      "parameters": {},
+      "additional_info": "The drying process must be carefully controlled to prevent degradation of the sorbitol and ensure product stability."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is the untreated lignocellulosic biomass feedstock. The stream consists of a mixture of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). It is essential for the initial stage of the process flow, where it will undergo pretreatment to break down the complex carbohydrates into fermentable sugars for further processing.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which contains cellulase and hemicellulase enzymes essential for the enzymatic hydrolysis of pretreated biomass. The Enzyme Solution is critical for breaking down cellulose and hemicellulose into fermentable sugars, facilitating the conversion of biomass into valuable products such as sorbitol. This source operates at an industrial scale, providing a consistent and reliable supply of enzyme solution to the enzymatic hydrolysis unit operation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial culture source": {
+      "unit_operation_id": "bacterial culture source",
+      "name": "Bacterial Culture Source",
+      "description": "This unit operation serves as a source for the Bacterial Culture stream, which consists of genetically engineered bacteria specifically designed to convert glucose into sorbitol during the fermentation process. The Bacterial Culture is essential for the fermentation step, where it interacts with the sugar solution to produce sorbitol as the primary product.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Bacterial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "air supply": {
+      "unit_operation_id": "air supply",
+      "name": "Air Supply",
+      "description": "This unit operation serves as a source for the Air stream, providing the necessary oxygen for the aerobic fermentation process. The Air stream consists primarily of Oxygen and Nitrogen, which are essential for the growth of the bacterial culture during fermentation. This operation ensures a continuous and controlled supply of air to maintain optimal conditions for fermentation, thereby enhancing the efficiency of the overall process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Air"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "biomass waste sink": {
+      "unit_operation_id": "biomass waste sink",
+      "name": "Biomass Waste Sink",
+      "description": "This unit operation serves as a sink for the Biomass Waste stream, which consists of separated bacterial biomass and other solids. The biomass waste is collected after the cell separation process, where bacterial biomass that is not converted into products is removed from the fermentation broth. This sink ensures proper handling and disposal of the biomass waste, which may require further processing or treatment before disposal or use in other applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Biomass Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as a sink for the Waste Stream, which consists of impurities and residual sugars, primarily glucose and water, that are removed during the purification process of sorbitol production. The Waste Stream Sink is designed to collect and manage the disposal or treatment of these by-products, ensuring that the overall process remains efficient and environmentally compliant.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "dried sorbitol sink": {
+      "unit_operation_id": "dried sorbitol sink",
+      "name": "Dried Sorbitol Sink",
+      "description": "This unit operation serves as the final sink for the Dried Sorbitol stream, which is the end product of the sorbitol production process. The Dried Sorbitol is a dry form of sorbitol, characterized by its high purity and suitability for packaging and distribution in the food and pharmaceutical industries. This sink ensures that the product is collected and stored appropriately for subsequent handling and transportation.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Dried Sorbitol"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "water or steam source": {
+      "unit_operation_id": "water or steam source",
+      "name": "Water or Steam Source",
+      "description": "This unit operation serves as a source for water or steam, which is essential in the pretreatment process of lignocellulosic biomass. The water or steam is utilized to facilitate the breakdown of the lignocellulosic structure, enhancing the accessibility of cellulose and hemicellulose for subsequent enzymatic hydrolysis. This source ensures a continuous supply of water or steam at the required volumetric scale to support the efficient operation of the pretreatment unit.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Water or Steam"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "inhibitors or by_products sink": {
+      "unit_operation_id": "inhibitors or by_products sink",
+      "name": "Inhibitors or By-products Sink",
+      "description": "This unit operation serves as a sink for the stream of inhibitors or by-products generated during the pretreatment of corn stover. It collects compounds such as acetic acid, furfural, and other by-products that may inhibit fermentation processes. Proper management of this stream is crucial to ensure that the overall mass balance is maintained and to minimize the impact of these inhibitors on downstream processes.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Inhibitors or By-products"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "carbon dioxide sink": {
+      "unit_operation_id": "carbon dioxide sink",
+      "name": "Carbon Dioxide Sink",
+      "description": "This unit operation serves as a sink for the Carbon Dioxide stream, which is a gaseous byproduct generated during the aerobic fermentation process. In this process, sugars are metabolized by microbial cultures to produce sorbitol, resulting in the release of carbon dioxide. The Carbon Dioxide Sink is designed to safely capture and manage the carbon dioxide emissions, ensuring that they are either vented to the atmosphere in compliance with environmental regulations or processed further for potential utilization in other applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Carbon Dioxide"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The untreated lignocellulosic biomass feedstock.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass Slurry": {
+      "name": "Pretreated Biomass Slurry",
+      "stream_id": "pretreated biomass slurry",
+      "description": "A slurry containing cellulose and hemicellulose with reduced lignin content, ready for enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Water": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, with residual lignin and other solids.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Water": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of genetically engineered bacteria capable of converting glucose to sorbitol.",
+      "stream_type": "core",
+      "source": "bacterial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacteria": 0
+      }
+    },
+    "Air": {
+      "name": "Air",
+      "stream_id": "air",
+      "description": "Supplies oxygen necessary for aerobic fermentation.",
+      "stream_type": "core",
+      "source": "air supply",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0,
+        "Nitrogen": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing sorbitol, unconverted sugars, bacterial biomass, and water.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0,
+        "Glucose": 0,
+        "Bacterial Biomass": 0,
+        "Water": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A liquid stream containing sorbitol and residual sugars, free of bacterial biomass.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0,
+        "Glucose": 0,
+        "Water": 0
+      }
+    },
+    "Biomass Waste": {
+      "name": "Biomass Waste",
+      "stream_id": "biomass waste",
+      "description": "Separated bacterial biomass and other solids.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "biomass waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Biomass": 0
+      }
+    },
+    "Purified Sorbitol": {
+      "name": "Purified Sorbitol",
+      "stream_id": "purified sorbitol",
+      "description": "High-purity sorbitol suitable for use in food and pharmaceutical applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities and residual sugars removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Water": 0
+      }
+    },
+    "Dried Sorbitol": {
+      "name": "Dried Sorbitol",
+      "stream_id": "dried sorbitol",
+      "description": "The final product, a dry form of sorbitol ready for packaging and distribution.",
+      "stream_type": "core",
+      "source": "drying",
+      "target": "dried sorbitol sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0
+      }
+    },
+    "Water or Steam": {
+      "name": "Water or Steam",
+      "stream_id": "water or steam",
+      "description": "Water or steam is typically required in the pretreatment process to facilitate the breakdown of the lignocellulosic structure, especially when using methods like steam explosion or hydrothermal pretreatment.",
+      "stream_type": "aux",
+      "source": "water or steam source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0
+      }
+    },
+    "Inhibitors or By-products": {
+      "name": "Inhibitors or By-products",
+      "stream_id": "inhibitors or by_products",
+      "description": "Pretreatment processes can lead to the formation of inhibitory compounds or by-products, such as acetic acid or furfural, that need to be considered in the mass balance as they can affect subsequent fermentation processes.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "inhibitors or by_products sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Acetic Acid": 0,
+        "Furfural": 0,
+        "Other By-products": 0
+      }
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "stream_id": "carbon dioxide",
+      "description": "Byproduct of the aerobic fermentation process where sugars are converted to sorbitol. Carbon dioxide is typically released as a gaseous byproduct in such aerobic microbial processes.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "carbon dioxide sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Bacteria": {
+      "name": "Bacteria",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    },
+    "Nitrogen": {
+      "name": "Nitrogen",
+      "properties": {}
+    },
+    "Sorbitol": {
+      "name": "Sorbitol",
+      "properties": {}
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "properties": {}
+    },
+    "Acetic Acid": {
+      "name": "Acetic Acid",
+      "properties": {}
+    },
+    "Furfural": {
+      "name": "Furfural",
+      "properties": {}
+    },
+    "Other By-products": {
+      "name": "Other By-products",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    }
+  }
+}

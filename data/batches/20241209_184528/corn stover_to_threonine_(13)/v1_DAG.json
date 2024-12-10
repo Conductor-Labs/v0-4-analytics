@@ -1,0 +1,521 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (40-50%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%)",
+      "key_specs": "Typically requires pretreatment to break down lignocellulosic structure for fermentation. Moisture content should be controlled to optimize enzymatic hydrolysis.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Threonine",
+      "composition": "C4H9NO3",
+      "key_specs": "Pharmaceutical grade with purity >98%. Must meet specific optical isomer requirements (L-threonine) for commercial use in animal feed and pharmaceuticals.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover feedstock is initially prepared to ensure it is suitable for further processing. This involves size reduction through mechanical milling to increase the surface area, facilitating more efficient downstream processing. The moisture content is adjusted to optimize the subsequent enzymatic hydrolysis step. This preparation is crucial to ensure the lignocellulosic structure is adequately exposed for effective pretreatment and hydrolysis.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Moisture content is typically adjusted to around 50% for optimal enzymatic activity."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down the lignocellulosic structure, making cellulose and hemicellulose more accessible for enzymatic hydrolysis. This is typically achieved using a dilute acid or steam explosion method, which disrupts the lignin matrix and partially hydrolyzes hemicellulose. The pretreatment is a critical step to enhance the efficiency of the enzymatic hydrolysis that follows.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Acid/Steam"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Hemicellulose is hydrolyzed during the pretreatment process, converting it into soluble sugars such as xylose.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Soluble Sugars",
+            "conversionRate": 0.6
+          }
+        ]
+      },
+      "additional_info": "Dilute acid pretreatment typically uses sulfuric acid at low concentrations."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "The pretreated biomass is subjected to enzymatic hydrolysis, where cellulase and hemicellulase enzymes break down cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This step is crucial for converting the structural carbohydrates into simple sugars that can be utilized by microorganisms in the fermentation process.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Enzymatic hydrolysis of cellulose into glucose using cellulase enzymes.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Enzymatic hydrolysis of hemicellulose into xylose using hemicellulase enzymes.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "Enzymatic hydrolysis is typically conducted at moderate temperatures to optimize enzyme activity."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolysate is introduced into a bioreactor where yeast or fungal strains, such as Saccharomyces cerevisiae or a suitable fungal species, ferment the sugars into threonine. This aerobic fermentation process requires careful control of oxygen levels, pH, and temperature to optimize threonine production while minimizing by-products.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolysate",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Fermentation of glucose by yeast such as *Saccharomyces cerevisiae* to produce threonine.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Threonine",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "Fermentation of xylose by yeast such as *Saccharomyces cerevisiae* to produce threonine.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Threonine",
+            "conversionRate": 0.25
+          },
+          {
+            "description": "Unavoidable by-products formed during the fermentation of glucose.",
+            "inputComponent": "Glucose",
+            "outputComponent": "By-products",
+            "conversionRate": 0.1
+          },
+          {
+            "description": "Unavoidable by-products formed during the fermentation of xylose.",
+            "inputComponent": "Xylose",
+            "outputComponent": "By-products",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "Aerobic conditions are maintained with controlled aeration and agitation."
+    },
+    "product_recovery_and_purification": {
+      "unit_operation_id": "product_recovery_and_purification",
+      "name": "Product Recovery and Purification",
+      "description": "The fermentation broth undergoes a series of separation and purification steps to recover threonine at the desired pharmaceutical grade purity. Initial solid-liquid separation removes microbial biomass, followed by crystallization or chromatography to isolate and purify threonine. The process ensures that the final product meets the specific optical isomer requirements for commercial use.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Purified Threonine",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Solid-liquid separation to remove residual microbial biomass using centrifugation or filtration.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.1
+          },
+          {
+            "description": "Isolation of threonine from fermentation broth using crystallization or chromatography techniques.",
+            "component": "Threonine",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of residual sugars from threonine through purification processes.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.05
+          },
+          {
+            "description": "Removal of by-products from the fermentation process directed into the waste stream.",
+            "component": "By-products",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "Purification may involve multiple stages of crystallization and/or chromatography."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "The waste stream from the product recovery and purification step is treated to minimize environmental impact. This involves biological treatment processes to degrade organic materials, followed by physical or chemical treatments to remove any remaining contaminants. The treated effluent is then safely discharged or reused within the process.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [
+        "Treated Effluent"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of microbial biomass through biological degradation processes.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Extraction of residual sugars during biological treatment to reduce organic load.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Removal of by-products generated during microbial metabolism in the treatment processes.",
+            "component": "By-products",
+            "extractionRate": 0.85
+          }
+        ]
+      },
+      "additional_info": "Biological treatment may involve aerobic digestion to reduce organic load."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is unprocessed corn stover directly obtained from agricultural sources. The stream consists of key components including Cellulose (40-50%), Hemicellulose (25-30%), Lignin (15-20%), and Ash (5-10%). This feedstock is essential for the subsequent processes in the production of Threonine, requiring careful handling and preparation to ensure optimal processing conditions.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which is a critical input for the enzymatic hydrolysis process in the production of Threonine from biomass. The Enzyme Solution contains cellulase and hemicellulase enzymes that facilitate the breakdown of cellulose and hemicellulose into fermentable sugars. This unit operation ensures a consistent supply of the enzyme solution at the required volumetric scale to optimize the enzymatic hydrolysis step.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "microbial culture source": {
+      "unit_operation_id": "microbial culture source",
+      "name": "Microbial Culture Source",
+      "description": "This unit operation serves as a source for the Microbial Culture stream, which consists of yeast and fungal strains, specifically Saccharomyces cerevisiae and various fungal species. These microorganisms are essential for the fermentation process, as they are capable of converting sugars derived from hydrolysate into threonine. The unit operation ensures a continuous supply of active and viable microbial culture to optimize the fermentation efficiency and yield of threonine production.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Microbial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "threonine sink": {
+      "unit_operation_id": "threonine sink",
+      "name": "Threonine Sink",
+      "description": "This unit operation serves as the final sink for the purified threonine stream, ensuring that the high-purity threonine produced meets the required specifications for pharmaceutical and animal feed applications. It is designed to handle a volumetric flow of 10,000 kg/day, maintaining the integrity and quality of the threonine while preventing contamination or degradation.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Threonine"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "treated effluent sink": {
+      "unit_operation_id": "treated effluent sink",
+      "name": "Treated Effluent Sink",
+      "description": "This unit operation serves as the final sink for the treated effluent stream, which has undergone waste treatment to remove contaminants. The treated effluent is composed primarily of water and trace organics, making it suitable for discharge into the environment or for potential reuse in various applications. This unit operation ensures that the effluent meets regulatory standards for safety and environmental impact before it is released.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Treated Effluent"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "acid/steam source": {
+      "unit_operation_id": "acid/steam source",
+      "name": "Acid/Steam Source",
+      "description": "This unit operation serves as a source for the Acid/Steam stream, which is utilized in the pretreatment process of prepared corn stover. The Acid/Steam stream consists of dilute acid (such as sulfuric acid) and steam, which work together to disrupt the lignin matrix and partially hydrolyze hemicellulose, facilitating the subsequent enzymatic hydrolysis step. This source is critical for optimizing the pretreatment efficiency and ensuring the effective breakdown of lignocellulosic biomass.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Acid/Steam"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover directly from agricultural sources.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover that has been milled and moisture-adjusted, ready for pretreatment.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, facilitating enzyme access.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Soluble Sugars": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, ready for fermentation.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Residual Enzymes": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Yeast or fungal strains capable of converting sugars to threonine.",
+      "stream_type": "core",
+      "source": "microbial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Saccharomyces cerevisiae": 0,
+        "Fungal Species": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing threonine, unconverted sugars, microbial biomass, and fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery_and_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Threonine": 0,
+        "Microbial Biomass": 0,
+        "Residual Sugars": 0,
+        "By-products": 0
+      }
+    },
+    "Purified Threonine": {
+      "name": "Purified Threonine",
+      "stream_id": "purified threonine",
+      "description": "High-purity threonine suitable for pharmaceutical and animal feed applications.",
+      "stream_type": "core",
+      "source": "product_recovery_and_purification",
+      "target": "threonine sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Threonine": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "Residual materials including unconverted sugars, microbial biomass, and by-products.",
+      "stream_type": "core",
+      "source": "product_recovery_and_purification",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0,
+        "Residual Sugars": 0,
+        "By-products": 0
+      }
+    },
+    "Treated Effluent": {
+      "name": "Treated Effluent",
+      "stream_id": "treated effluent",
+      "description": "Effluent that has been treated to remove contaminants, suitable for discharge or reuse.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": "treated effluent sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Trace Organics": 0
+      }
+    },
+    "Acid/Steam": {
+      "name": "Acid/Steam",
+      "stream_id": "acid/steam",
+      "description": "Acid or steam used in the pretreatment process to break down the lignocellulosic structure of the prepared corn stover by disrupting the lignin matrix and partially hydrolyzing hemicellulose.",
+      "stream_type": "aux",
+      "source": "acid/steam source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Dilute Acid (e.g., Sulfuric Acid)": 0,
+        "Steam": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Soluble Sugars": {
+      "name": "Soluble Sugars",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Enzymes": {
+      "name": "Residual Enzymes",
+      "properties": {}
+    },
+    "Saccharomyces cerevisiae": {
+      "name": "Saccharomyces cerevisiae",
+      "properties": {}
+    },
+    "Fungal Species": {
+      "name": "Fungal Species",
+      "properties": {}
+    },
+    "Threonine": {
+      "name": "Threonine",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "By-products": {
+      "name": "By-products",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Trace Organics": {
+      "name": "Trace Organics",
+      "properties": {}
+    },
+    "Dilute Acid (e.g., Sulfuric Acid)": {
+      "name": "Dilute Acid (e.g., Sulfuric Acid)",
+      "properties": {}
+    },
+    "Steam": {
+      "name": "Steam",
+      "properties": {}
+    }
+  }
+}

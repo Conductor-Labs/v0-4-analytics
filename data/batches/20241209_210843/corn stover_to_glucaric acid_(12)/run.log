@@ -1,0 +1,114 @@
+[2024-12-09 21:08:43] INFO - Starting run 12 for user prompt: Process that converts corn stover to Glucaric acid via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:43] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Glucaric acid via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:43] INFO - Starting process description agent.
+[2024-12-09 21:08:43] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Glucaric acid via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:48] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Lignocellulosic biomass consisting of cellulose (35-40%), hemicellulose (25-30%), and lignin (15-20%)","key_specs":"Typically requires pretreatment to break down lignocellulosic structure for fermentation. Moisture content should be controlled to optimize fermentation efficiency.","volumetric_scale":"100,000 tons per year"}],"products":[{"name":"Glucaric Acid","composition":"C6H10O8","key_specs":"Purity > 95% for commercial applications. Typically produced as a crystalline solid or concentrated solution. Must meet food-grade or industrial-grade specifications depending on the application.","volumetric_scale":"10,000 tons per year"}]}
+[2024-12-09 21:08:48] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 21:08:48] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Lignocellulosic biomass consisting of cellulose (35-40%), hemicellulose (25-30%), and lignin (15-20%)', 'key_specs': 'Typically requires pretreatment to break down lignocellulosic structure for fermentation. Moisture content should be controlled to optimize fermentation efficiency.', 'volumetric_scale': '100,000 tons per year'}], 'products': [{'name': 'Glucaric Acid', 'composition': 'C6H10O8', 'key_specs': 'Purity > 95% for commercial applications. Typically produced as a crystalline solid or concentrated solution. Must meet food-grade or industrial-grade specifications depending on the application.', 'volumetric_scale': '10,000 tons per year'}]}
+[2024-12-09 21:09:20] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover, making the cellulose and hemicellulose more accessible for enzymatic hydrolysis. This step typically involves mechanical, chemical, or a combination of both methods to disrupt the lignin structure and increase the surface area of the biomass. A common approach is the use of dilute acid or alkaline solutions to solubilize hemicellulose and partially hydrolyze the cellulose. The pretreatment process is crucial for enhancing the efficiency of subsequent enzymatic hydrolysis and fermentation steps.","input_streams":[{"name":"Raw Corn Stover","description":"The untreated lignocellulosic biomass feedstock.","components":["Cellulose","Hemicellulose","Lignin"]},{"name":"Pretreatment Chemicals","description":"Chemicals such as dilute acid or alkali used to facilitate the breakdown of biomass.","components":["Sulfuric Acid","Sodium Hydroxide"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignocellulosic structure, ready for enzymatic hydrolysis.","components":["Cellulose","Hemicellulose","Lignin"]}],"additional_info":"The moisture content of the biomass is controlled to optimize the pretreatment efficiency."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Specific enzymes, such as cellulases and hemicellulases, are added to catalyze the breakdown of polysaccharides into monosaccharides. This step is critical for maximizing sugar yield, which directly impacts the overall efficiency of the fermentation process.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignocellulosic structure, ready for enzymatic hydrolysis.","components":["Cellulose","Hemicellulose","Lignin"]},{"name":"Enzymes","description":"Enzymes used to catalyze the hydrolysis of cellulose and hemicellulose.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution containing fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.","components":["Glucose","Xylose"]}],"additional_info":"The enzymatic hydrolysis is typically conducted at controlled temperatures to optimize enzyme activity."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the conversion of fermentable sugars into glucaric acid using yeast or fungal cultures under aerobic conditions. The microorganisms metabolize the sugars and produce glucaric acid as a metabolic byproduct. This step is crucial for the bioconversion process and requires careful control of aeration, nutrient supply, and microbial growth conditions to maximize product yield.","input_streams":[{"name":"Sugar Solution","description":"A solution containing fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.","components":["Glucose","Xylose"]},{"name":"Microbial Culture","description":"Yeast or fungal cultures used for the fermentation process.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"The liquid mixture containing glucaric acid and residual sugars post-fermentation.","components":["Glucaric Acid","Residual Sugars"]}],"additional_info":"Aerobic conditions are maintained to support the growth and metabolic activity of the microorganisms."},{"name":"Separation and Purification","order":4,"description":"This unit operation involves the separation of glucaric acid from the fermentation broth. Techniques such as filtration, centrifugation, and crystallization are employed to isolate and purify glucaric acid to meet commercial specifications. The goal is to achieve a purity level greater than 95%, suitable for food-grade or industrial-grade applications. This step is critical for ensuring product quality and marketability.","input_streams":[{"name":"Fermentation Broth","description":"The liquid mixture containing glucaric acid and residual sugars post-fermentation.","components":["Glucaric Acid","Residual Sugars"]}],"output_streams":[{"name":"Purified Glucaric Acid","description":"High-purity glucaric acid suitable for commercial applications.","components":["Glucaric Acid"]},{"name":"Waste Stream","description":"Residual materials and impurities removed during the purification process.","components":["Residual Sugars","Impurities"]}],"additional_info":"Crystallization is often used to achieve the desired purity and solid form of glucaric acid."},{"name":"Drying","order":5,"description":"The drying unit operation is employed to remove moisture from the purified glucaric acid, resulting in a stable crystalline product. This step is essential for producing a solid form of glucaric acid that is easy to handle, store, and transport. The drying process must be carefully controlled to prevent thermal degradation of the product.","input_streams":[{"name":"Purified Glucaric Acid","description":"High-purity glucaric acid suitable for commercial applications.","components":["Glucaric Acid"]}],"output_streams":[{"name":"Dried Glucaric Acid","description":"Crystalline glucaric acid with reduced moisture content, ready for packaging and distribution.","components":["Glucaric Acid"]}],"additional_info":"The drying process may involve techniques such as spray drying or vacuum drying to achieve the desired moisture content."},{"name":"Packaging","order":6,"description":"The final unit operation involves packaging the dried glucaric acid into suitable containers for distribution and sale. Packaging must protect the product from moisture and contamination while ensuring compliance with regulatory standards for food-grade or industrial-grade products. This step is crucial for maintaining product quality during storage and transportation.","input_streams":[{"name":"Dried Glucaric Acid","description":"Crystalline glucaric acid with reduced moisture content, ready for packaging and distribution.","components":["Glucaric Acid"]}],"output_streams":[{"name":"Packaged Glucaric Acid","description":"Glucaric acid packaged for commercial distribution.","components":["Glucaric Acid"]}],"additional_info":"Packaging materials and methods are selected based on the intended market and distribution requirements."}]}
+[2024-12-09 21:09:20] DEBUG - Process flow loaded successfully.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Pretreatment Chemicals' for input of unit operation 'Pretreatment'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Enzymes' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Separation and Purification'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Purified Glucaric Acid' for output of unit operation 'Separation and Purification'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Waste Stream' for output of unit operation 'Separation and Purification'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Separation and Purification' with ID 'separation_and_purification' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Purified Glucaric Acid' for input of unit operation 'Drying'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Dried Glucaric Acid' for output of unit operation 'Drying'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Drying' with ID 'drying' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Dried Glucaric Acid' for input of unit operation 'Packaging'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Packaged Glucaric Acid' for output of unit operation 'Packaging'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Packaging' with ID 'packaging' to process flow.
+[2024-12-09 21:09:20] INFO - Process flow built successfully.
+[2024-12-09 21:09:20] INFO - Starting v1 DAG agent.
+[2024-12-09 21:09:20] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Stream 'Pretreatment Chemicals' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 21:09:20] DEBUG - Stream 'Enzymes' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 21:09:20] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'fermentation' to 'separation_and_purification' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'separation_and_purification' to 'drying' via stream 'Purified Glucaric Acid'.
+[2024-12-09 21:09:20] DEBUG - Stream 'Waste Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'drying' to 'packaging' via stream 'Dried Glucaric Acid'.
+[2024-12-09 21:09:20] DEBUG - Stream 'Packaged Glucaric Acid' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:23] DEBUG - Added auxiliary input stream 'Water' to unit operation 'Pretreatment'
+  - Description: Water is typically used in pretreatment processes to create dilute acid or alkaline solutions, facilitate chemical reactions, and aid in the physical breakdown of biomass. It acts as a solvent and aids in the distribution of pretreatment chemicals throughout the biomass.
+  - Components: Water
+[2024-12-09 21:09:23] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 21:09:29] DEBUG - Added auxiliary input stream 'Nutrient Solution' to unit operation 'Fermentation'
+  - Description: This stream provides essential nutrients and minerals required for microbial growth and metabolism during the fermentation process. These nutrients support the microbial culture in effectively converting sugars into glucaric acid.
+  - Components: Nitrogen source (e.g., Ammonium sulfate), Phosphates, Trace minerals
+[2024-12-09 21:09:29] DEBUG - Added auxiliary input stream 'Aeration Stream' to unit operation 'Fermentation'
+  - Description: This stream provides the necessary oxygen to maintain aerobic conditions for the microbial cultures during fermentation.
+  - Components: Oxygen, Nitrogen (as part of air)
+[2024-12-09 21:09:29] DEBUG - No missing streams identified for unit operation: Separation and Purification
+[2024-12-09 21:09:29] DEBUG - No missing streams identified for unit operation: Drying
+[2024-12-09 21:09:30] DEBUG - No missing streams identified for unit operation: Packaging
+[2024-12-09 21:09:31] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 21:09:32] DEBUG - Added source unit operation 'Pretreatment Chemicals Source' with ID 'pretreatment chemicals source' for stream 'Pretreatment Chemicals'
+[2024-12-09 21:09:33] DEBUG - Added source unit operation 'Enzyme Source' with ID 'enzyme source' for stream 'Enzymes'
+[2024-12-09 21:09:35] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 21:09:36] DEBUG - Added sink unit operation 'Waste Stream Sink' with ID 'waste stream sink' for stream 'Waste Stream'
+[2024-12-09 21:09:37] DEBUG - Added sink unit operation 'Packaged Glucaric Acid Sink' with ID 'packaged glucaric acid sink' for stream 'Packaged Glucaric Acid'
+[2024-12-09 21:09:38] DEBUG - Added source unit operation 'Water Source' with ID 'water source' for stream 'Water'
+[2024-12-09 21:09:39] DEBUG - Added source unit operation 'Nutrient Solution Source' with ID 'nutrient solution source' for stream 'Nutrient Solution'
+[2024-12-09 21:09:40] DEBUG - Added source unit operation 'Aeration Stream Source' with ID 'aeration stream source' for stream 'Aeration Stream'
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'pretreatment chemicals source' to 'pretreatment' via stream 'Pretreatment Chemicals'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'enzyme source' to 'enzymatic_hydrolysis' via stream 'Enzymes'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'fermentation' to 'separation_and_purification' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'separation_and_purification' to 'drying' via stream 'Purified Glucaric Acid'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'separation_and_purification' to 'waste stream sink' via stream 'Waste Stream'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'drying' to 'packaging' via stream 'Dried Glucaric Acid'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'packaging' to 'packaged glucaric acid sink' via stream 'Packaged Glucaric Acid'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'water source' to 'pretreatment' via stream 'Water'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'nutrient solution source' to 'fermentation' via stream 'Nutrient Solution'.
+[2024-12-09 21:09:40] DEBUG - Adding edge from 'aeration stream source' to 'fermentation' via stream 'Aeration Stream'.
+[2024-12-09 21:09:40] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:40] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 21:09:50] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Hemicellulose → Solubilized Oligomers (rate: 50.0%)
+  2. Converting Cellulose → Partially Hydrolyzed Cellulose (rate: 10.0%)
+[2024-12-09 21:09:56] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 75.0%)
+[2024-12-09 21:10:03] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Glucaric Acid (rate: 75.0%)
+  2. Converting Xylose → Glucaric Acid (rate: 65.0%)
+[2024-12-09 21:10:10] DEBUG - Processing separation unit operation: Separation and Purification
+Separation operations:
+  1. Separating Glucaric Acid (extraction rate: 95.0%)
+  2. Separating Glucaric Acid (extraction rate: 95.0%)
+  3. Separating Glucaric Acid (extraction rate: 95.0%)
+  4. Separating Residual Sugars (extraction rate: 5.0%)
+[2024-12-09 21:10:14] DEBUG - No conversion or separation parameters identified for unit operation: Drying
+[2024-12-09 21:10:18] DEBUG - No conversion or separation parameters identified for unit operation: Packaging
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Pretreatment Chemicals Source' of type 'source'
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Enzyme Source' of type 'source'
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Waste Stream Sink' of type 'sink'
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Packaged Glucaric Acid Sink' of type 'sink'
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Water Source' of type 'source'
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Nutrient Solution Source' of type 'source'
+[2024-12-09 21:10:18] DEBUG - Skipping operational parameters for unit operation 'Aeration Stream Source' of type 'source'
+[2024-12-09 21:10:18] INFO - v1 DAG agent processing complete.
+[2024-12-09 21:10:18] INFO - Workflow completed successfully.

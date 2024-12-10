@@ -1,0 +1,334 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Primarily composed of cellulose (40-50%), hemicellulose (25-30%), and lignin (15-20%)",
+      "key_specs": "Typically requires pre-treatment to break down lignocellulosic structure for enzymatic access. Moisture content around 10-15% is common.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Arabitol",
+      "composition": "C5 sugar alcohol, typically over 95% purity for commercial applications",
+      "key_specs": "Requires high purity for use in food and pharmaceutical industries. Typically produced as a crystalline solid or concentrated solution.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The initial step involves preparing the corn stover feedstock to ensure it is suitable for further processing. This includes size reduction through mechanical milling to increase surface area and facilitate subsequent chemical reactions. The moisture content is adjusted to optimal levels for the pretreatment process, typically around 10-15%.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Size reduction is crucial for increasing the efficiency of the pretreatment process by enhancing enzyme accessibility."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down the lignocellulosic structure, making cellulose and hemicellulose more accessible to enzymes. This can involve chemical, physical, or a combination of methods such as dilute acid treatment, steam explosion, or ammonia fiber expansion.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method affects the downstream processing efficiency and cost."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "Enzymatic hydrolysis involves the addition of specific enzymes to the pretreated biomass to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are used to break down the polysaccharides into monomeric sugars, primarily glucose and xylose.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "Enzyme loading and reaction time are critical parameters influencing the yield and cost of sugar production."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The sugar solution undergoes fermentation where specific microorganisms convert the sugars, particularly xylose, into arabitol. This biotransformation is facilitated by yeast strains capable of metabolizing xylose into arabitol under anaerobic conditions.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Sugar Solution",
+        "Yeast Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The fermentation process may require optimization of conditions such as nutrient supplementation and pH control to maximize arabitol yield."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "The fermentation broth is processed to recover arabitol. This involves separation techniques such as centrifugation to remove yeast biomass, followed by crystallization or evaporation to concentrate and purify arabitol from the broth.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Arabitol",
+        "Waste Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Efficient separation and purification are crucial for achieving the high purity required for commercial applications."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude arabitol undergoes further purification to achieve the desired purity level, typically over 95%. This can involve additional crystallization steps, ion exchange, or membrane filtration to remove impurities and residual sugars.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Arabitol"
+      ],
+      "output_streams": [
+        "Purified Arabitol"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of purification method impacts the final product quality and process economics."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "The process generates waste streams, including lignin-rich residues and spent yeast biomass. These are treated to minimize environmental impact and can be valorized through combustion for energy recovery or used as soil amendments.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Waste Biomass"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Waste valorization can improve the overall sustainability and economic viability of the process."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw lignocellulosic biomass feedstock primarily composed of cellulose, hemicellulose, and lignin.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Moisture": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover that has been milled and adjusted for moisture content, ready for pretreatment.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, facilitating enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases for hydrolyzing cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in monomeric sugars, primarily glucose and xylose, resulting from enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Moisture": 0
+      }
+    },
+    "Yeast Culture": {
+      "name": "Yeast Culture",
+      "stream_id": "yeast culture",
+      "description": "Microorganisms capable of fermenting xylose into arabitol.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing arabitol, unconverted sugars, and microbial biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Arabitol": 0,
+        "Residual Sugars": 0,
+        "Yeast Biomass": 0,
+        "Lignin": 0
+      }
+    },
+    "Crude Arabitol": {
+      "name": "Crude Arabitol",
+      "stream_id": "crude arabitol",
+      "description": "A concentrated form of arabitol, separated from the fermentation broth.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Arabitol": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Waste Biomass": {
+      "name": "Waste Biomass",
+      "stream_id": "waste biomass",
+      "description": "Separated yeast biomass and lignin, which can be used as animal feed or for energy recovery.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast Biomass": 0,
+        "Lignin": 0
+      }
+    },
+    "Purified Arabitol": {
+      "name": "Purified Arabitol",
+      "stream_id": "purified arabitol",
+      "description": "High-purity arabitol suitable for commercial applications in food and pharmaceuticals.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Arabitol": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Processed waste streams that are environmentally safe or repurposed for energy or agricultural use.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Treated Biomass": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Arabitol": {
+      "name": "Arabitol",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Yeast Biomass": {
+      "name": "Yeast Biomass",
+      "properties": {}
+    },
+    "Treated Biomass": {
+      "name": "Treated Biomass",
+      "properties": {}
+    }
+  }
+}

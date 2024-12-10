@@ -1,0 +1,394 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, typically requires pretreatment to break down cellulose and hemicellulose into fermentable sugars.",
+      "volumetric_scale": "1000 metric tons per day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Glycerol",
+      "composition": "C3H8O3 (Glycerol)",
+      "key_specs": "Industrial grade, typically >95% purity, suitable for use in pharmaceuticals, cosmetics, and food industries.",
+      "volumetric_scale": "200 metric tons per day"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover, a lignocellulosic biomass, is initially collected and prepared for processing. This involves size reduction through mechanical milling to increase the surface area, making it more amenable to subsequent pretreatment processes. The goal is to achieve a uniform particle size that facilitates efficient chemical reactions in later stages.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Milled Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Size reduction is typically achieved using hammer mills or knife mills."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The milled corn stover undergoes a pretreatment process to break down the complex lignocellulosic structure. This is typically done using dilute acid hydrolysis, which helps to solubilize hemicellulose and disrupt the lignin structure, releasing fermentable sugars such as glucose and xylose. This step is crucial for enhancing the enzymatic digestibility of the biomass.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Milled Corn Stover",
+        "Dilute Acid Solution"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Common acids used include sulfuric acid or hydrochloric acid. The process may generate some inhibitory compounds that need to be managed."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "The pretreated biomass is subjected to enzymatic hydrolysis to further break down cellulose into glucose. Enzymes such as cellulases are added to catalyze the hydrolysis of cellulose into fermentable sugars. This step is essential for maximizing sugar yield, which is critical for the subsequent fermentation process.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Cellulase Enzymes"
+      ],
+      "output_streams": [
+        "Hydrolyzed Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Enzyme loading and reaction time are optimized to balance cost and sugar yield."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolyzed biomass is introduced into a bioreactor for aerobic fermentation. Specific strains of bacteria are employed to convert the glucose and xylose into glycerol. This process requires careful control of oxygen levels, as well as nutrients to support bacterial growth and metabolism.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolyzed Biomass",
+        "Bacterial Culture",
+        "Nutrient Solution"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Oxygen transfer and mixing are critical design considerations to ensure efficient fermentation."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "The fermentation broth undergoes a series of separation processes to recover glycerol. This typically involves centrifugation to remove bacterial biomass, followed by distillation to purify glycerol from the remaining liquid. The goal is to achieve industrial-grade glycerol with a purity of greater than 95%.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Glycerol",
+        "Biomass Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Distillation columns are designed to optimize energy efficiency and separation performance."
+    },
+    "glycerol_purification": {
+      "unit_operation_id": "glycerol_purification",
+      "name": "Glycerol Purification",
+      "description": "The crude glycerol is further purified to achieve the desired industrial-grade quality. This involves additional distillation or other purification techniques such as ion exchange or membrane filtration to remove residual impurities and water, ensuring the glycerol meets the required purity standards for pharmaceutical, cosmetic, and food applications.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Glycerol"
+      ],
+      "output_streams": [
+        "Purified Glycerol"
+      ],
+      "parameters": {},
+      "additional_info": "Purification processes are selected based on the specific impurity profile and target purity requirements."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "Residual waste streams from the process, including lignin residues, unconverted sugars, and other by-products, are treated to minimize environmental impact. This may involve biological treatment, combustion for energy recovery, or conversion into value-added products such as biochar or animal feed.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Biomass Waste"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Waste treatment strategies are chosen based on regulatory requirements and economic considerations."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover collected from agricultural fields.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Milled Corn Stover": {
+      "name": "Milled Corn Stover",
+      "stream_id": "milled corn stover",
+      "description": "Corn stover that has been mechanically reduced in size, ready for pretreatment.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Dilute Acid Solution": {
+      "name": "Dilute Acid Solution",
+      "stream_id": "dilute acid solution",
+      "description": "A dilute acid solution used to hydrolyze hemicellulose and disrupt lignin.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Acid": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with solubilized hemicellulose and disrupted lignin, containing fermentable sugars.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin Residues": 0,
+        "Ash": 0
+      }
+    },
+    "Cellulase Enzymes": {
+      "name": "Cellulase Enzymes",
+      "stream_id": "cellulase enzymes",
+      "description": "Enzymes used to catalyze the hydrolysis of cellulose into glucose.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0
+      }
+    },
+    "Hydrolyzed Biomass": {
+      "name": "Hydrolyzed Biomass",
+      "stream_id": "hydrolyzed biomass",
+      "description": "Biomass with cellulose converted into glucose, ready for fermentation.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin Residues": 0,
+        "Ash": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "Bacterial strains capable of converting sugars into glycerol under aerobic conditions.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacteria": 0
+      }
+    },
+    "Nutrient Solution": {
+      "name": "Nutrient Solution",
+      "stream_id": "nutrient solution",
+      "description": "Nutrients required to support bacterial growth and fermentation.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Nitrogen Source": 0,
+        "Phosphorus Source": 0,
+        "Trace Minerals": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing glycerol, unconverted sugars, bacterial biomass, and other by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Glycerol": 0,
+        "Unconverted Sugars": 0,
+        "Bacterial Biomass": 0,
+        "Water": 0
+      }
+    },
+    "Crude Glycerol": {
+      "name": "Crude Glycerol",
+      "stream_id": "crude glycerol",
+      "description": "Glycerol with impurities, requiring further purification.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "glycerol_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Glycerol": 0,
+        "Water": 0,
+        "Impurities": 0
+      }
+    },
+    "Biomass Waste": {
+      "name": "Biomass Waste",
+      "stream_id": "biomass waste",
+      "description": "Solid waste consisting of bacterial biomass and other solids.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Biomass": 0,
+        "Lignin Residues": 0
+      }
+    },
+    "Purified Glycerol": {
+      "name": "Purified Glycerol",
+      "stream_id": "purified glycerol",
+      "description": "High-purity glycerol suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "glycerol_purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Glycerol": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Waste that has been treated to reduce environmental impact.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Inert Solids": 0,
+        "Water": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Acid": {
+      "name": "Acid",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Lignin Residues": {
+      "name": "Lignin Residues",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Bacteria": {
+      "name": "Bacteria",
+      "properties": {}
+    },
+    "Nitrogen Source": {
+      "name": "Nitrogen Source",
+      "properties": {}
+    },
+    "Phosphorus Source": {
+      "name": "Phosphorus Source",
+      "properties": {}
+    },
+    "Trace Minerals": {
+      "name": "Trace Minerals",
+      "properties": {}
+    },
+    "Glycerol": {
+      "name": "Glycerol",
+      "properties": {}
+    },
+    "Unconverted Sugars": {
+      "name": "Unconverted Sugars",
+      "properties": {}
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Inert Solids": {
+      "name": "Inert Solids",
+      "properties": {}
+    }
+  }
+}

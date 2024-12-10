@@ -1,0 +1,118 @@
+[2024-12-09 18:39:39] INFO - Starting run 6 for user prompt: Process that converts corn stover to Glycerol via bacterial anaerobic fermentation
+[2024-12-09 18:39:39] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Glycerol via bacterial anaerobic fermentation
+[2024-12-09 18:39:39] INFO - Starting process description agent.
+[2024-12-09 18:39:39] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Glycerol via bacterial anaerobic fermentation
+[2024-12-09 18:39:42] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Primarily composed of cellulose (40-50%), hemicellulose (25-35%), and lignin (15-20%)","key_specs":"Typically requires pre-treatment to break down lignocellulosic structure for fermentation. Moisture content is usually around 10-15%.","volumetric_scale":"100,000 kg/day"}],"products":[{"name":"Glycerol","composition":"Purity typically greater than 95% glycerol with minor impurities such as water and residual sugars","key_specs":"Industrial-grade glycerol suitable for use in pharmaceuticals, cosmetics, and food industries. Requires purification steps to achieve high purity.","volumetric_scale":"10,000 kg/day"}]}
+[2024-12-09 18:39:42] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:39:42] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Primarily composed of cellulose (40-50%), hemicellulose (25-35%), and lignin (15-20%)', 'key_specs': 'Typically requires pre-treatment to break down lignocellulosic structure for fermentation. Moisture content is usually around 10-15%.', 'volumetric_scale': '100,000 kg/day'}], 'products': [{'name': 'Glycerol', 'composition': 'Purity typically greater than 95% glycerol with minor impurities such as water and residual sugars', 'key_specs': 'Industrial-grade glycerol suitable for use in pharmaceuticals, cosmetics, and food industries. Requires purification steps to achieve high purity.', 'volumetric_scale': '10,000 kg/day'}]}
+[2024-12-09 18:39:58] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Feedstock Preparation","order":1,"description":"The corn stover feedstock is initially prepared for processing. This involves size reduction through mechanical milling to increase the surface area and improve the efficiency of subsequent pretreatment steps. The moisture content is adjusted to the desired level, typically around 10-15%, to optimize the pretreatment process.","input_streams":[{"name":"Raw Corn Stover","description":"Unprocessed corn stover with natural moisture content.","components":["cellulose","hemicellulose","lignin"]}],"output_streams":[{"name":"Prepared Corn Stover","description":"Corn stover that has been milled and adjusted for moisture content, ready for pretreatment.","components":["cellulose","hemicellulose","lignin"]}],"additional_info":"Size reduction is crucial for enhancing the efficiency of the pretreatment process by increasing the surface area."},{"name":"Pretreatment","order":2,"description":"The prepared corn stover undergoes a pretreatment process to break down the lignocellulosic structure, making the cellulose and hemicellulose more accessible for enzymatic hydrolysis. This step often involves chemical or steam explosion methods to disrupt the lignin matrix.","input_streams":[{"name":"Prepared Corn Stover","description":"Corn stover that has been milled and adjusted for moisture content, ready for pretreatment.","components":["cellulose","hemicellulose","lignin"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignocellulosic structure, facilitating enzymatic access to cellulose and hemicellulose.","components":["cellulose","hemicellulose","lignin"]}],"additional_info":"Common pretreatment methods include dilute acid, alkaline, or steam explosion. The choice of method affects the downstream processing efficiency and cost."},{"name":"Enzymatic Hydrolysis","order":3,"description":"The pretreated biomass is subjected to enzymatic hydrolysis, where specific enzymes break down cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This step is critical for converting the structural carbohydrates into soluble sugars.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignocellulosic structure, facilitating enzymatic access to cellulose and hemicellulose.","components":["cellulose","hemicellulose","lignin"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars derived from cellulose and hemicellulose.","components":["glucose","xylose","lignin"]}],"additional_info":"Enzymes such as cellulases and hemicellulases are used. The efficiency of this step is crucial for maximizing sugar yield."},{"name":"Fermentation","order":4,"description":"The sugar solution undergoes anaerobic fermentation using specialized bacteria capable of converting sugars into glycerol. This biological process occurs in a controlled environment where the bacteria metabolize the sugars, producing glycerol as the primary product along with minor by-products.","input_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars derived from cellulose and hemicellulose.","components":["glucose","xylose","lignin"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing glycerol, residual sugars, bacterial biomass, and minor by-products.","components":["glycerol","residual sugars","bacterial biomass"]}],"additional_info":"Anaerobic conditions are maintained to optimize glycerol production. The choice of bacterial strain is crucial for high glycerol yield."},{"name":"Separation","order":5,"description":"The fermentation broth is subjected to a separation process to isolate glycerol from the mixture. This typically involves centrifugation to remove bacterial biomass and filtration to separate solids from the liquid phase.","input_streams":[{"name":"Fermentation Broth","description":"A mixture containing glycerol, residual sugars, bacterial biomass, and minor by-products.","components":["glycerol","residual sugars","bacterial biomass"]}],"output_streams":[{"name":"Crude Glycerol Stream","description":"A liquid stream enriched in glycerol with some impurities.","components":["glycerol","water","residual sugars"]},{"name":"Solid Waste","description":"Separated solids including bacterial biomass and unreacted lignin.","components":["bacterial biomass","lignin"]}],"additional_info":"Efficient separation is key to minimizing glycerol losses and ensuring high purity in subsequent purification steps."},{"name":"Purification","order":6,"description":"The crude glycerol stream undergoes purification to achieve industrial-grade glycerol purity. This involves distillation to remove water and residual sugars, followed by additional purification techniques such as ion exchange or activated carbon treatment to remove trace impurities.","input_streams":[{"name":"Crude Glycerol Stream","description":"A liquid stream enriched in glycerol with some impurities.","components":["glycerol","water","residual sugars"]}],"output_streams":[{"name":"Purified Glycerol","description":"High-purity glycerol suitable for industrial applications.","components":["glycerol"]},{"name":"Waste Water","description":"Water containing residual impurities removed during purification.","components":["water","residual sugars"]}],"additional_info":"The purity of glycerol is critical for its application in pharmaceuticals, cosmetics, and food industries. The choice of purification method impacts the final product quality and process economics."}]}
+[2024-12-09 18:39:58] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Feedstock Preparation'.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Prepared Corn Stover' for output of unit operation 'Feedstock Preparation'.
+[2024-12-09 18:39:58] DEBUG - Added unit operation 'Feedstock Preparation' with ID 'feedstock_preparation' to process flow.
+[2024-12-09 18:39:58] DEBUG - Reusing existing stream 'Prepared Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:39:58] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:39:58] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:39:58] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:39:58] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:39:58] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:39:58] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Separation'.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Crude Glycerol Stream' for output of unit operation 'Separation'.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Solid Waste' for output of unit operation 'Separation'.
+[2024-12-09 18:39:58] DEBUG - Added unit operation 'Separation' with ID 'separation' to process flow.
+[2024-12-09 18:39:58] DEBUG - Reusing existing stream 'Crude Glycerol Stream' for input of unit operation 'Purification'.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Purified Glycerol' for output of unit operation 'Purification'.
+[2024-12-09 18:39:58] DEBUG - Created new stream 'Waste Water' for output of unit operation 'Purification'.
+[2024-12-09 18:39:58] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:39:58] INFO - Process flow built successfully.
+[2024-12-09 18:39:58] INFO - Starting v1 DAG agent.
+[2024-12-09 18:39:58] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:39:58] DEBUG - Adding edge from 'feedstock_preparation' to 'pretreatment' via stream 'Prepared Corn Stover'.
+[2024-12-09 18:39:58] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:39:58] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:39:58] DEBUG - Adding edge from 'fermentation' to 'separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:39:58] DEBUG - Adding edge from 'separation' to 'purification' via stream 'Crude Glycerol Stream'.
+[2024-12-09 18:39:58] DEBUG - Stream 'Solid Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:39:58] DEBUG - Stream 'Purified Glycerol' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:39:58] DEBUG - Stream 'Waste Water' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:39:58] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:39:59] DEBUG - No missing streams identified for unit operation: Feedstock Preparation
+[2024-12-09 18:40:05] DEBUG - Added auxiliary input stream 'Catalyst/Chemical Agent' to unit operation 'Pretreatment'
+  - Description: The pretreatment process often involves the use of chemical agents such as acids, alkalis, or steam to help break down the lignocellulosic structure. This stream would account for the chemical inputs necessary for the pretreatment process.
+  - Components: acid or alkali, water
+[2024-12-09 18:40:05] DEBUG - Added auxiliary output stream 'Effluent/Byproduct Stream' to unit operation 'Pretreatment'
+  - Description: During the pretreatment process, there may be generation of byproducts or effluents that contain dissolved lignin or other degradation products. This stream would capture any waste products generated during pretreatment.
+  - Components: dissolved lignin, degradation products, water
+[2024-12-09 18:40:11] DEBUG - Added auxiliary input stream 'Enzyme Solution' to unit operation 'Enzymatic Hydrolysis'
+  - Description: The enzyme solution is necessary for the enzymatic hydrolysis process to facilitate the breakdown of cellulose and hemicellulose into fermentable sugars.
+  - Components: cellulase, hemicellulase, water
+[2024-12-09 18:40:13] DEBUG - Added auxiliary input stream 'Bacterial Inoculum' to unit operation 'Fermentation'
+  - Description: This stream provides the necessary bacteria for the fermentation process, enabling the conversion of sugars into glycerol.
+  - Components: bacteria
+[2024-12-09 18:40:14] DEBUG - No missing streams identified for unit operation: Separation
+[2024-12-09 18:40:20] DEBUG - Added auxiliary output stream 'Impurity Removal Output' to unit operation 'Purification'
+  - Description: This stream includes trace impurities that are removed during purification processes such as ion exchange or activated carbon treatment, which are not accounted for in the "Purified Glycerol" and "Waste Water" streams.
+  - Components: trace impurities, potential catalyst residues, salts
+[2024-12-09 18:40:21] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:40:23] DEBUG - Added sink unit operation 'Solid Waste Sink' with ID 'solid waste sink' for stream 'Solid Waste'
+[2024-12-09 18:40:24] DEBUG - Added sink unit operation 'Purified Glycerol Sink' with ID 'purified glycerol sink' for stream 'Purified Glycerol'
+[2024-12-09 18:40:25] DEBUG - Added sink unit operation 'Waste Water Sink' with ID 'waste water sink' for stream 'Waste Water'
+[2024-12-09 18:40:27] DEBUG - Added source unit operation 'Catalyst/Chemical Agent Source' with ID 'catalyst/chemical agent source' for stream 'Catalyst/Chemical Agent'
+[2024-12-09 18:40:28] DEBUG - Added sink unit operation 'Effluent/Byproduct Sink' with ID 'effluent/byproduct sink' for stream 'Effluent/Byproduct Stream'
+[2024-12-09 18:40:30] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:40:31] DEBUG - Added source unit operation 'Bacterial Inoculum Source' with ID 'bacterial inoculum source' for stream 'Bacterial Inoculum'
+[2024-12-09 18:40:32] DEBUG - Added sink unit operation 'Impurity Removal Sink' with ID 'impurity removal sink' for stream 'Impurity Removal Output'
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'raw corn stover source' to 'feedstock_preparation' via stream 'Raw Corn Stover'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'feedstock_preparation' to 'pretreatment' via stream 'Prepared Corn Stover'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'fermentation' to 'separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'separation' to 'purification' via stream 'Crude Glycerol Stream'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'separation' to 'solid waste sink' via stream 'Solid Waste'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'purification' to 'purified glycerol sink' via stream 'Purified Glycerol'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'purification' to 'waste water sink' via stream 'Waste Water'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'catalyst/chemical agent source' to 'pretreatment' via stream 'Catalyst/Chemical Agent'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'pretreatment' to 'effluent/byproduct sink' via stream 'Effluent/Byproduct Stream'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'bacterial inoculum source' to 'fermentation' via stream 'Bacterial Inoculum'.
+[2024-12-09 18:40:32] DEBUG - Adding edge from 'purification' to 'impurity removal sink' via stream 'Impurity Removal Output'.
+[2024-12-09 18:40:32] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:40:32] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:40:38] DEBUG - No conversion or separation parameters identified for unit operation: Feedstock Preparation
+[2024-12-09 18:40:48] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting lignin → dissolved lignin (rate: 30.0%)
+  2. Converting hemicellulose → degradation products (rate: 20.0%)
+[2024-12-09 18:40:59] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting cellulose → glucose (rate: 80.0%)
+  2. Converting hemicellulose → xylose (rate: 70.0%)
+[2024-12-09 18:41:10] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting glucose → glycerol (rate: 75.0%)
+  2. Converting xylose → glycerol (rate: 60.0%)
+  3. Converting glucose → residual sugars (rate: 25.0%)
+  4. Converting xylose → residual sugars (rate: 40.0%)
+[2024-12-09 18:41:20] DEBUG - Processing separation unit operation: Separation
+Separation operations:
+  1. Separating glycerol (extraction rate: 95.0%)
+  2. Separating bacterial biomass (extraction rate: 98.0%)
+[2024-12-09 18:41:29] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating glycerol (extraction rate: 95.0%)
+  2. Separating water (extraction rate: 5.0%)
+  3. Separating residual sugars (extraction rate: 10.0%)
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Solid Waste Sink' of type 'sink'
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Purified Glycerol Sink' of type 'sink'
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Waste Water Sink' of type 'sink'
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Catalyst/Chemical Agent Source' of type 'source'
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Effluent/Byproduct Sink' of type 'sink'
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Bacterial Inoculum Source' of type 'source'
+[2024-12-09 18:41:29] DEBUG - Skipping operational parameters for unit operation 'Impurity Removal Sink' of type 'sink'
+[2024-12-09 18:41:29] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:41:29] INFO - Workflow completed successfully.

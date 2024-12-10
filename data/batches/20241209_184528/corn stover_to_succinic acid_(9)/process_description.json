@@ -1,0 +1,323 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, typically requires pretreatment to increase accessibility of cellulose and hemicellulose for enzymatic hydrolysis.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Succinic Acid",
+      "composition": "C4H6O4, typically produced with a purity of 99% for industrial applications",
+      "key_specs": "Industrial grade, high purity required for applications in biodegradable plastics, solvents, and as a precursor for various chemicals.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to increase the accessibility of cellulose and hemicellulose in the corn stover for subsequent enzymatic hydrolysis. This is typically achieved through a combination of mechanical, chemical, or thermal methods. The pretreatment process disrupts the lignin structure and removes hemicellulose, making the cellulose more accessible to enzymes. Common methods include dilute acid pretreatment, steam explosion, or ammonia fiber expansion.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method can significantly impact the efficiency of subsequent hydrolysis and fermentation steps."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are used to break down the polysaccharides into simple sugars like glucose and xylose. This step is crucial for maximizing sugar yield, which directly affects the efficiency of the fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The hydrolysis process can be optimized by adjusting enzyme loading, reaction time, and temperature."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the conversion of sugars into succinic acid using yeast or fungal cultures under aerobic conditions. The microorganisms metabolize the sugars, producing succinic acid as a primary metabolite. This process requires careful control of oxygen levels, nutrient supply, and pH to optimize yield and productivity.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of microorganism and fermentation conditions are critical for achieving high succinic acid yields."
+    },
+    "broth_separation": {
+      "unit_operation_id": "broth_separation",
+      "name": "Broth Separation",
+      "description": "This unit operation involves separating the succinic acid from the fermentation broth. Techniques such as centrifugation, filtration, or membrane separation are employed to remove microbial biomass and other solids, concentrating the succinic acid in the liquid phase.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Solid Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Efficient separation is crucial to minimize product loss and prepare the broth for downstream purification."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation focuses on refining the succinic acid to meet industrial purity standards. This may involve crystallization, distillation, or ion exchange processes to remove impurities and concentrate the succinic acid to the desired purity level.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth"
+      ],
+      "output_streams": [
+        "Purified Succinic Acid",
+        "Impurity Stream"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of purification method depends on the required purity level and economic considerations."
+    },
+    "product_drying": {
+      "unit_operation_id": "product_drying",
+      "name": "Product Drying",
+      "description": "In this final unit operation, the purified succinic acid is dried to achieve the desired physical form, typically as a crystalline solid. This step ensures the product is stable for storage and transport. Drying methods may include spray drying or rotary drying, depending on the scale and desired product characteristics.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Succinic Acid"
+      ],
+      "output_streams": [
+        "Dried Succinic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "The drying process must be controlled to prevent degradation of the succinic acid and ensure product quality."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The initial feedstock consisting of lignocellulosic biomass.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with increased cellulose and hemicellulose accessibility, ready for enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Residual Lignin": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, with some residual solids.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Residual Lignin": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Yeast or fungal cultures capable of producing succinic acid aerobically.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing succinic acid, unconverted sugars, microbial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Succinic Acid": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A liquid stream enriched in succinic acid with reduced solids content.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Succinic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Separated microbial biomass and other solids.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0
+      }
+    },
+    "Purified Succinic Acid": {
+      "name": "Purified Succinic Acid",
+      "stream_id": "purified succinic acid",
+      "description": "High-purity succinic acid suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "product_drying",
+      "flow_rate": 0.0,
+      "components": {
+        "Succinic Acid": 0
+      }
+    },
+    "Impurity Stream": {
+      "name": "Impurity Stream",
+      "stream_id": "impurity stream",
+      "description": "A stream containing removed impurities and residual sugars.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0
+      }
+    },
+    "Dried Succinic Acid": {
+      "name": "Dried Succinic Acid",
+      "stream_id": "dried succinic acid",
+      "description": "Final product in a stable, dry form ready for packaging and distribution.",
+      "stream_type": "core",
+      "source": "product_drying",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Succinic Acid": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Residual Lignin": {
+      "name": "Residual Lignin",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "Succinic Acid": {
+      "name": "Succinic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    }
+  }
+}

@@ -1,0 +1,13 @@
+[2024-12-09 17:31:10] INFO - Starting batch run.
+[2024-12-09 17:31:10] INFO - Batch directory: data\batches\20241209_173110
+[2024-12-09 17:31:10] INFO - Launching 3 parallel runs.
+[2024-12-09 17:32:29] INFO - Renamed run directory to data\batches\20241209_173110\corn stover_to_glycerol_(3)
+[2024-12-09 17:32:29] INFO - Run 3 complete. Results in data\batches\20241209_173110\corn stover_to_glycerol_(3)
+[2024-12-09 17:32:31] INFO - Renamed run directory to data\batches\20241209_173110\corn stover_to_3_hydroxypropionic acid_(1)
+[2024-12-09 17:32:31] INFO - Run 1 complete. Results in data\batches\20241209_173110\corn stover_to_3_hydroxypropionic acid_(1)
+[2024-12-09 17:32:38] INFO - Renamed run directory to data\batches\20241209_173110\corn stover_to_3_hydroxypropionic acid_(2)
+[2024-12-09 17:32:38] INFO - Run 2 complete. Results in data\batches\20241209_173110\corn stover_to_3_hydroxypropionic acid_(2)
+[2024-12-09 17:32:38] INFO - Run 3 complete. Results in data\batches\20241209_173110\corn stover_to_glycerol_(3)
+[2024-12-09 17:32:38] INFO - Run 2 complete. Results in data\batches\20241209_173110\corn stover_to_3_hydroxypropionic acid_(2)
+[2024-12-09 17:32:38] INFO - Run 1 complete. Results in data\batches\20241209_173110\corn stover_to_3_hydroxypropionic acid_(1)
+[2024-12-09 17:32:38] INFO - Batch run complete.

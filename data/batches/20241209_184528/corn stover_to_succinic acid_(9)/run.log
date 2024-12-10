@@ -1,0 +1,117 @@
+[2024-12-09 18:45:28] INFO - Starting run 9 for user prompt: Process that converts corn stover to Succinic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:28] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Succinic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:28] INFO - Starting process description agent.
+[2024-12-09 18:45:28] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Succinic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:32] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Lignocellulosic biomass, typically requires pretreatment to increase accessibility of cellulose and hemicellulose for enzymatic hydrolysis.","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Succinic Acid","composition":"C4H6O4, typically produced with a purity of 99% for industrial applications","key_specs":"Industrial grade, high purity required for applications in biodegradable plastics, solvents, and as a precursor for various chemicals.","volumetric_scale":"10,000 metric tons per year"}]}
+[2024-12-09 18:45:32] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:45:32] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Lignocellulosic biomass, typically requires pretreatment to increase accessibility of cellulose and hemicellulose for enzymatic hydrolysis.', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Succinic Acid', 'composition': 'C4H6O4, typically produced with a purity of 99% for industrial applications', 'key_specs': 'Industrial grade, high purity required for applications in biodegradable plastics, solvents, and as a precursor for various chemicals.', 'volumetric_scale': '10,000 metric tons per year'}]}
+[2024-12-09 18:45:54] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is designed to increase the accessibility of cellulose and hemicellulose in the corn stover for subsequent enzymatic hydrolysis. This is typically achieved through a combination of mechanical, chemical, or thermal methods. The pretreatment process disrupts the lignin structure and removes hemicellulose, making the cellulose more accessible to enzymes. Common methods include dilute acid pretreatment, steam explosion, or ammonia fiber expansion.","input_streams":[{"name":"Raw Corn Stover","description":"The initial feedstock consisting of lignocellulosic biomass.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with increased cellulose and hemicellulose accessibility, ready for enzymatic hydrolysis.","components":["Cellulose","Hemicellulose","Residual Lignin"]}],"additional_info":"The choice of pretreatment method can significantly impact the efficiency of subsequent hydrolysis and fermentation steps."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are used to break down the polysaccharides into simple sugars like glucose and xylose. This step is crucial for maximizing sugar yield, which directly affects the efficiency of the fermentation process.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass that has undergone pretreatment to enhance enzyme accessibility.","components":["Cellulose","Hemicellulose","Residual Lignin"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars, primarily glucose and xylose, with some residual solids.","components":["Glucose","Xylose","Residual Lignin"]}],"additional_info":"The hydrolysis process can be optimized by adjusting enzyme loading, reaction time, and temperature."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the conversion of sugars into succinic acid using yeast or fungal cultures under aerobic conditions. The microorganisms metabolize the sugars, producing succinic acid as a primary metabolite. This process requires careful control of oxygen levels, nutrient supply, and pH to optimize yield and productivity.","input_streams":[{"name":"Sugar Solution","description":"A solution containing fermentable sugars derived from enzymatic hydrolysis.","components":["Glucose","Xylose"]},{"name":"Microbial Culture","description":"Yeast or fungal cultures capable of producing succinic acid aerobically.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing succinic acid, unconverted sugars, microbial biomass, and other metabolites.","components":["Succinic Acid","Residual Sugars","Microbial Biomass"]}],"additional_info":"The choice of microorganism and fermentation conditions are critical for achieving high succinic acid yields."},{"name":"Broth Separation","order":4,"description":"This unit operation involves separating the succinic acid from the fermentation broth. Techniques such as centrifugation, filtration, or membrane separation are employed to remove microbial biomass and other solids, concentrating the succinic acid in the liquid phase.","input_streams":[{"name":"Fermentation Broth","description":"The output from the fermentation process containing succinic acid and other components.","components":["Succinic Acid","Residual Sugars","Microbial Biomass"]}],"output_streams":[{"name":"Clarified Broth","description":"A liquid stream enriched in succinic acid with reduced solids content.","components":["Succinic Acid","Residual Sugars"]},{"name":"Solid Waste","description":"Separated microbial biomass and other solids.","components":["Microbial Biomass"]}],"additional_info":"Efficient separation is crucial to minimize product loss and prepare the broth for downstream purification."},{"name":"Purification","order":5,"description":"The purification unit operation focuses on refining the succinic acid to meet industrial purity standards. This may involve crystallization, distillation, or ion exchange processes to remove impurities and concentrate the succinic acid to the desired purity level.","input_streams":[{"name":"Clarified Broth","description":"A liquid stream containing succinic acid and residual impurities.","components":["Succinic Acid","Residual Sugars"]}],"output_streams":[{"name":"Purified Succinic Acid","description":"High-purity succinic acid suitable for industrial applications.","components":["Succinic Acid"]},{"name":"Impurity Stream","description":"A stream containing removed impurities and residual sugars.","components":["Residual Sugars"]}],"additional_info":"The choice of purification method depends on the required purity level and economic considerations."},{"name":"Product Drying","order":6,"description":"In this final unit operation, the purified succinic acid is dried to achieve the desired physical form, typically as a crystalline solid. This step ensures the product is stable for storage and transport. Drying methods may include spray drying or rotary drying, depending on the scale and desired product characteristics.","input_streams":[{"name":"Purified Succinic Acid","description":"Liquid or slurry form of succinic acid post-purification.","components":["Succinic Acid"]}],"output_streams":[{"name":"Dried Succinic Acid","description":"Final product in a stable, dry form ready for packaging and distribution.","components":["Succinic Acid"]}],"additional_info":"The drying process must be controlled to prevent degradation of the succinic acid and ensure product quality."}]}
+[2024-12-09 18:45:54] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:45:54] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:45:54] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:54] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:45:54] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:45:54] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:45:54] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Broth Separation'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Clarified Broth' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Solid Waste' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:45:54] DEBUG - Added unit operation 'Broth Separation' with ID 'broth_separation' to process flow.
+[2024-12-09 18:45:54] DEBUG - Reusing existing stream 'Clarified Broth' for input of unit operation 'Purification'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Purified Succinic Acid' for output of unit operation 'Purification'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Impurity Stream' for output of unit operation 'Purification'.
+[2024-12-09 18:45:54] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:45:54] DEBUG - Reusing existing stream 'Purified Succinic Acid' for input of unit operation 'Product Drying'.
+[2024-12-09 18:45:54] DEBUG - Created new stream 'Dried Succinic Acid' for output of unit operation 'Product Drying'.
+[2024-12-09 18:45:54] DEBUG - Added unit operation 'Product Drying' with ID 'product_drying' to process flow.
+[2024-12-09 18:45:54] INFO - Process flow built successfully.
+[2024-12-09 18:45:54] INFO - Starting v1 DAG agent.
+[2024-12-09 18:45:54] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:54] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:45:54] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:54] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:45:54] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:54] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:45:54] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Clarified Broth'.
+[2024-12-09 18:45:54] DEBUG - Stream 'Solid Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:54] DEBUG - Adding edge from 'purification' to 'product_drying' via stream 'Purified Succinic Acid'.
+[2024-12-09 18:45:54] DEBUG - Stream 'Impurity Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:54] DEBUG - Stream 'Dried Succinic Acid' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:54] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:46:00] DEBUG - Added auxiliary input stream 'Water or Steam' to unit operation 'Pretreatment'
+  - Description: Water or steam is often used in the pretreatment process to facilitate mechanical, chemical, or thermal methods such as steam explosion or dilute acid pretreatment. It aids in the disruption of the lignin structure and removal of hemicellulose.
+  - Components: Water
+[2024-12-09 18:46:00] DEBUG - Added auxiliary input stream 'Acid (if using dilute acid pretreatment)' to unit operation 'Pretreatment'
+  - Description: An acid stream, such as sulfuric acid, is commonly used in dilute acid pretreatment to help break down hemicellulose and disrupt the lignin structure, enhancing the accessibility of cellulose.
+  - Components: Sulfuric Acid, Water
+[2024-12-09 18:46:00] DEBUG - Added auxiliary output stream 'Lignin-Rich Stream' to unit operation 'Pretreatment'
+  - Description: A lignin-rich stream may be generated as a byproduct of the pretreatment process when lignin is partially removed or separated from the biomass.
+  - Components: Lignin, Water
+[2024-12-09 18:46:00] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:46:01] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 18:46:02] DEBUG - No missing streams identified for unit operation: Broth Separation
+[2024-12-09 18:46:02] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:46:02] DEBUG - No missing streams identified for unit operation: Product Drying
+[2024-12-09 18:46:04] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:46:05] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:46:07] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 18:46:09] DEBUG - Added sink unit operation 'Solid Waste Sink' with ID 'solid waste sink' for stream 'Solid Waste'
+[2024-12-09 18:46:10] DEBUG - Added sink unit operation 'Impurity Stream Sink' with ID 'impurity stream sink' for stream 'Impurity Stream'
+[2024-12-09 18:46:11] DEBUG - Added sink unit operation 'Dried Succinic Acid Sink' with ID 'dried succinic acid sink' for stream 'Dried Succinic Acid'
+[2024-12-09 18:46:12] DEBUG - Added source unit operation 'Water or Steam Source' with ID 'water or steam source' for stream 'Water or Steam'
+[2024-12-09 18:46:13] DEBUG - Added source unit operation 'Acid Source' with ID 'acid source' for stream 'Acid (if using dilute acid pretreatment)'
+[2024-12-09 18:46:15] DEBUG - Added sink unit operation 'Lignin-Rich Stream Sink' with ID 'lignin_rich stream sink' for stream 'Lignin-Rich Stream'
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Clarified Broth'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'broth_separation' to 'solid waste sink' via stream 'Solid Waste'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'purification' to 'product_drying' via stream 'Purified Succinic Acid'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'purification' to 'impurity stream sink' via stream 'Impurity Stream'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'product_drying' to 'dried succinic acid sink' via stream 'Dried Succinic Acid'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'water or steam source' to 'pretreatment' via stream 'Water or Steam'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'acid source' to 'pretreatment' via stream 'Acid (if using dilute acid pretreatment)'.
+[2024-12-09 18:46:15] DEBUG - Adding edge from 'pretreatment' to 'lignin_rich stream sink' via stream 'Lignin-Rich Stream'.
+[2024-12-09 18:46:15] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:46:15] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:46:22] DEBUG - Processing separation unit operation: Pretreatment
+Separation operations:
+  1. Separating Hemicellulose (extraction rate: 40.0%)
+  2. Separating Lignin (extraction rate: 50.0%)
+[2024-12-09 18:46:30] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 75.0%)
+[2024-12-09 18:46:37] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Succinic Acid (rate: 70.0%)
+  2. Converting Xylose → Succinic Acid (rate: 60.0%)
+[2024-12-09 18:46:43] DEBUG - Processing separation unit operation: Broth Separation
+Separation operations:
+  1. Separating Succinic Acid (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 90.0%)
+  3. Separating Microbial Biomass (extraction rate: 5.0%)
+[2024-12-09 18:46:50] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Succinic Acid (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 5.0%)
+[2024-12-09 18:46:54] DEBUG - No conversion or separation parameters identified for unit operation: Product Drying
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Solid Waste Sink' of type 'sink'
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Impurity Stream Sink' of type 'sink'
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Dried Succinic Acid Sink' of type 'sink'
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Water or Steam Source' of type 'source'
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Acid Source' of type 'source'
+[2024-12-09 18:46:54] DEBUG - Skipping operational parameters for unit operation 'Lignin-Rich Stream Sink' of type 'sink'
+[2024-12-09 18:46:54] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:46:54] INFO - Workflow completed successfully.

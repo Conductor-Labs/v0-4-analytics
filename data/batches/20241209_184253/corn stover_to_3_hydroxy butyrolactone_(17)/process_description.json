@@ -1,0 +1,332 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants. It is typically collected post-harvest and may require pretreatment to reduce lignin content and increase accessibility of cellulose and hemicellulose.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "3-Hydroxy butyrolactone",
+      "composition": "C4H6O2",
+      "key_specs": "3-Hydroxy butyrolactone is a high-purity chemical intermediate used in the synthesis of pharmaceuticals and biodegradable polymers. Commercial production requires a purity of over 99%.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to prepare the corn stover for subsequent processing by breaking down its lignocellulosic structure. This involves a combination of mechanical, chemical, and/or thermal treatments to reduce the lignin content and increase the accessibility of cellulose and hemicellulose. Common methods include steam explosion, acid hydrolysis, or alkaline treatment. The goal is to disrupt the complex matrix of cellulose, hemicellulose, and lignin, making the carbohydrates more accessible for enzymatic hydrolysis.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Pretreatment is crucial for efficient downstream processing and can significantly impact the overall process economics."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are used to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose. This step is critical for maximizing sugar yield, which directly influences the efficiency of the subsequent fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of enzymes and their loading rates are critical factors affecting the cost and efficiency of this step."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves converting the sugar solution into 3-hydroxybutyric acid (3-HBA) using a microbial culture. Specific strains of bacteria or yeast are employed to ferment the sugars, primarily glucose and xylose, into 3-HBA. This bioconversion process is optimized for yield and productivity, requiring careful control of fermentation conditions such as pH, temperature, and nutrient supply.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The selection of microbial strains and optimization of fermentation conditions are key to achieving high yields of 3-HBA."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "This unit operation focuses on the separation and purification of 3-hydroxybutyric acid from the fermentation broth. Techniques such as centrifugation, filtration, and solvent extraction are employed to isolate 3-HBA from the complex mixture. The goal is to achieve a high-purity intermediate suitable for further chemical conversion into 3-hydroxy butyrolactone.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Purified 3-Hydroxybutyric Acid",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Efficient recovery and purification are essential to minimize product loss and reduce downstream processing costs."
+    },
+    "chemical_conversion": {
+      "unit_operation_id": "chemical_conversion",
+      "name": "Chemical Conversion",
+      "description": "In this unit operation, the purified 3-hydroxybutyric acid undergoes chemical conversion to form 3-hydroxy butyrolactone. This transformation typically involves a catalytic dehydration reaction, where a catalyst facilitates the removal of water from 3-HBA to form the lactone ring structure of 3-hydroxy butyrolactone. The choice of catalyst and reaction conditions are optimized to maximize yield and selectivity.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Purified 3-Hydroxybutyric Acid",
+        "Catalyst"
+      ],
+      "output_streams": [
+        "3-Hydroxy Butyrolactone"
+      ],
+      "parameters": {},
+      "additional_info": "Catalyst selection and reaction optimization are critical to achieving high conversion rates and product purity."
+    },
+    "product_purification": {
+      "unit_operation_id": "product_purification",
+      "name": "Product Purification",
+      "description": "The final unit operation involves purifying the 3-hydroxy butyrolactone to meet commercial specifications. Techniques such as distillation, crystallization, or chromatography are employed to achieve the desired purity level of over 99%. This step ensures that the product is suitable for use in pharmaceuticals and biodegradable polymers.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "3-Hydroxy Butyrolactone"
+      ],
+      "output_streams": [
+        "High-Purity 3-Hydroxy Butyrolactone"
+      ],
+      "parameters": {},
+      "additional_info": "Achieving high purity is essential for the product's application in sensitive industries such as pharmaceuticals."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Collected post-harvest, consisting of leaves, stalks, and cobs of maize plants.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Corn stover with reduced lignin content and increased cellulose and hemicellulose accessibility.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Reduced Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A mixture of cellulases and hemicellulases to catalyze the hydrolysis of polysaccharides.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulases": 0,
+        "Hemicellulases": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Residual Lignin": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "A selected strain of bacteria or yeast capable of converting sugars to 3-HBA.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Microorganisms": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing 3-hydroxybutyric acid, unconverted sugars, microbial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxybutyric Acid": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Purified 3-Hydroxybutyric Acid": {
+      "name": "Purified 3-Hydroxybutyric Acid",
+      "stream_id": "purified 3_hydroxybutyric acid",
+      "description": "A high-purity intermediate ready for chemical conversion.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "chemical_conversion",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxybutyric Acid": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "Residual biomass and impurities removed during purification.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Catalyst": {
+      "name": "Catalyst",
+      "stream_id": "catalyst",
+      "description": "A catalyst to facilitate the dehydration reaction.",
+      "stream_type": "core",
+      "source": null,
+      "target": "chemical_conversion",
+      "flow_rate": 0.0,
+      "components": {
+        "Catalyst": 0
+      }
+    },
+    "3-Hydroxy Butyrolactone": {
+      "name": "3-Hydroxy Butyrolactone",
+      "stream_id": "3_hydroxy butyrolactone",
+      "description": "The target product, a high-purity chemical intermediate.",
+      "stream_type": "core",
+      "source": "chemical_conversion",
+      "target": "product_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxy Butyrolactone": 0
+      }
+    },
+    "High-Purity 3-Hydroxy Butyrolactone": {
+      "name": "High-Purity 3-Hydroxy Butyrolactone",
+      "stream_id": "high_purity 3_hydroxy butyrolactone",
+      "description": "The final product with purity exceeding 99%, ready for commercial use.",
+      "stream_type": "core",
+      "source": "product_purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxy Butyrolactone": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Reduced Lignin": {
+      "name": "Reduced Lignin",
+      "properties": {}
+    },
+    "Cellulases": {
+      "name": "Cellulases",
+      "properties": {}
+    },
+    "Hemicellulases": {
+      "name": "Hemicellulases",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Lignin": {
+      "name": "Residual Lignin",
+      "properties": {}
+    },
+    "Microorganisms": {
+      "name": "Microorganisms",
+      "properties": {}
+    },
+    "3-Hydroxybutyric Acid": {
+      "name": "3-Hydroxybutyric Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Catalyst": {
+      "name": "Catalyst",
+      "properties": {}
+    },
+    "3-Hydroxy Butyrolactone": {
+      "name": "3-Hydroxy Butyrolactone",
+      "properties": {}
+    }
+  }
+}

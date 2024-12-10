@@ -1,0 +1,680 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, typically requires pretreatment to break down cellulose and hemicellulose into fermentable sugars.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Glutamic Acid",
+      "composition": "C5H9NO4",
+      "key_specs": "Food-grade, purity >98%, typically requires crystallization and drying steps post-fermentation for commercial production.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to prepare the corn stover for enzymatic hydrolysis by breaking down the lignocellulosic structure. This step typically involves physical, chemical, or a combination of methods to disrupt the lignin structure and expose cellulose and hemicellulose. Common methods include steam explosion, acid hydrolysis, or alkaline treatment. The goal is to increase the accessibility of cellulose and hemicellulose for subsequent enzymatic action, thereby enhancing the yield of fermentable sugars.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Water or Steam",
+        "Pretreatment Chemicals"
+      ],
+      "output_streams": [
+        "Pretreated Biomass",
+        "Gaseous Emissions",
+        "Liquid Effluent"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Partial hydrolysis of hemicellulose and disruption of lignin structure through acid or alkaline hydrolysis, enhancing cellulose accessibility.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Dissolved organics",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "Disruption of lignin structure leading to formation of gaseous by-products during thermal treatment.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Gaseous Emissions",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The choice of pretreatment method can significantly impact the downstream processing efficiency and cost."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Specific enzymes such as cellulases and hemicellulases are added to the biomass slurry to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose. This step is crucial for maximizing sugar yield, which directly influences the fermentation efficiency.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "In enzymatic hydrolysis, cellulose is broken down into glucose by cellulase enzymes.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Hemicellulose is converted into xylose by hemicellulase enzymes during the hydrolysis process.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "The enzymatic hydrolysis is typically conducted at controlled temperatures to optimize enzyme activity."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the conversion of sugars into glutamic acid using a specific strain of bacteria under aerobic conditions. The sugar solution is inoculated with a bacterial culture capable of producing glutamic acid. Aeration and agitation are critical to maintain the aerobic environment necessary for bacterial metabolism and product formation. The fermentation process is monitored to ensure optimal conditions for bacterial growth and glutamic acid production.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Bacterial Culture",
+        "Air"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of Glucose into Glutamic Acid via bacterial fermentation under aerobic conditions.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Glutamic Acid",
+            "conversionRate": 0.75
+          },
+          {
+            "description": "Conversion of Xylose into Glutamic Acid through the metabolic action of bacteria during fermentation.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Glutamic Acid",
+            "conversionRate": 0.55
+          },
+          {
+            "description": "Remaining residual sugars not converted into Glutamic Acid during the fermentation process, originating from Glucose.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Residual Sugars",
+            "conversionRate": 0.25
+          },
+          {
+            "description": "Residual sugars left unconverted during the fermentation of Xylose, representing inefficiency in the conversion process.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Residual Sugars",
+            "conversionRate": 0.45
+          }
+        ]
+      },
+      "additional_info": "Aerobic fermentation requires precise control of oxygen levels and agitation to ensure efficient conversion."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of bacterial cells from the fermentation broth. Typically, centrifugation or filtration methods are employed to remove the biomass. The goal is to obtain a clarified broth that contains glutamic acid and other soluble components, which facilitates downstream purification processes.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Cell Biomass"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of bacterial cells from fermentation broth using centrifugation or filtration to obtain clarified broth and cell biomass.",
+            "component": "Bacterial Cells",
+            "extractionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "The separated cell biomass can be processed further for potential use as animal feed or disposed of as waste."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to isolate and concentrate glutamic acid from the clarified broth. This typically involves a series of steps such as ion exchange chromatography, crystallization, and washing to achieve the desired purity levels. The process is optimized to minimize product loss and maximize recovery efficiency.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth"
+      ],
+      "output_streams": [
+        "Crude Glutamic Acid",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Ion Exchange Chromatography exploits the differing ionic properties of glutamic acid and other soluble components, selectively binding glutamic acid to a resin.",
+            "component": "Glutamic Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Crystallization enhances the purity of glutamic acid by solidifying it and separating it from dissolved impurities, followed by washing to remove adhered impurities.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "Ion exchange resins are often used to selectively bind and elute glutamic acid from the solution."
+    },
+    "crystallization_and_drying": {
+      "unit_operation_id": "crystallization_and_drying",
+      "name": "Crystallization and Drying",
+      "description": "In this final unit operation, the crude glutamic acid is further purified through crystallization, followed by drying to obtain the final product. The crystallization process involves cooling the solution to precipitate glutamic acid crystals, which are then separated and dried to achieve the required food-grade purity and moisture content. This step is critical for ensuring the product meets commercial specifications.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Glutamic Acid"
+      ],
+      "output_streams": [
+        "Glutamic Acid Product",
+        "Mother Liquor"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of glutamic acid crystals from crude solution via crystallization, followed by filtration or centrifugation to isolate the product.",
+            "component": "Glutamic Acid",
+            "extractionRate": 0.98
+          }
+        ]
+      },
+      "additional_info": "The drying process is typically conducted under vacuum to prevent thermal degradation of the product."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is a lignocellulosic biomass feedstock. It consists of a mixture of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). This biomass is typically used in the pretreatment step to break down cellulose and hemicellulose into fermentable sugars for further processing in the production of Glutamic Acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution stream, which contains cellulase and hemicellulase enzymes. These enzymes are crucial for the enzymatic hydrolysis process, where they facilitate the breakdown of pretreated biomass into fermentable sugars. The Enzyme Solution is prepared to ensure optimal activity and concentration of the enzymes, contributing to the efficiency of the overall fermentation process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial culture source": {
+      "unit_operation_id": "bacterial culture source",
+      "name": "Bacterial Culture Source",
+      "description": "This unit operation serves as a source for the Bacterial Culture stream, which consists of a culture of bacteria specifically engineered or selected for the production of glutamic acid. The Bacterial Culture is essential for the fermentation process, where these bacteria convert sugars into glutamic acid. The operation ensures a consistent and sufficient supply of viable bacterial cells to maintain optimal fermentation conditions.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Bacterial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "cell biomass sink": {
+      "unit_operation_id": "cell biomass sink",
+      "name": "Cell Biomass Sink",
+      "description": "This unit operation serves as the sink for the Cell Biomass stream, which consists of separated bacterial cells and other solid residues resulting from the cell separation process. The Cell Biomass is collected for potential further processing, disposal, or utilization in other applications, such as animal feed or bioenergy production.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Cell Biomass"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as the final sink for the Waste Stream generated during the purification process. It collects the residual sugars and other impurities that are not converted into the desired product, Glutamic Acid. The Waste Stream Sink is essential for managing by-products and ensuring that the process adheres to environmental regulations by properly handling and disposing of waste materials.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "glutamic acid product sink": {
+      "unit_operation_id": "glutamic acid product sink",
+      "name": "Glutamic Acid Product Sink",
+      "description": "This unit operation serves as the final sink for the Glutamic Acid Product stream. It is designed to receive the high-purity glutamic acid produced from the crystallization and drying unit operation. The sink ensures that the product is stored and handled properly for commercial distribution, maintaining its quality and integrity for food-grade applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Glutamic Acid Product"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "mother liquor sink": {
+      "unit_operation_id": "mother liquor sink",
+      "name": "Mother Liquor Sink",
+      "description": "This unit operation serves as the final sink for the Mother Liquor stream, which is the residual liquid obtained after the crystallization of Glutamic Acid. It contains impurities and any uncrystallized components that were not separated during the crystallization process. The Mother Liquor is typically treated as a waste stream and may require further processing or disposal, depending on the concentration of impurities and regulatory requirements.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Mother Liquor"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "water or steam source": {
+      "unit_operation_id": "water or steam source",
+      "name": "Water or Steam Source",
+      "description": "This unit operation serves as a source for water or steam, which is essential for the pretreatment processes in the production of Glutamic Acid from Corn Stover. Water or steam is utilized to facilitate the breakdown of the lignocellulosic structure during pretreatment, such as steam explosion or dilute acid/alkaline hydrolysis, ensuring effective conversion of biomass into fermentable sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Water or Steam"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment chemicals source": {
+      "unit_operation_id": "pretreatment chemicals source",
+      "name": "Pretreatment Chemicals Source",
+      "description": "This unit operation serves as a source for the pretreatment chemicals used in the biomass pretreatment process. It provides the necessary acid or alkaline chemicals that facilitate the breakdown of lignin and hemicellulose in corn stover, enhancing the accessibility of cellulose for subsequent enzymatic hydrolysis. The source ensures a continuous supply of these critical components to maintain the efficiency of the pretreatment stage in the overall production of glutamic acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Pretreatment Chemicals"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "gaseous emissions sink": {
+      "unit_operation_id": "gaseous emissions sink",
+      "name": "Gaseous Emissions Sink",
+      "description": "This unit operation serves as a sink for gaseous emissions generated during the pretreatment of corn stover. It is designed to capture and manage gaseous byproducts, primarily consisting of carbon dioxide (CO2) and other gases released during the pretreatment process. The unit ensures that emissions are safely handled, potentially allowing for further treatment or disposal, thereby minimizing environmental impact and adhering to regulatory standards.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Gaseous Emissions"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "liquid effluent sink": {
+      "unit_operation_id": "liquid effluent sink",
+      "name": "Liquid Effluent Sink",
+      "description": "This unit operation serves as the final sink for the Liquid Effluent stream generated during the process. The Liquid Effluent may contain dissolved organic compounds, acids/alkalis, and other reaction by-products from various stages of the process. The sink is designed to safely collect and manage the effluent, ensuring that it is treated or disposed of in compliance with environmental regulations.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Liquid Effluent"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "air supply unit": {
+      "unit_operation_id": "air supply unit",
+      "name": "Air Supply Unit",
+      "description": "This unit operation serves as a source for the 'Air' stream, which is essential for the fermentation process. The fermentation process requires aerobic conditions, necessitating a continuous or intermittent supply of air to maintain the necessary oxygen levels for optimal bacterial metabolism. The air supplied consists primarily of oxygen and nitrogen, ensuring that the bacteria have sufficient oxygen to thrive and efficiently convert sugars into glutamic acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Air"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw feedstock consisting of lignocellulosic biomass.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignin structure, making cellulose and hemicellulose more accessible.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of bacteria capable of producing glutamic acid.",
+      "stream_type": "core",
+      "source": "bacterial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacteria": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing glutamic acid, residual sugars, bacterial cells, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glutamic Acid": 0,
+        "Residual Sugars": 0,
+        "Bacterial Cells": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A cell-free solution containing glutamic acid and other soluble components.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Glutamic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Cell Biomass": {
+      "name": "Cell Biomass",
+      "stream_id": "cell biomass",
+      "description": "Separated bacterial cells and other solid residues.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "cell biomass sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Cells": 0
+      }
+    },
+    "Crude Glutamic Acid": {
+      "name": "Crude Glutamic Acid",
+      "stream_id": "crude glutamic acid",
+      "description": "Partially purified glutamic acid ready for final purification steps.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "crystallization_and_drying",
+      "flow_rate": 0.0,
+      "components": {
+        "Glutamic Acid": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities and residual components removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0
+      }
+    },
+    "Glutamic Acid Product": {
+      "name": "Glutamic Acid Product",
+      "stream_id": "glutamic acid product",
+      "description": "The final product with high purity, suitable for commercial use.",
+      "stream_type": "core",
+      "source": "crystallization_and_drying",
+      "target": "glutamic acid product sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Glutamic Acid": 0
+      }
+    },
+    "Mother Liquor": {
+      "name": "Mother Liquor",
+      "stream_id": "mother liquor",
+      "description": "The remaining liquid after crystallization, containing impurities and uncrystallized components.",
+      "stream_type": "core",
+      "source": "crystallization_and_drying",
+      "target": "mother liquor sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Impurities": 0
+      }
+    },
+    "Water or Steam": {
+      "name": "Water or Steam",
+      "stream_id": "water or steam",
+      "description": "Water or steam is often required for pretreatment processes such as steam explosion or dilute acid/alkaline hydrolysis to facilitate the breakdown of the lignocellulosic structure.",
+      "stream_type": "aux",
+      "source": "water or steam source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Acid or alkaline chemicals are commonly used in pretreatment processes to aid in the breakdown of lignin and hemicellulose.",
+      "stream_type": "aux",
+      "source": "pretreatment chemicals source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Acid": 0,
+        "Alkali": 0
+      }
+    },
+    "Gaseous Emissions": {
+      "name": "Gaseous Emissions",
+      "stream_id": "gaseous emissions",
+      "description": "Gaseous emissions may result from chemical reactions or the release of trapped gases during pretreatment.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "gaseous emissions sink",
+      "flow_rate": 0.0,
+      "components": {
+        "CO2": 0,
+        "other gases": 0
+      }
+    },
+    "Liquid Effluent": {
+      "name": "Liquid Effluent",
+      "stream_id": "liquid effluent",
+      "description": "Liquid effluent may contain dissolved organic compounds, acids/alkalis, and other reaction by-products.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "liquid effluent sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Dissolved organics": 0,
+        "Acid/Alkali": 0
+      }
+    },
+    "Air": {
+      "name": "Air",
+      "stream_id": "air",
+      "description": "The fermentation process described requires aerobic conditions, which implies the continuous or intermittent supply of air to maintain the necessary oxygen levels for bacterial metabolism.",
+      "stream_type": "aux",
+      "source": "air supply unit",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0,
+        "Nitrogen": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Bacteria": {
+      "name": "Bacteria",
+      "properties": {}
+    },
+    "Glutamic Acid": {
+      "name": "Glutamic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Bacterial Cells": {
+      "name": "Bacterial Cells",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Acid": {
+      "name": "Acid",
+      "properties": {}
+    },
+    "Alkali": {
+      "name": "Alkali",
+      "properties": {}
+    },
+    "CO2": {
+      "name": "CO2",
+      "properties": {}
+    },
+    "other gases": {
+      "name": "other gases",
+      "properties": {}
+    },
+    "Dissolved organics": {
+      "name": "Dissolved organics",
+      "properties": {}
+    },
+    "Acid/Alkali": {
+      "name": "Acid/Alkali",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    },
+    "Nitrogen": {
+      "name": "Nitrogen",
+      "properties": {}
+    }
+  }
+}

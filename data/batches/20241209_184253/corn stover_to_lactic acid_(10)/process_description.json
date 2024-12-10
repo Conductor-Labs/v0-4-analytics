@@ -1,0 +1,304 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Typically requires pretreatment to break down lignocellulosic structure for effective fermentation. Pretreatment may involve mechanical, chemical, or enzymatic methods.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Lactic Acid",
+      "composition": "Lactic acid (C3H6O3) with potential impurities such as unconverted sugars, acetic acid, and other organic acids",
+      "key_specs": "Commercial grade lactic acid typically requires a purity of 88-92% for industrial applications. The product may be further purified to achieve food or pharmaceutical grade, which requires higher purity levels.",
+      "volumetric_scale": "50,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The initial step in the process involves preparing the corn stover feedstock for subsequent processing. Corn stover, which consists of cellulose, hemicellulose, lignin, ash, and moisture, is typically delivered in a raw, bulky form. This unit operation includes size reduction, typically through mechanical milling or grinding, to increase the surface area and facilitate more effective downstream processing. The goal is to achieve a particle size that optimizes the efficiency of the pretreatment step.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Size reduction is crucial for enhancing the effectiveness of the pretreatment process by increasing the surface area available for chemical reactions."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "In this unit operation, the prepared corn stover undergoes a pretreatment process designed to break down the lignocellulosic structure, making the cellulose and hemicellulose more accessible for enzymatic hydrolysis. This can be achieved through various methods such as dilute acid treatment, steam explosion, or alkaline treatment. The pretreatment disrupts the lignin structure and solubilizes hemicellulose, enhancing the digestibility of the biomass.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method affects the downstream process efficiency and cost. It is important to minimize the formation of inhibitory compounds that could affect fermentation."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "The pretreated biomass is subjected to enzymatic hydrolysis, where specific enzymes are added to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This step is critical as it determines the yield of sugars available for fermentation. The enzymes used are typically cellulases and hemicellulases, which catalyze the breakdown of polysaccharides into monosaccharides.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {},
+      "additional_info": "The efficiency of enzymatic hydrolysis is influenced by factors such as enzyme loading, reaction time, and temperature."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolysate is then subjected to anaerobic fermentation using lactic acid bacteria. These microorganisms convert the fermentable sugars, primarily glucose and xylose, into lactic acid. The fermentation process is carried out under controlled anaerobic conditions to optimize lactic acid production while minimizing the formation of by-products such as acetic acid.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolysate",
+        "Lactic Acid Bacteria Inoculum"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of bacterial strain and fermentation conditions are critical for maximizing lactic acid yield and purity."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "Following fermentation, the lactic acid must be separated and purified from the fermentation broth. This is typically achieved through a series of separation processes such as filtration, centrifugation, and ion exchange. The goal is to concentrate the lactic acid while removing impurities such as unconverted sugars, acetic acid, and other organic acids.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Lactic Acid Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The recovery process must be designed to achieve the desired purity level for the intended application of the lactic acid."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude lactic acid solution undergoes further purification to achieve the required purity for industrial applications. This may involve additional steps such as distillation, crystallization, or membrane filtration to remove remaining impurities and concentrate the lactic acid to the desired specification.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Lactic Acid Solution"
+      ],
+      "output_streams": [
+        "Purified Lactic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "The final purity of lactic acid is critical for its application in various industries, and the purification process must be tailored to meet specific market requirements."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover delivered to the facility.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover that has been mechanically processed to a smaller particle size.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Corn stover that has undergone chemical or physical pretreatment to enhance enzyme accessibility.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Solubilized Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases for hydrolyzing polysaccharides.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulases": 0,
+        "Hemicellulases": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A mixture containing fermentable sugars derived from the enzymatic breakdown of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Lactic Acid Bacteria Inoculum": {
+      "name": "Lactic Acid Bacteria Inoculum",
+      "stream_id": "lactic acid bacteria inoculum",
+      "description": "A culture of bacteria used to initiate the fermentation process.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid Bacteria": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing lactic acid, residual sugars, and other fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0,
+        "Residual Sugars": 0,
+        "Acetic Acid": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Crude Lactic Acid Solution": {
+      "name": "Crude Lactic Acid Solution",
+      "stream_id": "crude lactic acid solution",
+      "description": "A concentrated solution of lactic acid with reduced impurities.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0,
+        "Residual Impurities": 0
+      }
+    },
+    "Purified Lactic Acid": {
+      "name": "Purified Lactic Acid",
+      "stream_id": "purified lactic acid",
+      "description": "Lactic acid that meets the commercial grade purity requirements, ready for industrial use.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Solubilized Hemicellulose": {
+      "name": "Solubilized Hemicellulose",
+      "properties": {}
+    },
+    "Cellulases": {
+      "name": "Cellulases",
+      "properties": {}
+    },
+    "Hemicellulases": {
+      "name": "Hemicellulases",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Lactic Acid Bacteria": {
+      "name": "Lactic Acid Bacteria",
+      "properties": {}
+    },
+    "Lactic Acid": {
+      "name": "Lactic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Acetic Acid": {
+      "name": "Acetic Acid",
+      "properties": {}
+    },
+    "Residual Impurities": {
+      "name": "Residual Impurities",
+      "properties": {}
+    }
+  }
+}

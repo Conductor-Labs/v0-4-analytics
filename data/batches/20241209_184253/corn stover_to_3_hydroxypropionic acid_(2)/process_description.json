@@ -1,0 +1,314 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "3-Hydroxypropionic Acid",
+      "composition": "3-Hydroxypropionic acid (\u2265 99% purity)",
+      "key_specs": "Industrial grade, suitable for polymer production, requires high purity for commercial applications",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover into simpler, more accessible components. This involves mechanical, chemical, or a combination of methods to disrupt the lignin structure and expose cellulose and hemicellulose for subsequent enzymatic hydrolysis. The pretreatment process is crucial for enhancing the digestibility of the biomass and increasing the yield of fermentable sugars.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Common pretreatment methods include steam explosion, acid hydrolysis, or alkaline treatment. The choice of method affects downstream processing efficiency and cost."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, enzymes are added to the pretreated biomass to hydrolyze cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This step is critical for converting the biomass into a form that can be utilized by microorganisms in the fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The efficiency of enzymatic hydrolysis depends on enzyme loading, reaction time, and the degree of pretreatment."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of sugars into 3-Hydroxypropionic acid (3-HP) using genetically engineered bacteria. This biological process requires careful control of oxygen levels, nutrient supply, and temperature to optimize the production of 3-HP while minimizing by-products.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Bacterial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Oxygen supply and agitation are critical for maintaining aerobic conditions. The choice of bacterial strain impacts yield and productivity."
+    },
+    "broth_clarification": {
+      "unit_operation_id": "broth_clarification",
+      "name": "Broth Clarification",
+      "description": "This unit operation involves the separation of solid biomass and cell debris from the fermentation broth to obtain a clarified liquid containing 3-Hydroxypropionic acid. Techniques such as centrifugation or filtration are employed to achieve this separation.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Solid Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Solid waste can be treated or disposed of according to environmental regulations. Clarification efficiency affects downstream purification."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to isolate and concentrate 3-Hydroxypropionic acid from the clarified broth. This involves techniques such as solvent extraction, distillation, or crystallization to achieve the desired purity level for industrial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth"
+      ],
+      "output_streams": [
+        "Purified 3-Hydroxypropionic Acid",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Achieving high purity is essential for commercial viability. The choice of purification method impacts cost and environmental footprint."
+    },
+    "product_packaging": {
+      "unit_operation_id": "product_packaging",
+      "name": "Product Packaging",
+      "description": "In this final unit operation, the purified 3-Hydroxypropionic acid is packaged for storage and transportation. This involves ensuring that the product is contained in suitable materials to maintain its purity and stability during distribution.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified 3-Hydroxypropionic Acid"
+      ],
+      "output_streams": [
+        "Packaged 3-Hydroxypropionic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging materials must be compatible with 3-Hydroxypropionic acid to prevent contamination or degradation. Considerations include container material and size."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw lignocellulosic biomass feedstock consisting of cellulose, hemicellulose, lignin, ash, and moisture.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "The biomass after pretreatment, with disrupted lignin structure and exposed cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes to catalyze the breakdown of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, resulting from the enzymatic hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of genetically engineered bacteria capable of converting sugars into 3-Hydroxypropionic acid under aerobic conditions.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacteria": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "The liquid mixture containing 3-Hydroxypropionic acid, unconverted sugars, bacterial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_clarification",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxypropionic Acid": 0,
+        "Unconverted Sugars": 0,
+        "Bacterial Biomass": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A clear liquid containing 3-Hydroxypropionic acid and soluble impurities, free from solid biomass.",
+      "stream_type": "core",
+      "source": "broth_clarification",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxypropionic Acid": 0,
+        "Unconverted Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Solid biomass and cell debris separated from the fermentation broth.",
+      "stream_type": "core",
+      "source": "broth_clarification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Biomass": 0
+      }
+    },
+    "Purified 3-Hydroxypropionic Acid": {
+      "name": "Purified 3-Hydroxypropionic Acid",
+      "stream_id": "purified 3_hydroxypropionic acid",
+      "description": "High-purity 3-Hydroxypropionic acid suitable for industrial use, particularly in polymer production.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "product_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxypropionic Acid": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities and unconverted sugars removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Unconverted Sugars": 0
+      }
+    },
+    "Packaged 3-Hydroxypropionic Acid": {
+      "name": "Packaged 3-Hydroxypropionic Acid",
+      "stream_id": "packaged 3_hydroxypropionic acid",
+      "description": "The final product, packaged and ready for distribution to industrial customers.",
+      "stream_type": "core",
+      "source": "product_packaging",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxypropionic Acid": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Bacteria": {
+      "name": "Bacteria",
+      "properties": {}
+    },
+    "3-Hydroxypropionic Acid": {
+      "name": "3-Hydroxypropionic Acid",
+      "properties": {}
+    },
+    "Unconverted Sugars": {
+      "name": "Unconverted Sugars",
+      "properties": {}
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "properties": {}
+    }
+  }
+}

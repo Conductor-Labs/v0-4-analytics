@@ -1,0 +1,534 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass with high cellulose content, typically requiring pretreatment to enhance enzymatic accessibility.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Sorbitol",
+      "composition": "C6H14O6 (100%)",
+      "key_specs": "Commercial grade sorbitol, typically requiring a purity of 98% or higher for food and pharmaceutical applications.",
+      "volumetric_scale": "50,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The initial step involves the collection and preparation of corn stover, a lignocellulosic biomass. This preparation includes size reduction through mechanical milling to increase the surface area and improve the efficiency of subsequent pretreatment processes. The prepared biomass is then conveyed to the pretreatment unit.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Particle size reduction is crucial for enhancing the efficiency of the pretreatment process."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to disrupt the lignin structure and increase the accessibility of cellulose and hemicellulose for enzymatic hydrolysis. This is typically achieved using a chemical method such as dilute acid or alkaline treatment, which helps in breaking down the lignin and hemicellulose matrix.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Chemical Pretreatment Agent"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Chemical pretreatment involving the application of acid or alkali to disrupt lignin and hemicellulose.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Residual Lignin",
+            "conversionRate": 0.5
+          },
+          {
+            "description": "Breakdown of hemicellulose into simpler sugars through chemical pretreatment.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Hemicellulose",
+            "conversionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "The choice of pretreatment method affects the downstream processing efficiency and cost."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis. Enzymes such as cellulases and hemicellulases are added to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This step is critical for maximizing sugar yield, which directly impacts sorbitol production.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Hydrolytic cleavage of cellulose chains by cellulase enzymes resulting in the production of glucose from cellulose in the pretreated biomass.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "The action of hemicellulase enzymes on hemicellulose, breaking it down into xylose and other pentose sugars.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "Enzyme loading and reaction time are optimized to balance cost and sugar yield."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolysate is then subjected to fermentation, where specific microorganisms convert the sugars, primarily glucose, into sorbitol. This biotransformation is facilitated by genetically engineered microbes or naturally occurring strains capable of sorbitol production.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolysate",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "The fermentation of glucose into sorbitol occurs as specialized microorganisms metabolize glucose, efficiently converting it into sorbitol, while also producing microbial biomass and other metabolic by-products.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Sorbitol",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Xylose undergoes fermentation where it is metabolized by specific microorganisms to produce sorbitol, albeit at a lower efficiency compared to glucose, leading to the generation of microbial biomass and various by-products.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Sorbitol",
+            "conversionRate": 0.55
+          }
+        ]
+      },
+      "additional_info": "The fermentation process is optimized for high sorbitol yield and productivity."
+    },
+    "product_recovery_and_purification": {
+      "unit_operation_id": "product_recovery_and_purification",
+      "name": "Product Recovery and Purification",
+      "description": "The fermentation broth undergoes a series of separation and purification steps to recover and purify sorbitol. Techniques such as centrifugation, filtration, and chromatography are employed to remove microbial biomass and other impurities, achieving the desired purity level for commercial-grade sorbitol.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Purified Sorbitol",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Centrifugation and Filtration to remove microbial biomass and solid by-products from the sorbitol solution.",
+            "component": "Sorbitol",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Centrifugation and Filtration for residual sugars removal.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.1
+          },
+          {
+            "description": "Centrifugation and Filtration for the removal of microbial biomass components.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.05
+          },
+          {
+            "description": "Centrifugation and Filtration process for separating solid by-products.",
+            "component": "By-products",
+            "extractionRate": 0.2
+          }
+        ]
+      },
+      "additional_info": "Purity of sorbitol is critical for its application in sensitive industries like food and pharmaceuticals."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "The waste stream from the purification process is treated to minimize environmental impact. This involves biological treatment of organic residues and proper disposal of solid waste. The treated water can be recycled back into the process or safely discharged.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [
+        "Treated Effluent",
+        "Solid Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Biological treatment of organic components leading to the conversion of residual sugars into water and microbial biomass.",
+            "component": "Water",
+            "extractionRate": 0.85
+          },
+          {
+            "description": "Separation of biomass residues and other non-biodegradable by-products resulting in solid waste.",
+            "component": "Biomass Residues",
+            "extractionRate": 0.15
+          }
+        ]
+      },
+      "additional_info": "Efficient waste management is essential for sustainable and economically viable production."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which consists of unprocessed corn stover collected from agricultural fields. The composition includes cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). This biomass is characterized by its high cellulose content and is typically used as a feedstock for biofuel production and other biochemical processes. The unit operation ensures a consistent supply of Raw Corn Stover at a volumetric scale of 100,000 metric tons per year for subsequent processing in the feedstock preparation unit.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "chemical pretreatment agent source": {
+      "unit_operation_id": "chemical pretreatment agent source",
+      "name": "Chemical Pretreatment Agent Source",
+      "description": "This unit operation serves as a source for the Chemical Pretreatment Agent, which is a crucial component in the pretreatment process of lignocellulosic biomass. The agent, consisting of acid and alkali, is utilized to enhance the accessibility of cellulose by breaking down the lignin and hemicellulose structures in the biomass. This preparation step is essential for improving the efficiency of subsequent enzymatic hydrolysis, ultimately leading to higher yields of fermentable sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Chemical Pretreatment Agent"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which is a critical input for the enzymatic hydrolysis process. The Enzyme Solution contains cellulase and hemicellulase enzymes, which are essential for breaking down the pretreated biomass into fermentable sugars. This source ensures a consistent supply of the enzyme solution at the required concentration and volume to facilitate efficient hydrolysis.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "microbial culture source": {
+      "unit_operation_id": "microbial culture source",
+      "name": "Microbial Culture Source",
+      "description": "This unit operation serves as a source for the Microbial Culture stream, which contains microorganisms capable of converting sugars into sorbitol during the fermentation process. The microbial culture is essential for the fermentation step, where it interacts with the hydrolysate to produce sorbitol. This source ensures a consistent supply of viable microbes, optimizing the fermentation efficiency and yield of the desired product.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Microbial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified sorbitol sink": {
+      "unit_operation_id": "purified sorbitol sink",
+      "name": "Purified Sorbitol Sink",
+      "description": "This unit operation serves as the final sink for the purified sorbitol stream, which is produced at a volumetric scale of 50,000 metric tons per year. The purified sorbitol is characterized by its high purity, typically 98% or higher, making it suitable for food and pharmaceutical applications. This sink ensures the safe and efficient handling of the purified product, ready for packaging and distribution.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Sorbitol"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "treated effluent sink": {
+      "unit_operation_id": "treated effluent sink",
+      "name": "Treated Effluent Sink",
+      "description": "This unit operation serves as the final sink for the treated effluent stream, which consists of water that has undergone treatment to remove organic and inorganic contaminants. The treated effluent is typically discharged into the environment or can be reused in other processes, ensuring compliance with environmental regulations and promoting sustainable water management practices.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Treated Effluent"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid waste sink": {
+      "unit_operation_id": "solid waste sink",
+      "name": "Solid Waste Sink",
+      "description": "This unit operation serves as the terminus for the Solid Waste stream, which consists of biomass residues generated from the waste treatment process. The Solid Waste Sink is designed to handle the disposal or further processing of solid residues, ensuring that they are managed in an environmentally sound manner. This may involve landfilling, composting, or conversion into energy or other materials, depending on the specific waste management strategy employed.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover collected from agricultural fields.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover that has been mechanically milled to reduce particle size.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Chemical Pretreatment Agent": {
+      "name": "Chemical Pretreatment Agent",
+      "stream_id": "chemical pretreatment agent",
+      "description": "A chemical agent used to facilitate the breakdown of lignin and hemicellulose.",
+      "stream_type": "core",
+      "source": "chemical pretreatment agent source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Acid": 0,
+        "Alkali": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with reduced lignin content and increased cellulose accessibility.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Residual Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A liquid stream containing fermentable sugars derived from cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Residual Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Microorganisms capable of converting sugars to sorbitol.",
+      "stream_type": "core",
+      "source": "microbial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbes": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing sorbitol, unconverted sugars, microbial biomass, and other by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery_and_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0,
+        "By-products": 0
+      }
+    },
+    "Purified Sorbitol": {
+      "name": "Purified Sorbitol",
+      "stream_id": "purified sorbitol",
+      "description": "High-purity sorbitol suitable for food and pharmaceutical applications.",
+      "stream_type": "core",
+      "source": "product_recovery_and_purification",
+      "target": "purified sorbitol sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities, residual sugars, and microbial biomass.",
+      "stream_type": "core",
+      "source": "product_recovery_and_purification",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0,
+        "By-products": 0
+      }
+    },
+    "Treated Effluent": {
+      "name": "Treated Effluent",
+      "stream_id": "treated effluent",
+      "description": "Water that has been treated to remove organic and inorganic contaminants.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": "treated effluent sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Solid residues that are disposed of or used as by-products.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": "solid waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Biomass Residues": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Acid": {
+      "name": "Acid",
+      "properties": {}
+    },
+    "Alkali": {
+      "name": "Alkali",
+      "properties": {}
+    },
+    "Residual Lignin": {
+      "name": "Residual Lignin",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Microbes": {
+      "name": "Microbes",
+      "properties": {}
+    },
+    "Sorbitol": {
+      "name": "Sorbitol",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "By-products": {
+      "name": "By-products",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Biomass Residues": {
+      "name": "Biomass Residues",
+      "properties": {}
+    }
+  }
+}

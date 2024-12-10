@@ -1,0 +1,567 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Lignocellulosic biomass consisting of cellulose (35-40%), hemicellulose (25-30%), and lignin (15-20%)",
+      "key_specs": "Typically requires pretreatment to break down lignocellulosic structure for fermentation. Moisture content should be controlled to optimize fermentation efficiency.",
+      "volumetric_scale": "100,000 tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Glucaric Acid",
+      "composition": "C6H10O8",
+      "key_specs": "Purity > 95% for commercial applications. Typically produced as a crystalline solid or concentrated solution. Must meet food-grade or industrial-grade specifications depending on the application.",
+      "volumetric_scale": "10,000 tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover, making the cellulose and hemicellulose more accessible for enzymatic hydrolysis. This step typically involves mechanical, chemical, or a combination of both methods to disrupt the lignin structure and increase the surface area of the biomass. A common approach is the use of dilute acid or alkaline solutions to solubilize hemicellulose and partially hydrolyze the cellulose. The pretreatment process is crucial for enhancing the efficiency of subsequent enzymatic hydrolysis and fermentation steps.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Pretreatment Chemicals",
+        "Water"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Chemical addition of dilute sulfuric acid or sodium hydroxide reacts with corn stover, leading to the solubilization of hemicellulose and partial hydrolysis of cellulose, enhancing their availability for enzymatic hydrolysis.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Solubilized Oligomers",
+            "conversionRate": 0.5
+          },
+          {
+            "description": "Chemical pretreatment results in partial hydrolysis of cellulose while keeping the majority intact for downstream processes.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Partially Hydrolyzed Cellulose",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The moisture content of the biomass is controlled to optimize the pretreatment efficiency."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Specific enzymes, such as cellulases and hemicellulases, are added to catalyze the breakdown of polysaccharides into monosaccharides. This step is critical for maximizing sugar yield, which directly impacts the overall efficiency of the fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzymes"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of cellulose to glucose through enzymatic hydrolysis.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Conversion of hemicellulose to xylose through enzymatic hydrolysis.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "The enzymatic hydrolysis is typically conducted at controlled temperatures to optimize enzyme activity."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the conversion of fermentable sugars into glucaric acid using yeast or fungal cultures under aerobic conditions. The microorganisms metabolize the sugars and produce glucaric acid as a metabolic byproduct. This step is crucial for the bioconversion process and requires careful control of aeration, nutrient supply, and microbial growth conditions to maximize product yield.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture",
+        "Nutrient Solution",
+        "Aeration Stream"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Glucose from the Sugar Solution is metabolized by yeast or fungi to produce glucaric acid during fermentation.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Glucaric Acid",
+            "conversionRate": 0.75
+          },
+          {
+            "description": "Xylose from the Sugar Solution is converted into glucaric acid, albeit with a lower conversion efficiency compared to glucose.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Glucaric Acid",
+            "conversionRate": 0.65
+          }
+        ]
+      },
+      "additional_info": "Aerobic conditions are maintained to support the growth and metabolic activity of the microorganisms."
+    },
+    "separation_and_purification": {
+      "unit_operation_id": "separation_and_purification",
+      "name": "Separation and Purification",
+      "description": "This unit operation involves the separation of glucaric acid from the fermentation broth. Techniques such as filtration, centrifugation, and crystallization are employed to isolate and purify glucaric acid to meet commercial specifications. The goal is to achieve a purity level greater than 95%, suitable for food-grade or industrial-grade applications. This step is critical for ensuring product quality and marketability.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Purified Glucaric Acid",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "The process of removing larger particles and insoluble impurities from the fermentation broth, focusing on the liquid phase where glucaric acid and sugars are dissolved.",
+            "component": "Glucaric Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of denser glucaric acid from lighter residual sugars and other impurities by spinning the mixture, exploiting density differences.",
+            "component": "Glucaric Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Enhancement of purity by crystallization of glucaric acid, adjusting temperature and solvent conditions to favor glucaric acid crystallization over residual sugars.",
+            "component": "Glucaric Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "The component of residual sugars and impurities that remain after the glucaric acid is extracted, showing a much lower rate of extraction into the purified stream.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "Crystallization is often used to achieve the desired purity and solid form of glucaric acid."
+    },
+    "drying": {
+      "unit_operation_id": "drying",
+      "name": "Drying",
+      "description": "The drying unit operation is employed to remove moisture from the purified glucaric acid, resulting in a stable crystalline product. This step is essential for producing a solid form of glucaric acid that is easy to handle, store, and transport. The drying process must be carefully controlled to prevent thermal degradation of the product.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Purified Glucaric Acid"
+      ],
+      "output_streams": [
+        "Dried Glucaric Acid"
+      ],
+      "parameters": {},
+      "additional_info": "The drying process may involve techniques such as spray drying or vacuum drying to achieve the desired moisture content."
+    },
+    "packaging": {
+      "unit_operation_id": "packaging",
+      "name": "Packaging",
+      "description": "The final unit operation involves packaging the dried glucaric acid into suitable containers for distribution and sale. Packaging must protect the product from moisture and contamination while ensuring compliance with regulatory standards for food-grade or industrial-grade products. This step is crucial for maintaining product quality during storage and transportation.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Dried Glucaric Acid"
+      ],
+      "output_streams": [
+        "Packaged Glucaric Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging materials and methods are selected based on the intended market and distribution requirements."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is the untreated lignocellulosic biomass feedstock. The composition of Raw Corn Stover includes cellulose (35-40%), hemicellulose (25-30%), and lignin (15-20%). It is supplied at an industrial scale of 100,000 tons per year and typically requires pretreatment to break down its lignocellulosic structure for subsequent fermentation processes. Moisture content must be controlled to optimize fermentation efficiency.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment chemicals source": {
+      "unit_operation_id": "pretreatment chemicals source",
+      "name": "Pretreatment Chemicals Source",
+      "description": "This unit operation serves as a source for the Pretreatment Chemicals stream, which includes essential chemicals such as Sulfuric Acid and Sodium Hydroxide. These chemicals are crucial for the pretreatment process, aiding in the breakdown of lignocellulosic biomass like Corn Stover. The proper dosage and concentration of these chemicals are vital to optimize the pretreatment efficiency, ensuring the subsequent enzymatic hydrolysis and fermentation processes can occur effectively.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Pretreatment Chemicals"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme source": {
+      "unit_operation_id": "enzyme source",
+      "name": "Enzyme Source",
+      "description": "This unit operation serves as a source for the Enzymes stream, which includes cellulase and hemicellulase. These enzymes are crucial for catalyzing the hydrolysis of cellulose and hemicellulose during the enzymatic hydrolysis process. The enzymes are supplied in a concentrated form to ensure optimal efficiency in breaking down the pretreated biomass into fermentable sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzymes"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "microbial culture source": {
+      "unit_operation_id": "microbial culture source",
+      "name": "Microbial Culture Source",
+      "description": "This unit operation serves as a source for the Microbial Culture stream, which consists of yeast and fungal cultures essential for the fermentation process in the production of Glucaric Acid. The microbial culture is cultivated under controlled conditions to ensure optimal growth and activity, providing the necessary microorganisms to convert sugars into Glucaric Acid during fermentation. The operation ensures a consistent supply of high-quality microbial culture to maintain fermentation efficiency and product yield.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Microbial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as the terminus for the Waste Stream, which consists of residual materials and impurities removed during the purification process of Glucaric Acid production. The Waste Stream includes residual sugars and impurities that are not suitable for further processing or use. This sink is designed to manage the disposal or treatment of these by-products, ensuring that the overall process remains efficient and compliant with environmental regulations.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "packaged glucaric acid sink": {
+      "unit_operation_id": "packaged glucaric acid sink",
+      "name": "Packaged Glucaric Acid Sink",
+      "description": "This unit operation serves as the final sink for the Packaged Glucaric Acid stream, which consists of glucaric acid that has been processed, dried, and packaged for commercial distribution. The packaged glucaric acid is ready for shipment and sale, meeting the required purity standards for industrial and food-grade applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Packaged Glucaric Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "water source": {
+      "unit_operation_id": "water source",
+      "name": "Water Source",
+      "description": "This unit operation serves as a source for the Water stream, which is essential in the pretreatment process of Corn Stover. Water is utilized to create dilute acid or alkaline solutions, facilitate chemical reactions, and assist in the physical breakdown of biomass. It acts as a solvent, helping to distribute pretreatment chemicals uniformly throughout the biomass, thereby enhancing the efficiency of the pretreatment process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Water"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "nutrient solution source": {
+      "unit_operation_id": "nutrient solution source",
+      "name": "Nutrient Solution Source",
+      "description": "This unit operation serves as a source for the Nutrient Solution stream, which provides essential nutrients and minerals required for microbial growth and metabolism during the fermentation process. The Nutrient Solution supports the microbial culture in effectively converting sugars into glucaric acid, ensuring optimal fermentation conditions. It contains a nitrogen source (such as ammonium sulfate), phosphates, and trace minerals necessary for the health and activity of the microorganisms involved in the fermentation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Nutrient Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "aeration stream source": {
+      "unit_operation_id": "aeration stream source",
+      "name": "Aeration Stream Source",
+      "description": "This unit operation serves as a source for the Aeration Stream, which provides the necessary oxygen to maintain aerobic conditions for the microbial cultures during the fermentation process. The stream consists primarily of oxygen and nitrogen, facilitating optimal microbial activity and ensuring efficient fermentation of the sugar solution into glucaric acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Aeration Stream"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The untreated lignocellulosic biomass feedstock.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Chemicals such as dilute acid or alkali used to facilitate the breakdown of biomass.",
+      "stream_type": "core",
+      "source": "pretreatment chemicals source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Sulfuric Acid": 0,
+        "Sodium Hydroxide": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, ready for enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Enzymes": {
+      "name": "Enzymes",
+      "stream_id": "enzymes",
+      "description": "Enzymes used to catalyze the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzyme source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution containing fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Yeast or fungal cultures used for the fermentation process.",
+      "stream_type": "core",
+      "source": "microbial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "The liquid mixture containing glucaric acid and residual sugars post-fermentation.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "separation_and_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucaric Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Purified Glucaric Acid": {
+      "name": "Purified Glucaric Acid",
+      "stream_id": "purified glucaric acid",
+      "description": "High-purity glucaric acid suitable for commercial applications.",
+      "stream_type": "core",
+      "source": "separation_and_purification",
+      "target": "drying",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucaric Acid": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "Residual materials and impurities removed during the purification process.",
+      "stream_type": "core",
+      "source": "separation_and_purification",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Dried Glucaric Acid": {
+      "name": "Dried Glucaric Acid",
+      "stream_id": "dried glucaric acid",
+      "description": "Crystalline glucaric acid with reduced moisture content, ready for packaging and distribution.",
+      "stream_type": "core",
+      "source": "drying",
+      "target": "packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucaric Acid": 0
+      }
+    },
+    "Packaged Glucaric Acid": {
+      "name": "Packaged Glucaric Acid",
+      "stream_id": "packaged glucaric acid",
+      "description": "Glucaric acid packaged for commercial distribution.",
+      "stream_type": "core",
+      "source": "packaging",
+      "target": "packaged glucaric acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucaric Acid": 0
+      }
+    },
+    "Water": {
+      "name": "Water",
+      "stream_id": "water",
+      "description": "Water is typically used in pretreatment processes to create dilute acid or alkaline solutions, facilitate chemical reactions, and aid in the physical breakdown of biomass. It acts as a solvent and aids in the distribution of pretreatment chemicals throughout the biomass.",
+      "stream_type": "aux",
+      "source": "water source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0
+      }
+    },
+    "Nutrient Solution": {
+      "name": "Nutrient Solution",
+      "stream_id": "nutrient solution",
+      "description": "This stream provides essential nutrients and minerals required for microbial growth and metabolism during the fermentation process. These nutrients support the microbial culture in effectively converting sugars into glucaric acid.",
+      "stream_type": "aux",
+      "source": "nutrient solution source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Nitrogen source (e.g., Ammonium sulfate)": 0,
+        "Phosphates": 0,
+        "Trace minerals": 0
+      }
+    },
+    "Aeration Stream": {
+      "name": "Aeration Stream",
+      "stream_id": "aeration stream",
+      "description": "This stream provides the necessary oxygen to maintain aerobic conditions for the microbial cultures during fermentation.",
+      "stream_type": "aux",
+      "source": "aeration stream source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0,
+        "Nitrogen (as part of air)": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Sulfuric Acid": {
+      "name": "Sulfuric Acid",
+      "properties": {}
+    },
+    "Sodium Hydroxide": {
+      "name": "Sodium Hydroxide",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "Glucaric Acid": {
+      "name": "Glucaric Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Nitrogen source (e.g., Ammonium sulfate)": {
+      "name": "Nitrogen source (e.g., Ammonium sulfate)",
+      "properties": {}
+    },
+    "Phosphates": {
+      "name": "Phosphates",
+      "properties": {}
+    },
+    "Trace minerals": {
+      "name": "Trace minerals",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    },
+    "Nitrogen (as part of air)": {
+      "name": "Nitrogen (as part of air)",
+      "properties": {}
+    }
+  }
+}

@@ -1,0 +1,99 @@
+[2024-12-09 18:42:53] INFO - Starting run 13 for user prompt: Process that converts corn stover to Propionic acid via bacterial anaerobic fermentation
+[2024-12-09 18:42:53] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Propionic acid via bacterial anaerobic fermentation
+[2024-12-09 18:42:53] INFO - Starting process description agent.
+[2024-12-09 18:42:53] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Propionic acid via bacterial anaerobic fermentation
+[2024-12-09 18:42:57] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Propionic Acid","composition":"Propionic acid (C3H6O2) with trace impurities","key_specs":"Industrial grade, typically >99% purity, suitable for use as a preservative and in the production of cellulose acetate propionate","volumetric_scale":"10,000 metric tons per year"}]}
+[2024-12-09 18:42:57] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:42:57] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Propionic Acid', 'composition': 'Propionic acid (C3H6O2) with trace impurities', 'key_specs': 'Industrial grade, typically >99% purity, suitable for use as a preservative and in the production of cellulose acetate propionate', 'volumetric_scale': '10,000 metric tons per year'}]}
+[2024-12-09 18:43:14] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation involves the mechanical and chemical processing of corn stover to make cellulose and hemicellulose accessible for enzymatic hydrolysis. This step typically involves size reduction and the application of dilute acid or steam explosion to disrupt the lignin structure and partially hydrolyze hemicellulose, releasing fermentable sugars.","input_streams":[{"name":"Raw Corn Stover","description":"Lignocellulosic biomass consisting of cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure and partially hydrolyzed hemicellulose, containing soluble sugars and solid cellulose.","components":["Soluble Sugars","Cellulose","Lignin"]}],"additional_info":"The pretreatment process is critical for maximizing sugar yield in subsequent steps and often requires optimization to balance sugar release and inhibitor formation."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis where cellulases and hemicellulases break down cellulose and remaining hemicellulose into fermentable sugars such as glucose and xylose. This step is crucial for converting the solid biomass into a liquid stream rich in sugars.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure and partially hydrolyzed hemicellulose, containing soluble sugars and solid cellulose.","components":["Soluble Sugars","Cellulose","Lignin"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Hydrolysate","description":"A liquid stream containing fermentable sugars, primarily glucose and xylose, along with residual solids.","components":["Glucose","Xylose","Residual Solids"]}],"additional_info":"The efficiency of enzymatic hydrolysis is influenced by enzyme loading, reaction time, and the presence of inhibitors."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the anaerobic conversion of sugars in the hydrolysate to propionic acid by propionibacteria. This biological process occurs in bioreactors where conditions are optimized for bacterial growth and acid production.","input_streams":[{"name":"Hydrolysate","description":"A liquid stream containing fermentable sugars, primarily glucose and xylose, along with residual solids.","components":["Glucose","Xylose","Residual Solids"]},{"name":"Bacterial Culture","description":"A culture of propionibacteria used for fermentation.","components":["Propionibacteria"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing propionic acid, unconverted sugars, bacterial biomass, and other fermentation by-products.","components":["Propionic Acid","Unconverted Sugars","Bacterial Biomass"]}],"additional_info":"Maintaining anaerobic conditions and controlling nutrient supply are essential for maximizing propionic acid yield."},{"name":"Broth Separation","order":4,"description":"This unit operation involves separating the fermentation broth into a liquid phase rich in propionic acid and a solid phase containing bacterial biomass and residual solids. This is typically achieved through centrifugation or filtration.","input_streams":[{"name":"Fermentation Broth","description":"A mixture containing propionic acid, unconverted sugars, bacterial biomass, and other fermentation by-products.","components":["Propionic Acid","Unconverted Sugars","Bacterial Biomass"]}],"output_streams":[{"name":"Liquid Phase","description":"A liquid stream enriched with propionic acid and some unconverted sugars.","components":["Propionic Acid","Unconverted Sugars"]},{"name":"Solid Phase","description":"A solid stream containing bacterial biomass and residual solids.","components":["Bacterial Biomass","Residual Solids"]}],"additional_info":"Efficient separation is crucial to minimize propionic acid loss and prepare the liquid phase for purification."},{"name":"Purification","order":5,"description":"The purification unit operation focuses on refining the liquid phase to produce high-purity propionic acid. This typically involves distillation or solvent extraction to remove impurities and concentrate the acid.","input_streams":[{"name":"Liquid Phase","description":"A liquid stream enriched with propionic acid and some unconverted sugars.","components":["Propionic Acid","Unconverted Sugars"]}],"output_streams":[{"name":"Purified Propionic Acid","description":"High-purity propionic acid suitable for industrial applications.","components":["Propionic Acid"]},{"name":"Waste Stream","description":"A stream containing impurities and unconverted sugars removed during purification.","components":["Impurities","Unconverted Sugars"]}],"additional_info":"The choice of purification method impacts the energy consumption and overall process economics."},{"name":"Waste Treatment","order":6,"description":"This unit operation involves treating the waste streams generated from the process, including solid residues and liquid effluents, to minimize environmental impact. Treatment methods may include anaerobic digestion, composting, or wastewater treatment.","input_streams":[{"name":"Solid Phase","description":"A solid stream containing bacterial biomass and residual solids.","components":["Bacterial Biomass","Residual Solids"]},{"name":"Waste Stream","description":"A stream containing impurities and unconverted sugars removed during purification.","components":["Impurities","Unconverted Sugars"]}],"output_streams":[{"name":"Treated Waste","description":"Environmentally safe waste suitable for disposal or use as a by-product.","components":["Treated Biomass","Treated Effluents"]}],"additional_info":"Effective waste treatment is essential for regulatory compliance and sustainability of the process."}]}
+[2024-12-09 18:43:14] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:43:14] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:43:14] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Hydrolysate' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:43:14] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:43:14] DEBUG - Reusing existing stream 'Hydrolysate' for input of unit operation 'Fermentation'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Bacterial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:43:14] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:43:14] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Broth Separation'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Liquid Phase' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Solid Phase' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:43:14] DEBUG - Added unit operation 'Broth Separation' with ID 'broth_separation' to process flow.
+[2024-12-09 18:43:14] DEBUG - Reusing existing stream 'Liquid Phase' for input of unit operation 'Purification'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Purified Propionic Acid' for output of unit operation 'Purification'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Waste Stream' for output of unit operation 'Purification'.
+[2024-12-09 18:43:14] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:43:14] DEBUG - Reusing existing stream 'Solid Phase' for input of unit operation 'Waste Treatment'.
+[2024-12-09 18:43:14] DEBUG - Reusing existing stream 'Waste Stream' for input of unit operation 'Waste Treatment'.
+[2024-12-09 18:43:14] DEBUG - Created new stream 'Treated Waste' for output of unit operation 'Waste Treatment'.
+[2024-12-09 18:43:14] DEBUG - Added unit operation 'Waste Treatment' with ID 'waste_treatment' to process flow.
+[2024-12-09 18:43:14] INFO - Process flow built successfully.
+[2024-12-09 18:43:14] INFO - Starting v1 DAG agent.
+[2024-12-09 18:43:14] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:14] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:43:14] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:14] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Hydrolysate'.
+[2024-12-09 18:43:14] DEBUG - Stream 'Bacterial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:14] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:43:14] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Liquid Phase'.
+[2024-12-09 18:43:14] DEBUG - Adding edge from 'broth_separation' to 'waste_treatment' via stream 'Solid Phase'.
+[2024-12-09 18:43:14] DEBUG - Stream 'Purified Propionic Acid' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:14] DEBUG - Adding edge from 'purification' to 'waste_treatment' via stream 'Waste Stream'.
+[2024-12-09 18:43:14] DEBUG - Stream 'Treated Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:14] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:43:14] DEBUG - No missing streams identified for unit operation: Pretreatment
+[2024-12-09 18:43:15] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:43:15] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 18:43:16] DEBUG - No missing streams identified for unit operation: Broth Separation
+[2024-12-09 18:43:21] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:43:21] DEBUG - No missing streams identified for unit operation: Waste Treatment
+[2024-12-09 18:43:25] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:43:26] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:43:28] DEBUG - Added source unit operation 'Bacterial Culture Source' with ID 'bacterial culture source' for stream 'Bacterial Culture'
+[2024-12-09 18:43:29] DEBUG - Added sink unit operation 'Purified Propionic Acid Sink' with ID 'purified propionic acid sink' for stream 'Purified Propionic Acid'
+[2024-12-09 18:43:30] DEBUG - Added sink unit operation 'Treated Waste Sink' with ID 'treated waste sink' for stream 'Treated Waste'
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Hydrolysate'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'bacterial culture source' to 'fermentation' via stream 'Bacterial Culture'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Liquid Phase'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'broth_separation' to 'waste_treatment' via stream 'Solid Phase'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'purification' to 'purified propionic acid sink' via stream 'Purified Propionic Acid'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'purification' to 'waste_treatment' via stream 'Waste Stream'.
+[2024-12-09 18:43:30] DEBUG - Adding edge from 'waste_treatment' to 'treated waste sink' via stream 'Treated Waste'.
+[2024-12-09 18:43:30] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:43:30] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:43:38] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Hemicellulose → Soluble Sugars (rate: 30.0%)
+  2. Converting Corn Stover → Pretreated Biomass (rate: 50.0%)
+[2024-12-09 18:43:48] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 75.0%)
+[2024-12-09 18:43:57] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Propionic Acid (rate: 60.0%)
+  2. Converting Xylose → Propionic Acid (rate: 50.0%)
+[2024-12-09 18:44:03] DEBUG - Processing separation unit operation: Broth Separation
+Separation operations:
+  1. Separating Propionic Acid (extraction rate: 95.0%)
+  2. Separating Unconverted Sugars (extraction rate: 65.0%)
+  3. Separating Bacterial Biomass (extraction rate: 5.0%)
+[2024-12-09 18:44:11] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Propionic Acid (extraction rate: 95.0%)
+  2. Separating Unconverted Sugars (extraction rate: 10.0%)
+[2024-12-09 18:44:18] DEBUG - No conversion or separation parameters identified for unit operation: Waste Treatment
+[2024-12-09 18:44:18] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:44:18] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:44:18] DEBUG - Skipping operational parameters for unit operation 'Bacterial Culture Source' of type 'source'
+[2024-12-09 18:44:18] DEBUG - Skipping operational parameters for unit operation 'Purified Propionic Acid Sink' of type 'sink'
+[2024-12-09 18:44:18] DEBUG - Skipping operational parameters for unit operation 'Treated Waste Sink' of type 'sink'
+[2024-12-09 18:44:18] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:44:18] INFO - Workflow completed successfully.

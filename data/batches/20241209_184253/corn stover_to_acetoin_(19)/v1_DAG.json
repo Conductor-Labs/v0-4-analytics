@@ -1,0 +1,561 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (40-50%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%)",
+      "key_specs": "Lignocellulosic biomass, typically requires pretreatment to break down cellulose and hemicellulose into fermentable sugars.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Acetoin",
+      "composition": "C4H8O2",
+      "key_specs": "Purity > 95%, suitable for use in food flavoring, fragrance, and as a chemical intermediate.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover into simpler components, primarily focusing on cellulose and hemicellulose. This is typically achieved through a combination of mechanical, chemical, or thermal methods. The goal is to increase the accessibility of cellulose and hemicellulose for subsequent enzymatic hydrolysis. Common pretreatment methods include steam explosion, acid hydrolysis, or alkaline treatment. This step is crucial as it significantly impacts the efficiency of the downstream enzymatic hydrolysis and fermentation processes.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Pretreatment Chemicals"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "The pretreatment process uses Pretreatment Chemicals to break down the lignocellulosic structure of Raw Corn Stover, increasing the accessibility of hemicellulose and cellulose.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Accessible Hemicellulose",
+            "conversionRate": 0.25
+          },
+          {
+            "description": "The pretreatment process alters the structure of cellulose, making it more accessible for further enzymatic hydrolysis, but does not fully convert it into sugars.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Accessible Cellulose",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The choice of pretreatment method can affect the downstream processing costs and environmental impact."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Enzymes such as cellulases and hemicellulases are used to catalyze the breakdown of these polysaccharides. The efficiency of this step is critical as it determines the yield of fermentable sugars available for the subsequent fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Enzymatic hydrolysis of cellulose using cellulases to convert cellulose polymers into glucose monomers.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Enzymatic hydrolysis of hemicellulose using hemicellulases to convert hemicellulose into xylose and other minor sugars.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "The enzymatic hydrolysis step is typically optimized for enzyme loading and reaction time to balance cost and efficiency."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of fermentable sugars into acetoin by specific strains of bacteria, such as Bacillus subtilis. This biological process requires careful control of conditions such as aeration, temperature, and nutrient supply to maximize acetoin production while minimizing by-products. The choice of bacterial strain and fermentation conditions are critical to achieving high yields and product purity.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Nutrient Solution"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "Carbon Dioxide"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Glucose is fermented by Bacillus subtilis to produce acetoin and carbon dioxide.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Acetoin",
+            "conversionRate": 0.4
+          },
+          {
+            "description": "Glucose is fermented by Bacillus subtilis, resulting in the production of carbon dioxide as a by-product.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.6
+          },
+          {
+            "description": "Xylose is fermented by Bacillus subtilis to produce acetoin and carbon dioxide.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Acetoin",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "Xylose is fermented by Bacillus subtilis, which leads to the production of carbon dioxide as a by-product.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.5
+          }
+        ]
+      },
+      "additional_info": "Aerobic conditions are maintained to facilitate the bacterial conversion of sugars to acetoin. The process may require continuous monitoring and adjustment of pH and oxygen levels."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of bacterial cells and other solid residues from the fermentation broth. This is typically achieved using centrifugation or filtration techniques. The goal is to obtain a clarified broth that contains acetoin and other soluble components, while removing the biomass and other insoluble materials.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Biomass Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Solid-Liquid Separation of fermentation broth using centrifugation or filtration to separate solid biomass from liquid components.",
+            "component": "Biomass",
+            "extractionRate": 0.98
+          },
+          {
+            "description": "Separation of clarified broth containing dissolved acetoin and unconverted sugars from solid residues.",
+            "component": "Clarified Broth",
+            "extractionRate": 1.0
+          }
+        ]
+      },
+      "additional_info": "The separated biomass can potentially be used as a nutrient source or for biogas production."
+    },
+    "acetoin_recovery": {
+      "unit_operation_id": "acetoin_recovery",
+      "name": "Acetoin Recovery",
+      "description": "In this unit operation, acetoin is recovered from the clarified broth through techniques such as distillation or solvent extraction. The objective is to concentrate and purify acetoin to meet the desired product specifications. This step is crucial for achieving the required purity levels for acetoin, especially if it is intended for use in food flavoring or as a chemical intermediate.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth"
+      ],
+      "output_streams": [
+        "Crude Acetoin",
+        "Aqueous Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "The process isolates acetoin from other components in the clarified broth, ensuring high recovery and minimal impurities.",
+            "component": "Acetoin",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Residual unconverted sugars remain largely in the aqueous waste, minimizing contamination of the acetoin stream.",
+            "component": "Unconverted sugars",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The choice of recovery method can impact the overall process efficiency and cost. Solvent extraction may require additional steps for solvent recovery."
+    },
+    "acetoin_purification": {
+      "unit_operation_id": "acetoin_purification",
+      "name": "Acetoin Purification",
+      "description": "The final purification step involves refining the crude acetoin to achieve the desired purity level of greater than 95%. This can be accomplished through additional distillation, crystallization, or adsorption techniques. The purified acetoin is then suitable for use in various applications, including food flavoring and as a chemical intermediate.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Acetoin"
+      ],
+      "output_streams": [
+        "Purified Acetoin"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Purification of crude acetoin by removing impurities to achieve high purity levels.",
+            "component": "Impurities",
+            "extractionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "The purification process is optimized to minimize product loss and ensure compliance with regulatory standards for purity."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is a raw lignocellulosic biomass feedstock. The stream consists of a mixture of cellulose (40-50%), hemicellulose (25-30%), lignin (15-20%), and ash (5-10%). It is typically supplied at an industrial scale of 100,000 kg/day and is essential for the subsequent pretreatment process to convert the biomass into fermentable sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which contains cellulases and hemicellulases. These enzymes are critical for catalyzing the hydrolysis of cellulose and hemicellulose during the enzymatic hydrolysis process. The Enzyme Solution is produced at an industrial scale to ensure sufficient quantities for effective biomass conversion, facilitating the subsequent production of fermentable sugars from pretreated biomass.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "nutrient solution source": {
+      "unit_operation_id": "nutrient solution source",
+      "name": "Nutrient Solution Source",
+      "description": "This unit operation serves as a source for the Nutrient Solution, which is essential for the fermentation process. The Nutrient Solution provides vital nutrients such as nitrogen sources, phosphates, and trace minerals that support the growth and metabolism of bacteria during fermentation. It ensures optimal conditions for the production of Acetoin from the Sugar Solution, contributing to the overall efficiency and yield of the process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Nutrient Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "biomass waste sink": {
+      "unit_operation_id": "biomass waste sink",
+      "name": "Biomass Waste Sink",
+      "description": "This unit operation serves as a sink for the Biomass Waste stream, which consists of bacterial cells and other insoluble residues generated during the fermentation and cell separation processes. The sink is designed to safely collect and manage the solid waste, ensuring proper disposal or potential further processing for energy recovery or composting.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Biomass Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "aqueous waste sink": {
+      "unit_operation_id": "aqueous waste sink",
+      "name": "Aqueous Waste Sink",
+      "description": "This unit operation serves as a sink for the Aqueous Waste stream, which consists of water and unconverted sugars generated from the acetoin recovery process. The Aqueous Waste Sink is designed to collect and manage the disposal or treatment of this waste stream, ensuring that residual sugars do not contaminate other processes and that water is handled in an environmentally responsible manner.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Aqueous Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified acetoin sink": {
+      "unit_operation_id": "purified acetoin sink",
+      "name": "Purified Acetoin Sink",
+      "description": "This unit operation serves as the terminus for the purified acetoin stream, which is the final product of the acetoin production process. The stream consists solely of acetoin with a purity greater than 95%, making it suitable for applications in food flavoring, fragrance, and as a chemical intermediate. The sink unit operation ensures that the purified acetoin is collected and stored for subsequent distribution and commercial use.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Acetoin"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment chemicals source": {
+      "unit_operation_id": "pretreatment chemicals source",
+      "name": "Pretreatment Chemicals Source",
+      "description": "This unit operation serves as a source for the Pretreatment Chemicals used in the pretreatment process of corn stover. The chemicals include acids (such as sulfuric acid), bases (such as sodium hydroxide), and water, which are essential for breaking down the lignocellulosic structure of the biomass. This step is crucial for enhancing the efficiency of subsequent processes by making cellulose and hemicellulose more accessible for enzymatic hydrolysis.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Pretreatment Chemicals"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "carbon dioxide sink": {
+      "unit_operation_id": "carbon dioxide sink",
+      "name": "Carbon Dioxide Sink",
+      "description": "This unit operation serves as a sink for the Carbon Dioxide stream, which is a by-product of the fermentation process. The Carbon Dioxide is generated during the aerobic conversion of sugars by Bacillus subtilis. This sink is designed to safely collect and manage the Carbon Dioxide emissions, ensuring that they are either captured for further use or released in an environmentally responsible manner.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Carbon Dioxide"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw lignocellulosic biomass feedstock consisting of cellulose, hemicellulose, lignin, and ash.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "The biomass after pretreatment, with cellulose and hemicellulose more accessible for enzymatic action.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases to catalyze the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulases": 0,
+        "Hemicellulases": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars such as glucose and xylose, along with residual lignin and ash.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Nutrient Solution": {
+      "name": "Nutrient Solution",
+      "stream_id": "nutrient solution",
+      "description": "A solution providing essential nutrients and minerals to support bacterial growth and metabolism.",
+      "stream_type": "core",
+      "source": "nutrient solution source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Nitrogen sources": 0,
+        "Phosphates": 0,
+        "Trace minerals": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "The broth containing acetoin, unconverted sugars, bacterial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Acetoin": 0,
+        "Unconverted sugars": 0,
+        "Biomass": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A liquid stream containing acetoin and soluble components, free of solid biomass.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "acetoin_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Acetoin": 0,
+        "Unconverted sugars": 0
+      }
+    },
+    "Biomass Waste": {
+      "name": "Biomass Waste",
+      "stream_id": "biomass waste",
+      "description": "A solid waste stream consisting of bacterial cells and other insoluble residues.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "biomass waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Biomass": 0
+      }
+    },
+    "Crude Acetoin": {
+      "name": "Crude Acetoin",
+      "stream_id": "crude acetoin",
+      "description": "A concentrated stream of acetoin, which may still contain impurities and requires further purification.",
+      "stream_type": "core",
+      "source": "acetoin_recovery",
+      "target": "acetoin_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Acetoin": 0
+      }
+    },
+    "Aqueous Waste": {
+      "name": "Aqueous Waste",
+      "stream_id": "aqueous waste",
+      "description": "A waste stream containing water and residual sugars.",
+      "stream_type": "core",
+      "source": "acetoin_recovery",
+      "target": "aqueous waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Unconverted sugars": 0
+      }
+    },
+    "Purified Acetoin": {
+      "name": "Purified Acetoin",
+      "stream_id": "purified acetoin",
+      "description": "The final product stream of acetoin with high purity, ready for commercial use.",
+      "stream_type": "core",
+      "source": "acetoin_purification",
+      "target": "purified acetoin sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Acetoin": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Chemicals used in the pretreatment process to break down the lignocellulosic structure of corn stover. These could include acids, bases, or other chemicals depending on the specific pretreatment method used (e.g., acid hydrolysis or alkaline treatment).",
+      "stream_type": "aux",
+      "source": "pretreatment chemicals source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Acids (such as sulfuric acid)": 0,
+        "Bases (such as sodium hydroxide)": 0,
+        "Water": 0
+      }
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "stream_id": "carbon dioxide",
+      "description": "By-product of the fermentation process involving the aerobic conversion of sugars by Bacillus subtilis.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "carbon dioxide sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Cellulases": {
+      "name": "Cellulases",
+      "properties": {}
+    },
+    "Hemicellulases": {
+      "name": "Hemicellulases",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Nitrogen sources": {
+      "name": "Nitrogen sources",
+      "properties": {}
+    },
+    "Phosphates": {
+      "name": "Phosphates",
+      "properties": {}
+    },
+    "Trace minerals": {
+      "name": "Trace minerals",
+      "properties": {}
+    },
+    "Acetoin": {
+      "name": "Acetoin",
+      "properties": {}
+    },
+    "Unconverted sugars": {
+      "name": "Unconverted sugars",
+      "properties": {}
+    },
+    "Biomass": {
+      "name": "Biomass",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Acids (such as sulfuric acid)": {
+      "name": "Acids (such as sulfuric acid)",
+      "properties": {}
+    },
+    "Bases (such as sodium hydroxide)": {
+      "name": "Bases (such as sodium hydroxide)",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    }
+  }
+}

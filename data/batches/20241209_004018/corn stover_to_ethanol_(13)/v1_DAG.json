@@ -1,0 +1,645 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (10-15%)",
+      "key_specs": "Lignocellulosic biomass with high cellulose content, typically requires pretreatment to enhance enzymatic hydrolysis.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Ethanol",
+      "composition": "Ethanol (C2H5OH) with trace water and impurities",
+      "key_specs": "Fuel-grade ethanol with a purity of at least 99.5% for commercial use, suitable for blending with gasoline.",
+      "volumetric_scale": "40 million gallons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover, a lignocellulosic biomass, is first collected and transported to the processing facility. Here, it undergoes size reduction through mechanical milling to increase the surface area, facilitating subsequent processing steps. This operation is crucial for enhancing the efficiency of the pretreatment and enzymatic hydrolysis stages.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Milled Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "The particle size is typically reduced to less than 2 mm to optimize the subsequent pretreatment process."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The milled corn stover is subjected to a pretreatment process to break down the lignin structure and make the cellulose and hemicellulose more accessible for enzymatic hydrolysis. This is often achieved using dilute acid or steam explosion methods. The pretreatment helps in disrupting the lignin-carbohydrate complex, enhancing the digestibility of the biomass.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Milled Corn Stover",
+        "Pretreatment Chemicals"
+      ],
+      "output_streams": [
+        "Pretreated Biomass",
+        "Pretreatment Off-gas",
+        "Pretreatment Effluent"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Hemicellulose is hydrolyzed into soluble sugar oligomers during the pretreatment process.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Dissolved Organics",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "Lignin is partially broken down into smaller molecular weight compounds and volatile organic compounds during the pretreatment process.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Lignin Degradation Products",
+            "conversionRate": 0.2
+          },
+          {
+            "description": "Lignin is also converted into volatile organic compounds as a byproduct of the degradation process.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Volatile Organic Compounds",
+            "conversionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The choice of pretreatment method can significantly affect the cost and efficiency of the overall process."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this step, the pretreated biomass is mixed with a cocktail of cellulase and hemicellulase enzymes to convert the cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This process is carried out in large reactors and is critical for maximizing sugar yield, which directly impacts ethanol production efficiency.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose in the pretreated biomass is hydrolyzed by cellulase enzymes to produce glucose, providing a key fermentable sugar for subsequent fermentation processes.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.9
+          },
+          {
+            "description": "Hemicellulose in the pretreated biomass undergoes hydrolysis by hemicellulase enzymes to produce xylose, another important fermentable sugar.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "The enzymatic hydrolysis step is typically optimized for enzyme loading and reaction time to reduce costs."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The sugar solution is then fermented using yeast or genetically modified microorganisms to convert the sugars into ethanol. This biological process occurs in anaerobic conditions and is a key step in the production of ethanol. The choice of microorganism can influence the yield and rate of ethanol production.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Sugar Solution",
+        "Yeast or Microorganism Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Fermentation process where glucose is converted into ethanol through anaerobic microbial activity.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Ethanol",
+            "conversionRate": 0.9
+          },
+          {
+            "description": "Fermentation process where xylose is converted into ethanol, though typically less efficiently due to differing metabolic pathways.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Ethanol",
+            "conversionRate": 0.6
+          }
+        ]
+      },
+      "additional_info": "Fermentation is typically carried out at temperatures optimal for the chosen microorganism, and the process may include nutrient supplementation."
+    },
+    "distillation": {
+      "unit_operation_id": "distillation",
+      "name": "Distillation",
+      "description": "The fermentation broth is subjected to distillation to separate ethanol from water and other components. This step involves heating the mixture to vaporize ethanol, which is then condensed and collected. Distillation is crucial for achieving the high purity required for fuel-grade ethanol.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Ethanol",
+        "Stillage"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of ethanol from water and other components through distillation by utilizing differences in boiling points.",
+            "component": "Ethanol",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Presence in the remaining liquid phase, mainly in the stillage.",
+            "component": "Water",
+            "extractionRate": 0.1
+          },
+          {
+            "description": "Minimal volatility leads to retention in stillage.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.05
+          },
+          {
+            "description": "By-products with lower volatility largely remain in stillage.",
+            "component": "By-products",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The distillation process may be followed by dehydration to remove residual water and achieve the desired ethanol purity."
+    },
+    "dehydration": {
+      "unit_operation_id": "dehydration",
+      "name": "Dehydration",
+      "description": "To achieve the required fuel-grade ethanol purity of at least 99.5%, the crude ethanol undergoes a dehydration process. This is typically done using molecular sieves or azeotropic distillation to remove the remaining water content.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Ethanol"
+      ],
+      "output_streams": [
+        "Fuel-grade Ethanol"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Water is selectively removed from crude ethanol using molecular sieves and azeotropic distillation techniques, achieving high purification levels.",
+            "component": "Water",
+            "extractionRate": 0.99
+          },
+          {
+            "description": "Impurities present in crude ethanol are minimized during the dehydration process, resulting in a cleaner ethanol product.",
+            "component": "Impurities",
+            "extractionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "The choice of dehydration method can affect the energy consumption and cost of the process."
+    },
+    "waste_management": {
+      "unit_operation_id": "waste_management",
+      "name": "Waste Management",
+      "description": "The stillage and other waste streams generated throughout the process are treated and managed. This may involve anaerobic digestion to produce biogas, which can be used as an energy source, or other methods to recover valuable by-products or safely dispose of waste.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Stillage"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Anaerobic digestion converts residual sugars in stillage into biogas, consisting mainly of methane and carbon dioxide.",
+            "inputComponent": "Residual Sugars",
+            "outputComponent": "Biogas",
+            "conversionRate": 0.5
+          },
+          {
+            "description": "Separation of components involves extracting biogas from the treated waste, leaving water and residual solids.",
+            "inputComponent": "Stillage",
+            "outputComponent": "Treated Waste",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "Effective waste management is crucial for minimizing environmental impact and improving the sustainability of the ethanol production process."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which consists of collected corn stover in its natural state. The stream contains a mixture of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (10-15%). This feedstock is crucial for the subsequent processing steps in the bioethanol production pathway, as it provides the necessary lignocellulosic biomass with a high cellulose content, typically requiring pretreatment to enhance enzymatic hydrolysis.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which is a critical input for the enzymatic hydrolysis process in the production of ethanol from lignocellulosic biomass. The Enzyme Solution consists of a mixture of cellulase and hemicellulase enzymes, designed to effectively break down cellulose and hemicellulose into fermentable sugars. This source is essential for ensuring a continuous supply of enzymes at the required concentration and activity level for optimal hydrolysis efficiency.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "fuel_grade ethanol sink": {
+      "unit_operation_id": "fuel_grade ethanol sink",
+      "name": "Fuel-grade Ethanol Sink",
+      "description": "This unit operation serves as the final sink for the Fuel-grade Ethanol stream, which is a high-purity ethanol product suitable for blending with gasoline. The sink is designed to receive the output from the dehydration unit operation, ensuring that the ethanol is stored or transferred for further distribution or use in fuel applications. The unit operation guarantees that the ethanol maintains its quality and purity, with a specification of at least 99.5% ethanol content, ready for commercial use.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Fuel-grade Ethanol"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "treated waste sink": {
+      "unit_operation_id": "treated waste sink",
+      "name": "Treated Waste Sink",
+      "description": "This unit operation serves as the final sink for the treated waste stream generated from the waste management process. It is designed to handle processed waste that is ready for disposal or further utilization. The treated waste consists of biogas, water, and residual solids, which may be directed to appropriate disposal methods or utilized for energy recovery and resource recovery applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Treated Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment chemicals source": {
+      "unit_operation_id": "pretreatment chemicals source",
+      "name": "Pretreatment Chemicals Source",
+      "description": "This unit operation serves as a source for the Pretreatment Chemicals used in the pretreatment process of biomass. The chemicals provided include dilute acid, alkali, and catalysts, which facilitate the breakdown of lignin and enhance the accessibility of cellulose and hemicellulose. This is a critical step in preparing the biomass for enzymatic hydrolysis, ensuring efficient conversion to sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Pretreatment Chemicals"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment off_gas sink": {
+      "unit_operation_id": "pretreatment off_gas sink",
+      "name": "Pretreatment Off-gas Sink",
+      "description": "This unit operation serves as a sink for the Pretreatment Off-gas stream, which consists of gaseous emissions released during the pretreatment process. The off-gas may contain carbon dioxide and volatile organic compounds (VOCs) generated from the breakdown of biomass components. The sink is designed to capture and manage these emissions, ensuring compliance with environmental regulations and minimizing atmospheric release.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Pretreatment Off-gas"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment effluent sink": {
+      "unit_operation_id": "pretreatment effluent sink",
+      "name": "Pretreatment Effluent Sink",
+      "description": "This unit operation serves as a sink for the Pretreatment Effluent stream, which is a liquid waste generated during the pretreatment of Corn Stover. The effluent may contain dissolved organic and inorganic substances, including acids, lignin degradation products, and other solubilized compounds. This sink is designed to manage and treat the effluent before it is either disposed of or further processed, ensuring compliance with environmental regulations and minimizing potential impacts on the surrounding ecosystem.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Pretreatment Effluent"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "yeast or microorganism culture source": {
+      "unit_operation_id": "yeast or microorganism culture source",
+      "name": "Yeast or Microorganism Culture Source",
+      "description": "This unit operation serves as a source for the Yeast or Microorganism Culture stream, which is essential for the fermentation process. It provides the necessary yeast or genetically modified microorganisms, along with required nutrients and water, to facilitate the conversion of sugars into ethanol during fermentation. This stream ensures that the fermentation process is efficient and effective, contributing to the overall yield of ethanol production.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Yeast or Microorganism Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Collected corn stover with its natural composition.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Milled Corn Stover": {
+      "name": "Milled Corn Stover",
+      "stream_id": "milled corn stover",
+      "description": "Corn stover that has been mechanically reduced in size.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignin structure, ready for enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A mixture of cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution containing fermentable sugars derived from cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture of ethanol, water, unconverted sugars, and by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "distillation",
+      "flow_rate": 0.0,
+      "components": {
+        "Ethanol": 0,
+        "Water": 0,
+        "Residual Sugars": 0,
+        "By-products": 0
+      }
+    },
+    "Crude Ethanol": {
+      "name": "Crude Ethanol",
+      "stream_id": "crude ethanol",
+      "description": "Ethanol with impurities and some water content.",
+      "stream_type": "core",
+      "source": "distillation",
+      "target": "dehydration",
+      "flow_rate": 0.0,
+      "components": {
+        "Ethanol": 0,
+        "Water": 0,
+        "Impurities": 0
+      }
+    },
+    "Stillage": {
+      "name": "Stillage",
+      "stream_id": "stillage",
+      "description": "Residue from distillation containing water, unconverted sugars, and by-products.",
+      "stream_type": "core",
+      "source": "distillation",
+      "target": "waste_management",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Residual Sugars": 0,
+        "By-products": 0
+      }
+    },
+    "Fuel-grade Ethanol": {
+      "name": "Fuel-grade Ethanol",
+      "stream_id": "fuel_grade ethanol",
+      "description": "High-purity ethanol suitable for blending with gasoline.",
+      "stream_type": "core",
+      "source": "dehydration",
+      "target": "fuel_grade ethanol sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Ethanol": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Processed waste ready for disposal or further use.",
+      "stream_type": "core",
+      "source": "waste_management",
+      "target": "treated waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Biogas": 0,
+        "Water": 0,
+        "Residual Solids": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Chemicals used in the pretreatment process to facilitate the breakdown of lignin and enhance the accessibility of cellulose and hemicellulose. Common chemicals include dilute acid, alkali, or other catalysts depending on the method used.",
+      "stream_type": "aux",
+      "source": "pretreatment chemicals source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Dilute Acid": 0,
+        "Alkali": 0,
+        "Catalyst": 0
+      }
+    },
+    "Pretreatment Off-gas": {
+      "name": "Pretreatment Off-gas",
+      "stream_id": "pretreatment off_gas",
+      "description": "Gaseous emissions released during the pretreatment process, potentially including volatile organic compounds and gases generated from the breakdown of biomass components.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "pretreatment off_gas sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0,
+        "Volatile Organic Compounds": 0
+      }
+    },
+    "Pretreatment Effluent": {
+      "name": "Pretreatment Effluent",
+      "stream_id": "pretreatment effluent",
+      "description": "Liquid waste stream generated during the pretreatment process, which may contain dissolved organic and inorganic substances, including acids, degradation products, and other solubilized compounds.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "pretreatment effluent sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Dissolved Organics": 0,
+        "Acids": 0,
+        "Lignin Degradation Products": 0
+      }
+    },
+    "Yeast or Microorganism Culture": {
+      "name": "Yeast or Microorganism Culture",
+      "stream_id": "yeast or microorganism culture",
+      "description": "This stream would provide the necessary yeast or genetically modified microorganisms required for the fermentation process to convert sugars into ethanol.",
+      "stream_type": "aux",
+      "source": "yeast or microorganism culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Nutrients": 0,
+        "Water": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Ethanol": {
+      "name": "Ethanol",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "By-products": {
+      "name": "By-products",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Biogas": {
+      "name": "Biogas",
+      "properties": {}
+    },
+    "Residual Solids": {
+      "name": "Residual Solids",
+      "properties": {}
+    },
+    "Dilute Acid": {
+      "name": "Dilute Acid",
+      "properties": {}
+    },
+    "Alkali": {
+      "name": "Alkali",
+      "properties": {}
+    },
+    "Catalyst": {
+      "name": "Catalyst",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    },
+    "Volatile Organic Compounds": {
+      "name": "Volatile Organic Compounds",
+      "properties": {}
+    },
+    "Dissolved Organics": {
+      "name": "Dissolved Organics",
+      "properties": {}
+    },
+    "Acids": {
+      "name": "Acids",
+      "properties": {}
+    },
+    "Lignin Degradation Products": {
+      "name": "Lignin Degradation Products",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Nutrients": {
+      "name": "Nutrients",
+      "properties": {}
+    }
+  }
+}

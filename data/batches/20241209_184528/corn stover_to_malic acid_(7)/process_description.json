@@ -1,0 +1,324 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants. It is typically pretreated to enhance enzymatic hydrolysis.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Malic Acid",
+      "composition": "C4H6O5 (Malic Acid)",
+      "key_specs": "Commercial-grade malic acid with a purity of at least 99%. It is used in food and beverage industries as an acidulant and flavor enhancer.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to prepare the corn stover for enzymatic hydrolysis. This involves breaking down the lignocellulosic structure to increase the accessibility of cellulose and hemicellulose. Common methods include dilute acid, alkaline, or steam explosion pretreatment. The goal is to disrupt the lignin matrix and partially hydrolyze hemicellulose, making the cellulose more amenable to enzymatic attack.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method can significantly affect downstream processing efficiency and cost."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated corn stover is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Corn Stover",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The efficiency of this step is crucial for maximizing sugar yield and minimizing enzyme costs."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of sugars into malic acid using yeast or fungal strains. The microorganisms metabolize glucose and xylose under controlled conditions to produce malic acid as a primary metabolite. Oxygen is supplied to maintain aerobic conditions, and nutrients may be added to support microbial growth.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of microorganism and fermentation conditions can significantly impact yield and productivity."
+    },
+    "broth_separation": {
+      "unit_operation_id": "broth_separation",
+      "name": "Broth Separation",
+      "description": "This unit operation involves the separation of the fermentation broth to recover malic acid. Techniques such as centrifugation or filtration are used to remove microbial biomass and other solids, leaving a clarified solution of malic acid.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Malic Acid Solution",
+        "Solid Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Efficient separation is critical to minimize product loss and prepare for further purification."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to increase the purity of malic acid to commercial standards. This may involve crystallization, ion exchange, or solvent extraction techniques to remove impurities and concentrate malic acid.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Malic Acid Solution"
+      ],
+      "output_streams": [
+        "Purified Malic Acid",
+        "Impurity Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Achieving the desired purity level is essential for product quality and marketability."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "In this final unit operation, the purified malic acid is dried to remove any remaining moisture and then packaged for distribution. The drying process ensures that the product meets the required specifications for moisture content, and packaging is done to protect the product during storage and transport.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Malic Acid"
+      ],
+      "output_streams": [
+        "Commercial-Grade Malic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Proper drying and packaging are crucial to maintain product stability and quality during storage."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw agricultural residue consisting of leaves, stalks, and cobs from maize plants.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Corn Stover": {
+      "name": "Pretreated Corn Stover",
+      "stream_id": "pretreated corn stover",
+      "description": "Corn stover that has undergone structural disruption to enhance enzymatic hydrolysis efficiency.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases for hydrolysis.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Yeast or fungal strains capable of converting sugars to malic acid.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing malic acid, residual sugars, microbial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Malic Acid": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0,
+        "Lignin": 0
+      }
+    },
+    "Clarified Malic Acid Solution": {
+      "name": "Clarified Malic Acid Solution",
+      "stream_id": "clarified malic acid solution",
+      "description": "A solution containing malic acid with reduced solids content.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Malic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Separated solids including microbial biomass and lignin.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0,
+        "Lignin": 0
+      }
+    },
+    "Purified Malic Acid": {
+      "name": "Purified Malic Acid",
+      "stream_id": "purified malic acid",
+      "description": "High-purity malic acid suitable for commercial use.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Malic Acid": 0
+      }
+    },
+    "Impurity Stream": {
+      "name": "Impurity Stream",
+      "stream_id": "impurity stream",
+      "description": "A stream containing removed impurities and residual sugars.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0
+      }
+    },
+    "Commercial-Grade Malic Acid": {
+      "name": "Commercial-Grade Malic Acid",
+      "stream_id": "commercial_grade malic acid",
+      "description": "Dried and packaged malic acid ready for sale and distribution.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Malic Acid": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "Malic Acid": {
+      "name": "Malic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    }
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Lignocellulosic biomass consisting of approximately 35-40% cellulose, 25-30% hemicellulose, 15-20% lignin, and minor components such as ash and extractives.",
+      "key_specs": "Typically requires pre-treatment to break down lignocellulosic structure and release fermentable sugars. Moisture content should be controlled to optimize fermentation efficiency.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Xylitol",
+      "composition": "C5H12O5, a sugar alcohol derived from xylose, typically 99% purity for commercial use.",
+      "key_specs": "Food-grade xylitol with a purity of 99% or higher, low residual sugars, and minimal microbial contamination. Must meet food safety standards for human consumption.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pre-treatment": {
+      "unit_operation_id": "pre-treatment",
+      "name": "Pre-treatment",
+      "description": "The pre-treatment unit operation is essential for breaking down the lignocellulosic structure of corn stover to release fermentable sugars. This process typically involves mechanical, chemical, or enzymatic methods to disrupt the complex matrix of cellulose, hemicellulose, and lignin. The goal is to increase the accessibility of hemicellulose, which contains xylose, the precursor for xylitol production. Mechanical pre-treatment may involve milling or grinding, while chemical methods could include acid or alkaline hydrolysis. Enzymatic pre-treatment uses specific enzymes to target hemicellulose.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pre-treated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Moisture content is controlled to optimize the efficiency of subsequent hydrolysis and fermentation steps."
+    },
+    "hydrolysis": {
+      "unit_operation_id": "hydrolysis",
+      "name": "Hydrolysis",
+      "description": "In the hydrolysis unit operation, the pre-treated biomass undergoes further breakdown to convert hemicellulose into monomeric sugars, primarily xylose. This can be achieved through acid hydrolysis, where dilute acid is used to cleave the hemicellulose chains, or enzymatic hydrolysis, where specific enzymes catalyze the breakdown. The choice of method depends on factors such as cost, efficiency, and downstream processing requirements.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pre-treated Biomass"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The hydrolysis process may generate inhibitors such as furfural and acetic acid, which need to be managed in subsequent fermentation steps."
+    },
+    "detoxification": {
+      "unit_operation_id": "detoxification",
+      "name": "Detoxification",
+      "description": "The detoxification unit operation is designed to remove or neutralize inhibitory compounds generated during hydrolysis, such as furfural and acetic acid, which can impede microbial fermentation. This can be achieved through physical methods like activated carbon adsorption or chemical methods such as overliming, where calcium hydroxide is added to precipitate inhibitors.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution"
+      ],
+      "output_streams": [
+        "Detoxified Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "Effective detoxification is crucial for maintaining high fermentation yields and rates."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "In the fermentation unit operation, the detoxified sugar solution is inoculated with yeast or fungal strains capable of converting xylose into xylitol under aerobic conditions. The microorganisms metabolize xylose, producing xylitol as the primary product. Aeration and agitation are controlled to optimize microbial activity and product yield.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Detoxified Sugar Solution",
+        "Microbial Inoculum"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Maintaining optimal oxygen levels is critical for efficient xylitol production."
+    },
+    "separation_and_purification": {
+      "unit_operation_id": "separation_and_purification",
+      "name": "Separation and Purification",
+      "description": "The separation and purification unit operation involves isolating xylitol from the fermentation broth. This typically includes steps such as centrifugation to remove microbial biomass, followed by crystallization or chromatography to achieve high-purity xylitol. The process aims to meet food-grade specifications, ensuring 99% purity and minimal residual sugars.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Purified Xylitol",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Chromatography may be used to achieve the desired purity levels."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "The drying and packaging unit operation involves removing any remaining moisture from the purified xylitol to ensure stability and shelf-life. The dried product is then packaged in food-grade containers, ready for distribution. This step ensures that the xylitol meets all food safety standards for human consumption.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Xylitol"
+      ],
+      "output_streams": [
+        "Packaged Xylitol"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging must prevent contamination and preserve product quality."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Lignocellulosic biomass feedstock requiring structural breakdown.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Extractives": 0
+      }
+    },
+    "Pre-treated Biomass": {
+      "name": "Pre-treated Biomass",
+      "stream_id": "pre_treated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, enriched in accessible hemicellulose.",
+      "stream_type": "core",
+      "source": "pre-treatment",
+      "target": "hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Extractives": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "Aqueous solution containing monomeric sugars, predominantly xylose, along with other hydrolysis by-products.",
+      "stream_type": "core",
+      "source": "hydrolysis",
+      "target": "detoxification",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylose": 0,
+        "Glucose": 0,
+        "Acetic Acid": 0,
+        "Furfural": 0
+      }
+    },
+    "Detoxified Sugar Solution": {
+      "name": "Detoxified Sugar Solution",
+      "stream_id": "detoxified sugar solution",
+      "description": "Aqueous solution of sugars with reduced levels of fermentation inhibitors.",
+      "stream_type": "core",
+      "source": "detoxification",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylose": 0,
+        "Glucose": 0
+      }
+    },
+    "Microbial Inoculum": {
+      "name": "Microbial Inoculum",
+      "stream_id": "microbial inoculum",
+      "description": "Yeast or fungal strains capable of converting xylose to xylitol.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "Mixture containing xylitol, residual sugars, microbial biomass, and fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "separation_and_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylitol": 0,
+        "Residual Xylose": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Purified Xylitol": {
+      "name": "Purified Xylitol",
+      "stream_id": "purified xylitol",
+      "description": "High-purity xylitol suitable for commercial use.",
+      "stream_type": "core",
+      "source": "separation_and_purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylitol": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "By-products and impurities removed during purification.",
+      "stream_type": "core",
+      "source": "separation_and_purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Xylose": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Packaged Xylitol": {
+      "name": "Packaged Xylitol",
+      "stream_id": "packaged xylitol",
+      "description": "Final product, ready for distribution and sale.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Xylitol": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Extractives": {
+      "name": "Extractives",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Acetic Acid": {
+      "name": "Acetic Acid",
+      "properties": {}
+    },
+    "Furfural": {
+      "name": "Furfural",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "Xylitol": {
+      "name": "Xylitol",
+      "properties": {}
+    },
+    "Residual Xylose": {
+      "name": "Residual Xylose",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    }
+  }
+}

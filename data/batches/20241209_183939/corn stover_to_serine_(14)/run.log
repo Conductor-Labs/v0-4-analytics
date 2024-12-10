@@ -1,0 +1,105 @@
+[2024-12-09 18:39:39] INFO - Starting run 14 for user prompt: Process that converts corn stover to Serine via yeast or fungal aerobic Fermentation
+[2024-12-09 18:39:39] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Serine via yeast or fungal aerobic Fermentation
+[2024-12-09 18:39:39] INFO - Starting process description agent.
+[2024-12-09 18:39:39] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Serine via yeast or fungal aerobic Fermentation
+[2024-12-09 18:39:42] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-45%), Hemicellulose (25-35%), Lignin (15-20%), Ash (5-10%)","key_specs":"Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars. Moisture content should be controlled to optimize fermentation efficiency.","volumetric_scale":"100,000 kg/day"}],"products":[{"name":"Serine","composition":"L-Serine, with potential impurities from fermentation broth","key_specs":"Purity > 95% for commercial applications, typically requires downstream purification processes such as crystallization or chromatography to achieve desired purity levels.","volumetric_scale":"10,000 kg/day"}]}
+[2024-12-09 18:39:42] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:39:42] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-45%), Hemicellulose (25-35%), Lignin (15-20%), Ash (5-10%)', 'key_specs': 'Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars. Moisture content should be controlled to optimize fermentation efficiency.', 'volumetric_scale': '100,000 kg/day'}], 'products': [{'name': 'Serine', 'composition': 'L-Serine, with potential impurities from fermentation broth', 'key_specs': 'Purity > 95% for commercial applications, typically requires downstream purification processes such as crystallization or chromatography to achieve desired purity levels.', 'volumetric_scale': '10,000 kg/day'}]}
+[2024-12-09 18:40:00] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is essential for breaking down the complex lignocellulosic structure of corn stover to release fermentable sugars. This involves mechanical, chemical, or enzymatic methods to disrupt the cellulose and hemicellulose matrix, making the sugars accessible for subsequent fermentation. The pretreatment process may include the use of dilute acid or steam explosion to enhance the hydrolysis of hemicellulose and cellulose into monomeric sugars.","input_streams":[{"name":"Raw Corn Stover","description":"Lignocellulosic biomass feedstock requiring pretreatment to release fermentable sugars.","components":["Cellulose","Hemicellulose","Lignin","Ash"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with cellulose and hemicellulose partially hydrolyzed into fermentable sugars.","components":["Glucose","Xylose","Lignin","Ash"]}],"additional_info":"The moisture content of the corn stover should be controlled to optimize the efficiency of the pretreatment process."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, enzymes are added to the pretreated biomass to further hydrolyze cellulose and hemicellulose into simple sugars such as glucose and xylose. This step is crucial for maximizing sugar yield, which directly impacts the efficiency of the fermentation process. Enzymes such as cellulases and hemicellulases are typically used.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with cellulose and hemicellulose partially hydrolyzed into fermentable sugars.","components":["Glucose","Xylose","Lignin","Ash"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes for hydrolysis.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Hydrolysate","description":"A solution rich in fermentable sugars, primarily glucose and xylose, ready for fermentation.","components":["Glucose","Xylose","Lignin","Ash"]}],"additional_info":"The enzymatic hydrolysis is typically conducted at controlled temperatures and pH to optimize enzyme activity."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the conversion of sugars in the hydrolysate into L-Serine using yeast or fungal strains under aerobic conditions. This biological process requires careful control of oxygen supply, temperature, and pH to maximize serine production while minimizing by-products.","input_streams":[{"name":"Hydrolysate","description":"A solution rich in fermentable sugars, primarily glucose and xylose, ready for fermentation.","components":["Glucose","Xylose","Lignin","Ash"]},{"name":"Yeast/Fungal Culture","description":"Microbial culture capable of converting sugars to L-Serine under aerobic conditions.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing L-Serine, residual sugars, microbial biomass, and other fermentation by-products.","components":["L-Serine","Residual Sugars","Microbial Biomass"]}],"additional_info":"Aeration and agitation are critical to maintain aerobic conditions and ensure efficient fermentation."},{"name":"Cell Separation","order":4,"description":"This unit operation involves the separation of microbial cells from the fermentation broth to facilitate downstream purification of L-Serine. Techniques such as centrifugation or filtration are commonly employed to achieve this separation.","input_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing L-Serine, residual sugars, microbial biomass, and other fermentation by-products.","components":["L-Serine","Residual Sugars","Microbial Biomass"]}],"output_streams":[{"name":"Cell-Free Broth","description":"The liquid fraction of the fermentation broth, primarily containing L-Serine and residual sugars, with microbial cells removed.","components":["L-Serine","Residual Sugars"]},{"name":"Microbial Biomass","description":"Separated microbial cells from the fermentation broth.","components":["Microbial Biomass"]}],"additional_info":"The separated microbial biomass can be further processed or disposed of according to environmental regulations."},{"name":"Purification","order":5,"description":"The purification unit operation is designed to isolate and purify L-Serine from the cell-free broth. This may involve multiple steps such as crystallization, chromatography, or membrane filtration to achieve the desired purity level of greater than 95% for commercial applications.","input_streams":[{"name":"Cell-Free Broth","description":"The liquid fraction of the fermentation broth, primarily containing L-Serine and residual sugars, with microbial cells removed.","components":["L-Serine","Residual Sugars"]}],"output_streams":[{"name":"Purified L-Serine","description":"High-purity L-Serine suitable for commercial applications.","components":["L-Serine"]},{"name":"Impurities Stream","description":"A stream containing residual sugars and other impurities separated from L-Serine.","components":["Residual Sugars"]}],"additional_info":"The choice of purification method depends on the specific impurities present and the required purity level of the final product."},{"name":"Drying and Packaging","order":6,"description":"In this final unit operation, the purified L-Serine is dried to remove any residual moisture and then packaged for distribution. Drying can be achieved through techniques such as spray drying or freeze drying, depending on the desired physical properties of the final product.","input_streams":[{"name":"Purified L-Serine","description":"High-purity L-Serine suitable for commercial applications.","components":["L-Serine"]}],"output_streams":[{"name":"Dried L-Serine","description":"Final product of L-Serine in a dry form, ready for packaging and distribution.","components":["L-Serine"]}],"additional_info":"Packaging must ensure the stability and integrity of L-Serine during storage and transport."}]}
+[2024-12-09 18:40:00] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:40:00] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:40:00] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Hydrolysate' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:40:00] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:40:00] DEBUG - Reusing existing stream 'Hydrolysate' for input of unit operation 'Fermentation'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Yeast/Fungal Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:40:00] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:40:00] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Cell Separation'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Cell-Free Broth' for output of unit operation 'Cell Separation'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Microbial Biomass' for output of unit operation 'Cell Separation'.
+[2024-12-09 18:40:00] DEBUG - Added unit operation 'Cell Separation' with ID 'cell_separation' to process flow.
+[2024-12-09 18:40:00] DEBUG - Reusing existing stream 'Cell-Free Broth' for input of unit operation 'Purification'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Purified L-Serine' for output of unit operation 'Purification'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Impurities Stream' for output of unit operation 'Purification'.
+[2024-12-09 18:40:00] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:40:00] DEBUG - Reusing existing stream 'Purified L-Serine' for input of unit operation 'Drying and Packaging'.
+[2024-12-09 18:40:00] DEBUG - Created new stream 'Dried L-Serine' for output of unit operation 'Drying and Packaging'.
+[2024-12-09 18:40:00] DEBUG - Added unit operation 'Drying and Packaging' with ID 'drying_and_packaging' to process flow.
+[2024-12-09 18:40:00] INFO - Process flow built successfully.
+[2024-12-09 18:40:00] INFO - Starting v1 DAG agent.
+[2024-12-09 18:40:00] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:00] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:40:00] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:00] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Hydrolysate'.
+[2024-12-09 18:40:00] DEBUG - Stream 'Yeast/Fungal Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:00] DEBUG - Adding edge from 'fermentation' to 'cell_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:40:00] DEBUG - Adding edge from 'cell_separation' to 'purification' via stream 'Cell-Free Broth'.
+[2024-12-09 18:40:00] DEBUG - Stream 'Microbial Biomass' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:00] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified L-Serine'.
+[2024-12-09 18:40:00] DEBUG - Stream 'Impurities Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:00] DEBUG - Stream 'Dried L-Serine' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:00] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:40:04] DEBUG - Added auxiliary input stream 'Acid/Steam' to unit operation 'Pretreatment'
+  - Description: This stream provides the necessary chemical agents or steam required for the pretreatment process. It could include dilute acid or steam used to enhance the breakdown of the lignocellulosic structure of corn stover.
+  - Components: Dilute Acid, Steam
+[2024-12-09 18:40:04] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:40:05] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 18:40:05] DEBUG - No missing streams identified for unit operation: Cell Separation
+[2024-12-09 18:40:06] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:40:06] DEBUG - No missing streams identified for unit operation: Drying and Packaging
+[2024-12-09 18:40:11] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:40:12] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:40:14] DEBUG - Added source unit operation 'Yeast/Fungal Culture Source' with ID 'yeast/fungal culture source' for stream 'Yeast/Fungal Culture'
+[2024-12-09 18:40:15] DEBUG - Added sink unit operation 'Microbial Biomass Sink' with ID 'microbial biomass sink' for stream 'Microbial Biomass'
+[2024-12-09 18:40:16] DEBUG - Added sink unit operation 'Impurities Sink' with ID 'impurities sink' for stream 'Impurities Stream'
+[2024-12-09 18:40:17] DEBUG - Added sink unit operation 'Dried L-Serine Sink' with ID 'dried l_serine sink' for stream 'Dried L-Serine'
+[2024-12-09 18:40:18] DEBUG - Added source unit operation 'Acid/Steam Source' with ID 'acid/steam source' for stream 'Acid/Steam'
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Hydrolysate'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'yeast/fungal culture source' to 'fermentation' via stream 'Yeast/Fungal Culture'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'fermentation' to 'cell_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'cell_separation' to 'purification' via stream 'Cell-Free Broth'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'cell_separation' to 'microbial biomass sink' via stream 'Microbial Biomass'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified L-Serine'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'purification' to 'impurities sink' via stream 'Impurities Stream'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'drying_and_packaging' to 'dried l_serine sink' via stream 'Dried L-Serine'.
+[2024-12-09 18:40:18] DEBUG - Adding edge from 'acid/steam source' to 'pretreatment' via stream 'Acid/Steam'.
+[2024-12-09 18:40:18] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:40:18] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:40:28] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 60.0%)
+  2. Converting Hemicellulose → Xylose (rate: 70.0%)
+[2024-12-09 18:40:38] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 75.0%)
+[2024-12-09 18:40:47] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → L-Serine (rate: 50.0%)
+  2. Converting Xylose → L-Serine (rate: 30.0%)
+  3. Converting Glucose → Residual Sugars (rate: 50.0%)
+  4. Converting Xylose → Residual Sugars (rate: 70.0%)
+[2024-12-09 18:40:54] DEBUG - Processing separation unit operation: Cell Separation
+Separation operations:
+  1. Separating Microbial Biomass (extraction rate: 95.0%)
+[2024-12-09 18:41:01] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating L-Serine (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 5.0%)
+[2024-12-09 18:41:07] DEBUG - No conversion or separation parameters identified for unit operation: Drying and Packaging
+[2024-12-09 18:41:07] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:41:07] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:41:07] DEBUG - Skipping operational parameters for unit operation 'Yeast/Fungal Culture Source' of type 'source'
+[2024-12-09 18:41:07] DEBUG - Skipping operational parameters for unit operation 'Microbial Biomass Sink' of type 'sink'
+[2024-12-09 18:41:07] DEBUG - Skipping operational parameters for unit operation 'Impurities Sink' of type 'sink'
+[2024-12-09 18:41:07] DEBUG - Skipping operational parameters for unit operation 'Dried L-Serine Sink' of type 'sink'
+[2024-12-09 18:41:07] DEBUG - Skipping operational parameters for unit operation 'Acid/Steam Source' of type 'source'
+[2024-12-09 18:41:07] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:41:07] INFO - Workflow completed successfully.

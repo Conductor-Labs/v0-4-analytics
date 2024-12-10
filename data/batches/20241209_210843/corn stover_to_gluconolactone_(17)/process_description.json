@@ -1,0 +1,369 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-45%), Hemicellulose (25-35%), Lignin (15-20%), Ash (5-10%)",
+      "key_specs": "Dried and milled to a particle size suitable for chemical processing. Low moisture content is preferred to enhance process efficiency.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Gluconolactone",
+      "composition": "C6H10O6",
+      "key_specs": "High purity (>98%) suitable for food and pharmaceutical applications. Typically produced as a crystalline powder.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The initial step involves preparing the corn stover feedstock for subsequent chemical processing. This includes drying the biomass to reduce moisture content, which is crucial for enhancing the efficiency of downstream processes. The dried corn stover is then milled to achieve a uniform particle size that is optimal for chemical reactions. This step ensures that the feedstock is in a suitable physical form for efficient conversion in later stages.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Moisture content is reduced to below 10% to prevent inhibition of chemical reactions."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down the lignocellulosic structure, making cellulose and hemicellulose more accessible for hydrolysis. This is typically achieved using a chemical pretreatment method such as acid hydrolysis, which involves treating the biomass with dilute acid. This step helps in the partial depolymerization of hemicellulose and disruption of lignin, facilitating the release of fermentable sugars.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Dilute Acid"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of acid and concentration is critical to maximize sugar yield while minimizing degradation."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose into glucose. Specific enzymes, such as cellulases, are added to the biomass slurry to catalyze the breakdown of cellulose into glucose monomers. This step is essential for maximizing the yield of fermentable sugars, which are precursors for gluconolactone production.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzymes"
+      ],
+      "output_streams": [
+        "Hydrolyzed Slurry"
+      ],
+      "parameters": {},
+      "additional_info": "Enzyme loading and reaction time are optimized to achieve high glucose yields."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The glucose-rich hydrolyzed slurry is then subjected to fermentation, where specific microorganisms convert glucose into gluconic acid. This biological transformation is facilitated by the presence of oxygen and a suitable microbial culture, such as Aspergillus niger. The fermentation process is carefully controlled to maximize the conversion efficiency of glucose to gluconic acid.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolyzed Slurry",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Aeration and pH control are crucial for optimal microbial activity and product yield."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "The fermentation broth undergoes a recovery process to isolate gluconic acid. This involves filtration to remove microbial biomass and other solids, followed by crystallization to precipitate gluconic acid as gluconolactone. The crystallization process is designed to achieve high purity and yield of the target product.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Gluconolactone"
+      ],
+      "parameters": {},
+      "additional_info": "Crystallization conditions are optimized to enhance purity and recovery efficiency."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude gluconolactone is further purified to meet the high purity specifications required for food and pharmaceutical applications. This involves recrystallization and washing steps to remove impurities and achieve the desired purity level. The purified gluconolactone is then dried to obtain a stable crystalline powder.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Gluconolactone"
+      ],
+      "output_streams": [
+        "Purified Gluconolactone"
+      ],
+      "parameters": {},
+      "additional_info": "Purity is verified through analytical techniques to ensure compliance with industry standards."
+    },
+    "waste_management": {
+      "unit_operation_id": "waste_management",
+      "name": "Waste Management",
+      "description": "The final unit operation involves managing the waste streams generated throughout the process. This includes the treatment of solid residues, spent microbial biomass, and any liquid effluents. Waste management strategies are implemented to minimize environmental impact and comply with regulatory requirements.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Process Waste"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Waste treatment technologies are selected based on the composition and volume of waste generated."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Corn stover as harvested, containing cellulose, hemicellulose, lignin, and ash.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Dried and milled corn stover with reduced moisture content and uniform particle size.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Dilute Acid": {
+      "name": "Dilute Acid",
+      "stream_id": "dilute acid",
+      "description": "Acid solution used for pretreatment to hydrolyze hemicellulose.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Acid": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, containing free sugars and residual solids.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Free Sugars": 0
+      }
+    },
+    "Enzymes": {
+      "name": "Enzymes",
+      "stream_id": "enzymes",
+      "description": "Cellulase enzymes used to hydrolyze cellulose into glucose.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0
+      }
+    },
+    "Hydrolyzed Slurry": {
+      "name": "Hydrolyzed Slurry",
+      "stream_id": "hydrolyzed slurry",
+      "description": "A mixture containing glucose, residual solids, and other hydrolysis products.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Residual Solids": 0,
+        "Free Sugars": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Microorganisms used for fermenting glucose to gluconic acid.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Aspergillus niger": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A liquid containing gluconic acid, unconverted glucose, and microbial biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Gluconic Acid": 0,
+        "Residual Glucose": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Crude Gluconolactone": {
+      "name": "Crude Gluconolactone",
+      "stream_id": "crude gluconolactone",
+      "description": "Solid gluconolactone with impurities from the fermentation broth.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Gluconolactone": 0,
+        "Impurities": 0
+      }
+    },
+    "Purified Gluconolactone": {
+      "name": "Purified Gluconolactone",
+      "stream_id": "purified gluconolactone",
+      "description": "High purity gluconolactone suitable for end-use applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Gluconolactone": 0
+      }
+    },
+    "Process Waste": {
+      "name": "Process Waste",
+      "stream_id": "process waste",
+      "description": "Solid and liquid waste streams from various unit operations.",
+      "stream_type": "core",
+      "source": null,
+      "target": "waste_management",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Solids": 0,
+        "Spent Biomass": 0,
+        "Effluents": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Environmentally safe waste streams ready for disposal or recycling.",
+      "stream_type": "core",
+      "source": "waste_management",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Treated Solids": 0,
+        "Treated Effluents": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Acid": {
+      "name": "Acid",
+      "properties": {}
+    },
+    "Free Sugars": {
+      "name": "Free Sugars",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Residual Solids": {
+      "name": "Residual Solids",
+      "properties": {}
+    },
+    "Aspergillus niger": {
+      "name": "Aspergillus niger",
+      "properties": {}
+    },
+    "Gluconic Acid": {
+      "name": "Gluconic Acid",
+      "properties": {}
+    },
+    "Residual Glucose": {
+      "name": "Residual Glucose",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Gluconolactone": {
+      "name": "Gluconolactone",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Spent Biomass": {
+      "name": "Spent Biomass",
+      "properties": {}
+    },
+    "Effluents": {
+      "name": "Effluents",
+      "properties": {}
+    },
+    "Treated Solids": {
+      "name": "Treated Solids",
+      "properties": {}
+    },
+    "Treated Effluents": {
+      "name": "Treated Effluents",
+      "properties": {}
+    }
+  }
+}

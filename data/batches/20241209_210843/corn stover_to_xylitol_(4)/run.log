@@ -1,0 +1,119 @@
+[2024-12-09 21:08:43] INFO - Starting run 4 for user prompt: Process that converts corn stover to Xylitol via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:43] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Xylitol via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:43] INFO - Starting process description agent.
+[2024-12-09 21:08:43] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Xylitol via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:49] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Lignocellulosic biomass consisting of approximately 35-40% cellulose, 25-30% hemicellulose, 15-20% lignin, and minor components such as ash and extractives.","key_specs":"Typically requires pre-treatment to break down lignocellulosic structure and release fermentable sugars. Moisture content should be controlled to optimize fermentation efficiency.","volumetric_scale":"100,000 kg/day"}],"products":[{"name":"Xylitol","composition":"C5H12O5, a sugar alcohol derived from xylose, typically 99% purity for commercial use.","key_specs":"Food-grade xylitol with a purity of 99% or higher, low residual sugars, and minimal microbial contamination. Must meet food safety standards for human consumption.","volumetric_scale":"10,000 kg/day"}]}
+[2024-12-09 21:08:49] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 21:08:49] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Lignocellulosic biomass consisting of approximately 35-40% cellulose, 25-30% hemicellulose, 15-20% lignin, and minor components such as ash and extractives.', 'key_specs': 'Typically requires pre-treatment to break down lignocellulosic structure and release fermentable sugars. Moisture content should be controlled to optimize fermentation efficiency.', 'volumetric_scale': '100,000 kg/day'}], 'products': [{'name': 'Xylitol', 'composition': 'C5H12O5, a sugar alcohol derived from xylose, typically 99% purity for commercial use.', 'key_specs': 'Food-grade xylitol with a purity of 99% or higher, low residual sugars, and minimal microbial contamination. Must meet food safety standards for human consumption.', 'volumetric_scale': '10,000 kg/day'}]}
+[2024-12-09 21:09:27] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pre-treatment","order":1,"description":"The pre-treatment unit operation is essential for breaking down the lignocellulosic structure of corn stover to release fermentable sugars. This process typically involves mechanical, chemical, or enzymatic methods to disrupt the complex matrix of cellulose, hemicellulose, and lignin. The goal is to increase the accessibility of hemicellulose, which contains xylose, the precursor for xylitol production. Mechanical pre-treatment may involve milling or grinding, while chemical methods could include acid or alkaline hydrolysis. Enzymatic pre-treatment uses specific enzymes to target hemicellulose.","input_streams":[{"name":"Raw Corn Stover","description":"Lignocellulosic biomass feedstock requiring structural breakdown.","components":["Cellulose","Hemicellulose","Lignin","Ash","Extractives"]}],"output_streams":[{"name":"Pre-treated Biomass","description":"Biomass with disrupted lignocellulosic structure, enriched in accessible hemicellulose.","components":["Cellulose","Hemicellulose","Lignin","Ash","Extractives"]}],"additional_info":"Moisture content is controlled to optimize the efficiency of subsequent hydrolysis and fermentation steps."},{"name":"Hydrolysis","order":2,"description":"In the hydrolysis unit operation, the pre-treated biomass undergoes further breakdown to convert hemicellulose into monomeric sugars, primarily xylose. This can be achieved through acid hydrolysis, where dilute acid is used to cleave the hemicellulose chains, or enzymatic hydrolysis, where specific enzymes catalyze the breakdown. The choice of method depends on factors such as cost, efficiency, and downstream processing requirements.","input_streams":[{"name":"Pre-treated Biomass","description":"Biomass with disrupted lignocellulosic structure, enriched in accessible hemicellulose.","components":["Cellulose","Hemicellulose","Lignin","Ash","Extractives"]}],"output_streams":[{"name":"Sugar Solution","description":"Aqueous solution containing monomeric sugars, predominantly xylose, along with other hydrolysis by-products.","components":["Xylose","Glucose","Acetic Acid","Furfural"]}],"additional_info":"The hydrolysis process may generate inhibitors such as furfural and acetic acid, which need to be managed in subsequent fermentation steps."},{"name":"Detoxification","order":3,"description":"The detoxification unit operation is designed to remove or neutralize inhibitory compounds generated during hydrolysis, such as furfural and acetic acid, which can impede microbial fermentation. This can be achieved through physical methods like activated carbon adsorption or chemical methods such as overliming, where calcium hydroxide is added to precipitate inhibitors.","input_streams":[{"name":"Sugar Solution","description":"Aqueous solution containing monomeric sugars, predominantly xylose, along with other hydrolysis by-products.","components":["Xylose","Glucose","Acetic Acid","Furfural"]}],"output_streams":[{"name":"Detoxified Sugar Solution","description":"Aqueous solution of sugars with reduced levels of fermentation inhibitors.","components":["Xylose","Glucose"]}],"additional_info":"Effective detoxification is crucial for maintaining high fermentation yields and rates."},{"name":"Fermentation","order":4,"description":"In the fermentation unit operation, the detoxified sugar solution is inoculated with yeast or fungal strains capable of converting xylose into xylitol under aerobic conditions. The microorganisms metabolize xylose, producing xylitol as the primary product. Aeration and agitation are controlled to optimize microbial activity and product yield.","input_streams":[{"name":"Detoxified Sugar Solution","description":"Aqueous solution of sugars with reduced levels of fermentation inhibitors.","components":["Xylose","Glucose"]},{"name":"Microbial Inoculum","description":"Yeast or fungal strains capable of converting xylose to xylitol.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"Mixture containing xylitol, residual sugars, microbial biomass, and fermentation by-products.","components":["Xylitol","Residual Xylose","Microbial Biomass"]}],"additional_info":"Maintaining optimal oxygen levels is critical for efficient xylitol production."},{"name":"Separation and Purification","order":5,"description":"The separation and purification unit operation involves isolating xylitol from the fermentation broth. This typically includes steps such as centrifugation to remove microbial biomass, followed by crystallization or chromatography to achieve high-purity xylitol. The process aims to meet food-grade specifications, ensuring 99% purity and minimal residual sugars.","input_streams":[{"name":"Fermentation Broth","description":"Mixture containing xylitol, residual sugars, microbial biomass, and fermentation by-products.","components":["Xylitol","Residual Xylose","Microbial Biomass"]}],"output_streams":[{"name":"Purified Xylitol","description":"High-purity xylitol suitable for commercial use.","components":["Xylitol"]},{"name":"Waste Stream","description":"By-products and impurities removed during purification.","components":["Residual Xylose","Microbial Biomass"]}],"additional_info":"Chromatography may be used to achieve the desired purity levels."},{"name":"Drying and Packaging","order":6,"description":"The drying and packaging unit operation involves removing any remaining moisture from the purified xylitol to ensure stability and shelf-life. The dried product is then packaged in food-grade containers, ready for distribution. This step ensures that the xylitol meets all food safety standards for human consumption.","input_streams":[{"name":"Purified Xylitol","description":"High-purity xylitol suitable for commercial use.","components":["Xylitol"]}],"output_streams":[{"name":"Packaged Xylitol","description":"Final product, ready for distribution and sale.","components":["Xylitol"]}],"additional_info":"Packaging must prevent contamination and preserve product quality."}]}
+[2024-12-09 21:09:27] DEBUG - Process flow loaded successfully.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pre-treatment'.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Pre-treated Biomass' for output of unit operation 'Pre-treatment'.
+[2024-12-09 21:09:27] DEBUG - Added unit operation 'Pre-treatment' with ID 'pre-treatment' to process flow.
+[2024-12-09 21:09:27] DEBUG - Reusing existing stream 'Pre-treated Biomass' for input of unit operation 'Hydrolysis'.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Hydrolysis'.
+[2024-12-09 21:09:27] DEBUG - Added unit operation 'Hydrolysis' with ID 'hydrolysis' to process flow.
+[2024-12-09 21:09:27] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Detoxification'.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Detoxified Sugar Solution' for output of unit operation 'Detoxification'.
+[2024-12-09 21:09:27] DEBUG - Added unit operation 'Detoxification' with ID 'detoxification' to process flow.
+[2024-12-09 21:09:27] DEBUG - Reusing existing stream 'Detoxified Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Microbial Inoculum' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 21:09:27] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 21:09:27] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Separation and Purification'.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Purified Xylitol' for output of unit operation 'Separation and Purification'.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Waste Stream' for output of unit operation 'Separation and Purification'.
+[2024-12-09 21:09:27] DEBUG - Added unit operation 'Separation and Purification' with ID 'separation_and_purification' to process flow.
+[2024-12-09 21:09:27] DEBUG - Reusing existing stream 'Purified Xylitol' for input of unit operation 'Drying and Packaging'.
+[2024-12-09 21:09:27] DEBUG - Created new stream 'Packaged Xylitol' for output of unit operation 'Drying and Packaging'.
+[2024-12-09 21:09:27] DEBUG - Added unit operation 'Drying and Packaging' with ID 'drying_and_packaging' to process flow.
+[2024-12-09 21:09:27] INFO - Process flow built successfully.
+[2024-12-09 21:09:27] INFO - Starting v1 DAG agent.
+[2024-12-09 21:09:27] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:27] DEBUG - Adding edge from 'pre-treatment' to 'hydrolysis' via stream 'Pre-treated Biomass'.
+[2024-12-09 21:09:27] DEBUG - Adding edge from 'hydrolysis' to 'detoxification' via stream 'Sugar Solution'.
+[2024-12-09 21:09:27] DEBUG - Adding edge from 'detoxification' to 'fermentation' via stream 'Detoxified Sugar Solution'.
+[2024-12-09 21:09:27] DEBUG - Stream 'Microbial Inoculum' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:27] DEBUG - Adding edge from 'fermentation' to 'separation_and_purification' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:27] DEBUG - Adding edge from 'separation_and_purification' to 'drying_and_packaging' via stream 'Purified Xylitol'.
+[2024-12-09 21:09:27] DEBUG - Stream 'Waste Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:27] DEBUG - Stream 'Packaged Xylitol' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:27] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:35] DEBUG - Added auxiliary input stream 'Water' to unit operation 'Pre-treatment'
+  - Description: Water is typically required in the pre-treatment process for hydrolysis reactions, to adjust moisture content, and to facilitate mechanical or enzymatic treatment.
+  - Components: H2O
+[2024-12-09 21:09:35] DEBUG - Added auxiliary input stream 'Acid or Alkaline Solution' to unit operation 'Pre-treatment'
+  - Description: In chemical pre-treatment, an acid or alkaline solution is often used to break down the lignocellulosic structure and improve the accessibility of hemicellulose.
+  - Components: Acid (e.g., H2SO4) or Alkaline (e.g., NaOH)
+[2024-12-09 21:09:35] DEBUG - Added auxiliary output stream 'Pre-treatment Residuals' to unit operation 'Pre-treatment'
+  - Description: These are residues or by-products that may be generated during the pre-treatment process, including unreacted chemicals, broken down lignin, or other non-fermentable solids that need to be removed.
+  - Components: Lignin residues, Non-fermentable solids, Unreacted chemicals
+[2024-12-09 21:09:38] DEBUG - Added auxiliary input stream 'Hydrolysis Agent' to unit operation 'Hydrolysis'
+  - Description: The hydrolysis agent, either a dilute acid or specific enzymes, is necessary to facilitate the breakdown of hemicellulose into monomeric sugars, particularly xylose, during the hydrolysis process.
+  - Components: Dilute Acid (e.g., Sulfuric Acid), Enzymes (e.g., Hemicellulase)
+[2024-12-09 21:09:41] DEBUG - Added auxiliary output stream 'Inhibitor Removal By-products' to unit operation 'Detoxification'
+  - Description: This stream includes the by-products or waste generated from the detoxification process, specifically the removed inhibitory compounds such as furfural and acetic acid, along with any additional chemicals or materials (e.g., from activated carbon or overliming) used in the detoxification process.
+  - Components: Furfural, Acetic Acid, Calcium Hydroxide Residues, Activated Carbon Residues
+[2024-12-09 21:09:42] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 21:09:42] DEBUG - No missing streams identified for unit operation: Separation and Purification
+[2024-12-09 21:09:43] DEBUG - No missing streams identified for unit operation: Drying and Packaging
+[2024-12-09 21:09:45] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 21:09:46] DEBUG - Added source unit operation 'Microbial Inoculum Source' with ID 'microbial inoculum source' for stream 'Microbial Inoculum'
+[2024-12-09 21:09:47] DEBUG - Added sink unit operation 'Waste Stream Sink' with ID 'waste stream sink' for stream 'Waste Stream'
+[2024-12-09 21:09:48] DEBUG - Added sink unit operation 'Packaged Xylitol Sink' with ID 'packaged xylitol sink' for stream 'Packaged Xylitol'
+[2024-12-09 21:09:49] DEBUG - Added source unit operation 'Water Source' with ID 'water source' for stream 'Water'
+[2024-12-09 21:09:51] DEBUG - Added source unit operation 'Acid or Alkaline Solution Source' with ID 'acid or alkaline solution source' for stream 'Acid or Alkaline Solution'
+[2024-12-09 21:09:53] DEBUG - Added sink unit operation 'Pre-treatment Residuals Sink' with ID 'pre_treatment residuals sink' for stream 'Pre-treatment Residuals'
+[2024-12-09 21:09:54] DEBUG - Added source unit operation 'Hydrolysis Agent Source' with ID 'hydrolysis agent source' for stream 'Hydrolysis Agent'
+[2024-12-09 21:09:55] DEBUG - Added sink unit operation 'Inhibitor Removal By-products Sink' with ID 'inhibitor removal by_products sink' for stream 'Inhibitor Removal By-products'
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'raw corn stover source' to 'pre-treatment' via stream 'Raw Corn Stover'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'pre-treatment' to 'hydrolysis' via stream 'Pre-treated Biomass'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'hydrolysis' to 'detoxification' via stream 'Sugar Solution'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'detoxification' to 'fermentation' via stream 'Detoxified Sugar Solution'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'microbial inoculum source' to 'fermentation' via stream 'Microbial Inoculum'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'fermentation' to 'separation_and_purification' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'separation_and_purification' to 'drying_and_packaging' via stream 'Purified Xylitol'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'separation_and_purification' to 'waste stream sink' via stream 'Waste Stream'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'drying_and_packaging' to 'packaged xylitol sink' via stream 'Packaged Xylitol'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'water source' to 'pre-treatment' via stream 'Water'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'acid or alkaline solution source' to 'pre-treatment' via stream 'Acid or Alkaline Solution'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'pre-treatment' to 'pre_treatment residuals sink' via stream 'Pre-treatment Residuals'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'hydrolysis agent source' to 'hydrolysis' via stream 'Hydrolysis Agent'.
+[2024-12-09 21:09:55] DEBUG - Adding edge from 'detoxification' to 'inhibitor removal by_products sink' via stream 'Inhibitor Removal By-products'.
+[2024-12-09 21:09:55] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:55] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 21:10:06] DEBUG - Processing separation unit operation: Pre-treatment
+Separation operations:
+  1. Separating Hemicellulose (extraction rate: 60.0%)
+  2. Separating Cellulose (extraction rate: 10.0%)
+  3. Separating Lignin (extraction rate: 90.0%)
+[2024-12-09 21:10:15] DEBUG - Processing conversion unit operation: Hydrolysis
+Conversion operations:
+  1. Converting Hemicellulose → Xylose (rate: 85.0%)
+  2. Converting Hemicellulose → Glucose (rate: 5.0%)
+  3. Converting Hemicellulose → Acetic Acid (rate: 7.0%)
+  4. Converting Hemicellulose → Furfural (rate: 3.0%)
+[2024-12-09 21:10:22] DEBUG - Processing separation unit operation: Detoxification
+Separation operations:
+  1. Separating Furfural (extraction rate: 95.0%)
+  2. Separating Acetic Acid (extraction rate: 90.0%)
+[2024-12-09 21:10:30] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Xylose → Xylitol (rate: 70.0%)
+[2024-12-09 21:10:39] DEBUG - Processing separation unit operation: Separation and Purification
+Separation operations:
+  1. Separating Microbial Biomass (extraction rate: 5.0%)
+  2. Separating Xylitol (extraction rate: 95.0%)
+  3. Separating Residual Xylose (extraction rate: 10.0%)
+[2024-12-09 21:10:42] DEBUG - No conversion or separation parameters identified for unit operation: Drying and Packaging
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Microbial Inoculum Source' of type 'source'
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Waste Stream Sink' of type 'sink'
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Packaged Xylitol Sink' of type 'sink'
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Water Source' of type 'source'
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Acid or Alkaline Solution Source' of type 'source'
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Pre-treatment Residuals Sink' of type 'sink'
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Hydrolysis Agent Source' of type 'source'
+[2024-12-09 21:10:42] DEBUG - Skipping operational parameters for unit operation 'Inhibitor Removal By-products Sink' of type 'sink'
+[2024-12-09 21:10:42] INFO - v1 DAG agent processing complete.
+[2024-12-09 21:10:42] INFO - Workflow completed successfully.

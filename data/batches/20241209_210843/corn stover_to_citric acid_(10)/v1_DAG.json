@@ -1,0 +1,673 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Primarily composed of cellulose (35-40%), hemicellulose (25-30%), and lignin (15-20%)",
+      "key_specs": "Corn stover should be pre-treated to break down lignocellulosic structure, typically using mechanical, chemical, or enzymatic methods to enhance fermentable sugar availability.",
+      "volumetric_scale": "100,000 kg per day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Citric Acid",
+      "composition": "Citric acid (C6H8O7) with typical purity levels of 99.5% or higher for food-grade applications",
+      "key_specs": "The product should meet food-grade or industrial-grade specifications, depending on the intended application. It should be free from microbial contamination and have low levels of heavy metals.",
+      "volumetric_scale": "10,000 kg per day"
+    }
+  ],
+  "unit_operations": {
+    "pre-treatment": {
+      "unit_operation_id": "pre-treatment",
+      "name": "Pre-treatment",
+      "description": "The pre-treatment of corn stover is crucial to break down its lignocellulosic structure, enhancing the availability of fermentable sugars. This process typically involves a combination of mechanical, chemical, and enzymatic methods. Mechanically, the corn stover is shredded to increase surface area. Chemically, it may be treated with dilute acid or alkali to solubilize hemicellulose and disrupt lignin. Enzymatic hydrolysis follows, using cellulases and hemicellulases to convert cellulose and hemicellulose into simple sugars such as glucose and xylose.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Chemical Agents",
+        "Enzymes"
+      ],
+      "output_streams": [
+        "Pre-treated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Mechanical disruption increases the surface area of raw corn stover, facilitating further treatment.",
+            "inputComponent": "corn stover",
+            "outputComponent": "shredded corn stover",
+            "conversionRate": 1.0
+          },
+          {
+            "description": "Chemical pre-treatment with dilute acids or alkalis helps solubilize hemicellulose and disrupts lignin, improving cellulose access.",
+            "inputComponent": "shredded corn stover",
+            "outputComponent": "pre-treated biomass",
+            "conversionRate": 0.9
+          },
+          {
+            "description": "Enzymatic hydrolysis using cellulase breaks down cellulose into glucose and hemicellulase breaks down hemicellulose into xylose.",
+            "inputComponent": "cellulose",
+            "outputComponent": "glucose",
+            "conversionRate": 0.8
+          },
+          {
+            "description": "Enzymatic hydrolysis using cellulase breaks down cellulose into glucose and hemicellulase breaks down hemicellulose into xylose.",
+            "inputComponent": "hemicellulose",
+            "outputComponent": "xylose",
+            "conversionRate": 0.6
+          }
+        ]
+      },
+      "additional_info": "The choice of chemical agents and enzymes can significantly impact the efficiency and cost of the pre-treatment process."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation process involves the conversion of sugars into citric acid using a yeast or fungal strain, such as Aspergillus niger, under aerobic conditions. The pre-treated biomass is mixed with a nutrient-rich medium to support microbial growth and citric acid production. Oxygen is supplied to maintain aerobic conditions, and the fermentation is carried out in a bioreactor designed to optimize mixing and oxygen transfer.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pre-treated Biomass",
+        "Nutrient Medium",
+        "Oxygen"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of glucose into citric acid during fermentation.",
+            "inputComponent": "glucose",
+            "outputComponent": "citric acid",
+            "conversionRate": 0.7
+          },
+          {
+            "description": "Conversion of xylose into citric acid during fermentation.",
+            "inputComponent": "xylose",
+            "outputComponent": "citric acid",
+            "conversionRate": 0.4
+          }
+        ]
+      },
+      "additional_info": "The choice of microorganism and fermentation conditions such as pH, temperature, and aeration rate are critical for maximizing citric acid yield."
+    },
+    "broth_filtration": {
+      "unit_operation_id": "broth_filtration",
+      "name": "Broth Filtration",
+      "description": "The fermentation broth is filtered to separate the microbial biomass and other solids from the liquid containing citric acid. This is typically achieved using a filtration unit such as a rotary vacuum filter or a centrifuge. The goal is to obtain a clear liquid stream rich in citric acid, while the solid biomass is collected for further processing or disposal.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Filtered Broth",
+        "Solid Biomass"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of citric acid from the fermentation broth during broth filtration.",
+            "component": "citric acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of residual sugars from the fermentation broth during broth filtration.",
+            "component": "residual sugars",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Retention of solid biomass from the fermentation broth during broth filtration.",
+            "component": "biomass",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The solid biomass can be used as animal feed or further processed for other applications."
+    },
+    "citric_acid_recovery": {
+      "unit_operation_id": "citric_acid_recovery",
+      "name": "Citric Acid Recovery",
+      "description": "Citric acid is recovered from the filtered broth through a series of purification steps. This typically involves precipitation, where calcium hydroxide is added to form calcium citrate, which is then filtered out. The calcium citrate is treated with sulfuric acid to release citric acid and form calcium sulfate as a by-product. The citric acid is then separated from the calcium sulfate by filtration.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Filtered Broth",
+        "Calcium Hydroxide",
+        "Sulfuric Acid"
+      ],
+      "output_streams": [
+        "Citric Acid Solution",
+        "Calcium Sulfate",
+        "Water"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Citric acid reacts with calcium hydroxide to form calcium citrate, which precipitates out of the solution.",
+            "inputComponent": "citric acid",
+            "outputComponent": "calcium citrate",
+            "conversionRate": 0.95
+          },
+          {
+            "description": "Calcium citrate is treated with sulfuric acid to release citric acid and form calcium sulfate as a by-product.",
+            "inputComponent": "calcium citrate",
+            "outputComponent": "citric acid",
+            "conversionRate": 0.95
+          },
+          {
+            "description": "Calcium hydroxide reacts with citric acid to form an insoluble calcium citrate compound.",
+            "inputComponent": "calcium hydroxide",
+            "outputComponent": "calcium citrate",
+            "conversionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "The purity of citric acid is enhanced through this recovery process, and the calcium sulfate by-product can be sold or disposed of responsibly."
+    },
+    "concentration_and_crystallization": {
+      "unit_operation_id": "concentration_and_crystallization",
+      "name": "Concentration and Crystallization",
+      "description": "The citric acid solution is concentrated through evaporation to increase its concentration. Once the desired concentration is achieved, the solution is cooled to crystallize citric acid. The crystallization process is controlled to obtain high-purity citric acid crystals, which are then separated from the mother liquor by centrifugation or filtration.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Citric Acid Solution"
+      ],
+      "output_streams": [
+        "Citric Acid Crystals",
+        "Mother Liquor"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of citric acid crystals from the mother liquor after crystallization process.",
+            "component": "citric acid",
+            "extractionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "The mother liquor can be recycled back into the process to recover additional citric acid."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "The citric acid crystals are dried to remove any residual moisture, ensuring stability and preventing clumping. The dried crystals are then packaged according to the intended application, whether for food-grade or industrial-grade use. Packaging is done in a controlled environment to prevent contamination.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Citric Acid Crystals"
+      ],
+      "output_streams": [
+        "Packaged Citric Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging materials and methods are selected based on the end-use requirements and regulatory standards for citric acid."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is collected directly from agricultural fields. The stream is primarily composed of cellulose (35-40%), hemicellulose (25-30%), and lignin (15-20%). It is crucial for the subsequent pre-treatment process, where the lignocellulosic structure will be broken down to enhance the availability of fermentable sugars. The volumetric scale for this operation is set at 100,000 kg per day, ensuring a consistent and adequate supply of feedstock for the production of citric acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "chemical agents source": {
+      "unit_operation_id": "chemical agents source",
+      "name": "Chemical Agents Source",
+      "description": "This unit operation serves as a source for Chemical Agents, which are essential for the pre-treatment of biomass in the production of citric acid. The Chemical Agents include dilute acids and alkalis that facilitate the breakdown of lignocellulosic structures in raw corn stover, enhancing the availability of fermentable sugars. This source is designed to supply a consistent volumetric flow of chemical agents necessary for the pre-treatment process, ensuring optimal conditions for subsequent fermentation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Chemical Agents"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme source": {
+      "unit_operation_id": "enzyme source",
+      "name": "Enzyme Source",
+      "description": "This unit operation serves as a source for the Enzymes stream, which includes cellulase and hemicellulase. These enzymes are crucial for the hydrolysis of cellulose and hemicellulose present in the pre-treated biomass, facilitating the conversion of complex carbohydrates into fermentable sugars. The enzymes are supplied in a concentrated form to ensure efficient enzymatic activity during the fermentation process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzymes"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "nutrient medium source": {
+      "unit_operation_id": "nutrient medium source",
+      "name": "Nutrient Medium Source",
+      "description": "This unit operation serves as a source for the Nutrient Medium stream, which contains essential nutrients required for microbial growth during the fermentation process. The Nutrient Medium includes a nitrogen source, a phosphorus source, and trace elements, all of which are critical for optimizing the fermentation conditions and enhancing citric acid production. The unit operation is designed to deliver a consistent and controlled flow of Nutrient Medium to the fermentation unit operation, ensuring that the microorganisms have the necessary nutrients for effective metabolic activity.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Nutrient Medium"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "oxygen supply": {
+      "unit_operation_id": "oxygen supply",
+      "name": "Oxygen Supply",
+      "description": "This unit operation serves as a source for the Oxygen stream, which is supplied to maintain aerobic conditions in the bioreactor during the fermentation process. The oxygen is critical for the growth of aerobic microorganisms that convert pre-treated biomass into citric acid. The unit operation ensures a consistent and controlled supply of oxygen to optimize fermentation efficiency.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Oxygen"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid biomass sink": {
+      "unit_operation_id": "solid biomass sink",
+      "name": "Solid Biomass Sink",
+      "description": "This unit operation serves as a sink for the Solid Biomass stream, which consists of separated microbial biomass and other solids obtained from the fermentation broth. The Solid Biomass Sink is designed to collect and manage the solid waste generated during the fermentation process, ensuring proper handling and disposal or potential further processing for value-added applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Biomass"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "calcium hydroxide source": {
+      "unit_operation_id": "calcium hydroxide source",
+      "name": "Calcium Hydroxide Source",
+      "description": "This unit operation serves as a source for Calcium Hydroxide, a key chemical agent utilized in the citric acid recovery process. Calcium Hydroxide is used to precipitate citric acid from the fermentation broth as calcium citrate, facilitating the separation and purification of citric acid. The source is designed to supply the required volumetric scale of Calcium Hydroxide, ensuring consistent and efficient operation in the downstream processes.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Calcium Hydroxide"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "sulfuric acid source": {
+      "unit_operation_id": "sulfuric acid source",
+      "name": "Sulfuric Acid Source",
+      "description": "This unit operation serves as a source for sulfuric acid, which is utilized in the citric acid recovery process. Sulfuric acid acts as a chemical agent to convert calcium citrate back into citric acid, facilitating the extraction and purification of citric acid from the fermentation broth. The sulfuric acid is supplied at an industrial scale to ensure sufficient availability for the recovery process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Sulfuric Acid"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "calcium sulfate sink": {
+      "unit_operation_id": "calcium sulfate sink",
+      "name": "Calcium Sulfate Sink",
+      "description": "This unit operation serves as a sink for the Calcium Sulfate stream, which is a by-product generated during the citric acid recovery process. The Calcium Sulfate produced is typically utilized in various applications, including construction materials, soil conditioning, and as a filler in certain products. The sink ensures proper handling, storage, and potential further processing or disposal of Calcium Sulfate, maintaining compliance with environmental regulations and optimizing resource recovery.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Calcium Sulfate"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "mother liquor sink": {
+      "unit_operation_id": "mother liquor sink",
+      "name": "Mother Liquor Sink",
+      "description": "This unit operation serves as the final sink for the Mother Liquor stream, which is the residual liquid obtained after the crystallization of citric acid. It contains residual citric acid and various impurities. The Mother Liquor may be subjected to further treatment processes for recovery of residual citric acid or disposal, depending on the overall process design and economic considerations.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Mother Liquor"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "packaged citric acid sink": {
+      "unit_operation_id": "packaged citric acid sink",
+      "name": "Packaged Citric Acid Sink",
+      "description": "This unit operation serves as the final sink for the Packaged Citric Acid stream, which consists of dried and packaged citric acid ready for distribution and use. The operation ensures that the product meets the required specifications for food-grade applications, ensuring high purity levels of 99.5% or higher, free from microbial contamination and low levels of heavy metals. The packaged citric acid is prepared for storage and transportation to customers.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Packaged Citric Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "water sink": {
+      "unit_operation_id": "water sink",
+      "name": "Water Sink",
+      "description": "The Water Sink unit operation is designed to collect and remove excess water generated during the citric acid recovery process. This unit serves as a terminus for the water stream, ensuring that the overall mass balance of the system is maintained and that the purity of the citric acid product is not compromised by residual water. The operation efficiently handles the removal of water to prevent dilution and contamination in subsequent processing steps.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Water"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Corn stover as collected from agricultural fields, primarily composed of cellulose, hemicellulose, and lignin.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Chemical Agents": {
+      "name": "Chemical Agents",
+      "stream_id": "chemical agents",
+      "description": "Chemicals such as dilute acid or alkali used for chemical pre-treatment.",
+      "stream_type": "core",
+      "source": "chemical agents source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "acid": 0,
+        "alkali": 0
+      }
+    },
+    "Enzymes": {
+      "name": "Enzymes",
+      "stream_id": "enzymes",
+      "description": "Enzymes used for hydrolyzing cellulose and hemicellulose into sugars.",
+      "stream_type": "core",
+      "source": "enzyme source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulase": 0,
+        "hemicellulase": 0
+      }
+    },
+    "Pre-treated Biomass": {
+      "name": "Pre-treated Biomass",
+      "stream_id": "pre_treated biomass",
+      "description": "Biomass with a disrupted lignocellulosic structure, containing soluble sugars and residual lignin.",
+      "stream_type": "core",
+      "source": "pre-treatment",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "glucose": 0,
+        "xylose": 0,
+        "lignin": 0
+      }
+    },
+    "Nutrient Medium": {
+      "name": "Nutrient Medium",
+      "stream_id": "nutrient medium",
+      "description": "A medium containing essential nutrients to support microbial growth and citric acid production.",
+      "stream_type": "core",
+      "source": "nutrient medium source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "nitrogen source": 0,
+        "phosphorus source": 0,
+        "trace elements": 0
+      }
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "stream_id": "oxygen",
+      "description": "Oxygen supplied to maintain aerobic conditions in the bioreactor.",
+      "stream_type": "core",
+      "source": "oxygen supply",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "oxygen": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing citric acid, residual sugars, microbial biomass, and other fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_filtration",
+      "flow_rate": 0.0,
+      "components": {
+        "citric acid": 0,
+        "residual sugars": 0,
+        "biomass": 0
+      }
+    },
+    "Filtered Broth": {
+      "name": "Filtered Broth",
+      "stream_id": "filtered broth",
+      "description": "A clear liquid stream containing citric acid and residual sugars, free from solid biomass.",
+      "stream_type": "core",
+      "source": "broth_filtration",
+      "target": "citric_acid_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "citric acid": 0,
+        "residual sugars": 0
+      }
+    },
+    "Solid Biomass": {
+      "name": "Solid Biomass",
+      "stream_id": "solid biomass",
+      "description": "Separated microbial biomass and other solids from the fermentation broth.",
+      "stream_type": "core",
+      "source": "broth_filtration",
+      "target": "solid biomass sink",
+      "flow_rate": 0.0,
+      "components": {
+        "biomass": 0
+      }
+    },
+    "Calcium Hydroxide": {
+      "name": "Calcium Hydroxide",
+      "stream_id": "calcium hydroxide",
+      "description": "A chemical agent used to precipitate citric acid as calcium citrate.",
+      "stream_type": "core",
+      "source": "calcium hydroxide source",
+      "target": "citric_acid_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "calcium hydroxide": 0
+      }
+    },
+    "Sulfuric Acid": {
+      "name": "Sulfuric Acid",
+      "stream_id": "sulfuric acid",
+      "description": "A chemical agent used to convert calcium citrate back to citric acid.",
+      "stream_type": "core",
+      "source": "sulfuric acid source",
+      "target": "citric_acid_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "sulfuric acid": 0
+      }
+    },
+    "Citric Acid Solution": {
+      "name": "Citric Acid Solution",
+      "stream_id": "citric acid solution",
+      "description": "A purified solution of citric acid ready for final concentration and drying.",
+      "stream_type": "core",
+      "source": "citric_acid_recovery",
+      "target": "concentration_and_crystallization",
+      "flow_rate": 0.0,
+      "components": {
+        "citric acid": 0
+      }
+    },
+    "Calcium Sulfate": {
+      "name": "Calcium Sulfate",
+      "stream_id": "calcium sulfate",
+      "description": "A by-product of the citric acid recovery process, often used in construction materials.",
+      "stream_type": "core",
+      "source": "citric_acid_recovery",
+      "target": "calcium sulfate sink",
+      "flow_rate": 0.0,
+      "components": {
+        "calcium sulfate": 0
+      }
+    },
+    "Citric Acid Crystals": {
+      "name": "Citric Acid Crystals",
+      "stream_id": "citric acid crystals",
+      "description": "High-purity citric acid crystals suitable for food-grade or industrial-grade applications.",
+      "stream_type": "core",
+      "source": "concentration_and_crystallization",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "citric acid": 0
+      }
+    },
+    "Mother Liquor": {
+      "name": "Mother Liquor",
+      "stream_id": "mother liquor",
+      "description": "The remaining liquid after crystallization, which may contain impurities and residual citric acid.",
+      "stream_type": "core",
+      "source": "concentration_and_crystallization",
+      "target": "mother liquor sink",
+      "flow_rate": 0.0,
+      "components": {
+        "residual citric acid": 0,
+        "impurities": 0
+      }
+    },
+    "Packaged Citric Acid": {
+      "name": "Packaged Citric Acid",
+      "stream_id": "packaged citric acid",
+      "description": "Dried and packaged citric acid ready for distribution and use.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": "packaged citric acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "citric acid": 0
+      }
+    },
+    "Water": {
+      "name": "Water",
+      "stream_id": "water",
+      "description": "Water is likely released during the reaction and separation processes in the citric acid recovery unit operation. It needs to be removed from the system to maintain mass balance and purity of the citric acid.",
+      "stream_type": "aux",
+      "source": "citric_acid_recovery",
+      "target": "water sink",
+      "flow_rate": 0.0,
+      "components": {
+        "water": 0
+      }
+    }
+  },
+  "components": {
+    "cellulose": {
+      "name": "cellulose",
+      "properties": {}
+    },
+    "hemicellulose": {
+      "name": "hemicellulose",
+      "properties": {}
+    },
+    "lignin": {
+      "name": "lignin",
+      "properties": {}
+    },
+    "acid": {
+      "name": "acid",
+      "properties": {}
+    },
+    "alkali": {
+      "name": "alkali",
+      "properties": {}
+    },
+    "cellulase": {
+      "name": "cellulase",
+      "properties": {}
+    },
+    "hemicellulase": {
+      "name": "hemicellulase",
+      "properties": {}
+    },
+    "glucose": {
+      "name": "glucose",
+      "properties": {}
+    },
+    "xylose": {
+      "name": "xylose",
+      "properties": {}
+    },
+    "nitrogen source": {
+      "name": "nitrogen source",
+      "properties": {}
+    },
+    "phosphorus source": {
+      "name": "phosphorus source",
+      "properties": {}
+    },
+    "trace elements": {
+      "name": "trace elements",
+      "properties": {}
+    },
+    "oxygen": {
+      "name": "oxygen",
+      "properties": {}
+    },
+    "citric acid": {
+      "name": "citric acid",
+      "properties": {}
+    },
+    "residual sugars": {
+      "name": "residual sugars",
+      "properties": {}
+    },
+    "biomass": {
+      "name": "biomass",
+      "properties": {}
+    },
+    "calcium hydroxide": {
+      "name": "calcium hydroxide",
+      "properties": {}
+    },
+    "sulfuric acid": {
+      "name": "sulfuric acid",
+      "properties": {}
+    },
+    "calcium sulfate": {
+      "name": "calcium sulfate",
+      "properties": {}
+    },
+    "residual citric acid": {
+      "name": "residual citric acid",
+      "properties": {}
+    },
+    "impurities": {
+      "name": "impurities",
+      "properties": {}
+    },
+    "water": {
+      "name": "water",
+      "properties": {}
+    }
+  }
+}

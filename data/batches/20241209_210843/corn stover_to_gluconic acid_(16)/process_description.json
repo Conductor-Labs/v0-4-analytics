@@ -1,0 +1,315 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Primarily composed of cellulose (40-50%), hemicellulose (25-30%), and lignin (15-20%)",
+      "key_specs": "Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants. It is typically dry and fibrous, requiring pretreatment to enhance enzymatic accessibility.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Gluconic Acid",
+      "composition": "C6H12O7",
+      "key_specs": "Gluconic acid is typically produced with a purity of over 99% for industrial applications. It is used in food, pharmaceuticals, and as a cleaning agent. The product should meet commercial grade specifications for purity and stability.",
+      "volumetric_scale": "50,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover, an agricultural residue primarily composed of cellulose, hemicellulose, and lignin, is first collected and transported to the processing facility. Here, it undergoes size reduction through mechanical milling to increase the surface area, which is crucial for the subsequent pretreatment process. The milled corn stover is then dried to reduce moisture content, ensuring optimal conditions for the pretreatment stage.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Size reduction is typically achieved using hammer mills or knife mills. Moisture content is reduced to below 10%."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover is subjected to a pretreatment process to break down the lignin structure and enhance the accessibility of cellulose and hemicellulose for enzymatic hydrolysis. This is typically achieved using a dilute acid or alkaline solution, which helps in solubilizing hemicellulose and partially removing lignin.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Pretreatment Chemicals"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method affects downstream processing efficiency and cost. Acid pretreatment is common but requires neutralization."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "The pretreated biomass is subjected to enzymatic hydrolysis, where cellulase and hemicellulase enzymes are added to convert cellulose and hemicellulose into fermentable sugars, primarily glucose. This step is crucial for maximizing sugar yield, which directly impacts the efficiency of the subsequent fermentation process.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {},
+      "additional_info": "Enzyme loading and hydrolysis time are critical parameters that influence sugar yield and process economics."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolysate containing fermentable sugars is inoculated with a microorganism capable of converting glucose into gluconic acid. This biotransformation occurs under controlled conditions to optimize the yield and purity of gluconic acid. The fermentation process is monitored to ensure efficient conversion and minimal by-product formation.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolysate",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Aspergillus niger is commonly used for gluconic acid production. Oxygen supply and pH control are critical for optimal fermentation."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "The fermentation broth is processed to recover gluconic acid. This involves separation techniques such as filtration to remove microbial biomass, followed by purification steps like ion exchange or crystallization to achieve the desired purity level of gluconic acid. The goal is to produce a high-purity product suitable for industrial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Gluconic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Purification steps are designed to meet commercial grade specifications for gluconic acid purity and stability."
+    },
+    "final_purification_and_drying": {
+      "unit_operation_id": "final_purification_and_drying",
+      "name": "Final Purification and Drying",
+      "description": "The crude gluconic acid undergoes final purification to remove any remaining impurities and achieve over 99% purity. This is followed by drying to produce a stable, solid form of gluconic acid suitable for packaging and distribution. The final product is tested to ensure it meets all commercial specifications.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Gluconic Acid"
+      ],
+      "output_streams": [
+        "Pure Gluconic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "The final product is typically in crystalline form and packaged for distribution. Quality control tests ensure compliance with industry standards."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Collected corn stover consisting of leaves, stalks, and cobs.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Milled and dried corn stover with increased surface area and reduced moisture content.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Chemical agents used to facilitate the breakdown of lignin and hemicellulose.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "dilute acid": 0,
+        "alkaline solution": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with reduced lignin content and increased cellulose and hemicellulose accessibility.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulase": 0,
+        "hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A liquid stream rich in fermentable sugars, primarily glucose, derived from the enzymatic breakdown of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "glucose": 0,
+        "xylose": 0,
+        "other sugars": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Microorganisms used for the conversion of glucose to gluconic acid.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Aspergillus niger": 0,
+        "other microbes": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing gluconic acid, residual sugars, and microbial biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "gluconic acid": 0,
+        "residual sugars": 0,
+        "biomass": 0
+      }
+    },
+    "Crude Gluconic Acid": {
+      "name": "Crude Gluconic Acid",
+      "stream_id": "crude gluconic acid",
+      "description": "Partially purified gluconic acid with some impurities.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "final_purification_and_drying",
+      "flow_rate": 0.0,
+      "components": {
+        "gluconic acid": 0,
+        "impurities": 0
+      }
+    },
+    "Pure Gluconic Acid": {
+      "name": "Pure Gluconic Acid",
+      "stream_id": "pure gluconic acid",
+      "description": "High-purity gluconic acid suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "final_purification_and_drying",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "gluconic acid": 0
+      }
+    }
+  },
+  "components": {
+    "cellulose": {
+      "name": "cellulose",
+      "properties": {}
+    },
+    "hemicellulose": {
+      "name": "hemicellulose",
+      "properties": {}
+    },
+    "lignin": {
+      "name": "lignin",
+      "properties": {}
+    },
+    "dilute acid": {
+      "name": "dilute acid",
+      "properties": {}
+    },
+    "alkaline solution": {
+      "name": "alkaline solution",
+      "properties": {}
+    },
+    "cellulase": {
+      "name": "cellulase",
+      "properties": {}
+    },
+    "hemicellulase": {
+      "name": "hemicellulase",
+      "properties": {}
+    },
+    "glucose": {
+      "name": "glucose",
+      "properties": {}
+    },
+    "xylose": {
+      "name": "xylose",
+      "properties": {}
+    },
+    "other sugars": {
+      "name": "other sugars",
+      "properties": {}
+    },
+    "Aspergillus niger": {
+      "name": "Aspergillus niger",
+      "properties": {}
+    },
+    "other microbes": {
+      "name": "other microbes",
+      "properties": {}
+    },
+    "gluconic acid": {
+      "name": "gluconic acid",
+      "properties": {}
+    },
+    "residual sugars": {
+      "name": "residual sugars",
+      "properties": {}
+    },
+    "biomass": {
+      "name": "biomass",
+      "properties": {}
+    },
+    "impurities": {
+      "name": "impurities",
+      "properties": {}
+    }
+  }
+}

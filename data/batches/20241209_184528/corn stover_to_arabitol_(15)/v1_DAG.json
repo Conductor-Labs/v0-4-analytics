@@ -1,0 +1,689 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Pre-treated to reduce lignin content and increase accessibility of cellulose and hemicellulose. Typically requires size reduction and chemical or enzymatic hydrolysis.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Arabitol",
+      "composition": "C5H12O5 (100%)",
+      "key_specs": "Food-grade purity, typically >99% purity required for commercial applications. Must meet safety and quality standards for use as a sweetener or in pharmaceuticals.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "size_reduction": {
+      "unit_operation_id": "size_reduction",
+      "name": "Size Reduction",
+      "description": "The initial step in the process involves the mechanical size reduction of corn stover. This is typically achieved using milling equipment such as hammer mills or knife mills to break down the stover into smaller, more manageable pieces. The goal is to increase the surface area of the biomass, which enhances the efficiency of subsequent chemical or enzymatic treatments. This step is crucial for improving the accessibility of cellulose and hemicellulose components for further processing.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Milled Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Particle size reduction is typically to a few millimeters to optimize downstream processing efficiency."
+    },
+    "pre-treatment": {
+      "unit_operation_id": "pre-treatment",
+      "name": "Pre-treatment",
+      "description": "The milled corn stover undergoes a pre-treatment process designed to reduce lignin content and increase the accessibility of cellulose and hemicellulose. This can involve chemical methods such as acid or alkaline treatment, or enzymatic hydrolysis. The pre-treatment disrupts the lignin structure, making the cellulose and hemicellulose more accessible for enzymatic action in subsequent steps.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Milled Corn Stover",
+        "Chemical Additives"
+      ],
+      "output_streams": [
+        "Pre-treated Biomass",
+        "Lignin Residue"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of lignin from milled corn stover during the pre-treatment process to enhance biomass accessibility.",
+            "component": "Lignin",
+            "extractionRate": 0.5
+          },
+          {
+            "description": "Cellulose remains in the pre-treated biomass stream and is not directed to the lignin residue.",
+            "component": "Cellulose",
+            "extractionRate": 0.0
+          },
+          {
+            "description": "Hemicellulose also remains in the pre-treated biomass stream and is not directed to the lignin residue.",
+            "component": "Hemicellulose",
+            "extractionRate": 0.0
+          }
+        ]
+      },
+      "additional_info": "Pre-treatment often involves the use of catalysts or specific pH conditions to optimize lignin removal."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this step, the pre-treated biomass is subjected to enzymatic hydrolysis where specific enzymes break down cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This process is critical for converting the structural carbohydrates into simple sugars that can be utilized by microorganisms in fermentation.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pre-treated Biomass"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose is broken down into glucose through enzymatic action.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Hemicellulose is hydrolyzed primarily into xylose, with possible other sugars depending on the hemicellulose structure.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "Enzymes such as cellulases and hemicellulases are used, and the process may be optimized for temperature and pH to maximize sugar yield."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The sugar solution is subjected to aerobic fermentation using specific strains of yeast or fungi capable of converting sugars into arabitol. The microorganisms metabolize the sugars, producing arabitol as a primary metabolic product. This step is crucial for the bioconversion of sugars into the desired polyol product.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Sugar Solution",
+        "Air"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "Carbon Dioxide"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of Glucose into Arabitol.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Arabitol",
+            "conversionRate": 0.5
+          },
+          {
+            "description": "Conversion of Glucose into Residual Sugars.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Residual Sugars",
+            "conversionRate": 0.2
+          },
+          {
+            "description": "Conversion of Xylose into Arabitol.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Arabitol",
+            "conversionRate": 0.4
+          },
+          {
+            "description": "Conversion of Xylose into Residual Sugars.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Residual Sugars",
+            "conversionRate": 0.2
+          }
+        ]
+      },
+      "additional_info": "Aerobic conditions are maintained, and the choice of microorganism is critical for optimizing arabitol yield."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "Following fermentation, the arabitol is separated from the fermentation broth. This typically involves a series of separation techniques such as centrifugation to remove biomass, followed by filtration and crystallization to isolate and purify arabitol. The goal is to achieve food-grade purity, typically greater than 99%.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Arabitol",
+        "Biomass Waste",
+        "Filtrate"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Centrifugation of fermentation broth to remove microbial biomass and some residual solids, resulting in a clear liquid and solid phase separation.",
+            "component": "Arabitol",
+            "extractionRate": 0.75
+          },
+          {
+            "description": "Separation of solids through centrifugation, effectively removing microbial biomass from the liquid phase.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Residue of sugars removed during the centrifugation process with biomass, recovering a portion into the solid waste.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.2
+          }
+        ]
+      },
+      "additional_info": "Crystallization conditions are optimized to enhance purity and yield of arabitol."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude arabitol undergoes further purification to meet food-grade standards. This may involve additional crystallization steps, ion exchange, or chromatography to remove any remaining impurities and achieve the desired purity level. The final product must meet stringent quality and safety standards for commercial applications.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Arabitol"
+      ],
+      "output_streams": [
+        "Pure Arabitol"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation process to remove impurities and refine arabitol.",
+            "component": "Arabitol",
+            "extractionRate": 0.99
+          },
+          {
+            "description": "Remaining impurities in the crude mixture post separation.",
+            "component": "Impurities",
+            "extractionRate": 0.01
+          }
+        ]
+      },
+      "additional_info": "Purity levels are typically greater than 99% to meet commercial specifications."
+    },
+    "waste_management": {
+      "unit_operation_id": "waste_management",
+      "name": "Waste Management",
+      "description": "Throughout the process, various waste streams are generated, including lignin-rich residues, microbial biomass, and process water. Effective waste management strategies are employed to minimize environmental impact and recover any valuable by-products. This may include anaerobic digestion of biomass for biogas production or the use of lignin as a feedstock for other chemical processes.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Process Waste Streams"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Anaerobic digestion of microbial biomass converts the organic matter into biogas (methane and carbon dioxide) in an oxygen-free environment.",
+            "inputComponent": "Microbial Biomass",
+            "outputComponent": "Biogas",
+            "conversionRate": 0.65
+          },
+          {
+            "description": "Treatment of process water to remove contaminants and impurities, resulting in treated water suitable for reuse or safe discharge.",
+            "inputComponent": "Process Water",
+            "outputComponent": "Treated Water",
+            "conversionRate": 0.9
+          },
+          {
+            "description": "Valorization of residual lignin into valuable by-products that can serve as raw materials or feedstocks for various applications.",
+            "inputComponent": "Residual Lignin",
+            "outputComponent": "Lignin By-products",
+            "conversionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "Sustainability and environmental compliance are key considerations in waste management."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which consists of untreated corn stover directly sourced from agricultural fields. The composition of the stream includes cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). This biomass feedstock is essential for the subsequent processing steps, including size reduction and pre-treatment, to convert it into valuable products such as Arabitol.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pure arabitol sink": {
+      "unit_operation_id": "pure arabitol sink",
+      "name": "Pure Arabitol Sink",
+      "description": "This unit operation serves as the final sink for the Pure Arabitol stream, which is produced through the purification process. The stream contains high-purity arabitol (C5H12O5) suitable for food-grade and pharmaceutical applications, meeting the required purity standards of >99%. This sink ensures the safe and efficient collection of the final product, ready for packaging and distribution.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Pure Arabitol"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "process waste streams source": {
+      "unit_operation_id": "process waste streams source",
+      "name": "Process Waste Streams Source",
+      "description": "This unit operation serves as the source for the Process Waste Streams generated throughout the bioconversion process. It collects and consolidates various waste materials, including residual lignin, microbial biomass, and process water, produced during the fermentation and product recovery stages. The unit operation is crucial for managing waste efficiently, ensuring that the by-products are either treated or disposed of in an environmentally friendly manner.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Process Waste Streams"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "treated waste sink": {
+      "unit_operation_id": "treated waste sink",
+      "name": "Treated Waste Sink",
+      "description": "This unit operation serves as the final sink for the treated waste streams generated during the process. It is designed to handle waste streams that have undergone treatment to minimize their environmental impact. The treated waste includes biogas, which can be utilized as a renewable energy source, treated water suitable for discharge or reuse, and lignin by-products that may be repurposed for other applications. The sink ensures safe and efficient management of these waste streams, adhering to environmental regulations and sustainability practices.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Treated Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "chemical additives source": {
+      "unit_operation_id": "chemical additives source",
+      "name": "Chemical Additives Source",
+      "description": "This unit operation serves as a source for the Chemical Additives stream, which includes various chemicals utilized in the pre-treatment process of biomass. These additives, such as acids (e.g., sulfuric acid), alkalis (e.g., sodium hydroxide), and other catalysts, are essential for disrupting the lignin structure in corn stover. By reducing lignin content, these chemicals enhance the accessibility of cellulose and hemicellulose, thereby improving the efficiency of subsequent processing steps.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Chemical Additives"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "lignin residue sink": {
+      "unit_operation_id": "lignin residue sink",
+      "name": "Lignin Residue Sink",
+      "description": "This unit operation serves as a sink for the Lignin Residue stream, which is generated during the pre-treatment of corn stover. The Lignin Residue consists of lignin and possibly modified lignin derivatives that are separated from the main biomass stream. This sink is designed to collect and manage the lignin residue, ensuring that it is properly handled, either for further processing, disposal, or potential valorization in other applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Lignin Residue"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "air supply": {
+      "unit_operation_id": "air supply",
+      "name": "Air Supply",
+      "description": "The Air Supply unit operation serves as a source for the Air stream, which is essential for the aerobic fermentation process. This unit provides a continuous flow of air, primarily composed of oxygen and nitrogen, to ensure that microorganisms have the necessary oxygen to metabolize sugars effectively during fermentation. The unit is designed to meet the volumetric requirements of the fermentation process, ensuring optimal conditions for microbial growth and product formation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Air"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "carbon dioxide sink": {
+      "unit_operation_id": "carbon dioxide sink",
+      "name": "Carbon Dioxide Sink",
+      "description": "This unit operation serves as a sink for the carbon dioxide produced during the fermentation process. The carbon dioxide is generated as a by-product when microorganisms metabolize sugars in the fermentation broth. This sink is designed to capture and manage the carbon dioxide, ensuring it is safely vented or utilized in further applications, such as carbonation in beverages or as a feedstock for other chemical processes.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Carbon Dioxide"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "biomass waste sink": {
+      "unit_operation_id": "biomass waste sink",
+      "name": "Biomass Waste Sink",
+      "description": "This unit operation serves as a sink for the Biomass Waste stream, which consists of residual biomass, microbial biomass, residual sugars, and by-products removed from the fermentation broth during the centrifugation step of the product recovery process. The sink is designed to collect and store the biomass waste for further treatment or disposal, ensuring that the fermentation process operates efficiently and that waste is managed in an environmentally responsible manner.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Biomass Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "filtrate sink": {
+      "unit_operation_id": "filtrate sink",
+      "name": "Filtrate Sink",
+      "description": "This unit operation serves as a sink for the filtrate stream, which is a liquid stream containing impurities, process water, and residual sugars. The filtrate is the by-product of the filtration and crystallization processes, and this sink is designed to handle the disposal or further treatment of this stream. It ensures that the impurities and residual components are managed appropriately, either by treatment or disposal, to maintain process efficiency and environmental compliance.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Filtrate"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Untreated corn stover directly from agricultural sources.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "size_reduction",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Milled Corn Stover": {
+      "name": "Milled Corn Stover",
+      "stream_id": "milled corn stover",
+      "description": "Corn stover that has been mechanically reduced in size to increase surface area.",
+      "stream_type": "core",
+      "source": "size_reduction",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pre-treated Biomass": {
+      "name": "Pre-treated Biomass",
+      "stream_id": "pre_treated biomass",
+      "description": "Biomass with reduced lignin content and increased cellulose and hemicellulose accessibility.",
+      "stream_type": "core",
+      "source": "pre-treatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Reduced Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars derived from cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Residual Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing arabitol, unconverted sugars, microbial biomass, and other fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Arabitol": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0,
+        "By-products": 0
+      }
+    },
+    "Crude Arabitol": {
+      "name": "Crude Arabitol",
+      "stream_id": "crude arabitol",
+      "description": "Arabitol that has been separated from the fermentation broth but may still contain impurities.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Arabitol": 0,
+        "Impurities": 0
+      }
+    },
+    "Pure Arabitol": {
+      "name": "Pure Arabitol",
+      "stream_id": "pure arabitol",
+      "description": "High-purity arabitol suitable for use in food and pharmaceutical applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "pure arabitol sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Arabitol": 0
+      }
+    },
+    "Process Waste Streams": {
+      "name": "Process Waste Streams",
+      "stream_id": "process waste streams",
+      "description": "Various waste streams generated throughout the process.",
+      "stream_type": "core",
+      "source": "process waste streams source",
+      "target": "waste_management",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Lignin": 0,
+        "Microbial Biomass": 0,
+        "Process Water": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Waste streams that have been treated or repurposed to minimize environmental impact.",
+      "stream_type": "core",
+      "source": "waste_management",
+      "target": "treated waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Biogas": 0,
+        "Treated Water": 0,
+        "Lignin By-products": 0
+      }
+    },
+    "Chemical Additives": {
+      "name": "Chemical Additives",
+      "stream_id": "chemical additives",
+      "description": "This stream includes any chemicals used in the pre-treatment process to disrupt the lignin structure, such as acids or alkalis. These chemicals are crucial for facilitating the reduction of lignin content and increasing the accessibility of cellulose and hemicellulose.",
+      "stream_type": "aux",
+      "source": "chemical additives source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Acid (e.g., sulfuric acid)": 0,
+        "Alkali (e.g., sodium hydroxide)": 0,
+        "Other catalysts": 0
+      }
+    },
+    "Lignin Residue": {
+      "name": "Lignin Residue",
+      "stream_id": "lignin residue",
+      "description": "This stream represents the portion of lignin that is removed or modified during the pre-treatment process. It may be partially dissolved or altered in a form that is separated from the main biomass stream.",
+      "stream_type": "aux",
+      "source": "pre-treatment",
+      "target": "lignin residue sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Lignin": 0,
+        "Possibly modified lignin derivatives": 0
+      }
+    },
+    "Air": {
+      "name": "Air",
+      "stream_id": "air",
+      "description": "Air is required for the aerobic fermentation process to supply oxygen to the microorganisms, enabling them to metabolize sugars effectively.",
+      "stream_type": "aux",
+      "source": "air supply",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0,
+        "Nitrogen": 0
+      }
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "stream_id": "carbon dioxide",
+      "description": "Carbon dioxide is a by-product of the aerobic fermentation process, released as the microorganisms metabolize sugars.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "carbon dioxide sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0
+      }
+    },
+    "Biomass Waste": {
+      "name": "Biomass Waste",
+      "stream_id": "biomass waste",
+      "description": "Residual biomass and other solids removed from the fermentation broth during the centrifugation step of the product recovery process.",
+      "stream_type": "aux",
+      "source": "product_recovery",
+      "target": "biomass waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0,
+        "Residual Sugars": 0,
+        "By-products": 0
+      }
+    },
+    "Filtrate": {
+      "name": "Filtrate",
+      "stream_id": "filtrate",
+      "description": "Liquid stream containing impurities and dissolved substances remaining after the filtration and crystallization processes.",
+      "stream_type": "aux",
+      "source": "product_recovery",
+      "target": "filtrate sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Impurities": 0,
+        "Process Water": 0,
+        "Residual Sugars": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Reduced Lignin": {
+      "name": "Reduced Lignin",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Lignin": {
+      "name": "Residual Lignin",
+      "properties": {}
+    },
+    "Arabitol": {
+      "name": "Arabitol",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "By-products": {
+      "name": "By-products",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Process Water": {
+      "name": "Process Water",
+      "properties": {}
+    },
+    "Biogas": {
+      "name": "Biogas",
+      "properties": {}
+    },
+    "Treated Water": {
+      "name": "Treated Water",
+      "properties": {}
+    },
+    "Lignin By-products": {
+      "name": "Lignin By-products",
+      "properties": {}
+    },
+    "Acid (e.g., sulfuric acid)": {
+      "name": "Acid (e.g., sulfuric acid)",
+      "properties": {}
+    },
+    "Alkali (e.g., sodium hydroxide)": {
+      "name": "Alkali (e.g., sodium hydroxide)",
+      "properties": {}
+    },
+    "Other catalysts": {
+      "name": "Other catalysts",
+      "properties": {}
+    },
+    "Possibly modified lignin derivatives": {
+      "name": "Possibly modified lignin derivatives",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    },
+    "Nitrogen": {
+      "name": "Nitrogen",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    }
+  }
+}

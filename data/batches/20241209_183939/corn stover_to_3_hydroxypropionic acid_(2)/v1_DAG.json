@@ -1,0 +1,636 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (40-50%), Hemicellulose (25-35%), Lignin (15-20%), Ash (1-5%)",
+      "key_specs": "Lignocellulosic biomass, typically requires pretreatment to break down cellulose and hemicellulose into fermentable sugars.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "3-Hydroxypropionic Acid",
+      "composition": "C3H6O3",
+      "key_specs": "Industrial grade, typically requires a purity of >95% for commercial applications. Used as a precursor for various chemicals and polymers.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover, making cellulose and hemicellulose more accessible for enzymatic hydrolysis. This is typically achieved using a combination of physical, chemical, or biological methods. In this process, a dilute acid pretreatment is employed to disrupt the lignin structure and solubilize hemicellulose, releasing fermentable sugars. The pretreatment process is crucial as it significantly impacts the efficiency of subsequent enzymatic hydrolysis and fermentation steps.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Dilute Acid Solution"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "The dilute sulfuric acid hydrolyzes hemicellulose present in the raw corn stover, converting it into soluble sugars or oligomers.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Solubilized Hemicellulose",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "The dilute sulfuric acid treatment disrupts the lignin structure, increasing the porosity of the biomass and making cellulose more accessible for hydrolysis.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Disrupted Lignin",
+            "conversionRate": 0.2
+          },
+          {
+            "description": "Cellulose remains largely intact but is made more accessible after the hemicellulose is solubilized and lignin is disrupted, facilitating subsequent enzymatic hydrolysis.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Accessible Cellulose",
+            "conversionRate": 0.0
+          }
+        ]
+      },
+      "additional_info": "The choice of acid concentration and residence time are critical parameters that influence sugar yield and inhibitor formation."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In the enzymatic hydrolysis unit operation, the pretreated biomass is subjected to enzymatic action to convert cellulose and any remaining hemicellulose into fermentable sugars, primarily glucose and xylose. Enzymes such as cellulases and hemicellulases are used to catalyze this conversion. The efficiency of this step is pivotal for maximizing sugar yield, which directly affects the subsequent fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose is enzymatically broken down into glucose using cellulase enzymes, releasing fermentable sugars essential for fermentation.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.9
+          },
+          {
+            "description": "Solubilized hemicellulose is enzymatically converted into xylose through the action of hemicellulase enzymes, providing another key fermentable sugar for fermentation.",
+            "inputComponent": "Solubilized Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.85
+          }
+        ]
+      },
+      "additional_info": "The hydrolysis is typically conducted at mild temperatures to optimize enzyme activity and prevent sugar degradation."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of fermentable sugars into 3-Hydroxypropionic Acid (3-HP) using a genetically engineered bacterial strain. This process requires careful control of oxygen levels, as well as nutrient supplementation to support bacterial growth and metabolism. The fermentation is conducted in bioreactors designed to optimize mass transfer and maintain homogeneity.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolysate",
+        "Nutrient Solution",
+        "Oxygen"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "Carbon Dioxide"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Fermentable sugars from the hydrolysate, primarily glucose, are metabolized under aerobic conditions to produce 3-Hydroxypropionic Acid and carbon dioxide.",
+            "inputComponent": "Glucose",
+            "outputComponent": "3-Hydroxypropionic Acid",
+            "conversionRate": 0.6
+          },
+          {
+            "description": "During the fermentation process, glucose is also converted into carbon dioxide as a by-product.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "Xylose is similarly fermented under aerobic conditions to generate 3-Hydroxypropionic Acid.",
+            "inputComponent": "Xylose",
+            "outputComponent": "3-Hydroxypropionic Acid",
+            "conversionRate": 0.5
+          },
+          {
+            "description": "Alongside the production of 3-Hydroxypropionic Acid, xylose conversion also leads to the release of carbon dioxide.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.25
+          }
+        ]
+      },
+      "additional_info": "The choice of bacterial strain and optimization of fermentation conditions are critical for achieving high yields of 3-HP."
+    },
+    "broth_clarification": {
+      "unit_operation_id": "broth_clarification",
+      "name": "Broth Clarification",
+      "description": "The broth clarification unit operation is designed to separate the solid biomass and cell debris from the liquid fermentation broth. This is typically achieved using centrifugation or filtration techniques. The clarified broth is essential for downstream purification processes, as it reduces the load on separation equipment and improves the efficiency of product recovery.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Solid Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "The separation of solid biomass and cell debris from the liquid fermentation broth using techniques such as centrifugation or filtration.",
+            "component": "Biomass",
+            "extractionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "The choice between centrifugation and filtration depends on the scale of operation and the nature of the solids."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "In the product recovery unit operation, 3-Hydroxypropionic Acid is separated and concentrated from the clarified broth. This is typically achieved using solvent extraction, where an organic solvent selectively extracts 3-HP from the aqueous phase. The solvent is then evaporated to recover 3-HP in a concentrated form. This step is crucial for achieving the desired purity levels for industrial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth",
+        "Organic Solvent"
+      ],
+      "output_streams": [
+        "3-HP Rich Solvent",
+        "Aqueous Raffinate"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of 3-Hydroxypropionic Acid from Clarified Broth using solvent extraction.",
+            "component": "3-Hydroxypropionic Acid",
+            "extractionRate": 0.9
+          }
+        ]
+      },
+      "additional_info": "The choice of solvent and extraction conditions are critical for maximizing 3-HP recovery and minimizing solvent loss."
+    },
+    "solvent_recovery_and_product_purification": {
+      "unit_operation_id": "solvent_recovery_and_product_purification",
+      "name": "Solvent Recovery and Product Purification",
+      "description": "The final unit operation involves the recovery of the organic solvent and the purification of 3-Hydroxypropionic Acid to meet industrial purity standards. The solvent is evaporated and condensed for reuse, while 3-HP is further purified using distillation or crystallization techniques to achieve a purity of greater than 95%. This step ensures the product is suitable for commercial applications.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "3-HP Rich Solvent"
+      ],
+      "output_streams": [
+        "Purified 3-Hydroxypropionic Acid",
+        "Recovered Solvent"
+      ],
+      "parameters": {},
+      "additional_info": "The choice between distillation and crystallization depends on the desired product form and purity requirements."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is a raw lignocellulosic biomass feedstock. It consists of cellulose (40-50%), hemicellulose (25-35%), lignin (15-20%), and ash (1-5%). This biomass is typically harvested from agricultural residues and is intended for further processing in the pretreatment unit operation to break down its complex structure into fermentable sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "dilute acid solution source": {
+      "unit_operation_id": "dilute acid solution source",
+      "name": "Dilute Acid Solution Source",
+      "description": "This unit operation serves as a source for the Dilute Acid Solution, which is a critical input for the pretreatment process in the conversion of Corn Stover to 3-Hydroxypropionic Acid. The solution consists primarily of water and sulfuric acid, and its role is to catalyze the breakdown of hemicellulose and disrupt lignin structures in the biomass, facilitating the subsequent enzymatic hydrolysis step.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Dilute Acid Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which contains cellulase and hemicellulase enzymes. These enzymes are essential for the enzymatic hydrolysis process, where they catalyze the breakdown of cellulose and hemicellulose into fermentable sugars. The Enzyme Solution is produced and supplied at an industrial scale to ensure a continuous and efficient hydrolysis process, contributing to the overall yield of 3-Hydroxypropionic Acid from the biomass feedstock.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "nutrient solution source": {
+      "unit_operation_id": "nutrient solution source",
+      "name": "Nutrient Solution Source",
+      "description": "This unit operation serves as a source for the Nutrient Solution, which is essential for the fermentation process. The Nutrient Solution provides vital nutrients including a nitrogen source, phosphates, and trace minerals necessary for optimal bacterial growth and metabolism during the fermentation of hydrolysate into 3-Hydroxypropionic Acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Nutrient Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "oxygen supply": {
+      "unit_operation_id": "oxygen supply",
+      "name": "Oxygen Supply",
+      "description": "This unit operation serves as a source for the Oxygen stream, which is supplied to maintain aerobic conditions necessary for the bacterial fermentation process. The Oxygen is critical for the metabolic activity of the microorganisms involved in the fermentation of hydrolysate to produce 3-Hydroxypropionic Acid. The operation ensures a consistent and controlled supply of Oxygen to optimize fermentation efficiency.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Oxygen"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid waste sink": {
+      "unit_operation_id": "solid waste sink",
+      "name": "Solid Waste Sink",
+      "description": "This unit operation serves as the final sink for the Solid Waste stream, which consists of separated biomass and cell debris resulting from the Broth Clarification unit operation. The Solid Waste Sink is designed to handle the disposal or further processing of the biomass, ensuring that any residual materials are managed appropriately. This unit may include options for composting, anaerobic digestion, or incineration, depending on the desired end-of-life treatment for the biomass.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "organic solvent source": {
+      "unit_operation_id": "organic solvent source",
+      "name": "Organic Solvent Source",
+      "description": "This unit operation serves as a source for the Organic Solvent stream, which is utilized in the Product Recovery stage of the process flow. The Organic Solvent is specifically designed to selectively extract 3-Hydroxypropionic Acid from the aqueous phase during the extraction process. It is essential for enhancing the efficiency of product recovery and ensuring high purity of the final product.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Organic Solvent"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "aqueous raffinate sink": {
+      "unit_operation_id": "aqueous raffinate sink",
+      "name": "Aqueous Raffinate Sink",
+      "description": "This unit operation serves as the sink for the Aqueous Raffinate stream, which is the aqueous phase resulting from the product recovery process. It contains residual sugars and has a reduced concentration of 3-Hydroxypropionic Acid. The Aqueous Raffinate is typically directed to further processing or disposal, depending on the economic and environmental considerations of the overall process.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Aqueous Raffinate"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified 3_hydroxypropionic acid sink": {
+      "unit_operation_id": "purified 3_hydroxypropionic acid sink",
+      "name": "Purified 3-Hydroxypropionic Acid Sink",
+      "description": "This unit operation serves as the final sink for the purified 3-Hydroxypropionic Acid stream, which has been processed to achieve a high purity level of over 95%. It is designed to receive the purified product from the Solvent Recovery and Product Purification unit operation, ensuring that the final product meets industrial specifications for various applications, including as a precursor for chemicals and polymers.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified 3-Hydroxypropionic Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "recovered solvent sink": {
+      "unit_operation_id": "recovered solvent sink",
+      "name": "Recovered Solvent Sink",
+      "description": "This unit operation serves as the final sink for the Recovered Solvent stream, which consists of the organic solvent that has been separated and purified for reuse in the extraction process. The recovered solvent is essential for maintaining the efficiency of the overall process by minimizing waste and reducing the need for fresh solvent inputs. This sink ensures that the organic solvent is properly stored and ready for reintegration into the system, thereby enhancing sustainability and cost-effectiveness.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Recovered Solvent"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "carbon dioxide sink": {
+      "unit_operation_id": "carbon dioxide sink",
+      "name": "Carbon Dioxide Sink",
+      "description": "This unit operation serves as a sink for the carbon dioxide produced during the aerobic fermentation process. The fermentation of sugars into 3-Hydroxypropionic Acid by the bacterial strain generates carbon dioxide as a byproduct. This sink is designed to efficiently capture and manage the carbon dioxide, preventing its release into the atmosphere and allowing for potential utilization or safe disposal.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Carbon Dioxide"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw lignocellulosic biomass feedstock consisting of cellulose, hemicellulose, lignin, and ash.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Dilute Acid Solution": {
+      "name": "Dilute Acid Solution",
+      "stream_id": "dilute acid solution",
+      "description": "A dilute acid solution used to catalyze the breakdown of hemicellulose and disrupt lignin.",
+      "stream_type": "core",
+      "source": "dilute acid solution source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Sulfuric Acid": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "The biomass after pretreatment, with hemicellulose partially solubilized and lignin structure disrupted.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Solubilized Hemicellulose": 0,
+        "Lignin Residue": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes to hydrolyze cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A liquid stream rich in fermentable sugars, primarily glucose and xylose, resulting from enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin Residue": 0
+      }
+    },
+    "Nutrient Solution": {
+      "name": "Nutrient Solution",
+      "stream_id": "nutrient solution",
+      "description": "A solution providing essential nutrients and minerals for bacterial growth and metabolism.",
+      "stream_type": "core",
+      "source": "nutrient solution source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Nitrogen Source": 0,
+        "Phosphates": 0,
+        "Trace Minerals": 0
+      }
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "stream_id": "oxygen",
+      "description": "Oxygen supplied to maintain aerobic conditions necessary for the bacterial fermentation process.",
+      "stream_type": "core",
+      "source": "oxygen supply",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "The product of fermentation, containing 3-Hydroxypropionic Acid, unconverted sugars, and biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_clarification",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxypropionic Acid": 0,
+        "Residual Sugars": 0,
+        "Biomass": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A liquid stream with reduced solid content, containing 3-HP and residual sugars.",
+      "stream_type": "core",
+      "source": "broth_clarification",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxypropionic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Separated biomass and cell debris, which can be further processed or disposed of.",
+      "stream_type": "core",
+      "source": "broth_clarification",
+      "target": "solid waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Biomass": 0
+      }
+    },
+    "Organic Solvent": {
+      "name": "Organic Solvent",
+      "stream_id": "organic solvent",
+      "description": "A solvent used to selectively extract 3-HP from the aqueous phase.",
+      "stream_type": "core",
+      "source": "organic solvent source",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Organic Solvent": 0
+      }
+    },
+    "3-HP Rich Solvent": {
+      "name": "3-HP Rich Solvent",
+      "stream_id": "3_hp rich solvent",
+      "description": "The organic phase containing extracted 3-HP, ready for solvent evaporation.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "solvent_recovery_and_product_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxypropionic Acid": 0,
+        "Organic Solvent": 0
+      }
+    },
+    "Aqueous Raffinate": {
+      "name": "Aqueous Raffinate",
+      "stream_id": "aqueous raffinate",
+      "description": "The aqueous phase with reduced 3-HP content, containing residual sugars.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "aqueous raffinate sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0
+      }
+    },
+    "Purified 3-Hydroxypropionic Acid": {
+      "name": "Purified 3-Hydroxypropionic Acid",
+      "stream_id": "purified 3_hydroxypropionic acid",
+      "description": "High-purity 3-HP suitable for industrial applications, with a purity of over 95%.",
+      "stream_type": "core",
+      "source": "solvent_recovery_and_product_purification",
+      "target": "purified 3_hydroxypropionic acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxypropionic Acid": 0
+      }
+    },
+    "Recovered Solvent": {
+      "name": "Recovered Solvent",
+      "stream_id": "recovered solvent",
+      "description": "The organic solvent recovered for reuse in the extraction process.",
+      "stream_type": "core",
+      "source": "solvent_recovery_and_product_purification",
+      "target": "recovered solvent sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Organic Solvent": 0
+      }
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "stream_id": "carbon dioxide",
+      "description": "During the aerobic fermentation process, the conversion of sugars to 3-Hydroxypropionic Acid by the bacterial strain produces carbon dioxide as a byproduct, which is typically released from the bioreactor.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "carbon dioxide sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Sulfuric Acid": {
+      "name": "Sulfuric Acid",
+      "properties": {}
+    },
+    "Solubilized Hemicellulose": {
+      "name": "Solubilized Hemicellulose",
+      "properties": {}
+    },
+    "Lignin Residue": {
+      "name": "Lignin Residue",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Nitrogen Source": {
+      "name": "Nitrogen Source",
+      "properties": {}
+    },
+    "Phosphates": {
+      "name": "Phosphates",
+      "properties": {}
+    },
+    "Trace Minerals": {
+      "name": "Trace Minerals",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    },
+    "3-Hydroxypropionic Acid": {
+      "name": "3-Hydroxypropionic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Biomass": {
+      "name": "Biomass",
+      "properties": {}
+    },
+    "Organic Solvent": {
+      "name": "Organic Solvent",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    }
+  }
+}

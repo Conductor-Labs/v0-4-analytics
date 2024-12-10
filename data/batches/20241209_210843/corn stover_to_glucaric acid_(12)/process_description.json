@@ -1,0 +1,316 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Lignocellulosic biomass consisting of cellulose (35-40%), hemicellulose (25-30%), and lignin (15-20%)",
+      "key_specs": "Typically requires pretreatment to break down lignocellulosic structure for fermentation. Moisture content should be controlled to optimize fermentation efficiency.",
+      "volumetric_scale": "100,000 tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Glucaric Acid",
+      "composition": "C6H10O8",
+      "key_specs": "Purity > 95% for commercial applications. Typically produced as a crystalline solid or concentrated solution. Must meet food-grade or industrial-grade specifications depending on the application.",
+      "volumetric_scale": "10,000 tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover, making the cellulose and hemicellulose more accessible for enzymatic hydrolysis. This step typically involves mechanical, chemical, or a combination of both methods to disrupt the lignin structure and increase the surface area of the biomass. A common approach is the use of dilute acid or alkaline solutions to solubilize hemicellulose and partially hydrolyze the cellulose. The pretreatment process is crucial for enhancing the efficiency of subsequent enzymatic hydrolysis and fermentation steps.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Pretreatment Chemicals"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The moisture content of the biomass is controlled to optimize the pretreatment efficiency."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Specific enzymes, such as cellulases and hemicellulases, are added to catalyze the breakdown of polysaccharides into monosaccharides. This step is critical for maximizing sugar yield, which directly impacts the overall efficiency of the fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzymes"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The enzymatic hydrolysis is typically conducted at controlled temperatures to optimize enzyme activity."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the conversion of fermentable sugars into glucaric acid using yeast or fungal cultures under aerobic conditions. The microorganisms metabolize the sugars and produce glucaric acid as a metabolic byproduct. This step is crucial for the bioconversion process and requires careful control of aeration, nutrient supply, and microbial growth conditions to maximize product yield.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Aerobic conditions are maintained to support the growth and metabolic activity of the microorganisms."
+    },
+    "separation_and_purification": {
+      "unit_operation_id": "separation_and_purification",
+      "name": "Separation and Purification",
+      "description": "This unit operation involves the separation of glucaric acid from the fermentation broth. Techniques such as filtration, centrifugation, and crystallization are employed to isolate and purify glucaric acid to meet commercial specifications. The goal is to achieve a purity level greater than 95%, suitable for food-grade or industrial-grade applications. This step is critical for ensuring product quality and marketability.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Purified Glucaric Acid",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Crystallization is often used to achieve the desired purity and solid form of glucaric acid."
+    },
+    "drying": {
+      "unit_operation_id": "drying",
+      "name": "Drying",
+      "description": "The drying unit operation is employed to remove moisture from the purified glucaric acid, resulting in a stable crystalline product. This step is essential for producing a solid form of glucaric acid that is easy to handle, store, and transport. The drying process must be carefully controlled to prevent thermal degradation of the product.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Purified Glucaric Acid"
+      ],
+      "output_streams": [
+        "Dried Glucaric Acid"
+      ],
+      "parameters": {},
+      "additional_info": "The drying process may involve techniques such as spray drying or vacuum drying to achieve the desired moisture content."
+    },
+    "packaging": {
+      "unit_operation_id": "packaging",
+      "name": "Packaging",
+      "description": "The final unit operation involves packaging the dried glucaric acid into suitable containers for distribution and sale. Packaging must protect the product from moisture and contamination while ensuring compliance with regulatory standards for food-grade or industrial-grade products. This step is crucial for maintaining product quality during storage and transportation.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Dried Glucaric Acid"
+      ],
+      "output_streams": [
+        "Packaged Glucaric Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging materials and methods are selected based on the intended market and distribution requirements."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The untreated lignocellulosic biomass feedstock.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Chemicals such as dilute acid or alkali used to facilitate the breakdown of biomass.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Sulfuric Acid": 0,
+        "Sodium Hydroxide": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, ready for enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Enzymes": {
+      "name": "Enzymes",
+      "stream_id": "enzymes",
+      "description": "Enzymes used to catalyze the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution containing fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Yeast or fungal cultures used for the fermentation process.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "The liquid mixture containing glucaric acid and residual sugars post-fermentation.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "separation_and_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucaric Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Purified Glucaric Acid": {
+      "name": "Purified Glucaric Acid",
+      "stream_id": "purified glucaric acid",
+      "description": "High-purity glucaric acid suitable for commercial applications.",
+      "stream_type": "core",
+      "source": "separation_and_purification",
+      "target": "drying",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucaric Acid": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "Residual materials and impurities removed during the purification process.",
+      "stream_type": "core",
+      "source": "separation_and_purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Dried Glucaric Acid": {
+      "name": "Dried Glucaric Acid",
+      "stream_id": "dried glucaric acid",
+      "description": "Crystalline glucaric acid with reduced moisture content, ready for packaging and distribution.",
+      "stream_type": "core",
+      "source": "drying",
+      "target": "packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucaric Acid": 0
+      }
+    },
+    "Packaged Glucaric Acid": {
+      "name": "Packaged Glucaric Acid",
+      "stream_id": "packaged glucaric acid",
+      "description": "Glucaric acid packaged for commercial distribution.",
+      "stream_type": "core",
+      "source": "packaging",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Glucaric Acid": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Sulfuric Acid": {
+      "name": "Sulfuric Acid",
+      "properties": {}
+    },
+    "Sodium Hydroxide": {
+      "name": "Sodium Hydroxide",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "Glucaric Acid": {
+      "name": "Glucaric Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    }
+  }
+}

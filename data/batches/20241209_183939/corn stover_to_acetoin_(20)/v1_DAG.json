@@ -1,0 +1,564 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Lignocellulosic biomass primarily composed of cellulose (40-50%), hemicellulose (25-35%), and lignin (15-20%)",
+      "key_specs": "Moisture content typically around 10-15%, particle size after milling usually less than 2 mm",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Acetoin",
+      "composition": "C4H8O2, typically produced with a purity of 95% or higher for commercial applications",
+      "key_specs": "Colorless to pale yellow liquid, boiling point around 148\u00b0C, must meet food-grade or industrial-grade specifications depending on end-use",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The initial step involves preparing the corn stover feedstock for further processing. This includes drying the biomass to reduce moisture content to the desired level, typically around 10-15%, to ensure efficient downstream processing. The dried corn stover is then milled to achieve a particle size of less than 2 mm, which increases the surface area for subsequent enzymatic hydrolysis. This step is crucial for optimizing the conversion efficiency of the lignocellulosic biomass into fermentable sugars.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "The process of removing moisture from Raw Corn Stover to reduce its moisture content for subsequent processing steps.",
+            "component": "Water",
+            "extractionRate": 1.0
+          }
+        ]
+      },
+      "additional_info": "The milling process may involve hammer mills or knife mills, and the drying process can utilize rotary dryers or belt dryers."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down the lignin structure and enhance the accessibility of cellulose and hemicellulose. This is typically achieved using a dilute acid or alkaline solution, which helps to solubilize hemicellulose and disrupt the lignin matrix. The pretreatment is a critical step that significantly impacts the efficiency of enzymatic hydrolysis and overall sugar yield.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Pretreatment Chemicals"
+      ],
+      "output_streams": [
+        "Pretreated Biomass",
+        "Reaction Byproducts"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Hemicellulose is dissolved into simpler sugars such as xylose by means of dilute acid treatment.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Solubilized Hemicellulose",
+            "conversionRate": 0.65
+          },
+          {
+            "description": "The lignin matrix is disrupted, leading to the degradation of some lignin into smaller components.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Lignin Residues",
+            "conversionRate": 0.8
+          },
+          {
+            "description": "Certain portions of lignin are converted into various degraded lignin products.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Degraded Lignin Products",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The choice of pretreatment chemicals and conditions is crucial for maximizing sugar release while minimizing the formation of inhibitory by-products."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this step, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Specific enzymes, such as cellulases and hemicellulases, are added to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose. This process is essential for producing the sugar-rich solution required for fermentation.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzymes"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulases break down cellulose into glucose through hydrolytic reactions, producing glucose as a fermentable sugar.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.9
+          },
+          {
+            "description": "Hemicellulases convert solubilized hemicellulose into xylose, with some minor products from hemicellulose degradation.",
+            "inputComponent": "Solubilized Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.8
+          }
+        ]
+      },
+      "additional_info": "The enzymatic hydrolysis is typically conducted in stirred tank reactors to ensure thorough mixing and contact between enzymes and biomass."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolysate is then subjected to anaerobic fermentation using specific bacterial strains capable of converting sugars into acetoin. The fermentation process is carried out in bioreactors under controlled anaerobic conditions to optimize the production of acetoin. This step is critical as it directly influences the yield and purity of the target product.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolysate",
+        "Bacterial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Biological conversion of glucose in the hydrolysate into acetoin through anaerobic fermentation mediated by specific bacterial strains.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Acetoin",
+            "conversionRate": 0.4
+          },
+          {
+            "description": "Biological conversion of xylose in the hydrolysate into acetoin through anaerobic fermentation mediated by specific bacterial strains.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Acetoin",
+            "conversionRate": 0.3
+          }
+        ]
+      },
+      "additional_info": "The choice of bacterial strain and fermentation conditions such as pH and temperature are crucial for maximizing acetoin production."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "Following fermentation, the acetoin is separated from the fermentation broth. This is typically achieved through a series of separation processes such as centrifugation to remove microbial biomass, followed by distillation to purify acetoin. The goal is to achieve a high-purity acetoin product suitable for commercial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Acetoin",
+        "Waste Stream",
+        "Water"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of Acetoin from fermentation broth through centrifugation and distillation.",
+            "component": "Acetoin",
+            "extractionRate": 0.85
+          },
+          {
+            "description": "Separation of microbial biomass from the liquid fraction using centrifugation.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of water during the distillation process.",
+            "component": "Water",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Remaining residual sugars not transferred into the Crude Acetoin stream.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.15
+          }
+        ]
+      },
+      "additional_info": "Distillation is a key step in achieving the desired acetoin purity, and the design of the distillation column is critical for process efficiency."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude acetoin undergoes further purification to meet the required specifications for commercial use. This may involve additional distillation steps or other purification techniques such as crystallization or solvent extraction to remove impurities and achieve the target purity level of 95% or higher.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Acetoin"
+      ],
+      "output_streams": [
+        "Purified Acetoin"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of water from crude acetoin using distillation, leveraging boiling point differences.",
+            "component": "Water",
+            "extractionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "The final product must meet food-grade or industrial-grade specifications, depending on its intended use."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the 'Raw Corn Stover' stream, which consists of corn stover collected directly from agricultural fields. The feedstock is characterized by its natural moisture content, typically ranging from 10-15%, and larger particle sizes before any milling or preparation processes. The stream contains key components such as cellulose, hemicellulose, lignin, and water, which are essential for subsequent processing steps in the production of acetoin.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment chemicals source": {
+      "unit_operation_id": "pretreatment chemicals source",
+      "name": "Pretreatment Chemicals Source",
+      "description": "This unit operation serves as a source for the Pretreatment Chemicals stream, which includes dilute acid and water. These chemical agents are essential for the pretreatment process, as they facilitate the breakdown of the lignocellulosic structure in biomass, making it more amenable to enzymatic hydrolysis. The unit operation ensures a consistent supply of these chemicals at the required specifications for effective pretreatment.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Pretreatment Chemicals"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme source": {
+      "unit_operation_id": "enzyme source",
+      "name": "Enzyme Source",
+      "description": "This unit operation serves as a source for the Enzymes stream, which includes biocatalysts such as cellulases and hemicellulases. These enzymes are crucial for the enzymatic hydrolysis process, where they facilitate the breakdown of cellulose and hemicellulose into fermentable sugars. The Enzyme Source ensures a consistent supply of these biocatalysts, enabling efficient conversion of pretreated biomass into hydrolysate, which is essential for subsequent fermentation processes.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzymes"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial culture source": {
+      "unit_operation_id": "bacterial culture source",
+      "name": "Bacterial Culture Source",
+      "description": "This unit operation serves as a source for the Bacterial Culture stream, which consists of microorganisms essential for the anaerobic fermentation process. The Bacterial Culture is critical for converting sugars from the Hydrolysate into Acetoin during fermentation. The source ensures a consistent supply of viable bacteria to maintain optimal fermentation conditions, contributing to the efficiency and yield of the overall process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Bacterial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as the sink for the Waste Stream, which includes by-products and waste materials generated from the product recovery process. The Waste Stream primarily consists of microbial biomass and residual sugars that are not utilized in the fermentation process. This sink is designed to handle the disposal or further processing of these materials, ensuring that waste is managed efficiently and in compliance with environmental regulations.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified acetoin sink": {
+      "unit_operation_id": "purified acetoin sink",
+      "name": "Purified Acetoin Sink",
+      "description": "This unit operation serves as the final sink for the purified acetoin stream, which is a high-purity liquid product suitable for various commercial applications. The purified acetoin is collected here after undergoing the purification process, ensuring that it meets the required specifications for food-grade or industrial-grade use. This sink is designed to handle a volumetric flow of 10,000 metric tons per year, providing a reliable endpoint for the acetoin production process.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Acetoin"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "reaction byproducts sink": {
+      "unit_operation_id": "reaction byproducts sink",
+      "name": "Reaction Byproducts Sink",
+      "description": "This unit operation serves as a sink for the Reaction Byproducts generated during the pretreatment process. It collects and manages byproducts that include degraded compounds from lignin and hemicellulose, as well as acid solubles and salts resulting from the pretreatment chemicals. Proper handling and disposal of these byproducts are critical to ensure environmental compliance and process efficiency.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Reaction Byproducts"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "water sink": {
+      "unit_operation_id": "water sink",
+      "name": "Water Sink",
+      "description": "This unit operation serves as the sink for the water stream generated during the distillation process of acetoin purification. It collects and manages the water removed from the crude acetoin, ensuring proper disposal or potential reuse in the process. The stream consists solely of water, which is a byproduct of the purification process.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Water"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Corn stover as collected from the field, containing natural moisture and large particle sizes.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Water": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Dried and milled corn stover with reduced moisture content and smaller particle size.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Chemical agents used to facilitate the breakdown of lignocellulosic structure.",
+      "stream_type": "core",
+      "source": "pretreatment chemicals source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Dilute Acid": 0,
+        "Water": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Corn stover with disrupted lignin structure and solubilized hemicellulose.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Solubilized Hemicellulose": 0,
+        "Lignin Residues": 0
+      }
+    },
+    "Enzymes": {
+      "name": "Enzymes",
+      "stream_id": "enzymes",
+      "description": "Biocatalysts that facilitate the breakdown of cellulose and hemicellulose into sugars.",
+      "stream_type": "core",
+      "source": "enzyme source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulases": 0,
+        "Hemicellulases": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A sugar-rich solution containing fermentable sugars derived from the biomass.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin Residues": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "Microorganisms used for the anaerobic fermentation process.",
+      "stream_type": "core",
+      "source": "bacterial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacteria": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing acetoin, unconverted sugars, and microbial biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Acetoin": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Crude Acetoin": {
+      "name": "Crude Acetoin",
+      "stream_id": "crude acetoin",
+      "description": "Partially purified acetoin stream after initial separation steps.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Acetoin": 0,
+        "Water": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "By-products and waste materials from the separation process.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Purified Acetoin": {
+      "name": "Purified Acetoin",
+      "stream_id": "purified acetoin",
+      "description": "High-purity acetoin suitable for commercial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "purified acetoin sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Acetoin": 0
+      }
+    },
+    "Reaction Byproducts": {
+      "name": "Reaction Byproducts",
+      "stream_id": "reaction byproducts",
+      "description": "Byproducts generated during the pretreatment process, which may include degraded compounds from lignin, hemicellulose, and possible side reactions involving the pretreatment chemicals.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "reaction byproducts sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Degraded Lignin Products": 0,
+        "Degraded Hemicellulose Products": 0,
+        "Acid Solubles": 0,
+        "Salts": 0
+      }
+    },
+    "Water": {
+      "name": "Water",
+      "stream_id": "water",
+      "description": "This stream would account for the water removed during the distillation process used to purify acetoin.",
+      "stream_type": "aux",
+      "source": "product_recovery",
+      "target": "water sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Dilute Acid": {
+      "name": "Dilute Acid",
+      "properties": {}
+    },
+    "Solubilized Hemicellulose": {
+      "name": "Solubilized Hemicellulose",
+      "properties": {}
+    },
+    "Lignin Residues": {
+      "name": "Lignin Residues",
+      "properties": {}
+    },
+    "Cellulases": {
+      "name": "Cellulases",
+      "properties": {}
+    },
+    "Hemicellulases": {
+      "name": "Hemicellulases",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Bacteria": {
+      "name": "Bacteria",
+      "properties": {}
+    },
+    "Acetoin": {
+      "name": "Acetoin",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Degraded Lignin Products": {
+      "name": "Degraded Lignin Products",
+      "properties": {}
+    },
+    "Degraded Hemicellulose Products": {
+      "name": "Degraded Hemicellulose Products",
+      "properties": {}
+    },
+    "Acid Solubles": {
+      "name": "Acid Solubles",
+      "properties": {}
+    },
+    "Salts": {
+      "name": "Salts",
+      "properties": {}
+    }
+  }
+}

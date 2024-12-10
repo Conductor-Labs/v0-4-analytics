@@ -1,0 +1,124 @@
+[2024-12-09 21:08:43] INFO - Starting run 20 for user prompt: Process that converts corn stover to Sorbitol via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:43] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Sorbitol via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:44] INFO - Starting process description agent.
+[2024-12-09 21:08:44] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Sorbitol via yeast or fungal aerobic fermentation
+[2024-12-09 21:08:49] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Typically requires pre-treatment to break down lignocellulosic structure for fermentation. Low-cost agricultural residue.","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Sorbitol","composition":"C6H14O6","key_specs":"Commercial grade sorbitol with a purity of 95-99%. Used in food, cosmetic, and pharmaceutical industries.","volumetric_scale":"50,000 metric tons per year"}]}
+[2024-12-09 21:08:49] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 21:08:49] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Typically requires pre-treatment to break down lignocellulosic structure for fermentation. Low-cost agricultural residue.', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Sorbitol', 'composition': 'C6H14O6', 'key_specs': 'Commercial grade sorbitol with a purity of 95-99%. Used in food, cosmetic, and pharmaceutical industries.', 'volumetric_scale': '50,000 metric tons per year'}]}
+[2024-12-09 21:09:09] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pre-treatment","order":1,"description":"The pre-treatment unit operation is crucial for breaking down the lignocellulosic structure of corn stover to make the cellulose and hemicellulose accessible for enzymatic hydrolysis. This process typically involves mechanical size reduction followed by chemical or steam explosion methods to disrupt the lignin structure and increase the surface area of the biomass. The pre-treatment step is essential to enhance the efficiency of subsequent enzymatic hydrolysis and fermentation processes.","input_streams":[{"name":"Raw Corn Stover","description":"The raw agricultural residue feedstock consisting of cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pre-treated Biomass","description":"The biomass after undergoing pre-treatment, with a more accessible cellulose and hemicellulose structure.","components":["Cellulose","Hemicellulose","Lignin"]}],"additional_info":"Pre-treatment methods can include acid or alkaline treatments, and the choice affects downstream processing efficiency."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pre-treated biomass is subjected to enzymatic hydrolysis. Enzymes such as cellulases and hemicellulases are added to break down cellulose and hemicellulose into simple sugars, primarily glucose and xylose. This step is critical for converting the biomass into fermentable sugars, which are necessary for the subsequent fermentation process.","input_streams":[{"name":"Pre-treated Biomass","description":"Biomass with disrupted lignocellulosic structure, ready for enzymatic action.","components":["Cellulose","Hemicellulose","Lignin"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in simple sugars, primarily glucose and xylose, resulting from the enzymatic breakdown of cellulose and hemicellulose.","components":["Glucose","Xylose","Lignin"]}],"additional_info":"The efficiency of hydrolysis depends on enzyme activity, which can be influenced by factors such as temperature and pH."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the conversion of sugars into sorbitol using yeast or fungal cultures under aerobic conditions. The microorganisms metabolize the sugars, producing sorbitol as a primary product. This step is crucial for the bioconversion of sugars into the target product, sorbitol.","input_streams":[{"name":"Sugar Solution","description":"A solution containing fermentable sugars derived from enzymatic hydrolysis.","components":["Glucose","Xylose"]},{"name":"Microbial Culture","description":"Yeast or fungal cultures capable of converting sugars to sorbitol under aerobic conditions.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing sorbitol, unconverted sugars, microbial biomass, and other metabolites.","components":["Sorbitol","Glucose","Xylose","Biomass"]}],"additional_info":"Aerobic conditions are maintained to optimize the conversion efficiency of sugars to sorbitol."},{"name":"Separation","order":4,"description":"In this unit operation, the fermentation broth is subjected to separation processes to isolate sorbitol from other components. Techniques such as centrifugation, filtration, and solvent extraction may be employed to remove microbial biomass and other impurities, concentrating the sorbitol in the process.","input_streams":[{"name":"Fermentation Broth","description":"The output from fermentation containing sorbitol and other components.","components":["Sorbitol","Glucose","Xylose","Biomass"]}],"output_streams":[{"name":"Crude Sorbitol Solution","description":"A solution enriched in sorbitol, with reduced levels of impurities and biomass.","components":["Sorbitol","Glucose","Xylose"]},{"name":"Biomass Waste","description":"Separated microbial biomass and other solid residues.","components":["Biomass"]}],"additional_info":"The choice of separation technique impacts the purity and yield of sorbitol."},{"name":"Purification","order":5,"description":"The purification unit operation further refines the crude sorbitol solution to achieve commercial-grade purity. This may involve additional filtration, ion exchange, or crystallization processes to remove residual sugars and impurities, ensuring the final product meets industry standards for purity.","input_streams":[{"name":"Crude Sorbitol Solution","description":"A sorbitol-rich solution requiring further purification to meet commercial specifications.","components":["Sorbitol","Glucose","Xylose"]}],"output_streams":[{"name":"Purified Sorbitol","description":"High-purity sorbitol suitable for commercial use in various industries.","components":["Sorbitol"]},{"name":"Impurity Stream","description":"A stream containing removed impurities and residual sugars.","components":["Glucose","Xylose"]}],"additional_info":"Achieving high purity is critical for the product's acceptance in food, cosmetic, and pharmaceutical applications."},{"name":"Drying and Packaging","order":6,"description":"In this final unit operation, the purified sorbitol is dried to the desired moisture content and packaged for distribution. This step ensures the product's stability and shelf-life, making it ready for commercial sale.","input_streams":[{"name":"Purified Sorbitol","description":"Sorbitol with high purity, ready for final processing and packaging.","components":["Sorbitol"]}],"output_streams":[{"name":"Final Sorbitol Product","description":"Commercial-grade sorbitol packaged and ready for distribution.","components":["Sorbitol"]}],"additional_info":"Packaging is designed to protect the product from moisture and contamination during storage and transport."}]}
+[2024-12-09 21:09:09] DEBUG - Process flow loaded successfully.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pre-treatment'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Pre-treated Biomass' for output of unit operation 'Pre-treatment'.
+[2024-12-09 21:09:09] DEBUG - Added unit operation 'Pre-treatment' with ID 'pre-treatment' to process flow.
+[2024-12-09 21:09:09] DEBUG - Reusing existing stream 'Pre-treated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:09] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 21:09:09] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 21:09:09] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 21:09:09] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Separation'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Crude Sorbitol Solution' for output of unit operation 'Separation'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Biomass Waste' for output of unit operation 'Separation'.
+[2024-12-09 21:09:09] DEBUG - Added unit operation 'Separation' with ID 'separation' to process flow.
+[2024-12-09 21:09:09] DEBUG - Reusing existing stream 'Crude Sorbitol Solution' for input of unit operation 'Purification'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Purified Sorbitol' for output of unit operation 'Purification'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Impurity Stream' for output of unit operation 'Purification'.
+[2024-12-09 21:09:09] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 21:09:09] DEBUG - Reusing existing stream 'Purified Sorbitol' for input of unit operation 'Drying and Packaging'.
+[2024-12-09 21:09:09] DEBUG - Created new stream 'Final Sorbitol Product' for output of unit operation 'Drying and Packaging'.
+[2024-12-09 21:09:09] DEBUG - Added unit operation 'Drying and Packaging' with ID 'drying_and_packaging' to process flow.
+[2024-12-09 21:09:09] INFO - Process flow built successfully.
+[2024-12-09 21:09:09] INFO - Starting v1 DAG agent.
+[2024-12-09 21:09:09] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:09] DEBUG - Adding edge from 'pre-treatment' to 'enzymatic_hydrolysis' via stream 'Pre-treated Biomass'.
+[2024-12-09 21:09:09] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:09] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 21:09:09] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:09] DEBUG - Adding edge from 'fermentation' to 'separation' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:09] DEBUG - Adding edge from 'separation' to 'purification' via stream 'Crude Sorbitol Solution'.
+[2024-12-09 21:09:09] DEBUG - Stream 'Biomass Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:09] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified Sorbitol'.
+[2024-12-09 21:09:09] DEBUG - Stream 'Impurity Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:09] DEBUG - Stream 'Final Sorbitol Product' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:09] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:16] DEBUG - Added auxiliary input stream 'Water or Steam' to unit operation 'Pre-treatment'
+  - Description: Water or steam is typically required in the pre-treatment process, especially if methods like steam explosion or chemical pre-treatment (e.g., dilute acid) are used. It aids in the swelling of biomass, facilitating the disruption of lignin and improving cellulose accessibility.
+  - Components: Water
+[2024-12-09 21:09:16] DEBUG - Added auxiliary input stream 'Chemical Agents' to unit operation 'Pre-treatment'
+  - Description: Depending on the specific pre-treatment method used, chemical agents such as acids (e.g., sulfuric acid) or alkalis (e.g., sodium hydroxide) may be required to aid in the breakdown of lignocellulosic structure.
+  - Components: Sulfuric Acid, Sodium Hydroxide
+[2024-12-09 21:09:16] DEBUG - Added auxiliary output stream 'Waste Stream' to unit operation 'Pre-treatment'
+  - Description: The pre-treatment process may generate a waste stream containing removed lignin, degraded hemicellulose, and other impurities that are separated from the pre-treated biomass.
+  - Components: Lignin, Degraded Hemicellulose, Impurities
+[2024-12-09 21:09:16] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 21:09:16] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 21:09:17] DEBUG - No missing streams identified for unit operation: Separation
+[2024-12-09 21:09:17] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 21:09:18] DEBUG - No missing streams identified for unit operation: Drying and Packaging
+[2024-12-09 21:09:19] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 21:09:20] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 21:09:22] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 21:09:23] DEBUG - Added sink unit operation 'Biomass Waste Sink' with ID 'biomass waste sink' for stream 'Biomass Waste'
+[2024-12-09 21:09:25] DEBUG - Added sink unit operation 'Impurity Stream Sink' with ID 'impurity stream sink' for stream 'Impurity Stream'
+[2024-12-09 21:09:26] DEBUG - Added sink unit operation 'Final Sorbitol Product Sink' with ID 'final sorbitol product sink' for stream 'Final Sorbitol Product'
+[2024-12-09 21:09:28] DEBUG - Added source unit operation 'Water or Steam Source' with ID 'water or steam source' for stream 'Water or Steam'
+[2024-12-09 21:09:29] DEBUG - Added source unit operation 'Chemical Agents Source' with ID 'chemical agents source' for stream 'Chemical Agents'
+[2024-12-09 21:09:31] DEBUG - Added sink unit operation 'Waste Stream Sink' with ID 'waste stream sink' for stream 'Waste Stream'
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'raw corn stover source' to 'pre-treatment' via stream 'Raw Corn Stover'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'pre-treatment' to 'enzymatic_hydrolysis' via stream 'Pre-treated Biomass'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'fermentation' to 'separation' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'separation' to 'purification' via stream 'Crude Sorbitol Solution'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'separation' to 'biomass waste sink' via stream 'Biomass Waste'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified Sorbitol'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'purification' to 'impurity stream sink' via stream 'Impurity Stream'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'drying_and_packaging' to 'final sorbitol product sink' via stream 'Final Sorbitol Product'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'water or steam source' to 'pre-treatment' via stream 'Water or Steam'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'chemical agents source' to 'pre-treatment' via stream 'Chemical Agents'.
+[2024-12-09 21:09:31] DEBUG - Adding edge from 'pre-treatment' to 'waste stream sink' via stream 'Waste Stream'.
+[2024-12-09 21:09:31] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:31] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 21:09:41] DEBUG - Processing separation unit operation: Pre-treatment
+Separation operations:
+  1. Separating Cellulose (extraction rate: 90.0%)
+  2. Separating Hemicellulose (extraction rate: 70.0%)
+  3. Separating Lignin (extraction rate: 10.0%)
+  4. Separating Degraded Hemicellulose (extraction rate: 30.0%)
+[2024-12-09 21:09:49] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 80.0%)
+  2. Converting Hemicellulose → Xylose (rate: 60.0%)
+  3. Converting Hemicellulose → Glucose (rate: 10.0%)
+[2024-12-09 21:09:57] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Sorbitol (rate: 75.0%)
+  2. Converting Glucose → Glucose (rate: 25.0%)
+  3. Converting Xylose → Sorbitol (rate: 50.0%)
+  4. Converting Xylose → Xylose (rate: 50.0%)
+[2024-12-09 21:10:06] DEBUG - Processing separation unit operation: Separation
+Separation operations:
+  1. Separating Sorbitol (extraction rate: 95.0%)
+  2. Separating Glucose (extraction rate: 20.0%)
+  3. Separating Xylose (extraction rate: 20.0%)
+  4. Separating Biomass (extraction rate: 5.0%)
+[2024-12-09 21:10:14] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Sorbitol (extraction rate: 95.0%)
+  2. Separating Glucose (extraction rate: 0.0%)
+  3. Separating Xylose (extraction rate: 0.0%)
+[2024-12-09 21:10:19] DEBUG - No conversion or separation parameters identified for unit operation: Drying and Packaging
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Biomass Waste Sink' of type 'sink'
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Impurity Stream Sink' of type 'sink'
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Final Sorbitol Product Sink' of type 'sink'
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Water or Steam Source' of type 'source'
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Chemical Agents Source' of type 'source'
+[2024-12-09 21:10:19] DEBUG - Skipping operational parameters for unit operation 'Waste Stream Sink' of type 'sink'
+[2024-12-09 21:10:19] INFO - v1 DAG agent processing complete.
+[2024-12-09 21:10:19] INFO - Workflow completed successfully.

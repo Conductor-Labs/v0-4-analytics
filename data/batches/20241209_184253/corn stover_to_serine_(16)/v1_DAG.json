@@ -1,0 +1,510 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants. It is typically collected post-harvest and requires pretreatment to enhance enzymatic accessibility.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Serine",
+      "composition": "Amino acid with the formula C3H7NO3",
+      "key_specs": "Serine is produced with a purity of 98% suitable for pharmaceutical and food-grade applications. It is typically required to meet specific enantiomeric purity standards for commercial use.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to enhance the enzymatic accessibility of the corn stover. This involves mechanical and chemical processes that break down the complex structure of lignocellulosic biomass. Initially, the corn stover is subjected to size reduction through milling to increase the surface area. Following this, a chemical pretreatment, such as dilute acid hydrolysis, is employed to disrupt the lignin structure and solubilize hemicellulose, making cellulose more accessible for subsequent enzymatic hydrolysis.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Dilute Acid Solution"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Hemicellulose is solubilized into simpler sugars or oligomers through dilute acid treatment during the pretreatment of corn stover.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Solubilized Hemicellulose",
+            "conversionRate": 0.25
+          },
+          {
+            "description": "Mechanical size reduction of corn stover to increase surface area for chemical action.",
+            "inputComponent": "Corn Stover",
+            "outputComponent": "Milled Corn Stover",
+            "conversionRate": 1.0
+          }
+        ]
+      },
+      "additional_info": "The pretreatment process is crucial for increasing the efficiency of enzymatic hydrolysis. The choice of acid and its concentration are critical design considerations."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Specific cellulase and hemicellulase enzymes are added to the biomass slurry, catalyzing the breakdown of polysaccharides into simple sugars such as glucose and xylose. This process is carried out in a bioreactor, where conditions are optimized for enzyme activity and stability.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Cocktail"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of cellulose to glucose via enzymatic hydrolysis using cellulase enzymes.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.9
+          },
+          {
+            "description": "Conversion of solubilized hemicellulose to xylose via enzymatic hydrolysis using hemicellulase enzymes.",
+            "inputComponent": "Solubilized Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.85
+          }
+        ]
+      },
+      "additional_info": "The efficiency of enzymatic hydrolysis is a key factor in the overall process yield. Enzyme loading and reaction time are important parameters."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the conversion of fermentable sugars into serine using genetically engineered microorganisms. The sugar solution is inoculated with a microbial culture capable of producing serine. The fermentation process is conducted in a controlled bioreactor, where conditions such as temperature, pH, and aeration are maintained to optimize microbial growth and product formation.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Biochemical conversion of glucose into serine by genetically engineered microorganisms in the fermentation process.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Serine",
+            "conversionRate": 0.6
+          },
+          {
+            "description": "Biochemical conversion of xylose into serine by genetically engineered microorganisms in the fermentation process.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Serine",
+            "conversionRate": 0.4
+          }
+        ]
+      },
+      "additional_info": "The choice of microorganism and genetic modifications are critical for achieving high serine yields. Fermentation kinetics and oxygen transfer rates are important design considerations."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of microbial cells from the fermentation broth. The broth is subjected to centrifugation, which exploits the density difference between the cells and the liquid medium to achieve separation. The result is a clarified supernatant containing dissolved serine and a cell-rich pellet.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Supernatant",
+        "Cell Pellet"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of microbial biomass from fermentation broth using centrifugation based on density differences.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "Efficient cell separation is essential to minimize serine losses and prepare the broth for downstream purification."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation focuses on isolating serine from the clarified supernatant. This involves a series of chromatographic and filtration techniques to achieve the desired purity and enantiomeric excess. Ion exchange chromatography is typically employed to separate serine based on its charge properties, followed by crystallization to achieve high purity.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Supernatant"
+      ],
+      "output_streams": [
+        "Purified Serine",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of serine using ion exchange chromatography to exploit charge differences, followed by crystallization for further purification.",
+            "component": "Serine",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Residual sugars are left in the waste stream after the ion exchange chromatography and crystallization process.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "Achieving high purity and enantiomeric excess is critical for commercial applications. The choice of purification techniques impacts the overall process cost."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "In the final unit operation, the purified serine is dried to remove any remaining moisture and then packaged for distribution. The drying process typically involves spray drying or freeze drying, depending on the desired product form. The dried serine is then packaged in moisture-proof containers to ensure stability during storage and transport.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Serine"
+      ],
+      "output_streams": [
+        "Packaged Serine"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging is designed to protect the product from moisture and contamination. The choice of drying method affects the physical properties of the final product."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is an agricultural residue collected post-harvest from maize plants. The stream consists of a mixture of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). It is essential for the subsequent pretreatment process to enhance enzymatic accessibility for bio-conversion into valuable products.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "dilute acid solution source": {
+      "unit_operation_id": "dilute acid solution source",
+      "name": "Dilute Acid Solution Source",
+      "description": "This unit operation serves as a source for the Dilute Acid Solution, which is crucial in the pretreatment stage of the process. The solution is composed of water and sulfuric acid, and it is used to facilitate the breakdown of the lignocellulosic structure of corn stover. By providing the necessary acidity, it enhances the accessibility of cellulose and hemicellulose for subsequent enzymatic hydrolysis. This source is designed to deliver a consistent and controlled flow of dilute acid solution to meet the operational requirements of the pretreatment unit.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Dilute Acid Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme cocktail source": {
+      "unit_operation_id": "enzyme cocktail source",
+      "name": "Enzyme Cocktail Source",
+      "description": "This unit operation serves as the source for the Enzyme Cocktail, which is a specialized mixture of cellulase and hemicellulase enzymes. These enzymes are critical for the enzymatic hydrolysis of pretreated biomass, facilitating the breakdown of complex carbohydrates into fermentable sugars. The Enzyme Cocktail is produced in a controlled environment to ensure optimal activity and stability of the enzymes, and it is delivered to the enzymatic hydrolysis unit operation at an industrial scale.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Cocktail"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "microbial culture source": {
+      "unit_operation_id": "microbial culture source",
+      "name": "Microbial Culture Source",
+      "description": "This unit operation serves as a source for the Microbial Culture stream, which consists of genetically engineered microorganisms specifically designed to convert sugars into serine. The microbial cells are cultivated under controlled conditions to ensure optimal growth and metabolic activity, enabling efficient fermentation processes in subsequent unit operations.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Microbial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "cell pellet sink": {
+      "unit_operation_id": "cell pellet sink",
+      "name": "Cell Pellet Sink",
+      "description": "This unit operation serves as a sink for the Cell Pellet stream, which consists of concentrated microbial biomass separated from the fermentation broth. The Cell Pellet is typically disposed of or processed further, depending on the operational goals, such as recovery of valuable components or energy generation. This sink ensures that the microbial biomass is effectively managed and accounted for in the overall process flow.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Cell Pellet"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as the final sink for the Waste Stream generated during the purification of Serine. It collects the residual sugars and impurities that are not suitable for further processing or use. The Waste Stream Sink is critical for ensuring that the process meets environmental regulations and minimizes waste disposal issues. Proper management of this stream is essential for the overall sustainability of the production process.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "packaged serine sink": {
+      "unit_operation_id": "packaged serine sink",
+      "name": "Packaged Serine Sink",
+      "description": "This unit operation serves as the final sink for the Packaged Serine stream, which consists of dried and packaged serine ready for distribution. It signifies the completion of the production process, ensuring that the product meets the required specifications for storage and transportation to end-users in pharmaceutical and food-grade applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Packaged Serine"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Collected post-harvest, consisting of leaves, stalks, and cobs of maize plants.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Dilute Acid Solution": {
+      "name": "Dilute Acid Solution",
+      "stream_id": "dilute acid solution",
+      "description": "A solution used to facilitate the breakdown of lignocellulosic structure.",
+      "stream_type": "core",
+      "source": "dilute acid solution source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Sulfuric Acid": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Corn stover with enhanced enzymatic accessibility, primarily consisting of cellulose and solubilized hemicellulose.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Solubilized Hemicellulose": 0,
+        "Lignin Residue": 0
+      }
+    },
+    "Enzyme Cocktail": {
+      "name": "Enzyme Cocktail",
+      "stream_id": "enzyme cocktail",
+      "description": "A mixture of cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme cocktail source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution containing fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Residual Lignin": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Genetically engineered microorganisms capable of converting sugars to serine.",
+      "stream_type": "core",
+      "source": "microbial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Cells": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing serine, unconverted sugars, microbial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Serine": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Clarified Supernatant": {
+      "name": "Clarified Supernatant",
+      "stream_id": "clarified supernatant",
+      "description": "Liquid containing dissolved serine and residual sugars, free of microbial biomass.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Serine": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Cell Pellet": {
+      "name": "Cell Pellet",
+      "stream_id": "cell pellet",
+      "description": "Concentrated microbial biomass separated from the broth.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "cell pellet sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0
+      }
+    },
+    "Purified Serine": {
+      "name": "Purified Serine",
+      "stream_id": "purified serine",
+      "description": "High-purity serine suitable for pharmaceutical and food-grade applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Serine": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "Residual impurities and by-products removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Packaged Serine": {
+      "name": "Packaged Serine",
+      "stream_id": "packaged serine",
+      "description": "Dried and packaged serine ready for distribution.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": "packaged serine sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Serine": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Sulfuric Acid": {
+      "name": "Sulfuric Acid",
+      "properties": {}
+    },
+    "Solubilized Hemicellulose": {
+      "name": "Solubilized Hemicellulose",
+      "properties": {}
+    },
+    "Lignin Residue": {
+      "name": "Lignin Residue",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Lignin": {
+      "name": "Residual Lignin",
+      "properties": {}
+    },
+    "Microbial Cells": {
+      "name": "Microbial Cells",
+      "properties": {}
+    },
+    "Serine": {
+      "name": "Serine",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    }
+  }
+}

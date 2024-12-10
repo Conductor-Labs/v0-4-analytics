@@ -1,0 +1,358 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Primarily composed of cellulose (40-50%), hemicellulose (25-30%), and lignin (15-20%)",
+      "key_specs": "Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants after the grain is harvested. It requires pretreatment to break down lignocellulosic structure for fermentation.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Lactic Acid",
+      "composition": "Typically greater than 90% lactic acid with minor impurities such as water and residual sugars",
+      "key_specs": "Commercial-grade lactic acid with a purity of 90-95%, suitable for use in food, pharmaceutical, or biodegradable polymer applications. Optical purity (L-lactic acid) may be specified depending on the application.",
+      "volumetric_scale": "50,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover, which is primarily composed of cellulose, hemicellulose, and lignin, is collected and prepared for processing. This involves size reduction through mechanical milling to increase the surface area, facilitating more effective pretreatment. The prepared feedstock is then transported to the pretreatment unit.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Size reduction is crucial for enhancing the efficiency of subsequent pretreatment and enzymatic hydrolysis."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down the lignocellulosic structure, making the cellulose and hemicellulose more accessible for enzymatic hydrolysis. This can be achieved through chemical methods such as dilute acid or alkaline treatment, which helps in removing lignin and hemicellulose, partially hydrolyzing them into simpler sugars.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method affects the downstream process efficiency and cost. Acid pretreatment is common but requires neutralization before fermentation."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "The pretreated biomass is subjected to enzymatic hydrolysis, where specific enzymes are added to convert cellulose and hemicellulose into fermentable sugars such as glucose and xylose. This step is crucial for maximizing sugar yield, which directly impacts the efficiency of the fermentation process.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzymes"
+      ],
+      "output_streams": [
+        "Hydrolyzed Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Enzyme loading and reaction time are critical parameters that influence the cost and efficiency of this step."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolyzed biomass is transferred to a fermentation unit where yeast or fungal strains are used to anaerobically convert the sugars into lactic acid. This biological conversion is facilitated under controlled anaerobic conditions to optimize lactic acid yield and minimize by-product formation.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolyzed Biomass",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of microorganism and fermentation conditions (e.g., temperature, pH) are crucial for achieving high lactic acid yield and purity."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "The fermentation broth undergoes a series of separation processes to recover lactic acid. This typically involves filtration to remove microbial biomass, followed by purification steps such as distillation or membrane separation to concentrate and purify the lactic acid to the desired commercial-grade specification.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Lactic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "The recovery and purification process must be designed to minimize energy consumption and maximize product yield."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude lactic acid is further purified to achieve the desired purity level (90-95%) suitable for commercial applications. This may involve additional distillation or crystallization steps to remove residual impurities and achieve the required optical purity if specified.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Lactic Acid"
+      ],
+      "output_streams": [
+        "Purified Lactic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Achieving high optical purity may require specific purification techniques depending on the end-use application."
+    },
+    "waste_management": {
+      "unit_operation_id": "waste_management",
+      "name": "Waste Management",
+      "description": "The process generates various waste streams, including lignin-rich residues, spent microbial biomass, and process water. These waste streams are managed through appropriate treatment methods such as anaerobic digestion, composting, or incineration to minimize environmental impact and recover energy where possible.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Process Waste Streams"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Waste management strategies are crucial for sustainability and compliance with environmental regulations."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Collected agricultural residue consisting of leaves, stalks, and cobs of maize plants.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Mechanically milled corn stover with increased surface area for pretreatment.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Corn stover with reduced lignin content and partially hydrolyzed cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulose": 0,
+        "hemicellulose": 0,
+        "lignin": 0,
+        "sugars": 0
+      }
+    },
+    "Enzymes": {
+      "name": "Enzymes",
+      "stream_id": "enzymes",
+      "description": "Enzymes such as cellulases and hemicellulases used to hydrolyze cellulose and hemicellulose into sugars.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "cellulase": 0,
+        "hemicellulase": 0
+      }
+    },
+    "Hydrolyzed Biomass": {
+      "name": "Hydrolyzed Biomass",
+      "stream_id": "hydrolyzed biomass",
+      "description": "Biomass with cellulose and hemicellulose converted into fermentable sugars.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "glucose": 0,
+        "xylose": 0,
+        "lignin": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Yeast or fungal strains capable of converting sugars to lactic acid.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "yeast": 0,
+        "fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "Mixture containing lactic acid, unconverted sugars, microbial biomass, and other by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "lactic acid": 0,
+        "unconverted sugars": 0,
+        "microbial biomass": 0
+      }
+    },
+    "Crude Lactic Acid": {
+      "name": "Crude Lactic Acid",
+      "stream_id": "crude lactic acid",
+      "description": "Partially purified lactic acid with some impurities.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "lactic acid": 0,
+        "water": 0,
+        "residual sugars": 0
+      }
+    },
+    "Purified Lactic Acid": {
+      "name": "Purified Lactic Acid",
+      "stream_id": "purified lactic acid",
+      "description": "High-purity lactic acid suitable for commercial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "lactic acid": 0
+      }
+    },
+    "Process Waste Streams": {
+      "name": "Process Waste Streams",
+      "stream_id": "process waste streams",
+      "description": "Waste materials generated from various stages of the process.",
+      "stream_type": "core",
+      "source": null,
+      "target": "waste_management",
+      "flow_rate": 0.0,
+      "components": {
+        "lignin": 0,
+        "microbial biomass": 0,
+        "process water": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Processed waste materials with reduced environmental impact.",
+      "stream_type": "core",
+      "source": "waste_management",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "treated lignin": 0,
+        "biogas": 0,
+        "treated water": 0
+      }
+    }
+  },
+  "components": {
+    "cellulose": {
+      "name": "cellulose",
+      "properties": {}
+    },
+    "hemicellulose": {
+      "name": "hemicellulose",
+      "properties": {}
+    },
+    "lignin": {
+      "name": "lignin",
+      "properties": {}
+    },
+    "sugars": {
+      "name": "sugars",
+      "properties": {}
+    },
+    "cellulase": {
+      "name": "cellulase",
+      "properties": {}
+    },
+    "hemicellulase": {
+      "name": "hemicellulase",
+      "properties": {}
+    },
+    "glucose": {
+      "name": "glucose",
+      "properties": {}
+    },
+    "xylose": {
+      "name": "xylose",
+      "properties": {}
+    },
+    "yeast": {
+      "name": "yeast",
+      "properties": {}
+    },
+    "fungi": {
+      "name": "fungi",
+      "properties": {}
+    },
+    "lactic acid": {
+      "name": "lactic acid",
+      "properties": {}
+    },
+    "unconverted sugars": {
+      "name": "unconverted sugars",
+      "properties": {}
+    },
+    "microbial biomass": {
+      "name": "microbial biomass",
+      "properties": {}
+    },
+    "water": {
+      "name": "water",
+      "properties": {}
+    },
+    "residual sugars": {
+      "name": "residual sugars",
+      "properties": {}
+    },
+    "process water": {
+      "name": "process water",
+      "properties": {}
+    },
+    "treated lignin": {
+      "name": "treated lignin",
+      "properties": {}
+    },
+    "biogas": {
+      "name": "biogas",
+      "properties": {}
+    },
+    "treated water": {
+      "name": "treated water",
+      "properties": {}
+    }
+  }
+}

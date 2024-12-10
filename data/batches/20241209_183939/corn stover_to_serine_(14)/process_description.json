@@ -1,0 +1,316 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-45%), Hemicellulose (25-35%), Lignin (15-20%), Ash (5-10%)",
+      "key_specs": "Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars. Moisture content should be controlled to optimize fermentation efficiency.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Serine",
+      "composition": "L-Serine, with potential impurities from fermentation broth",
+      "key_specs": "Purity > 95% for commercial applications, typically requires downstream purification processes such as crystallization or chromatography to achieve desired purity levels.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is essential for breaking down the complex lignocellulosic structure of corn stover to release fermentable sugars. This involves mechanical, chemical, or enzymatic methods to disrupt the cellulose and hemicellulose matrix, making the sugars accessible for subsequent fermentation. The pretreatment process may include the use of dilute acid or steam explosion to enhance the hydrolysis of hemicellulose and cellulose into monomeric sugars.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The moisture content of the corn stover should be controlled to optimize the efficiency of the pretreatment process."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, enzymes are added to the pretreated biomass to further hydrolyze cellulose and hemicellulose into simple sugars such as glucose and xylose. This step is crucial for maximizing sugar yield, which directly impacts the efficiency of the fermentation process. Enzymes such as cellulases and hemicellulases are typically used.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {},
+      "additional_info": "The enzymatic hydrolysis is typically conducted at controlled temperatures and pH to optimize enzyme activity."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the conversion of sugars in the hydrolysate into L-Serine using yeast or fungal strains under aerobic conditions. This biological process requires careful control of oxygen supply, temperature, and pH to maximize serine production while minimizing by-products.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolysate",
+        "Yeast/Fungal Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Aeration and agitation are critical to maintain aerobic conditions and ensure efficient fermentation."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of microbial cells from the fermentation broth to facilitate downstream purification of L-Serine. Techniques such as centrifugation or filtration are commonly employed to achieve this separation.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Cell-Free Broth",
+        "Microbial Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The separated microbial biomass can be further processed or disposed of according to environmental regulations."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to isolate and purify L-Serine from the cell-free broth. This may involve multiple steps such as crystallization, chromatography, or membrane filtration to achieve the desired purity level of greater than 95% for commercial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Cell-Free Broth"
+      ],
+      "output_streams": [
+        "Purified L-Serine",
+        "Impurities Stream"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of purification method depends on the specific impurities present and the required purity level of the final product."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "In this final unit operation, the purified L-Serine is dried to remove any residual moisture and then packaged for distribution. Drying can be achieved through techniques such as spray drying or freeze drying, depending on the desired physical properties of the final product.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified L-Serine"
+      ],
+      "output_streams": [
+        "Dried L-Serine"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging must ensure the stability and integrity of L-Serine during storage and transport."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Lignocellulosic biomass feedstock requiring pretreatment to release fermentable sugars.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with cellulose and hemicellulose partially hydrolyzed into fermentable sugars.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes for hydrolysis.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, ready for fermentation.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Yeast/Fungal Culture": {
+      "name": "Yeast/Fungal Culture",
+      "stream_id": "yeast/fungal culture",
+      "description": "Microbial culture capable of converting sugars to L-Serine under aerobic conditions.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing L-Serine, residual sugars, microbial biomass, and other fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "L-Serine": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Cell-Free Broth": {
+      "name": "Cell-Free Broth",
+      "stream_id": "cell_free broth",
+      "description": "The liquid fraction of the fermentation broth, primarily containing L-Serine and residual sugars, with microbial cells removed.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "L-Serine": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "stream_id": "microbial biomass",
+      "description": "Separated microbial cells from the fermentation broth.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0
+      }
+    },
+    "Purified L-Serine": {
+      "name": "Purified L-Serine",
+      "stream_id": "purified l_serine",
+      "description": "High-purity L-Serine suitable for commercial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "L-Serine": 0
+      }
+    },
+    "Impurities Stream": {
+      "name": "Impurities Stream",
+      "stream_id": "impurities stream",
+      "description": "A stream containing residual sugars and other impurities separated from L-Serine.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0
+      }
+    },
+    "Dried L-Serine": {
+      "name": "Dried L-Serine",
+      "stream_id": "dried l_serine",
+      "description": "Final product of L-Serine in a dry form, ready for packaging and distribution.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "L-Serine": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "L-Serine": {
+      "name": "L-Serine",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    }
+  }
+}

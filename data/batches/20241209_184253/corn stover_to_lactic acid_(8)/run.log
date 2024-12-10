@@ -1,0 +1,116 @@
+[2024-12-09 18:42:53] INFO - Starting run 8 for user prompt: Process that converts corn stover to Lactic acid via yeast or fungal aerobic Fermentation
+[2024-12-09 18:42:53] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Lactic acid via yeast or fungal aerobic Fermentation
+[2024-12-09 18:42:53] INFO - Starting process description agent.
+[2024-12-09 18:42:53] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Lactic acid via yeast or fungal aerobic Fermentation
+[2024-12-09 18:42:59] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Biomass feedstock with high cellulose and hemicellulose content, suitable for enzymatic hydrolysis and fermentation processes","volumetric_scale":"1000 metric tons per day"}],"products":[{"name":"Lactic Acid","composition":"Lactic acid (C3H6O3), typically >90% purity for industrial use","key_specs":"Industrial grade lactic acid with high purity, suitable for polymer production and other chemical syntheses","volumetric_scale":"500 metric tons per day"}]}
+[2024-12-09 18:42:59] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:42:59] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Biomass feedstock with high cellulose and hemicellulose content, suitable for enzymatic hydrolysis and fermentation processes', 'volumetric_scale': '1000 metric tons per day'}], 'products': [{'name': 'Lactic Acid', 'composition': 'Lactic acid (C3H6O3), typically >90% purity for industrial use', 'key_specs': 'Industrial grade lactic acid with high purity, suitable for polymer production and other chemical syntheses', 'volumetric_scale': '500 metric tons per day'}]}
+[2024-12-09 18:43:19] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation involves the mechanical and chemical processing of corn stover to enhance its digestibility and accessibility for subsequent enzymatic hydrolysis. This step typically involves size reduction through milling to increase surface area, followed by a chemical treatment, such as dilute acid hydrolysis, to break down the lignin structure and partially hydrolyze hemicellulose. The goal is to make cellulose and hemicellulose more accessible for enzymes in the next step.","input_streams":[{"name":"Raw Corn Stover","description":"Unprocessed corn stover feedstock consisting of cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Corn stover that has been mechanically and chemically treated to enhance enzymatic accessibility.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"additional_info":"Dilute acid is commonly used for chemical pretreatment, which requires careful handling and neutralization post-treatment."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis. Enzymes such as cellulases and hemicellulases are added to the biomass to break down cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This process is crucial for converting the solid biomass into a liquid sugar solution suitable for fermentation.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass that has undergone pretreatment to enhance enzymatic accessibility.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A liquid stream containing fermentable sugars derived from cellulose and hemicellulose.","components":["Glucose","Xylose","Lignin","Ash"]}],"additional_info":"The efficiency of hydrolysis depends on enzyme activity, which can be influenced by factors such as temperature and pH."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the conversion of sugars into lactic acid using a yeast or fungal culture under aerobic conditions. The microorganisms metabolize the sugars, producing lactic acid as the primary metabolic product. This step is critical for the transformation of biomass-derived sugars into the target product, lactic acid.","input_streams":[{"name":"Sugar Solution","description":"A liquid stream containing fermentable sugars ready for conversion to lactic acid.","components":["Glucose","Xylose"]},{"name":"Microbial Culture","description":"A culture of yeast or fungi capable of fermenting sugars to lactic acid.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing lactic acid, unconverted sugars, microbial biomass, and other metabolites.","components":["Lactic Acid","Microbial Biomass","Residual Sugars"]}],"additional_info":"Aerobic conditions are maintained to optimize the growth and metabolic activity of the microorganisms."},{"name":"Separation","order":4,"description":"This unit operation involves the separation of lactic acid from the fermentation broth. Techniques such as centrifugation, filtration, and liquid-liquid extraction are employed to remove microbial biomass and other impurities, concentrating the lactic acid in the process. This step is essential for obtaining a product stream with high lactic acid purity.","input_streams":[{"name":"Fermentation Broth","description":"A complex mixture from fermentation containing lactic acid and other components.","components":["Lactic Acid","Microbial Biomass","Residual Sugars"]}],"output_streams":[{"name":"Crude Lactic Acid Solution","description":"A concentrated solution of lactic acid with reduced impurities.","components":["Lactic Acid","Water"]},{"name":"Biomass Waste","description":"Solid waste stream containing microbial biomass and other insolubles.","components":["Microbial Biomass"]}],"additional_info":"The choice of separation technique affects the purity and yield of lactic acid."},{"name":"Purification","order":5,"description":"The purification unit operation further refines the crude lactic acid solution to achieve industrial-grade purity. Techniques such as distillation, ion exchange, or membrane filtration may be used to remove remaining impurities and water, resulting in a high-purity lactic acid product.","input_streams":[{"name":"Crude Lactic Acid Solution","description":"A solution containing concentrated lactic acid with some impurities.","components":["Lactic Acid","Water"]}],"output_streams":[{"name":"Purified Lactic Acid","description":"High-purity lactic acid suitable for industrial applications.","components":["Lactic Acid"]},{"name":"Waste Water","description":"A stream containing water and minor impurities removed during purification.","components":["Water"]}],"additional_info":"The purification process is critical for meeting the purity specifications required for industrial applications."},{"name":"Waste Treatment","order":6,"description":"This unit operation handles the treatment and disposal of waste streams generated throughout the process, including biomass waste and wastewater. Biological treatment, chemical neutralization, and solid waste management strategies are employed to minimize environmental impact and comply with regulatory standards.","input_streams":[{"name":"Biomass Waste","description":"Solid waste stream from the separation process.","components":["Microbial Biomass"]},{"name":"Waste Water","description":"Water stream containing impurities from the purification process.","components":["Water"]}],"output_streams":[{"name":"Treated Waste","description":"Environmentally safe waste streams ready for disposal or recycling.","components":["Treated Biomass","Treated Water"]}],"additional_info":"Effective waste management is crucial for sustainable and environmentally friendly operation of the process."}]}
+[2024-12-09 18:43:19] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:43:19] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:43:19] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:43:19] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:43:19] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:43:19] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:43:19] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Separation'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Crude Lactic Acid Solution' for output of unit operation 'Separation'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Biomass Waste' for output of unit operation 'Separation'.
+[2024-12-09 18:43:19] DEBUG - Added unit operation 'Separation' with ID 'separation' to process flow.
+[2024-12-09 18:43:19] DEBUG - Reusing existing stream 'Crude Lactic Acid Solution' for input of unit operation 'Purification'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Purified Lactic Acid' for output of unit operation 'Purification'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Waste Water' for output of unit operation 'Purification'.
+[2024-12-09 18:43:19] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:43:19] DEBUG - Reusing existing stream 'Biomass Waste' for input of unit operation 'Waste Treatment'.
+[2024-12-09 18:43:19] DEBUG - Reusing existing stream 'Waste Water' for input of unit operation 'Waste Treatment'.
+[2024-12-09 18:43:19] DEBUG - Created new stream 'Treated Waste' for output of unit operation 'Waste Treatment'.
+[2024-12-09 18:43:19] DEBUG - Added unit operation 'Waste Treatment' with ID 'waste_treatment' to process flow.
+[2024-12-09 18:43:19] INFO - Process flow built successfully.
+[2024-12-09 18:43:19] INFO - Starting v1 DAG agent.
+[2024-12-09 18:43:19] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:19] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:43:19] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:19] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:43:19] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:19] DEBUG - Adding edge from 'fermentation' to 'separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:43:19] DEBUG - Adding edge from 'separation' to 'purification' via stream 'Crude Lactic Acid Solution'.
+[2024-12-09 18:43:19] DEBUG - Adding edge from 'separation' to 'waste_treatment' via stream 'Biomass Waste'.
+[2024-12-09 18:43:19] DEBUG - Stream 'Purified Lactic Acid' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:19] DEBUG - Adding edge from 'purification' to 'waste_treatment' via stream 'Waste Water'.
+[2024-12-09 18:43:19] DEBUG - Stream 'Treated Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:43:19] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:43:27] DEBUG - Added auxiliary input stream 'Acid Solution' to unit operation 'Pretreatment'
+  - Description: The acid solution is used in the chemical treatment phase of the pretreatment process. It is typically a dilute acid, such as sulfuric acid, used to break down the lignin structure and partially hydrolyze hemicellulose in the biomass.
+  - Components: Dilute Sulfuric Acid, Water
+[2024-12-09 18:43:27] DEBUG - Added auxiliary input stream 'Neutralization Agent' to unit operation 'Pretreatment'
+  - Description: A neutralization agent is often required after the acid hydrolysis step to adjust the pH of the pretreated biomass to a level suitable for enzymatic hydrolysis.
+  - Components: Calcium Hydroxide, Water
+[2024-12-09 18:43:27] DEBUG - Added auxiliary output stream 'Acid Hydrolysis Byproducts' to unit operation 'Pretreatment'
+  - Description: Byproducts generated from the acid hydrolysis step, which may include soluble lignin fragments, furfural, and acetic acid.
+  - Components: Soluble Lignin, Furfural, Acetic Acid
+[2024-12-09 18:43:28] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:43:28] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 18:43:28] DEBUG - No missing streams identified for unit operation: Separation
+[2024-12-09 18:43:29] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:43:29] DEBUG - No missing streams identified for unit operation: Waste Treatment
+[2024-12-09 18:43:31] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:43:32] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:43:33] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 18:43:34] DEBUG - Added sink unit operation 'Purified Lactic Acid Sink' with ID 'purified lactic acid sink' for stream 'Purified Lactic Acid'
+[2024-12-09 18:43:35] DEBUG - Added sink unit operation 'Treated Waste Sink' with ID 'treated waste sink' for stream 'Treated Waste'
+[2024-12-09 18:43:37] DEBUG - Added source unit operation 'Acid Solution Source' with ID 'acid solution source' for stream 'Acid Solution'
+[2024-12-09 18:43:38] DEBUG - Added source unit operation 'Neutralization Agent Source' with ID 'neutralization agent source' for stream 'Neutralization Agent'
+[2024-12-09 18:43:41] DEBUG - Added sink unit operation 'Acid Hydrolysis Byproducts Sink' with ID 'acid hydrolysis byproducts sink' for stream 'Acid Hydrolysis Byproducts'
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'fermentation' to 'separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'separation' to 'purification' via stream 'Crude Lactic Acid Solution'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'separation' to 'waste_treatment' via stream 'Biomass Waste'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'purification' to 'purified lactic acid sink' via stream 'Purified Lactic Acid'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'purification' to 'waste_treatment' via stream 'Waste Water'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'waste_treatment' to 'treated waste sink' via stream 'Treated Waste'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'acid solution source' to 'pretreatment' via stream 'Acid Solution'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'neutralization agent source' to 'pretreatment' via stream 'Neutralization Agent'.
+[2024-12-09 18:43:41] DEBUG - Adding edge from 'pretreatment' to 'acid hydrolysis byproducts sink' via stream 'Acid Hydrolysis Byproducts'.
+[2024-12-09 18:43:41] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:43:41] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:43:51] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Hemicellulose → Furfural (rate: 15.0%)
+  2. Converting Hemicellulose → Acetic Acid (rate: 10.0%)
+  3. Converting Lignin → Soluble Lignin (rate: 25.0%)
+[2024-12-09 18:43:57] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 80.0%)
+  2. Converting Hemicellulose → Xylose (rate: 70.0%)
+[2024-12-09 18:44:05] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Lactic Acid (rate: 75.0%)
+  2. Converting Xylose → Lactic Acid (rate: 60.0%)
+[2024-12-09 18:44:11] DEBUG - Processing separation unit operation: Separation
+Separation operations:
+  1. Separating Microbial Biomass (extraction rate: 5.0%)
+  2. Separating Lactic Acid (extraction rate: 90.0%)
+[2024-12-09 18:44:18] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Lactic Acid (extraction rate: 95.0%)
+  2. Separating Water (extraction rate: 5.0%)
+[2024-12-09 18:44:22] DEBUG - No conversion or separation parameters identified for unit operation: Waste Treatment
+[2024-12-09 18:44:22] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:44:22] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:44:22] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 18:44:22] DEBUG - Skipping operational parameters for unit operation 'Purified Lactic Acid Sink' of type 'sink'
+[2024-12-09 18:44:22] DEBUG - Skipping operational parameters for unit operation 'Treated Waste Sink' of type 'sink'
+[2024-12-09 18:44:22] DEBUG - Skipping operational parameters for unit operation 'Acid Solution Source' of type 'source'
+[2024-12-09 18:44:22] DEBUG - Skipping operational parameters for unit operation 'Neutralization Agent Source' of type 'source'
+[2024-12-09 18:44:22] DEBUG - Skipping operational parameters for unit operation 'Acid Hydrolysis Byproducts Sink' of type 'sink'
+[2024-12-09 18:44:22] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:44:22] INFO - Workflow completed successfully.

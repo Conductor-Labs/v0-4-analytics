@@ -1,0 +1,479 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Propionic Acid",
+      "composition": "Propionic acid (C3H6O2) with trace impurities",
+      "key_specs": "Industrial grade, typically >99% purity, suitable for use as a preservative and in the production of cellulose acetate propionate",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation involves the mechanical and chemical processing of corn stover to make cellulose and hemicellulose accessible for enzymatic hydrolysis. This step typically involves size reduction and the application of dilute acid or steam explosion to disrupt the lignin structure and partially hydrolyze hemicellulose, releasing fermentable sugars.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Partial hydrolysis of hemicellulose during the pretreatment process, yielding soluble sugars.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Soluble Sugars",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "Disruption of lignin structure, enhancing accessibility of cellulose and hemicellulose for enzymatic hydrolysis.",
+            "inputComponent": "Corn Stover",
+            "outputComponent": "Pretreated Biomass",
+            "conversionRate": 0.5
+          }
+        ]
+      },
+      "additional_info": "The pretreatment process is critical for maximizing sugar yield in subsequent steps and often requires optimization to balance sugar release and inhibitor formation."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis where cellulases and hemicellulases break down cellulose and remaining hemicellulose into fermentable sugars such as glucose and xylose. This step is crucial for converting the solid biomass into a liquid stream rich in sugars.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Enzymatic hydrolysis of cellulose into glucose using cellulase enzyme",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Enzymatic hydrolysis of hemicellulose into xylose using hemicellulase enzyme",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.75
+          }
+        ]
+      },
+      "additional_info": "The efficiency of enzymatic hydrolysis is influenced by enzyme loading, reaction time, and the presence of inhibitors."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the anaerobic conversion of sugars in the hydrolysate to propionic acid by propionibacteria. This biological process occurs in bioreactors where conditions are optimized for bacterial growth and acid production.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolysate",
+        "Bacterial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of glucose into propionic acid by propionibacteria in an anaerobic fermentation process.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Propionic Acid",
+            "conversionRate": 0.6
+          },
+          {
+            "description": "Conversion of xylose into propionic acid by propionibacteria in an anaerobic fermentation process.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Propionic Acid",
+            "conversionRate": 0.5
+          }
+        ]
+      },
+      "additional_info": "Maintaining anaerobic conditions and controlling nutrient supply are essential for maximizing propionic acid yield."
+    },
+    "broth_separation": {
+      "unit_operation_id": "broth_separation",
+      "name": "Broth Separation",
+      "description": "This unit operation involves separating the fermentation broth into a liquid phase rich in propionic acid and a solid phase containing bacterial biomass and residual solids. This is typically achieved through centrifugation or filtration.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Liquid Phase",
+        "Solid Phase"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of fermentation broth into liquid and solid phases using centrifugation or filtration processes.",
+            "component": "Propionic Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of fermentation broth into liquid and solid phases using centrifugation or filtration processes.",
+            "component": "Unconverted Sugars",
+            "extractionRate": 0.65
+          },
+          {
+            "description": "Separation of fermentation broth into liquid and solid phases using centrifugation or filtration processes.",
+            "component": "Bacterial Biomass",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "Efficient separation is crucial to minimize propionic acid loss and prepare the liquid phase for purification."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation focuses on refining the liquid phase to produce high-purity propionic acid. This typically involves distillation or solvent extraction to remove impurities and concentrate the acid.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Liquid Phase"
+      ],
+      "output_streams": [
+        "Purified Propionic Acid",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Purification of propionic acid from a liquid mixture using distillation or solvent extraction.",
+            "component": "Propionic Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Remaining unconverted sugars after purification process primarily sent to waste stream.",
+            "component": "Unconverted Sugars",
+            "extractionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The choice of purification method impacts the energy consumption and overall process economics."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "This unit operation involves treating the waste streams generated from the process, including solid residues and liquid effluents, to minimize environmental impact. Treatment methods may include anaerobic digestion, composting, or wastewater treatment.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Solid Phase",
+        "Waste Stream"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Effective waste treatment is essential for regulatory compliance and sustainability of the process."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is a lignocellulosic biomass composed of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). It provides the necessary feedstock for the pretreatment process, which is essential for breaking down the complex structure of the biomass into fermentable sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution stream, which contains cellulase and hemicellulase enzymes. The Enzyme Solution is critical for the enzymatic hydrolysis process, facilitating the breakdown of pretreated biomass into fermentable sugars. It is produced in a controlled environment to ensure optimal enzyme activity and stability, and is supplied at a volumetric scale suitable for the enzymatic hydrolysis unit operation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial culture source": {
+      "unit_operation_id": "bacterial culture source",
+      "name": "Bacterial Culture Source",
+      "description": "This unit operation serves as a source for the Bacterial Culture stream, which contains a culture of propionibacteria essential for the fermentation process. The Bacterial Culture is introduced into the fermentation unit operation to facilitate the conversion of hydrolysate into propionic acid. This stream is critical for ensuring the biological activity necessary for effective fermentation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Bacterial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified propionic acid sink": {
+      "unit_operation_id": "purified propionic acid sink",
+      "name": "Purified Propionic Acid Sink",
+      "description": "This unit operation serves as the final sink for the purified propionic acid produced from the purification process. It is designed to collect and store high-purity propionic acid, ensuring that the product meets industrial specifications for use in various applications, including as a preservative and in the production of cellulose acetate propionate. The sink is equipped to handle a volumetric scale of 10,000 metric tons per year, maintaining the integrity and quality of the product.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Propionic Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "treated waste sink": {
+      "unit_operation_id": "treated waste sink",
+      "name": "Treated Waste Sink",
+      "description": "This unit operation serves as the final sink for the treated waste stream, which consists of environmentally safe waste materials including treated biomass and treated effluents. The treated waste is suitable for disposal or can be utilized as a by-product in various applications, ensuring compliance with environmental regulations and contributing to sustainable waste management practices.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Treated Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Lignocellulosic biomass consisting of cellulose, hemicellulose, lignin, ash, and moisture.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignin structure and partially hydrolyzed hemicellulose, containing soluble sugars and solid cellulose.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Soluble Sugars": 0,
+        "Cellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A liquid stream containing fermentable sugars, primarily glucose and xylose, along with residual solids.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Residual Solids": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of propionibacteria used for fermentation.",
+      "stream_type": "core",
+      "source": "bacterial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Propionibacteria": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing propionic acid, unconverted sugars, bacterial biomass, and other fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Propionic Acid": 0,
+        "Unconverted Sugars": 0,
+        "Bacterial Biomass": 0
+      }
+    },
+    "Liquid Phase": {
+      "name": "Liquid Phase",
+      "stream_id": "liquid phase",
+      "description": "A liquid stream enriched with propionic acid and some unconverted sugars.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Propionic Acid": 0,
+        "Unconverted Sugars": 0
+      }
+    },
+    "Solid Phase": {
+      "name": "Solid Phase",
+      "stream_id": "solid phase",
+      "description": "A solid stream containing bacterial biomass and residual solids.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Biomass": 0,
+        "Residual Solids": 0
+      }
+    },
+    "Purified Propionic Acid": {
+      "name": "Purified Propionic Acid",
+      "stream_id": "purified propionic acid",
+      "description": "High-purity propionic acid suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "purified propionic acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Propionic Acid": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities and unconverted sugars removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Impurities": 0,
+        "Unconverted Sugars": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Environmentally safe waste suitable for disposal or use as a by-product.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": "treated waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Treated Biomass": 0,
+        "Treated Effluents": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Soluble Sugars": {
+      "name": "Soluble Sugars",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Solids": {
+      "name": "Residual Solids",
+      "properties": {}
+    },
+    "Propionibacteria": {
+      "name": "Propionibacteria",
+      "properties": {}
+    },
+    "Propionic Acid": {
+      "name": "Propionic Acid",
+      "properties": {}
+    },
+    "Unconverted Sugars": {
+      "name": "Unconverted Sugars",
+      "properties": {}
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Treated Biomass": {
+      "name": "Treated Biomass",
+      "properties": {}
+    },
+    "Treated Effluents": {
+      "name": "Treated Effluents",
+      "properties": {}
+    }
+  }
+}

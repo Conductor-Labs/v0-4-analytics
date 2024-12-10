@@ -1,0 +1,138 @@
+[2024-12-09 21:08:43] INFO - Starting run 19 for user prompt: Process that converts corn stover to Lysine via bacterial aerobic fermentation
+[2024-12-09 21:08:43] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Lysine via bacterial aerobic fermentation
+[2024-12-09 21:08:44] INFO - Starting process description agent.
+[2024-12-09 21:08:44] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Lysine via bacterial aerobic fermentation
+[2024-12-09 21:08:49] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Corn stover is a lignocellulosic biomass, typically requiring pretreatment to break down cellulose and hemicellulose into fermentable sugars.","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Lysine","composition":"C6H14N2O2","key_specs":"Feed-grade lysine with a purity of 98.5% or higher, typically produced in a crystalline form for animal nutrition applications.","volumetric_scale":"10,000 metric tons per year"}]}
+[2024-12-09 21:08:49] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 21:08:49] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Corn stover is a lignocellulosic biomass, typically requiring pretreatment to break down cellulose and hemicellulose into fermentable sugars.', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Lysine', 'composition': 'C6H14N2O2', 'key_specs': 'Feed-grade lysine with a purity of 98.5% or higher, typically produced in a crystalline form for animal nutrition applications.', 'volumetric_scale': '10,000 metric tons per year'}]}
+[2024-12-09 21:09:20] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover into simpler, more accessible components. This is typically achieved through a combination of mechanical, chemical, and/or thermal processes. The goal is to disrupt the lignin structure and increase the surface area of cellulose and hemicellulose, making them more amenable to enzymatic hydrolysis. Common methods include steam explosion, acid hydrolysis, or alkaline treatment. This step is crucial to enhance the efficiency of subsequent enzymatic hydrolysis and fermentation processes.","input_streams":[{"name":"Raw Corn Stover","description":"Lignocellulosic biomass feedstock consisting of cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure and exposed cellulose and hemicellulose.","components":["Cellulose","Hemicellulose","Lignin"]}],"additional_info":"The choice of pretreatment method can significantly impact the overall process economics and efficiency."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Enzymes such as cellulases and hemicellulases are added to the biomass slurry, catalyzing the breakdown of polysaccharides into monosaccharides. This step is critical for maximizing sugar yield, which directly influences the subsequent fermentation efficiency.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure and exposed cellulose and hemicellulose.","components":["Cellulose","Hemicellulose","Lignin"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars, primarily glucose and xylose, with residual lignin.","components":["Glucose","Xylose","Lignin"]}],"additional_info":"The enzymatic hydrolysis is typically conducted at specific temperature and pH conditions to optimize enzyme activity."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the conversion of fermentable sugars into lysine using a genetically engineered bacterial strain under aerobic conditions. The sugar solution is inoculated with the bacterial culture, and the fermentation is carried out in a bioreactor. Oxygen is supplied to maintain aerobic conditions, and nutrients are added to support bacterial growth and lysine production. The process is monitored to ensure optimal conditions for lysine synthesis.","input_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars, primarily glucose and xylose, with residual lignin.","components":["Glucose","Xylose","Lignin"]},{"name":"Bacterial Culture","description":"Genetically engineered bacteria capable of converting sugars to lysine under aerobic conditions.","components":["Bacteria"]},{"name":"Nutrient Solution","description":"A solution containing essential nutrients to support bacterial growth and lysine production.","components":["Nutrients"]},{"name":"Air","description":"Supplies oxygen to maintain aerobic conditions in the bioreactor.","components":["Oxygen"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing lysine, unconverted sugars, bacterial biomass, and residual lignin.","components":["Lysine","Unconverted Sugars","Bacterial Biomass","Lignin"]}],"additional_info":"The choice of bacterial strain and fermentation conditions are critical to achieving high lysine yields."},{"name":"Broth Separation","order":4,"description":"In this unit operation, the fermentation broth is subjected to solid-liquid separation to remove bacterial biomass and residual lignin from the liquid containing lysine and unconverted sugars. This is typically achieved using centrifugation or filtration techniques. The goal is to obtain a clear liquid stream that can be further processed to recover lysine.","input_streams":[{"name":"Fermentation Broth","description":"A mixture containing lysine, unconverted sugars, bacterial biomass, and residual lignin.","components":["Lysine","Unconverted Sugars","Bacterial Biomass","Lignin"]}],"output_streams":[{"name":"Clarified Broth","description":"A liquid stream containing lysine and unconverted sugars, free of solids.","components":["Lysine","Unconverted Sugars"]},{"name":"Solid Waste","description":"Solid residues including bacterial biomass and lignin.","components":["Bacterial Biomass","Lignin"]}],"additional_info":"The solid waste stream may be further processed for by-product recovery or disposed of according to environmental regulations."},{"name":"Lysine Recovery","order":5,"description":"The lysine recovery unit operation involves the extraction and purification of lysine from the clarified broth. This is typically achieved through crystallization or ion-exchange chromatography, where lysine is separated based on its chemical properties. The objective is to produce high-purity lysine suitable for feed-grade applications. The process parameters are optimized to maximize lysine yield and purity.","input_streams":[{"name":"Clarified Broth","description":"A liquid stream containing lysine and unconverted sugars, free of solids.","components":["Lysine","Unconverted Sugars"]}],"output_streams":[{"name":"Crude Lysine","description":"A concentrated lysine product with impurities that require further purification.","components":["Lysine"]},{"name":"Waste Stream","description":"A stream containing impurities and unconverted sugars.","components":["Unconverted Sugars"]}],"additional_info":"The choice of recovery method can influence the purity and yield of the final lysine product."},{"name":"Lysine Purification","order":6,"description":"In this final unit operation, the crude lysine is further purified to achieve the desired purity level of 98.5% or higher. This is often accomplished through recrystallization or additional ion-exchange steps. The purified lysine is then dried and converted into a crystalline form suitable for animal nutrition applications. The process ensures that the final product meets industry standards for feed-grade lysine.","input_streams":[{"name":"Crude Lysine","description":"A concentrated lysine product with impurities that require further purification.","components":["Lysine"]}],"output_streams":[{"name":"Purified Lysine","description":"High-purity lysine in crystalline form, suitable for feed-grade applications.","components":["Lysine"]}],"additional_info":"The final product is packaged and stored under conditions that prevent degradation and maintain quality."}]}
+[2024-12-09 21:09:20] DEBUG - Process flow loaded successfully.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Bacterial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Nutrient Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Air' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Broth Separation'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Clarified Broth' for output of unit operation 'Broth Separation'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Solid Waste' for output of unit operation 'Broth Separation'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Broth Separation' with ID 'broth_separation' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Clarified Broth' for input of unit operation 'Lysine Recovery'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Crude Lysine' for output of unit operation 'Lysine Recovery'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Waste Stream' for output of unit operation 'Lysine Recovery'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Lysine Recovery' with ID 'lysine_recovery' to process flow.
+[2024-12-09 21:09:20] DEBUG - Reusing existing stream 'Crude Lysine' for input of unit operation 'Lysine Purification'.
+[2024-12-09 21:09:20] DEBUG - Created new stream 'Purified Lysine' for output of unit operation 'Lysine Purification'.
+[2024-12-09 21:09:20] DEBUG - Added unit operation 'Lysine Purification' with ID 'lysine_purification' to process flow.
+[2024-12-09 21:09:20] INFO - Process flow built successfully.
+[2024-12-09 21:09:20] INFO - Starting v1 DAG agent.
+[2024-12-09 21:09:20] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 21:09:20] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 21:09:20] DEBUG - Stream 'Bacterial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Stream 'Nutrient Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Stream 'Air' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'broth_separation' to 'lysine_recovery' via stream 'Clarified Broth'.
+[2024-12-09 21:09:20] DEBUG - Stream 'Solid Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Adding edge from 'lysine_recovery' to 'lysine_purification' via stream 'Crude Lysine'.
+[2024-12-09 21:09:20] DEBUG - Stream 'Waste Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] DEBUG - Stream 'Purified Lysine' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:20] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:26] DEBUG - Added auxiliary input stream 'Water' to unit operation 'Pretreatment'
+  - Description: Water is often used in pretreatment processes to facilitate chemical reactions, assist in thermal processes, and help in the separation of components.
+  - Components: H2O
+[2024-12-09 21:09:26] DEBUG - Added auxiliary input stream 'Chemicals (e.g., Acid or Alkali)' to unit operation 'Pretreatment'
+  - Description: Depending on the pretreatment method used (e.g., acid hydrolysis or alkaline treatment), specific chemicals are required to break down the lignocellulosic structure effectively.
+  - Components: Acid or Alkali, depending on the method used
+[2024-12-09 21:09:26] DEBUG - Added auxiliary input stream 'Steam' to unit operation 'Pretreatment'
+  - Description: In processes like steam explosion, steam is a critical input to achieve the thermal breakdown of biomass structure.
+  - Components: H2O (in vapor form)
+[2024-12-09 21:09:26] DEBUG - Added auxiliary output stream 'Wastewater' to unit operation 'Pretreatment'
+  - Description: The pretreatment process can generate wastewater containing dissolved organics, lignin fragments, and any residual chemicals used in the treatment.
+  - Components: Dissolved organics, Lignin fragments, Residual chemicals
+[2024-12-09 21:09:26] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 21:09:27] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 21:09:27] DEBUG - No missing streams identified for unit operation: Broth Separation
+[2024-12-09 21:09:28] DEBUG - No missing streams identified for unit operation: Lysine Recovery
+[2024-12-09 21:09:28] DEBUG - No missing streams identified for unit operation: Lysine Purification
+[2024-12-09 21:09:30] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 21:09:32] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 21:09:33] DEBUG - Added source unit operation 'Bacterial Culture Source' with ID 'bacterial culture source' for stream 'Bacterial Culture'
+[2024-12-09 21:09:35] DEBUG - Added source unit operation 'Nutrient Solution Source' with ID 'nutrient solution source' for stream 'Nutrient Solution'
+[2024-12-09 21:09:36] DEBUG - Added source unit operation 'Air Supply' with ID 'air supply' for stream 'Air'
+[2024-12-09 21:09:37] DEBUG - Added sink unit operation 'Solid Waste Sink' with ID 'solid waste sink' for stream 'Solid Waste'
+[2024-12-09 21:09:39] DEBUG - Added sink unit operation 'Waste Stream Sink' with ID 'waste stream sink' for stream 'Waste Stream'
+[2024-12-09 21:09:40] DEBUG - Added sink unit operation 'Purified Lysine Sink' with ID 'purified lysine sink' for stream 'Purified Lysine'
+[2024-12-09 21:09:41] DEBUG - Added source unit operation 'Water Source' with ID 'water source' for stream 'Water'
+[2024-12-09 21:09:43] DEBUG - Added source unit operation 'Chemical Source' with ID 'chemical source' for stream 'Chemicals (e.g., Acid or Alkali)'
+[2024-12-09 21:09:44] DEBUG - Added source unit operation 'Steam Source' with ID 'steam source' for stream 'Steam'
+[2024-12-09 21:09:45] DEBUG - Added sink unit operation 'Wastewater Sink' with ID 'wastewater sink' for stream 'Wastewater'
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'bacterial culture source' to 'fermentation' via stream 'Bacterial Culture'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'nutrient solution source' to 'fermentation' via stream 'Nutrient Solution'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'air supply' to 'fermentation' via stream 'Air'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'broth_separation' to 'lysine_recovery' via stream 'Clarified Broth'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'broth_separation' to 'solid waste sink' via stream 'Solid Waste'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'lysine_recovery' to 'lysine_purification' via stream 'Crude Lysine'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'lysine_recovery' to 'waste stream sink' via stream 'Waste Stream'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'lysine_purification' to 'purified lysine sink' via stream 'Purified Lysine'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'water source' to 'pretreatment' via stream 'Water'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'chemical source' to 'pretreatment' via stream 'Chemicals (e.g., Acid or Alkali)'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'steam source' to 'pretreatment' via stream 'Steam'.
+[2024-12-09 21:09:45] DEBUG - Adding edge from 'pretreatment' to 'wastewater sink' via stream 'Wastewater'.
+[2024-12-09 21:09:45] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:45] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 21:09:53] DEBUG - Processing separation unit operation: Pretreatment
+Separation operations:
+  1. Separating Cellulose (extraction rate: 85.0%)
+  2. Separating Hemicellulose (extraction rate: 80.0%)
+  3. Separating Lignin (extraction rate: 30.0%)
+[2024-12-09 21:09:58] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 75.0%)
+[2024-12-09 21:10:05] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Lysine (rate: 75.0%)
+  2. Converting Xylose → Lysine (rate: 60.0%)
+[2024-12-09 21:10:12] DEBUG - Processing separation unit operation: Broth Separation
+Separation operations:
+  1. Separating Bacterial Biomass (extraction rate: 95.0%)
+  2. Separating Lignin (extraction rate: 90.0%)
+[2024-12-09 21:10:18] DEBUG - Processing separation unit operation: Lysine Recovery
+Separation operations:
+  1. Separating Lysine (extraction rate: 85.0%)
+  2. Separating Unconverted Sugars (extraction rate: 5.0%)
+[2024-12-09 21:10:29] DEBUG - Processing separation unit operation: Lysine Purification
+Separation operations:
+  1. Separating Lysine (extraction rate: 98.0%)
+  2. Separating Lysine (extraction rate: 98.0%)
+  3. Separating Lysine (extraction rate: 98.0%)
+  4. Separating Lysine (extraction rate: 98.0%)
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Bacterial Culture Source' of type 'source'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Nutrient Solution Source' of type 'source'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Air Supply' of type 'source'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Solid Waste Sink' of type 'sink'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Waste Stream Sink' of type 'sink'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Purified Lysine Sink' of type 'sink'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Water Source' of type 'source'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Chemical Source' of type 'source'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Steam Source' of type 'source'
+[2024-12-09 21:10:29] DEBUG - Skipping operational parameters for unit operation 'Wastewater Sink' of type 'sink'
+[2024-12-09 21:10:29] INFO - v1 DAG agent processing complete.
+[2024-12-09 21:10:29] INFO - Workflow completed successfully.

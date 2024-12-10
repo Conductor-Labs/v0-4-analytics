@@ -1,0 +1,352 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants. It is typically pretreated to enhance the accessibility of cellulose and hemicellulose for enzymatic hydrolysis.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Lysine",
+      "composition": "Lysine monohydrochloride (98-99%), Moisture (0.5-1%)",
+      "key_specs": "Lysine is an essential amino acid used primarily in animal feed. The commercial product is typically in the form of lysine monohydrochloride with high purity requirements for effective nutritional supplementation.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to enhance the accessibility of cellulose and hemicellulose in corn stover for subsequent enzymatic hydrolysis. This involves mechanical, chemical, or a combination of methods to break down the lignin structure and increase the surface area of the biomass. Common methods include steam explosion, acid hydrolysis, or alkaline treatment. The goal is to disrupt the lignocellulosic matrix, making the cellulose and hemicellulose more amenable to enzymatic action.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Pretreatment is crucial for efficient hydrolysis and fermentation. The choice of method impacts downstream processing costs and yields."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are used to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose. This step is critical for preparing the sugars needed for microbial fermentation.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {},
+      "additional_info": "The efficiency of enzymatic hydrolysis depends on enzyme loading, reaction time, and the degree of pretreatment."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of sugars into lysine using yeast or fungal strains. The hydrolysate is inoculated with a selected microorganism capable of producing lysine. Aerobic conditions are maintained to optimize the metabolic pathways for lysine production. This step is the core of the process, where the target product is synthesized.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolysate",
+        "Microbial Inoculum",
+        "Aeration"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Control of aeration, agitation, and nutrient supply is critical to maximize lysine yield."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of microbial cells from the fermentation broth. Techniques such as centrifugation or filtration are employed to remove the biomass, leaving a clarified broth containing lysine and other soluble components. This step is essential to facilitate the downstream purification of lysine.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Biomass Waste"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of separation technology affects the purity and recovery of lysine."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to isolate and concentrate lysine from the clarified broth. Techniques such as ion exchange chromatography, crystallization, or membrane filtration are used to achieve high purity lysine monohydrochloride. This step is critical to meet the product specifications for commercial lysine.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth"
+      ],
+      "output_streams": [
+        "Purified Lysine",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Purity requirements dictate the choice of purification method. Waste streams may require treatment before disposal."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "In this final unit operation, the purified lysine solution is dried to produce a solid product, typically in the form of a powder or granules. The drying process may involve spray drying or rotary drying. The dried lysine is then packaged for distribution. This step ensures the stability and ease of handling of the final product.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Lysine"
+      ],
+      "output_streams": [
+        "Dried Lysine Product"
+      ],
+      "parameters": {},
+      "additional_info": "Moisture content is controlled to ensure product stability. Packaging must protect against moisture and contamination."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw agricultural residue consisting of leaves, stalks, and cobs of maize plants.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with reduced lignin content and increased accessibility of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Reduced Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A solution containing fermentable sugars derived from cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Residual Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Microbial Inoculum": {
+      "name": "Microbial Inoculum",
+      "stream_id": "microbial inoculum",
+      "description": "A culture of yeast or fungal strains capable of producing lysine.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast or Fungal Cells": 0
+      }
+    },
+    "Aeration": {
+      "name": "Aeration",
+      "stream_id": "aeration",
+      "description": "Supply of oxygen to maintain aerobic conditions.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing lysine, unconverted sugars, microbial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Lysine": 0,
+        "Microbial Biomass": 0,
+        "Residual Sugars": 0,
+        "Metabolites": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A liquid stream containing lysine and other soluble components, free of microbial biomass.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Lysine": 0,
+        "Residual Sugars": 0,
+        "Metabolites": 0
+      }
+    },
+    "Biomass Waste": {
+      "name": "Biomass Waste",
+      "stream_id": "biomass waste",
+      "description": "Separated microbial biomass, which can be used as a by-product or disposed of.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0
+      }
+    },
+    "Purified Lysine": {
+      "name": "Purified Lysine",
+      "stream_id": "purified lysine",
+      "description": "High purity lysine monohydrochloride suitable for use in animal feed.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Lysine Monohydrochloride": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities and by-products removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Metabolites": 0
+      }
+    },
+    "Dried Lysine Product": {
+      "name": "Dried Lysine Product",
+      "stream_id": "dried lysine product",
+      "description": "A solid form of lysine monohydrochloride ready for packaging and distribution.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Lysine Monohydrochloride": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Reduced Lignin": {
+      "name": "Reduced Lignin",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Lignin": {
+      "name": "Residual Lignin",
+      "properties": {}
+    },
+    "Yeast or Fungal Cells": {
+      "name": "Yeast or Fungal Cells",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    },
+    "Lysine": {
+      "name": "Lysine",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Metabolites": {
+      "name": "Metabolites",
+      "properties": {}
+    },
+    "Lysine Monohydrochloride": {
+      "name": "Lysine Monohydrochloride",
+      "properties": {}
+    }
+  }
+}

@@ -1,0 +1,553 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, requires pretreatment to hydrolyze hemicellulose into xylose",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Xylitol",
+      "composition": "C5H12O5 (100%)",
+      "key_specs": "Food-grade, minimum purity of 99.5%, crystalline form",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to break down the complex structure of lignocellulosic biomass, specifically corn stover, to make the hemicellulose component more accessible for hydrolysis. This involves mechanical, chemical, or a combination of methods to disrupt the lignin structure and expose the hemicellulose. Commonly, dilute acid or steam explosion methods are employed to achieve this. The goal is to maximize the yield of fermentable sugars, particularly xylose, while minimizing the degradation of sugars and formation of inhibitors.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Dilute Acid or Steam"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Pretreatment is crucial for efficient downstream processing and can significantly impact the overall economics of the process."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert hemicellulose into xylose. Specific enzymes, such as hemicellulases, are used to catalyze the breakdown of hemicellulose into its monomeric sugar components. This step is critical for maximizing the yield of xylose, which is the primary substrate for subsequent fermentation to xylitol.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Enzymatic hydrolysis is the process of breaking down hemicellulose into xylose using hemicellulase enzymes in the enzyme solution.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.85
+          }
+        ]
+      },
+      "additional_info": "The efficiency of enzymatic hydrolysis is influenced by factors such as enzyme loading, reaction time, and temperature."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the anaerobic conversion of xylose to xylitol by specific bacteria, such as Candida species. The process is carried out in bioreactors under controlled conditions to optimize the yield and purity of xylitol. The bacteria metabolize xylose, reducing it to xylitol, while maintaining anaerobic conditions to prevent unwanted by-products.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolysate",
+        "Bacterial Culture",
+        "Nutrient Solution"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "Carbon Dioxide"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "The conversion of xylose to xylitol via metabolic processes of Candida species under anaerobic conditions.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Xylitol",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "The growth of bacterial biomass utilizing xylose as a primary carbon source during fermentation.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Bacterial Biomass",
+            "conversionRate": 0.1
+          },
+          {
+            "description": "Nutrient solution provides essential nutrients for bacteria growth leading to the production of bacterial biomass.",
+            "inputComponent": "Nutrient Solution",
+            "outputComponent": "Bacterial Biomass",
+            "conversionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The fermentation process is sensitive to pH, temperature, and nutrient availability, which must be carefully controlled."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of bacterial cells and other solid residues from the fermentation broth. Techniques such as centrifugation or filtration are employed to achieve a clear liquid stream containing xylitol and other soluble components. This step is essential to prepare the broth for downstream purification processes.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Fermentation Broth",
+        "Solid Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of bacterial biomass from the fermentation broth.",
+            "component": "Bacterial Biomass",
+            "extractionRate": 1.0
+          },
+          {
+            "description": "Soluble xylitol remains in the liquid phase after separation of solids.",
+            "component": "Xylitol",
+            "extractionRate": 0.0
+          },
+          {
+            "description": "Soluble xylose remains in the liquid phase after separation of solids.",
+            "component": "Xylose",
+            "extractionRate": 0.0
+          }
+        ]
+      },
+      "additional_info": "Efficient cell separation is crucial to minimize product loss and reduce the load on downstream purification units."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to isolate and purify xylitol from the clarified fermentation broth. Techniques such as ion exchange chromatography, crystallization, or membrane filtration may be used to achieve the desired purity levels. The goal is to produce food-grade xylitol with a minimum purity of 99.5% in crystalline form.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Fermentation Broth"
+      ],
+      "output_streams": [
+        "Purified Xylitol",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "High purity extraction of xylitol from clarified fermentation broth to meet food-grade standards.",
+            "component": "Xylitol",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of xylose and other impurities from xylitol to enhance product purity.",
+            "component": "Xylose",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The choice of purification method impacts the overall process efficiency and product quality."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "In the final unit operation, the purified xylitol is dried to achieve the desired moisture content and then packaged for distribution. Drying is typically done using techniques such as spray drying or fluidized bed drying to ensure uniform particle size and prevent caking. The product is then packaged in suitable containers to maintain its quality during storage and transportation.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Xylitol"
+      ],
+      "output_streams": [
+        "Packaged Xylitol"
+      ],
+      "parameters": {},
+      "additional_info": "Proper packaging is essential to prevent contamination and degradation of the product during storage."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is a raw lignocellulosic biomass feedstock. It consists of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). The unit operation is designed to supply 100,000 kg/day of Raw Corn Stover to the pretreatment process, where it will undergo necessary modifications to facilitate further processing into valuable products such as Xylitol.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which contains hemicellulases that are essential for catalyzing the hydrolysis of hemicellulose into xylose during the enzymatic hydrolysis process. The Enzyme Solution is supplied at an industrial scale to ensure efficient conversion of pretreated biomass into fermentable sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial culture source": {
+      "unit_operation_id": "bacterial culture source",
+      "name": "Bacterial Culture Source",
+      "description": "This unit operation serves as a source for the Bacterial Culture stream, which consists of a culture of Candida species capable of converting xylose to xylitol under anaerobic conditions. The Bacterial Culture is essential for the fermentation process, where it will be introduced into the Hydrolysate to facilitate the bioconversion of xylose into xylitol. This operation ensures a consistent supply of viable bacterial cells to maintain optimal fermentation conditions.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Bacterial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid waste sink": {
+      "unit_operation_id": "solid waste sink",
+      "name": "Solid Waste Sink",
+      "description": "This unit operation serves as the final sink for the Solid Waste stream, which consists of separated bacterial biomass and other solid residues generated during the fermentation process. The Solid Waste Sink is designed to collect, manage, and prepare the solid waste for disposal or further processing, ensuring that the overall process maintains efficiency and environmental compliance.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as the sink for the Waste Stream, which contains impurities and unconverted xylose from the purification process. The Waste Stream may be subject to further treatment for recovery of valuable components or may be disposed of as waste. The unit operation is designed to handle the flow of this stream, ensuring that it is managed according to environmental regulations and process efficiency.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "packaged xylitol sink": {
+      "unit_operation_id": "packaged xylitol sink",
+      "name": "Packaged Xylitol Sink",
+      "description": "This unit operation serves as the final sink for the Packaged Xylitol stream, which is the end product of the xylitol production process. The packaged xylitol is prepared for distribution and storage, ensuring that it meets the food-grade specifications with a minimum purity of 99.5%. This unit operation is crucial for maintaining the quality and integrity of the final product before it reaches the market.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Packaged Xylitol"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "dilute acid or steam source": {
+      "unit_operation_id": "dilute acid or steam source",
+      "name": "Dilute Acid or Steam Source",
+      "description": "This unit operation serves as a source for the Dilute Acid or Steam stream, which is essential in the pretreatment process of corn stover. The stream consists of chemical agents, such as dilute acid (e.g., sulfuric acid), and steam, which are utilized to break down the lignocellulosic structure of the biomass. This pretreatment enhances the accessibility of hemicellulose for subsequent hydrolysis, facilitating the conversion of biomass into fermentable sugars.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Dilute Acid or Steam"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "nutrient solution source": {
+      "unit_operation_id": "nutrient solution source",
+      "name": "Nutrient Solution Source",
+      "description": "This unit operation serves as the source for the Nutrient Solution, which is crucial for the fermentation process. The Nutrient Solution is composed of a Nitrogen source, a Phosphorus source, and Trace elements, providing essential nutrients and minerals necessary to support the growth and metabolic activities of the Candida species during fermentation. This source ensures a consistent supply of nutrients to optimize fermentation efficiency and product yield.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Nutrient Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "carbon dioxide sink": {
+      "unit_operation_id": "carbon dioxide sink",
+      "name": "Carbon Dioxide Sink",
+      "description": "This unit operation serves as a sink for the Carbon Dioxide stream generated during the fermentation process. It is designed to capture and manage the carbon dioxide produced as a by-product, ensuring that it does not contribute to environmental emissions. The sink may include systems for gas collection, compression, and potential utilization or storage, depending on the overall process design and sustainability goals.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Carbon Dioxide"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw lignocellulosic biomass feedstock consisting of cellulose, hemicellulose, lignin, ash, and moisture.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignin structure and exposed hemicellulose, ready for enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing specific enzymes that catalyze the hydrolysis of hemicellulose into xylose.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Hemicellulases": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A liquid stream rich in xylose, along with residual cellulose and lignin.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylose": 0,
+        "Cellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of bacteria capable of converting xylose to xylitol under anaerobic conditions.",
+      "stream_type": "core",
+      "source": "bacterial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Candida species": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing xylitol, unconverted xylose, bacterial biomass, and other fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylitol": 0,
+        "Xylose": 0,
+        "Bacterial Biomass": 0
+      }
+    },
+    "Clarified Fermentation Broth": {
+      "name": "Clarified Fermentation Broth",
+      "stream_id": "clarified fermentation broth",
+      "description": "A liquid stream containing xylitol and unconverted xylose, free from bacterial cells and solid residues.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylitol": 0,
+        "Xylose": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Separated bacterial biomass and other solid residues.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "solid waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Biomass": 0
+      }
+    },
+    "Purified Xylitol": {
+      "name": "Purified Xylitol",
+      "stream_id": "purified xylitol",
+      "description": "High-purity xylitol in crystalline form, suitable for food-grade applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylitol": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities and unconverted xylose, which may be recycled or treated as waste.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylose": 0,
+        "Impurities": 0
+      }
+    },
+    "Packaged Xylitol": {
+      "name": "Packaged Xylitol",
+      "stream_id": "packaged xylitol",
+      "description": "Final product ready for distribution, meeting food-grade specifications.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": "packaged xylitol sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylitol": 0
+      }
+    },
+    "Dilute Acid or Steam": {
+      "name": "Dilute Acid or Steam",
+      "stream_id": "dilute acid or steam",
+      "description": "This stream represents the chemical or mechanical agents used in the pretreatment process to break down the lignocellulosic structure of corn stover, making the hemicellulose more accessible for hydrolysis.",
+      "stream_type": "aux",
+      "source": "dilute acid or steam source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Dilute Acid (e.g., sulfuric acid)": 0,
+        "Steam": 0
+      }
+    },
+    "Nutrient Solution": {
+      "name": "Nutrient Solution",
+      "stream_id": "nutrient solution",
+      "description": "A nutrient solution is necessary to provide essential nutrients and minerals to support the growth and metabolic activities of the Candida species during the fermentation process.",
+      "stream_type": "aux",
+      "source": "nutrient solution source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Nitrogen source": 0,
+        "Phosphorus source": 0,
+        "Trace elements": 0
+      }
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "stream_id": "carbon dioxide",
+      "description": "Carbon dioxide is a common by-product of fermentation processes, even under anaerobic conditions. It may be released due to residual metabolic activities or as a result of maintaining pH levels.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "carbon dioxide sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Hemicellulases": {
+      "name": "Hemicellulases",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Candida species": {
+      "name": "Candida species",
+      "properties": {}
+    },
+    "Xylitol": {
+      "name": "Xylitol",
+      "properties": {}
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Dilute Acid (e.g., sulfuric acid)": {
+      "name": "Dilute Acid (e.g., sulfuric acid)",
+      "properties": {}
+    },
+    "Steam": {
+      "name": "Steam",
+      "properties": {}
+    },
+    "Nitrogen source": {
+      "name": "Nitrogen source",
+      "properties": {}
+    },
+    "Phosphorus source": {
+      "name": "Phosphorus source",
+      "properties": {}
+    },
+    "Trace elements": {
+      "name": "Trace elements",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    }
+  }
+}

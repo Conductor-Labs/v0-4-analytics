@@ -1,0 +1,573 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, typically requires pretreatment to enhance accessibility of cellulose and hemicellulose",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Fumaric Acid",
+      "composition": "C4H4O4",
+      "key_specs": "Industrial grade, typically >99% purity, used in food and beverage industry as well as in resin production",
+      "volumetric_scale": "20,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover, a lignocellulosic biomass, is initially prepared for processing. This involves size reduction through mechanical milling to increase the surface area and improve the efficiency of subsequent pretreatment processes. The moisture content is adjusted to optimal levels for the pretreatment stage.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Particle size reduction is crucial for enhancing the efficiency of chemical reactions in later stages."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down the lignin structure and enhance the accessibility of cellulose and hemicellulose. This is typically achieved using a dilute acid hydrolysis method, which helps in depolymerizing hemicellulose into fermentable sugars.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Dilute Acid Solution"
+      ],
+      "output_streams": [
+        "Hydrolyzed Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Dilute acid hydrolysis of hemicellulose leads to its depolymerization into fermentable sugars such as xylose and arabinose.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Sugars",
+            "conversionRate": 0.7
+          },
+          {
+            "description": "Partial solubilization of lignin to improve the accessibility of cellulose for enzymatic hydrolysis.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Solubilized Lignin",
+            "conversionRate": 0.3
+          }
+        ]
+      },
+      "additional_info": "The choice of acid and concentration is critical to maximize sugar yield while minimizing degradation products."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "The hydrolyzed biomass is subjected to enzymatic hydrolysis to convert cellulose into glucose. Specific cellulase enzymes are used to catalyze the breakdown of cellulose into fermentable sugars, primarily glucose.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolyzed Biomass",
+        "Cellulase Enzymes"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose is broken down into glucose through the catalytic action of cellulase enzymes that cleave the \u03b2-1,4-glycosidic bonds, resulting in shorter glucose molecules.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.8
+          }
+        ]
+      },
+      "additional_info": "Enzyme loading and reaction time are optimized to maximize glucose yield."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The sugar solution is fermented using a genetically engineered microorganism capable of converting glucose and other sugars into fumaric acid. The fermentation process is conducted under anaerobic conditions to optimize fumaric acid production.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Sugar Solution",
+        "Microorganism Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "The process in which glucose is fermented by genetically engineered microorganisms to produce fumaric acid under anaerobic conditions, generating some microbial biomass and other by-products.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Fumaric Acid",
+            "conversionRate": 0.6
+          },
+          {
+            "description": "The fermentation of other sugars present in the sugar solution into fumaric acid via the same microorganisms, leading to the production of additional fumaric acid along with unconverted sugars and by-products.",
+            "inputComponent": "Sugars",
+            "outputComponent": "Fumaric Acid",
+            "conversionRate": 0.4
+          }
+        ]
+      },
+      "additional_info": "The choice of microorganism and fermentation conditions are crucial for high yield and productivity."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "Fumaric acid is recovered from the fermentation broth through a series of separation processes. This typically involves filtration to remove biomass, followed by crystallization to purify fumaric acid from the solution.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Fumaric Acid",
+        "Filtrate"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Filtration to separate solid biomass from liquid fermentation broth, leaving fumaric acid in the filtrate.",
+            "component": "Fumaric Acid",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Crystallization where fumaric acid precipitates out of the solution as crude fumaric acid, concentrating it while impurities remain in the liquid.",
+            "component": "Sugars",
+            "extractionRate": 0.1
+          },
+          {
+            "description": "By-products remaining in the liquid phase after crystallization of fumaric acid, primarily soluble materials.",
+            "component": "By-products",
+            "extractionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "Crystallization parameters are optimized to maximize fumaric acid purity and yield."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude fumaric acid is further purified to achieve industrial-grade purity levels. This may involve recrystallization and washing steps to remove remaining impurities and achieve the desired purity.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Fumaric Acid"
+      ],
+      "output_streams": [
+        "Purified Fumaric Acid"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Recrystallization of crude fumaric acid to remove impurities and obtain pure crystals.",
+            "component": "Fumaric Acid",
+            "extractionRate": 0.98
+          },
+          {
+            "description": "Extraction and removal of impurities from crude fumaric acid during washing and filtration processes.",
+            "component": "Impurities",
+            "extractionRate": 0.02
+          }
+        ]
+      },
+      "additional_info": "Achieving >99% purity is essential for meeting industrial specifications."
+    },
+    "waste_management": {
+      "unit_operation_id": "waste_management",
+      "name": "Waste Management",
+      "description": "The process generates various waste streams, including lignin-rich residues, unconverted sugars, and other by-products. These are managed through appropriate waste treatment processes, which may include anaerobic digestion for energy recovery or composting.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Filtrate",
+        "Solid Residues"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Anaerobic digestion transforms organic sugars into biogas, reducing the COD of wastewater.",
+            "inputComponent": "Sugars",
+            "outputComponent": "Biogas",
+            "conversionRate": 0.75
+          },
+          {
+            "description": "By-products participate in anaerobic digestion creating biogas.",
+            "inputComponent": "By-products",
+            "outputComponent": "Biogas",
+            "conversionRate": 0.5
+          },
+          {
+            "description": "By-products also contribute to treated water after COD reduction.",
+            "inputComponent": "By-products",
+            "outputComponent": "Treated Water",
+            "conversionRate": 0.25
+          },
+          {
+            "description": "Composting stabilizes lignin into compost, converting solid organic matter.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Compost",
+            "conversionRate": 0.85
+          }
+        ]
+      },
+      "additional_info": "Waste valorization strategies can enhance the overall sustainability and economics of the process."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which consists of unprocessed corn stover containing natural moisture content and a mixture of cellulose, hemicellulose, lignin, ash, and moisture. It provides the necessary feedstock for subsequent processing steps in the production of Fumaric Acid, ensuring a consistent supply of lignocellulosic biomass at an industrial scale of 100,000 metric tons per year.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "dilute acid solution source": {
+      "unit_operation_id": "dilute acid solution source",
+      "name": "Dilute Acid Solution Source",
+      "description": "This unit operation serves as a source for the Dilute Acid Solution, which is utilized in the pretreatment process to hydrolyze hemicellulose present in the prepared corn stover. The solution primarily consists of water and a specified acid, facilitating the breakdown of complex carbohydrates into simpler sugars, thereby enhancing the overall efficiency of the biomass conversion process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Dilute Acid Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "cellulase enzyme source": {
+      "unit_operation_id": "cellulase enzyme source",
+      "name": "Cellulase Enzyme Source",
+      "description": "This unit operation serves as a source for Cellulase Enzymes, which are crucial for the enzymatic hydrolysis of hydrolyzed biomass. These enzymes catalyze the breakdown of cellulose into glucose, facilitating the conversion of lignocellulosic biomass into fermentable sugars. The source is designed to provide a consistent and controlled supply of cellulase enzymes to the enzymatic hydrolysis unit operation, ensuring optimal reaction conditions and maximizing sugar yield.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Cellulase Enzymes"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "microorganism culture source": {
+      "unit_operation_id": "microorganism culture source",
+      "name": "Microorganism Culture Source",
+      "description": "This unit operation serves as a source for the Microorganism Culture stream, which consists of genetically engineered microorganisms specifically designed for the production of fumaric acid. The microorganisms are cultivated under controlled conditions to ensure optimal growth and productivity. This stream is essential for the fermentation process, where the microorganisms will convert sugars into fumaric acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Microorganism Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified fumaric acid sink": {
+      "unit_operation_id": "purified fumaric acid sink",
+      "name": "Purified Fumaric Acid Sink",
+      "description": "This unit operation serves as the final sink for the purified fumaric acid stream, which is produced through a series of processing steps including fermentation and purification. The purified fumaric acid is intended for industrial applications, ensuring a high purity level suitable for use in food, beverage, and resin production. This sink represents the endpoint of the production process where the purified product is collected and prepared for storage or distribution.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Fumaric Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid residues source": {
+      "unit_operation_id": "solid residues source",
+      "name": "Solid Residues Source",
+      "description": "This unit operation serves as a source for the Solid Residues stream, which consists of solid waste generated from the fermentation and product recovery processes. The Solid Residues primarily contain lignin and ash, which are non-fermentable components of the biomass feedstock. This stream is crucial for waste management processes, as it requires treatment and disposal. The unit operation ensures a continuous supply of Solid Residues for further processing or disposal.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Solid Residues"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "treated waste sink": {
+      "unit_operation_id": "treated waste sink",
+      "name": "Treated Waste Sink",
+      "description": "This unit operation serves as the final sink for the treated waste stream, which includes environmentally safe components such as treated water, biogas, and compost. The treated waste is the result of the waste management process, ensuring that all residuals from the production process are handled in an environmentally responsible manner, minimizing impact on the ecosystem.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Treated Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover with natural moisture content and particle size.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover with reduced particle size and adjusted moisture content, ready for pretreatment.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Dilute Acid Solution": {
+      "name": "Dilute Acid Solution",
+      "stream_id": "dilute acid solution",
+      "description": "A dilute acid solution used to hydrolyze hemicellulose.",
+      "stream_type": "core",
+      "source": "dilute acid solution source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Acid": 0
+      }
+    },
+    "Hydrolyzed Biomass": {
+      "name": "Hydrolyzed Biomass",
+      "stream_id": "hydrolyzed biomass",
+      "description": "Biomass with hemicellulose broken down into fermentable sugars, lignin partially solubilized.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Sugars": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Cellulase Enzymes": {
+      "name": "Cellulase Enzymes",
+      "stream_id": "cellulase enzymes",
+      "description": "Enzymes that catalyze the breakdown of cellulose into glucose.",
+      "stream_type": "core",
+      "source": "cellulase enzyme source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in glucose and other sugars, with residual lignin and ash.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Sugars": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Microorganism Culture": {
+      "name": "Microorganism Culture",
+      "stream_id": "microorganism culture",
+      "description": "Genetically engineered microorganisms for fumaric acid production.",
+      "stream_type": "core",
+      "source": "microorganism culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Microorganisms": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing fumaric acid, unconverted sugars, biomass, and other by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Fumaric Acid": 0,
+        "Sugars": 0,
+        "Biomass": 0,
+        "By-products": 0
+      }
+    },
+    "Crude Fumaric Acid": {
+      "name": "Crude Fumaric Acid",
+      "stream_id": "crude fumaric acid",
+      "description": "Partially purified fumaric acid crystals, with some impurities.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Fumaric Acid": 0,
+        "Impurities": 0
+      }
+    },
+    "Filtrate": {
+      "name": "Filtrate",
+      "stream_id": "filtrate",
+      "description": "Liquid stream containing unconverted sugars and other soluble impurities.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "waste_management",
+      "flow_rate": 0.0,
+      "components": {
+        "Sugars": 0,
+        "By-products": 0
+      }
+    },
+    "Purified Fumaric Acid": {
+      "name": "Purified Fumaric Acid",
+      "stream_id": "purified fumaric acid",
+      "description": "High-purity fumaric acid suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "purified fumaric acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Fumaric Acid": 0
+      }
+    },
+    "Solid Residues": {
+      "name": "Solid Residues",
+      "stream_id": "solid residues",
+      "description": "Solid waste containing lignin and other non-fermentable components.",
+      "stream_type": "core",
+      "source": "solid residues source",
+      "target": "waste_management",
+      "flow_rate": 0.0,
+      "components": {
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Environmentally safe waste streams after treatment.",
+      "stream_type": "core",
+      "source": "waste_management",
+      "target": "treated waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Treated Water": 0,
+        "Biogas": 0,
+        "Compost": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Acid": {
+      "name": "Acid",
+      "properties": {}
+    },
+    "Sugars": {
+      "name": "Sugars",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Microorganisms": {
+      "name": "Microorganisms",
+      "properties": {}
+    },
+    "Fumaric Acid": {
+      "name": "Fumaric Acid",
+      "properties": {}
+    },
+    "Biomass": {
+      "name": "Biomass",
+      "properties": {}
+    },
+    "By-products": {
+      "name": "By-products",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Treated Water": {
+      "name": "Treated Water",
+      "properties": {}
+    },
+    "Biogas": {
+      "name": "Biogas",
+      "properties": {}
+    },
+    "Compost": {
+      "name": "Compost",
+      "properties": {}
+    }
+  }
+}

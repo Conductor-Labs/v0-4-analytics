@@ -1,0 +1,109 @@
+[2024-12-09 17:31:10] INFO - Starting run 1 for user prompt: Process that converts corn stover to 3-Hydroxy propionic acid via yeast or fungal aerobic Fermentation
+[2024-12-09 17:31:10] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to 3-Hydroxy propionic acid via yeast or fungal aerobic Fermentation
+[2024-12-09 17:31:10] INFO - Starting process description agent.
+[2024-12-09 17:31:10] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to 3-Hydroxy propionic acid via yeast or fungal aerobic Fermentation
+[2024-12-09 17:31:14] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Lignocellulosic biomass, typically requires pretreatment to break down cellulose and hemicellulose into fermentable sugars.","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"3-Hydroxypropionic Acid","composition":"3-Hydroxypropionic acid (99% purity)","key_specs":"Industrial grade, suitable for polymer production and other chemical syntheses. Requires high purity for commercial applications.","volumetric_scale":"10,000 metric tons per year"}]}
+[2024-12-09 17:31:14] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 17:31:14] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Lignocellulosic biomass, typically requires pretreatment to break down cellulose and hemicellulose into fermentable sugars.', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': '3-Hydroxypropionic Acid', 'composition': '3-Hydroxypropionic acid (99% purity)', 'key_specs': 'Industrial grade, suitable for polymer production and other chemical syntheses. Requires high purity for commercial applications.', 'volumetric_scale': '10,000 metric tons per year'}]}
+[2024-12-09 17:31:33] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment process involves the mechanical and chemical treatment of corn stover to break down the lignocellulosic structure, making cellulose and hemicellulose more accessible for enzymatic hydrolysis. This step typically involves size reduction through milling, followed by chemical treatment using dilute acid or alkali to disrupt the lignin structure and solubilize hemicellulose. The pretreatment is crucial for increasing the surface area and porosity of the biomass, thereby enhancing the efficiency of subsequent enzymatic hydrolysis.","input_streams":[{"name":"Raw Corn Stover","description":"Lignocellulosic biomass feedstock consisting of cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure and solubilized hemicellulose, ready for enzymatic hydrolysis.","components":["Cellulose","Solubilized Hemicellulose","Lignin","Ash"]}],"additional_info":"The choice of chemical for pretreatment (acid or alkali) can significantly affect the downstream processing and cost."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and any remaining hemicellulose into fermentable sugars, primarily glucose and xylose. Enzymes such as cellulases and hemicellulases are added to catalyze the breakdown of polysaccharides into monosaccharides. This step is critical for producing the sugar substrates necessary for microbial fermentation.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure and solubilized hemicellulose, ready for enzymatic hydrolysis.","components":["Cellulose","Solubilized Hemicellulose","Lignin","Ash"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes for hydrolyzing cellulose and hemicellulose into sugars.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars such as glucose and xylose, along with residual lignin and ash.","components":["Glucose","Xylose","Lignin","Ash"]}],"additional_info":"The efficiency of enzymatic hydrolysis is influenced by enzyme loading, reaction time, and the degree of pretreatment."},{"name":"Fermentation","order":3,"description":"The fermentation process involves the aerobic cultivation of yeast or fungal strains capable of converting sugars into 3-Hydroxypropionic acid (3-HP). The sugar solution is inoculated with a selected microorganism, and conditions are maintained to optimize the production of 3-HP. Oxygen is supplied to support aerobic metabolism, and nutrients may be added to support microbial growth and activity.","input_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars such as glucose and xylose, along with residual lignin and ash.","components":["Glucose","Xylose","Lignin","Ash"]},{"name":"Microbial Culture","description":"Yeast or fungal strains capable of converting sugars to 3-Hydroxypropionic acid under aerobic conditions.","components":["Yeast","Fungal Strains"]}],"output_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing 3-Hydroxypropionic acid, unconverted sugars, microbial biomass, and residual lignin.","components":["3-Hydroxypropionic Acid","Unconverted Sugars","Microbial Biomass","Lignin"]}],"additional_info":"The selection of microbial strains and optimization of fermentation conditions are critical for maximizing 3-HP yield and productivity."},{"name":"Broth Separation","order":4,"description":"This unit operation involves the separation of microbial biomass and solid residues from the fermentation broth. Techniques such as centrifugation or filtration are employed to remove the solids, resulting in a clarified broth containing dissolved 3-Hydroxypropionic acid and other solutes. This step is essential for preparing the broth for downstream purification.","input_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing 3-Hydroxypropionic acid, unconverted sugars, microbial biomass, and residual lignin.","components":["3-Hydroxypropionic Acid","Unconverted Sugars","Microbial Biomass","Lignin"]}],"output_streams":[{"name":"Clarified Broth","description":"A liquid stream containing dissolved 3-Hydroxypropionic acid and other solutes, free from solid residues.","components":["3-Hydroxypropionic Acid","Unconverted Sugars"]},{"name":"Solid Waste","description":"Separated solid residues including microbial biomass and lignin.","components":["Microbial Biomass","Lignin"]}],"additional_info":"Solid waste can be further processed for energy recovery or disposed of according to environmental regulations."},{"name":"Purification","order":5,"description":"The purification process involves the extraction and concentration of 3-Hydroxypropionic acid from the clarified broth. Techniques such as liquid-liquid extraction, ion exchange, or crystallization may be used to achieve the desired purity levels. This step is crucial for producing industrial-grade 3-HP suitable for commercial applications.","input_streams":[{"name":"Clarified Broth","description":"A liquid stream containing dissolved 3-Hydroxypropionic acid and other solutes, free from solid residues.","components":["3-Hydroxypropionic Acid","Unconverted Sugars"]}],"output_streams":[{"name":"Purified 3-Hydroxypropionic Acid","description":"High-purity 3-Hydroxypropionic acid suitable for industrial applications.","components":["3-Hydroxypropionic Acid"]},{"name":"Waste Stream","description":"Aqueous waste containing impurities and unconverted sugars.","components":["Unconverted Sugars"]}],"additional_info":"The choice of purification method impacts the overall process efficiency and cost. High purity is essential for the product's commercial viability."},{"name":"Product Recovery","order":6,"description":"In the final step, the purified 3-Hydroxypropionic acid is recovered and prepared for storage or shipment. This may involve drying or concentration to achieve the desired product specifications. The product is then packaged and stored under appropriate conditions to maintain its quality until it reaches the end-user.","input_streams":[{"name":"Purified 3-Hydroxypropionic Acid","description":"High-purity 3-Hydroxypropionic acid suitable for industrial applications.","components":["3-Hydroxypropionic Acid"]}],"output_streams":[{"name":"Final Product","description":"3-Hydroxypropionic acid with 99% purity, ready for industrial use.","components":["3-Hydroxypropionic Acid"]}],"additional_info":"Proper packaging and storage conditions are necessary to prevent degradation and ensure product stability."}]}
+[2024-12-09 17:31:33] DEBUG - Process flow loaded successfully.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 17:31:33] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 17:31:33] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 17:31:33] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 17:31:33] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 17:31:33] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 17:31:33] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Broth Separation'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Clarified Broth' for output of unit operation 'Broth Separation'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Solid Waste' for output of unit operation 'Broth Separation'.
+[2024-12-09 17:31:33] DEBUG - Added unit operation 'Broth Separation' with ID 'broth_separation' to process flow.
+[2024-12-09 17:31:33] DEBUG - Reusing existing stream 'Clarified Broth' for input of unit operation 'Purification'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Purified 3-Hydroxypropionic Acid' for output of unit operation 'Purification'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Waste Stream' for output of unit operation 'Purification'.
+[2024-12-09 17:31:33] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 17:31:33] DEBUG - Reusing existing stream 'Purified 3-Hydroxypropionic Acid' for input of unit operation 'Product Recovery'.
+[2024-12-09 17:31:33] DEBUG - Created new stream 'Final Product' for output of unit operation 'Product Recovery'.
+[2024-12-09 17:31:33] DEBUG - Added unit operation 'Product Recovery' with ID 'product_recovery' to process flow.
+[2024-12-09 17:31:33] INFO - Process flow built successfully.
+[2024-12-09 17:31:33] INFO - Starting v1 DAG agent.
+[2024-12-09 17:31:33] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 17:31:33] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 17:31:33] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 17:31:33] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 17:31:33] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 17:31:33] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 17:31:33] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Clarified Broth'.
+[2024-12-09 17:31:33] DEBUG - Stream 'Solid Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 17:31:33] DEBUG - Adding edge from 'purification' to 'product_recovery' via stream 'Purified 3-Hydroxypropionic Acid'.
+[2024-12-09 17:31:33] DEBUG - Stream 'Waste Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 17:31:33] DEBUG - Stream 'Final Product' is missing a source or target and will not be included in the DAG.
+[2024-12-09 17:31:33] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 17:31:35] DEBUG - Added auxiliary input stream 'Chemical Agent' to unit operation 'Pretreatment'
+  - Description: Chemical agents such as dilute acid or alkali that are used in the pretreatment process to disrupt the lignin structure and solubilize hemicellulose in the corn stover.
+  - Components: Dilute Acid or Alkali
+[2024-12-09 17:31:36] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 17:31:39] DEBUG - Added auxiliary input stream 'Oxygen Supply' to unit operation 'Fermentation'
+  - Description: Oxygen is required to support the aerobic metabolism of yeast or fungal strains during the fermentation process, facilitating the conversion of sugars into 3-Hydroxypropionic acid.
+  - Components: Oxygen
+[2024-12-09 17:31:39] DEBUG - No missing streams identified for unit operation: Broth Separation
+[2024-12-09 17:31:40] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 17:31:40] DEBUG - No missing streams identified for unit operation: Product Recovery
+[2024-12-09 17:31:42] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 17:31:43] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 17:31:44] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 17:31:46] DEBUG - Added sink unit operation 'Solid Waste Sink' with ID 'solid waste sink' for stream 'Solid Waste'
+[2024-12-09 17:31:47] DEBUG - Added sink unit operation 'Waste Stream Sink' with ID 'waste stream sink' for stream 'Waste Stream'
+[2024-12-09 17:31:48] DEBUG - Added sink unit operation 'Final Product Sink' with ID 'final product sink' for stream 'Final Product'
+[2024-12-09 17:31:50] DEBUG - Added source unit operation 'Chemical Agent Source' with ID 'chemical agent source' for stream 'Chemical Agent'
+[2024-12-09 17:31:51] DEBUG - Added source unit operation 'Oxygen Supply Source' with ID 'oxygen supply source' for stream 'Oxygen Supply'
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Clarified Broth'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'broth_separation' to 'solid waste sink' via stream 'Solid Waste'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'purification' to 'product_recovery' via stream 'Purified 3-Hydroxypropionic Acid'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'purification' to 'waste stream sink' via stream 'Waste Stream'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'product_recovery' to 'final product sink' via stream 'Final Product'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'chemical agent source' to 'pretreatment' via stream 'Chemical Agent'.
+[2024-12-09 17:31:51] DEBUG - Adding edge from 'oxygen supply source' to 'fermentation' via stream 'Oxygen Supply'.
+[2024-12-09 17:31:51] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 17:31:51] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 17:31:57] DEBUG - Processing separation unit operation: Pretreatment
+Separation operations:
+  1. Separating Hemicellulose (extraction rate: 40.0%)
+[2024-12-09 17:32:03] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 80.0%)
+  2. Converting Solubilized Hemicellulose → Xylose (rate: 70.0%)
+[2024-12-09 17:32:10] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → 3-Hydroxypropionic Acid (rate: 75.0%)
+  2. Converting Xylose → 3-Hydroxypropionic Acid (rate: 65.0%)
+  3. Converting Sugars → Microbial Biomass (rate: 10.0%)
+[2024-12-09 17:32:19] DEBUG - Processing separation unit operation: Broth Separation
+Separation operations:
+  1. Separating Microbial Biomass (extraction rate: 95.0%)
+  2. Separating Lignin (extraction rate: 90.0%)
+[2024-12-09 17:32:26] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating 3-Hydroxypropionic Acid (extraction rate: 95.0%)
+  2. Separating Unconverted Sugars (extraction rate: 5.0%)
+[2024-12-09 17:32:31] DEBUG - No conversion or separation parameters identified for unit operation: Product Recovery
+[2024-12-09 17:32:31] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 17:32:31] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 17:32:31] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 17:32:31] DEBUG - Skipping operational parameters for unit operation 'Solid Waste Sink' of type 'sink'
+[2024-12-09 17:32:31] DEBUG - Skipping operational parameters for unit operation 'Waste Stream Sink' of type 'sink'
+[2024-12-09 17:32:31] DEBUG - Skipping operational parameters for unit operation 'Final Product Sink' of type 'sink'
+[2024-12-09 17:32:31] DEBUG - Skipping operational parameters for unit operation 'Chemical Agent Source' of type 'source'
+[2024-12-09 17:32:31] DEBUG - Skipping operational parameters for unit operation 'Oxygen Supply Source' of type 'source'
+[2024-12-09 17:32:31] INFO - v1 DAG agent processing complete.
+[2024-12-09 17:32:31] INFO - Workflow completed successfully.

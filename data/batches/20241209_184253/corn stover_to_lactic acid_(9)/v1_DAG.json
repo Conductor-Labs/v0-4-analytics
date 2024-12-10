@@ -1,0 +1,538 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Typically requires pre-treatment to break down lignocellulosic structure for fermentation. Pre-treatment may involve mechanical, chemical, or enzymatic methods to increase accessibility of fermentable sugars.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Lactic Acid",
+      "composition": "Lactic acid (C3H6O3), typically 85-90% purity for industrial applications",
+      "key_specs": "Industrial-grade lactic acid with a purity of 85-90%. May require further purification for food-grade or pharmaceutical-grade applications. Optical purity (L- or D-lactic acid) may be specified depending on the application.",
+      "volumetric_scale": "50,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pre-treatment": {
+      "unit_operation_id": "pre-treatment",
+      "name": "Pre-treatment",
+      "description": "The pre-treatment unit operation is crucial for breaking down the complex lignocellulosic structure of corn stover to enhance the accessibility of fermentable sugars. This step involves mechanical, chemical, or enzymatic methods. Mechanical pre-treatment may include milling to reduce particle size, while chemical methods could involve the use of dilute acid or alkaline solutions to solubilize hemicellulose and disrupt lignin structures. Enzymatic pre-treatment uses specific enzymes to hydrolyze cellulose and hemicellulose into fermentable sugars. The choice of pre-treatment method depends on factors such as cost, efficiency, and downstream processing requirements.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Chemical/Enzyme Addition"
+      ],
+      "output_streams": [
+        "Pre-treated Biomass"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Cellulose is primarily retained in the solid matrix for subsequent enzymatic hydrolysis.",
+            "component": "Cellulose",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Hemicellulose is solubilized and partially removed, enhancing accessibility for fermentation.",
+            "component": "Hemicellulose",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Lignin remains largely in the solid structure, but is partially solubilized during the pre-treatment.",
+            "component": "Lignin",
+            "extractionRate": 0.7
+          },
+          {
+            "description": "Ash content may be partially solubilized or removed but a significant portion remains with the biomass.",
+            "component": "Ash",
+            "extractionRate": 0.5
+          },
+          {
+            "description": "Moisture content is typically variable based on process conditions, with some moisture removed during pre-treatment.",
+            "component": "Moisture",
+            "extractionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "Pre-treatment is energy-intensive and can generate inhibitory by-products that need to be managed in subsequent steps."
+    },
+    "hydrolysis": {
+      "unit_operation_id": "hydrolysis",
+      "name": "Hydrolysis",
+      "description": "In the hydrolysis unit operation, the pre-treated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into simple sugars, primarily glucose and xylose. This step typically employs cellulase and hemicellulase enzymes. The efficiency of hydrolysis is critical for maximizing sugar yield, which directly impacts the overall yield of lactic acid. The process may be conducted in a batch or continuous mode, depending on the scale and design of the facility.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pre-treated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "The enzymatic breakdown of cellulose into glucose through the action of cellulase enzymes.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.8
+          },
+          {
+            "description": "The enzymatic conversion of hemicellulose into xylose using hemicellulase enzymes.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "The presence of lignin in the output stream can affect downstream processing and may require separation."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the anaerobic conversion of sugars into lactic acid using yeast or fungal strains. The choice of microorganism is critical, as it affects the yield, optical purity, and rate of lactic acid production. The fermentation is conducted in bioreactors designed to maintain anaerobic conditions and optimal temperature for microbial activity. The process may be batch, fed-batch, or continuous, depending on the desired production scale and efficiency.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Yeast/Fungal Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of glucose from the sugar solution into lactic acid through anaerobic fermentation using yeast or fungal cultures.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Lactic Acid",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Conversion of xylose from the sugar solution into lactic acid through anaerobic fermentation using yeast or fungal cultures.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Lactic Acid",
+            "conversionRate": 0.6
+          }
+        ]
+      },
+      "additional_info": "The optical purity of lactic acid can be influenced by the choice of microorganism and fermentation conditions."
+    },
+    "separation": {
+      "unit_operation_id": "separation",
+      "name": "Separation",
+      "description": "The separation unit operation involves the recovery of lactic acid from the fermentation broth. This step typically employs techniques such as filtration, centrifugation, or membrane separation to remove microbial biomass and other solids. The clarified broth is then subjected to further purification processes to concentrate lactic acid and remove impurities. The efficiency of separation impacts the purity and yield of the final product.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Lactic Acid Solution",
+        "Solid Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "The component lactic acid is effectively recovered from the fermentation broth through filtration, centrifugation, or membrane separation techniques.",
+            "component": "Lactic Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Residual sugars are extracted along with lactic acid in a significant portion, indicating their presence in the clarified solution after separation.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.85
+          },
+          {
+            "description": "Microbial biomass is highly retained in the solid waste, indicating inefficient extraction into the liquid phase during the separation process.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.05
+          },
+          {
+            "description": "Lignin is also mostly retained in the solid waste, showcasing its low transfer to the clarified solution during separation.",
+            "component": "Lignin",
+            "extractionRate": 0.05
+          },
+          {
+            "description": "Ash is minimally extracted into the clarified solution, largely remaining in the solid waste after the separation process.",
+            "component": "Ash",
+            "extractionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "Solid waste may be processed for energy recovery or disposed of according to environmental regulations."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation focuses on increasing the purity of lactic acid to meet industrial specifications. This step may involve distillation, ion exchange, or crystallization to remove residual sugars and other impurities. The choice of purification method depends on the desired purity level and the specific application of the lactic acid. High purity is essential for applications in food and pharmaceuticals.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Lactic Acid Solution"
+      ],
+      "output_streams": [
+        "Purified Lactic Acid",
+        "Impurity Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of residual sugars from clarified lactic acid solution to enhance the purity of lactic acid.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.95
+          }
+        ]
+      },
+      "additional_info": "Purification is a critical step for achieving the desired optical purity and concentration of lactic acid."
+    },
+    "product_storage_and_handling": {
+      "unit_operation_id": "product_storage_and_handling",
+      "name": "Product Storage and Handling",
+      "description": "The final unit operation involves the storage and handling of purified lactic acid. The product is stored in appropriate containers to prevent contamination and degradation. Storage conditions are maintained to ensure product stability and quality. The handling process includes packaging and transportation logistics to deliver the product to end-users or further processing facilities.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Lactic Acid"
+      ],
+      "output_streams": [
+        "Packaged Lactic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Storage conditions such as temperature and humidity control are crucial to maintain product quality."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the 'Raw Corn Stover' stream, which consists of corn stover as harvested. The stream contains a mixture of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). It is the initial feedstock for the process, typically requiring pre-treatment to break down its lignocellulosic structure for subsequent fermentation processes.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which contains cellulase and hemicellulase enzymes essential for the hydrolysis of pre-treated biomass. The Enzyme Solution is crucial for breaking down complex carbohydrates into fermentable sugars, facilitating the subsequent fermentation process. It is prepared to meet the specific requirements of the hydrolysis unit operation, ensuring optimal enzyme activity and efficiency.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "yeast/fungal culture source": {
+      "unit_operation_id": "yeast/fungal culture source",
+      "name": "Yeast/Fungal Culture Source",
+      "description": "This unit operation serves as a source for the Yeast/Fungal Culture stream, which is a microbial culture essential for the anaerobic fermentation process. The culture consists of specific yeast and fungal strains that are utilized to convert sugars into lactic acid during fermentation. The operation ensures a consistent supply of viable microorganisms to maintain optimal fermentation conditions and efficiency.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Yeast/Fungal Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid waste sink": {
+      "unit_operation_id": "solid waste sink",
+      "name": "Solid Waste Sink",
+      "description": "This unit operation serves as a sink for the Solid Waste stream, which consists of separated solids including microbial biomass, lignin, and ash. The Solid Waste Sink is designed to collect and manage the by-products of the fermentation and separation processes, ensuring proper disposal or potential further processing of the residual materials. It plays a crucial role in maintaining the efficiency and sustainability of the overall process by managing waste outputs.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "impurity stream sink": {
+      "unit_operation_id": "impurity stream sink",
+      "name": "Impurity Stream Sink",
+      "description": "This unit operation serves as a sink for the Impurity Stream, which contains removed impurities primarily composed of residual sugars. The stream is generated during the purification process of lactic acid production, where residual sugars that were not converted into lactic acid are separated out. This sink is designed to manage and dispose of the impurity stream effectively, ensuring that the overall process maintains high purity standards for the final product.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Impurity Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "packaged lactic acid sink": {
+      "unit_operation_id": "packaged lactic acid sink",
+      "name": "Packaged Lactic Acid Sink",
+      "description": "This unit operation serves as the final sink for the Packaged Lactic Acid stream, where lactic acid is stored in appropriate containers for distribution and sale. The packaged product is ready for shipment to customers and is designed to maintain the quality and integrity of the lactic acid during storage and transport.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Packaged Lactic Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "chemical/enzyme addition": {
+      "unit_operation_id": "chemical/enzyme addition",
+      "name": "Chemical/Enzyme Addition",
+      "description": "This unit operation serves as a source for the Chemical/Enzyme Addition stream, which consists of the various chemicals and enzymes utilized in the pre-treatment process of corn stover. This stream is critical for breaking down the lignocellulosic structure of the biomass, enhancing the accessibility of fermentable sugars. The specific components of this stream may include dilute acids such as sulfuric acid, alkaline solutions like sodium hydroxide, and specific enzymes including cellulase and hemicellulase, depending on the pre-treatment method employed.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Chemical/Enzyme Addition"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Corn stover as harvested, containing cellulose, hemicellulose, lignin, ash, and moisture.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pre-treated Biomass": {
+      "name": "Pre-treated Biomass",
+      "stream_id": "pre_treated biomass",
+      "description": "Biomass with reduced lignocellulosic structure, containing more accessible cellulose and hemicellulose for fermentation.",
+      "stream_type": "core",
+      "source": "pre-treatment",
+      "target": "hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes for hydrolysis.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, ready for fermentation.",
+      "stream_type": "core",
+      "source": "hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Yeast/Fungal Culture": {
+      "name": "Yeast/Fungal Culture",
+      "stream_id": "yeast/fungal culture",
+      "description": "Microbial culture used for the anaerobic fermentation of sugars to lactic acid.",
+      "stream_type": "core",
+      "source": "yeast/fungal culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungal Strains": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing lactic acid, residual sugars, microbial biomass, and other fermentation by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Clarified Lactic Acid Solution": {
+      "name": "Clarified Lactic Acid Solution",
+      "stream_id": "clarified lactic acid solution",
+      "description": "A solution with reduced solids content, containing lactic acid and residual impurities.",
+      "stream_type": "core",
+      "source": "separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Separated solids including microbial biomass and lignin.",
+      "stream_type": "core",
+      "source": "separation",
+      "target": "solid waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Purified Lactic Acid": {
+      "name": "Purified Lactic Acid",
+      "stream_id": "purified lactic acid",
+      "description": "Lactic acid with high purity, suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "product_storage_and_handling",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0
+      }
+    },
+    "Impurity Stream": {
+      "name": "Impurity Stream",
+      "stream_id": "impurity stream",
+      "description": "A stream containing removed impurities, primarily residual sugars.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "impurity stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0
+      }
+    },
+    "Packaged Lactic Acid": {
+      "name": "Packaged Lactic Acid",
+      "stream_id": "packaged lactic acid",
+      "description": "Lactic acid packaged for distribution and sale.",
+      "stream_type": "core",
+      "source": "product_storage_and_handling",
+      "target": "packaged lactic acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0
+      }
+    },
+    "Chemical/Enzyme Addition": {
+      "name": "Chemical/Enzyme Addition",
+      "stream_id": "chemical/enzyme addition",
+      "description": "This stream would consist of any chemicals or enzymes used in the pre-treatment process to break down the lignocellulosic structure of corn stover. The specific components depend on the chosen pre-treatment method (e.g., dilute acid, alkaline solutions, or specific enzymes).",
+      "stream_type": "aux",
+      "source": "chemical/enzyme addition",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Dilute Acid (e.g., Sulfuric Acid)": 0,
+        "Alkaline Solution (e.g., Sodium Hydroxide)": 0,
+        "Specific Enzymes (e.g., Cellulase, Hemicellulase)": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungal Strains": {
+      "name": "Fungal Strains",
+      "properties": {}
+    },
+    "Lactic Acid": {
+      "name": "Lactic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Dilute Acid (e.g., Sulfuric Acid)": {
+      "name": "Dilute Acid (e.g., Sulfuric Acid)",
+      "properties": {}
+    },
+    "Alkaline Solution (e.g., Sodium Hydroxide)": {
+      "name": "Alkaline Solution (e.g., Sodium Hydroxide)",
+      "properties": {}
+    },
+    "Specific Enzymes (e.g., Cellulase, Hemicellulase)": {
+      "name": "Specific Enzymes (e.g., Cellulase, Hemicellulase)",
+      "properties": {}
+    }
+  }
+}

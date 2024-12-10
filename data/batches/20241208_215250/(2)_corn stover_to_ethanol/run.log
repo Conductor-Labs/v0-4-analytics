@@ -1,0 +1,227 @@
+[2024-12-08 21:52:50] INFO - Starting run 2 for user prompt: Process that produces ethanol from corn stover
+[2024-12-08 21:52:50] INFO - Starting run 1 for user prompt: Process that produces ethanol from corn stover
+[2024-12-08 21:52:50] INFO - Starting TEA workflow for user prompt: Process that produces ethanol from corn stover
+[2024-12-08 21:52:50] INFO - Starting TEA workflow for user prompt: Process that produces ethanol from corn stover
+[2024-12-08 21:52:50] INFO - Starting process description agent.
+[2024-12-08 21:52:50] INFO - Starting process description agent.
+[2024-12-08 21:52:50] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that produces ethanol from corn stover
+[2024-12-08 21:52:50] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that produces ethanol from corn stover
+[2024-12-08 21:52:52] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Lignocellulosic biomass with high cellulose and hemicellulose content, suitable for enzymatic hydrolysis and fermentation processes.","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Ethanol","composition":"Ethanol (C2H5OH) with trace impurities","key_specs":"Fuel-grade ethanol with a purity of at least 99.5% by volume, suitable for blending with gasoline or use in industrial applications.","volumetric_scale":"30 million gallons per year"}]}
+[2024-12-08 21:52:52] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-08 21:52:52] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Lignocellulosic biomass with high cellulose and hemicellulose content, suitable for enzymatic hydrolysis and fermentation processes.', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Ethanol', 'composition': 'Ethanol (C2H5OH) with trace impurities', 'key_specs': 'Fuel-grade ethanol with a purity of at least 99.5% by volume, suitable for blending with gasoline or use in industrial applications.', 'volumetric_scale': '30 million gallons per year'}]}
+[2024-12-08 21:52:53] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Lignocellulosic biomass with high cellulose content, typically requires pretreatment to break down lignin and hemicellulose for enzymatic hydrolysis.","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Ethanol","composition":"Ethanol (C2H5OH) with trace impurities","key_specs":"Fuel-grade ethanol with a purity of at least 99.5% for use in blending with gasoline. Must meet ASTM D4806 specifications for denatured fuel ethanol.","volumetric_scale":"30 million gallons per year"}]}
+[2024-12-08 21:52:53] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-08 21:52:53] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Lignocellulosic biomass with high cellulose content, typically requires pretreatment to break down lignin and hemicellulose for enzymatic hydrolysis.', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Ethanol', 'composition': 'Ethanol (C2H5OH) with trace impurities', 'key_specs': 'Fuel-grade ethanol with a purity of at least 99.5% for use in blending with gasoline. Must meet ASTM D4806 specifications for denatured fuel ethanol.', 'volumetric_scale': '30 million gallons per year'}]}
+[2024-12-08 21:53:06] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Feedstock Preparation","order":1,"description":"The corn stover, which is a lignocellulosic biomass, is first collected and transported to the processing facility. In this unit operation, the stover is subjected to size reduction using mechanical milling to increase the surface area, making it more amenable to subsequent chemical and enzymatic treatments. This step is crucial for enhancing the efficiency of the hydrolysis process.","input_streams":[{"name":"Raw Corn Stover","description":"Collected corn stover from agricultural fields, consisting of stalks, leaves, and cobs.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Milled Corn Stover","description":"Corn stover that has been mechanically reduced in size to increase surface area.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"additional_info":"Particle size reduction is typically achieved using hammer mills or knife mills."},{"name":"Pretreatment","order":2,"description":"The milled corn stover undergoes a pretreatment process to break down the lignin structure and hemicellulose, making the cellulose more accessible for enzymatic hydrolysis. This is often achieved using dilute acid or steam explosion methods. The pretreatment step is critical for disrupting the lignin-carbohydrate complex and enhancing the digestibility of the biomass.","input_streams":[{"name":"Milled Corn Stover","description":"Corn stover that has been mechanically reduced in size to increase surface area.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure, making cellulose more accessible.","components":["Cellulose","Hemicellulose","Lignin","Soluble Sugars"]}],"additional_info":"Dilute acid pretreatment typically uses sulfuric acid and operates at elevated temperatures."},{"name":"Enzymatic Hydrolysis","order":3,"description":"In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis. Enzymes such as cellulases and hemicellulases are added to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This step is essential for producing the sugar intermediates required for fermentation.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure, making cellulose more accessible.","components":["Cellulose","Hemicellulose","Lignin","Soluble Sugars"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Hydrolysate","description":"A liquid stream rich in fermentable sugars, primarily glucose and xylose.","components":["Glucose","Xylose","Lignin Residues"]}],"additional_info":"The enzymatic hydrolysis is typically conducted at moderate temperatures and neutral pH to optimize enzyme activity."},{"name":"Fermentation","order":4,"description":"The hydrolysate containing fermentable sugars is transferred to fermentation tanks where microorganisms, such as genetically modified yeast or bacteria, convert the sugars into ethanol and carbon dioxide. This biological conversion is the core of the ethanol production process.","input_streams":[{"name":"Hydrolysate","description":"A liquid stream rich in fermentable sugars, primarily glucose and xylose.","components":["Glucose","Xylose","Lignin Residues"]},{"name":"Microbial Culture","description":"Yeast or bacteria used for fermentation.","components":["Yeast","Bacteria"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing ethanol, unfermented sugars, and microbial biomass.","components":["Ethanol","Carbon Dioxide","Microbial Biomass"]}],"additional_info":"Fermentation is typically carried out at temperatures optimal for microbial activity, often around 30-35°C."},{"name":"Distillation","order":5,"description":"The fermentation broth is subjected to distillation to separate ethanol from the mixture. This unit operation involves heating the broth to vaporize ethanol, which is then condensed and collected as a concentrated product. Distillation is crucial for achieving the high purity levels required for fuel-grade ethanol.","input_streams":[{"name":"Fermentation Broth","description":"A mixture containing ethanol, unfermented sugars, and microbial biomass.","components":["Ethanol","Carbon Dioxide","Microbial Biomass"]}],"output_streams":[{"name":"Crude Ethanol","description":"A concentrated ethanol stream with impurities.","components":["Ethanol","Water","Trace Impurities"]},{"name":"Stillage","description":"Residue stream containing water, unfermented sugars, and microbial biomass.","components":["Water","Microbial Biomass","Unfermented Sugars"]}],"additional_info":"Distillation columns are designed to optimize separation efficiency and energy consumption."},{"name":"Dehydration","order":6,"description":"To achieve the required fuel-grade ethanol purity, the crude ethanol undergoes a dehydration process. This is typically done using molecular sieves or azeotropic distillation to remove residual water, resulting in ethanol with a purity of at least 99.5%.","input_streams":[{"name":"Crude Ethanol","description":"A concentrated ethanol stream with impurities.","components":["Ethanol","Water","Trace Impurities"]}],"output_streams":[{"name":"Fuel-Grade Ethanol","description":"High-purity ethanol suitable for blending with gasoline or industrial use.","components":["Ethanol"]}],"additional_info":"Molecular sieves are often used due to their high selectivity for water removal."},{"name":"Waste Treatment","order":7,"description":"The stillage and other waste streams generated throughout the process are treated to minimize environmental impact. This may involve anaerobic digestion to produce biogas, which can be used as an energy source, and nutrient recovery for use as fertilizers.","input_streams":[{"name":"Stillage","description":"Residue stream containing water, unfermented sugars, and microbial biomass.","components":["Water","Microbial Biomass","Unfermented Sugars"]}],"output_streams":[{"name":"Treated Effluent","description":"A stream of treated water and residual solids.","components":["Water","Residual Solids"]},{"name":"Biogas","description":"A gaseous stream primarily composed of methane and carbon dioxide.","components":["Methane","Carbon Dioxide"]}],"additional_info":"Anaerobic digestion is a common method for treating organic waste streams and recovering energy."}]}
+[2024-12-08 21:53:06] DEBUG - Process flow loaded successfully.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Feedstock Preparation'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Milled Corn Stover' for output of unit operation 'Feedstock Preparation'.
+[2024-12-08 21:53:06] DEBUG - Added unit operation 'Feedstock Preparation' with ID 'feedstock_preparation' to process flow.
+[2024-12-08 21:53:06] DEBUG - Reusing existing stream 'Milled Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-08 21:53:06] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-08 21:53:06] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Hydrolysate' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-08 21:53:06] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-08 21:53:06] DEBUG - Reusing existing stream 'Hydrolysate' for input of unit operation 'Fermentation'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-08 21:53:06] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-08 21:53:06] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Distillation'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Crude Ethanol' for output of unit operation 'Distillation'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Stillage' for output of unit operation 'Distillation'.
+[2024-12-08 21:53:06] DEBUG - Added unit operation 'Distillation' with ID 'distillation' to process flow.
+[2024-12-08 21:53:06] DEBUG - Reusing existing stream 'Crude Ethanol' for input of unit operation 'Dehydration'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Fuel-Grade Ethanol' for output of unit operation 'Dehydration'.
+[2024-12-08 21:53:06] DEBUG - Added unit operation 'Dehydration' with ID 'dehydration' to process flow.
+[2024-12-08 21:53:06] DEBUG - Reusing existing stream 'Stillage' for input of unit operation 'Waste Treatment'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Treated Effluent' for output of unit operation 'Waste Treatment'.
+[2024-12-08 21:53:06] DEBUG - Created new stream 'Biogas' for output of unit operation 'Waste Treatment'.
+[2024-12-08 21:53:06] DEBUG - Added unit operation 'Waste Treatment' with ID 'waste_treatment' to process flow.
+[2024-12-08 21:53:06] INFO - Process flow built successfully.
+[2024-12-08 21:53:06] INFO - Starting v1 DAG agent.
+[2024-12-08 21:53:06] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:06] DEBUG - Adding edge from 'feedstock_preparation' to 'pretreatment' via stream 'Milled Corn Stover'.
+[2024-12-08 21:53:06] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-08 21:53:06] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:06] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Hydrolysate'.
+[2024-12-08 21:53:06] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:06] DEBUG - Adding edge from 'fermentation' to 'distillation' via stream 'Fermentation Broth'.
+[2024-12-08 21:53:06] DEBUG - Adding edge from 'distillation' to 'dehydration' via stream 'Crude Ethanol'.
+[2024-12-08 21:53:06] DEBUG - Adding edge from 'distillation' to 'waste_treatment' via stream 'Stillage'.
+[2024-12-08 21:53:06] DEBUG - Stream 'Fuel-Grade Ethanol' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:06] DEBUG - Stream 'Treated Effluent' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:06] DEBUG - Stream 'Biogas' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:06] INFO - Process flow successfully represented as a DAG.
+[2024-12-08 21:53:06] DEBUG - No missing streams identified for unit operation: Feedstock Preparation
+[2024-12-08 21:53:07] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Feedstock Preparation","order":1,"description":"The corn stover, which is a lignocellulosic biomass, is first collected and prepared for processing. This involves size reduction through mechanical milling to increase the surface area, making it more amenable to subsequent chemical reactions. The milled stover is then dried to reduce moisture content, which is crucial for efficient pretreatment and enzymatic hydrolysis.","input_streams":[{"name":"Raw Corn Stover","description":"Collected corn stover from agricultural fields, containing cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Prepared Corn Stover","description":"Corn stover that has been milled and dried, ready for pretreatment.","components":["Cellulose","Hemicellulose","Lignin"]}],"additional_info":"Size reduction is typically achieved using hammer mills or knife mills. Moisture content is reduced to around 10%."},{"name":"Pretreatment","order":2,"description":"The prepared corn stover undergoes a pretreatment process to break down the lignin and hemicellulose matrix, making the cellulose more accessible for enzymatic hydrolysis. This is typically achieved using dilute acid pretreatment, where the biomass is treated with a dilute sulfuric acid solution under controlled conditions. The acid hydrolyzes hemicellulose into soluble sugars and disrupts the lignin structure.","input_streams":[{"name":"Prepared Corn Stover","description":"Corn stover that has been milled and dried, ready for pretreatment.","components":["Cellulose","Hemicellulose","Lignin"]},{"name":"Dilute Acid Solution","description":"A dilute sulfuric acid solution used to hydrolyze hemicellulose and disrupt lignin.","components":["Water","Sulfuric Acid"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin and solubilized hemicellulose, containing cellulose and soluble sugars.","components":["Cellulose","Soluble Sugars","Lignin Residues"]}],"additional_info":"The pretreatment process is critical for maximizing sugar yield in subsequent steps. Careful control of acid concentration and reaction time is necessary to minimize sugar degradation."},{"name":"Enzymatic Hydrolysis","order":3,"description":"The pretreated biomass is subjected to enzymatic hydrolysis, where cellulase enzymes are added to convert the accessible cellulose into fermentable sugars, primarily glucose. This step is conducted in a bioreactor, where conditions are optimized for enzyme activity and sugar yield. The hydrolysis process can take several days to achieve maximum conversion.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin and solubilized hemicellulose, containing cellulose and soluble sugars.","components":["Cellulose","Soluble Sugars","Lignin Residues"]},{"name":"Cellulase Enzymes","description":"Enzymes used to catalyze the breakdown of cellulose into glucose.","components":["Cellulase"]}],"output_streams":[{"name":"Hydrolysate","description":"A mixture of fermentable sugars, primarily glucose, along with lignin residues.","components":["Glucose","Lignin Residues"]}],"additional_info":"Enzyme loading and reaction time are key parameters influencing the efficiency and cost of this step."},{"name":"Fermentation","order":4,"description":"The hydrolysate, rich in glucose, is transferred to a fermentation vessel where yeast or other microorganisms are added to convert the sugars into ethanol and carbon dioxide. This biological process is conducted under anaerobic conditions, and the fermentation typically lasts for 48 to 72 hours until the sugar is depleted.","input_streams":[{"name":"Hydrolysate","description":"A mixture of fermentable sugars, primarily glucose, along with lignin residues.","components":["Glucose","Lignin Residues"]},{"name":"Yeast Culture","description":"Microorganisms used to ferment glucose into ethanol.","components":["Yeast"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing ethanol, water, unconverted sugars, and yeast biomass.","components":["Ethanol","Water","Yeast Biomass"]}],"additional_info":"The choice of microorganism and fermentation conditions are crucial for maximizing ethanol yield and productivity."},{"name":"Distillation","order":5,"description":"The fermentation broth is subjected to distillation to separate ethanol from water and other components. This involves heating the mixture to vaporize ethanol, which is then condensed and collected as a concentrated product. Multiple distillation columns may be used to achieve the desired purity of ethanol.","input_streams":[{"name":"Fermentation Broth","description":"A mixture containing ethanol, water, unconverted sugars, and yeast biomass.","components":["Ethanol","Water","Yeast Biomass"]}],"output_streams":[{"name":"Crude Ethanol","description":"Ethanol with impurities, requiring further purification to meet fuel-grade specifications.","components":["Ethanol","Water"]},{"name":"Stillage","description":"Residue containing water, yeast biomass, and unconverted sugars.","components":["Water","Yeast Biomass"]}],"additional_info":"Distillation is energy-intensive, and heat integration strategies are often employed to reduce energy consumption."},{"name":"Dehydration","order":6,"description":"The crude ethanol is further purified through a dehydration process to remove residual water and achieve fuel-grade ethanol purity. This is typically done using molecular sieves or azeotropic distillation techniques to achieve a purity of at least 99.5%.","input_streams":[{"name":"Crude Ethanol","description":"Ethanol with impurities, requiring further purification to meet fuel-grade specifications.","components":["Ethanol","Water"]}],"output_streams":[{"name":"Fuel-Grade Ethanol","description":"High-purity ethanol suitable for blending with gasoline, meeting ASTM D4806 specifications.","components":["Ethanol"]}],"additional_info":"Molecular sieves are often preferred for their ability to selectively adsorb water, providing high purity in a single step."},{"name":"Waste Management","order":7,"description":"The process generates various waste streams, including lignin residues, stillage, and other by-products. These are managed through a combination of recycling, energy recovery, and disposal. Lignin residues can be used as a boiler fuel to generate steam and electricity for the plant, while stillage may be processed for animal feed or further treated for nutrient recovery.","input_streams":[{"name":"Stillage","description":"Residue containing water, yeast biomass, and unconverted sugars.","components":["Water","Yeast Biomass"]},{"name":"Lignin Residues","description":"Solid residues from the pretreatment and hydrolysis processes.","components":["Lignin"]}],"output_streams":[{"name":"Recovered Energy","description":"Energy generated from burning lignin residues.","components":["Energy"]},{"name":"Animal Feed","description":"Processed stillage used as animal feed.","components":["Nutrients"]}],"additional_info":"Efficient waste management is crucial for the sustainability and economic viability of the process."}]}
+[2024-12-08 21:53:07] DEBUG - Process flow loaded successfully.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Feedstock Preparation'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Prepared Corn Stover' for output of unit operation 'Feedstock Preparation'.
+[2024-12-08 21:53:07] DEBUG - Added unit operation 'Feedstock Preparation' with ID 'feedstock_preparation' to process flow.
+[2024-12-08 21:53:07] DEBUG - Reusing existing stream 'Prepared Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Dilute Acid Solution' for input of unit operation 'Pretreatment'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-08 21:53:07] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-08 21:53:07] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Cellulase Enzymes' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Hydrolysate' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-08 21:53:07] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-08 21:53:07] DEBUG - Reusing existing stream 'Hydrolysate' for input of unit operation 'Fermentation'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Yeast Culture' for input of unit operation 'Fermentation'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-08 21:53:07] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-08 21:53:07] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Distillation'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Crude Ethanol' for output of unit operation 'Distillation'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Stillage' for output of unit operation 'Distillation'.
+[2024-12-08 21:53:07] DEBUG - Added unit operation 'Distillation' with ID 'distillation' to process flow.
+[2024-12-08 21:53:07] DEBUG - Reusing existing stream 'Crude Ethanol' for input of unit operation 'Dehydration'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Fuel-Grade Ethanol' for output of unit operation 'Dehydration'.
+[2024-12-08 21:53:07] DEBUG - Added unit operation 'Dehydration' with ID 'dehydration' to process flow.
+[2024-12-08 21:53:07] DEBUG - Reusing existing stream 'Stillage' for input of unit operation 'Waste Management'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Lignin Residues' for input of unit operation 'Waste Management'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Recovered Energy' for output of unit operation 'Waste Management'.
+[2024-12-08 21:53:07] DEBUG - Created new stream 'Animal Feed' for output of unit operation 'Waste Management'.
+[2024-12-08 21:53:07] DEBUG - Added unit operation 'Waste Management' with ID 'waste_management' to process flow.
+[2024-12-08 21:53:07] INFO - Process flow built successfully.
+[2024-12-08 21:53:07] INFO - Starting v1 DAG agent.
+[2024-12-08 21:53:07] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:07] DEBUG - Adding edge from 'feedstock_preparation' to 'pretreatment' via stream 'Prepared Corn Stover'.
+[2024-12-08 21:53:07] DEBUG - Stream 'Dilute Acid Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:07] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-08 21:53:07] DEBUG - Stream 'Cellulase Enzymes' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:07] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Hydrolysate'.
+[2024-12-08 21:53:07] DEBUG - Stream 'Yeast Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:07] DEBUG - Adding edge from 'fermentation' to 'distillation' via stream 'Fermentation Broth'.
+[2024-12-08 21:53:07] DEBUG - Adding edge from 'distillation' to 'dehydration' via stream 'Crude Ethanol'.
+[2024-12-08 21:53:07] DEBUG - Adding edge from 'distillation' to 'waste_management' via stream 'Stillage'.
+[2024-12-08 21:53:07] DEBUG - Stream 'Fuel-Grade Ethanol' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:07] DEBUG - Stream 'Lignin Residues' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:07] DEBUG - Stream 'Recovered Energy' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:07] DEBUG - Stream 'Animal Feed' is missing a source or target and will not be included in the DAG.
+[2024-12-08 21:53:07] INFO - Process flow successfully represented as a DAG.
+[2024-12-08 21:53:08] DEBUG - No missing streams identified for unit operation: Feedstock Preparation
+[2024-12-08 21:53:09] DEBUG - Added auxiliary input stream 'Pretreatment Agent' to unit operation 'Pretreatment'
+  - Description: The pretreatment process typically requires an agent such as a dilute acid or steam to facilitate the breakdown of lignin and hemicellulose, making cellulose more accessible. This stream represents the addition of the pretreatment chemical or steam.
+  - Components: Dilute Acid, Water
+[2024-12-08 21:53:09] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-08 21:53:10] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-08 21:53:10] DEBUG - No missing streams identified for unit operation: Distillation
+[2024-12-08 21:53:11] DEBUG - Added auxiliary output stream 'Soluble Sugars Stream' to unit operation 'Pretreatment'
+  - Description: Represents the soluble sugars that are generated as a result of the hydrolysis of hemicellulose during the pretreatment process. These sugars are separated from the solid biomass and may be used in subsequent fermentation or recovery processes.
+  - Components: Soluble Sugars, Water
+[2024-12-08 21:53:11] DEBUG - No missing streams identified for unit operation: Dehydration
+[2024-12-08 21:53:11] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-08 21:53:11] DEBUG - No missing streams identified for unit operation: Waste Treatment
+[2024-12-08 21:53:13] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-08 21:53:13] DEBUG - Added auxiliary output stream 'Carbon Dioxide' to unit operation 'Fermentation'
+  - Description: Carbon dioxide is produced as a byproduct during the fermentation process when yeast converts glucose to ethanol. It is typically vented or captured for further use or treatment.
+  - Components: Carbon Dioxide
+[2024-12-08 21:53:13] DEBUG - No missing streams identified for unit operation: Distillation
+[2024-12-08 21:53:14] DEBUG - No missing streams identified for unit operation: Dehydration
+[2024-12-08 21:53:14] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-08 21:53:15] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-08 21:53:16] DEBUG - Added auxiliary output stream 'Waste Water' to unit operation 'Waste Management'
+  - Description: The waste management process involves the handling of stillage and lignin residues, which likely contain a significant amount of water and other soluble components that are not accounted for in the current output streams. This stream would consist of the aqueous phase separated during the processing of stillage and lignin residues.
+  - Components: Water, Soluble Organics, Inorganic Salts
+[2024-12-08 21:53:17] DEBUG - Added sink unit operation 'Fuel-Grade Ethanol Sink' with ID 'fuel_grade ethanol sink' for stream 'Fuel-Grade Ethanol'
+[2024-12-08 21:53:18] DEBUG - Added sink unit operation 'Treated Effluent Sink' with ID 'treated effluent sink' for stream 'Treated Effluent'
+[2024-12-08 21:53:18] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-08 21:53:19] DEBUG - Added sink unit operation 'Biogas Sink' with ID 'biogas sink' for stream 'Biogas'
+[2024-12-08 21:53:19] DEBUG - Added source unit operation 'Dilute Acid Solution Source' with ID 'dilute acid solution source' for stream 'Dilute Acid Solution'
+[2024-12-08 21:53:20] DEBUG - Added source unit operation 'Pretreatment Agent Source' with ID 'pretreatment agent source' for stream 'Pretreatment Agent'
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'raw corn stover source' to 'feedstock_preparation' via stream 'Raw Corn Stover'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'feedstock_preparation' to 'pretreatment' via stream 'Milled Corn Stover'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Hydrolysate'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'fermentation' to 'distillation' via stream 'Fermentation Broth'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'distillation' to 'dehydration' via stream 'Crude Ethanol'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'distillation' to 'waste_treatment' via stream 'Stillage'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'dehydration' to 'fuel_grade ethanol sink' via stream 'Fuel-Grade Ethanol'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'waste_treatment' to 'treated effluent sink' via stream 'Treated Effluent'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'waste_treatment' to 'biogas sink' via stream 'Biogas'.
+[2024-12-08 21:53:20] DEBUG - Adding edge from 'pretreatment agent source' to 'pretreatment' via stream 'Pretreatment Agent'.
+[2024-12-08 21:53:20] INFO - Process flow successfully represented as a DAG.
+[2024-12-08 21:53:20] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-08 21:53:20] DEBUG - Added source unit operation 'Cellulase Enzyme Source' with ID 'cellulase enzyme source' for stream 'Cellulase Enzymes'
+[2024-12-08 21:53:22] DEBUG - Added source unit operation 'Yeast Culture Source' with ID 'yeast culture source' for stream 'Yeast Culture'
+[2024-12-08 21:53:23] DEBUG - Added sink unit operation 'Fuel-Grade Ethanol Sink' with ID 'fuel_grade ethanol sink' for stream 'Fuel-Grade Ethanol'
+[2024-12-08 21:53:24] DEBUG - No conversion or separation parameters identified for unit operation: Feedstock Preparation
+[2024-12-08 21:53:24] DEBUG - Added source unit operation 'Lignin Residues Source' with ID 'lignin residues source' for stream 'Lignin Residues'
+[2024-12-08 21:53:25] DEBUG - Added sink unit operation 'Recovered Energy Sink' with ID 'recovered energy sink' for stream 'Recovered Energy'
+[2024-12-08 21:53:26] DEBUG - Added sink unit operation 'Animal Feed Sink' with ID 'animal feed sink' for stream 'Animal Feed'
+[2024-12-08 21:53:27] DEBUG - Added sink unit operation 'Soluble Sugars Sink' with ID 'soluble sugars sink' for stream 'Soluble Sugars Stream'
+[2024-12-08 21:53:29] DEBUG - Added sink unit operation 'Carbon Dioxide Sink' with ID 'carbon dioxide sink' for stream 'Carbon Dioxide'
+[2024-12-08 21:53:30] DEBUG - Added sink unit operation 'Waste Water Sink' with ID 'waste water sink' for stream 'Waste Water'
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'raw corn stover source' to 'feedstock_preparation' via stream 'Raw Corn Stover'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'feedstock_preparation' to 'pretreatment' via stream 'Prepared Corn Stover'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'dilute acid solution source' to 'pretreatment' via stream 'Dilute Acid Solution'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'cellulase enzyme source' to 'enzymatic_hydrolysis' via stream 'Cellulase Enzymes'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Hydrolysate'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'yeast culture source' to 'fermentation' via stream 'Yeast Culture'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'fermentation' to 'distillation' via stream 'Fermentation Broth'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'distillation' to 'dehydration' via stream 'Crude Ethanol'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'distillation' to 'waste_management' via stream 'Stillage'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'dehydration' to 'fuel_grade ethanol sink' via stream 'Fuel-Grade Ethanol'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'lignin residues source' to 'waste_management' via stream 'Lignin Residues'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'waste_management' to 'recovered energy sink' via stream 'Recovered Energy'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'waste_management' to 'animal feed sink' via stream 'Animal Feed'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'pretreatment' to 'soluble sugars sink' via stream 'Soluble Sugars Stream'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'fermentation' to 'carbon dioxide sink' via stream 'Carbon Dioxide'.
+[2024-12-08 21:53:30] DEBUG - Adding edge from 'waste_management' to 'waste water sink' via stream 'Waste Water'.
+[2024-12-08 21:53:30] INFO - Process flow successfully represented as a DAG.
+[2024-12-08 21:53:30] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-08 21:53:30] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Hemicellulose → Soluble Sugars (rate: 60.0%)
+  2. Converting Lignin → Modified Lignin (rate: 20.0%)
+[2024-12-08 21:53:34] DEBUG - No conversion or separation parameters identified for unit operation: Feedstock Preparation
+[2024-12-08 21:53:34] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 75.0%)
+[2024-12-08 21:53:40] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Ethanol (rate: 90.0%)
+  2. Converting Glucose → Carbon Dioxide (rate: 5.0%)
+  3. Converting Xylose → Ethanol (rate: 70.0%)
+  4. Converting Xylose → Carbon Dioxide (rate: 10.0%)
+[2024-12-08 21:53:40] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Hemicellulose → Soluble Sugars (rate: 70.0%)
+  2. Converting Lignin → Lignin Residues (rate: 60.0%)
+[2024-12-08 21:53:45] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Cellulose → Lignin Residues (rate: 0.0%)
+[2024-12-08 21:53:46] DEBUG - Processing separation unit operation: Distillation
+Separation operations:
+  1. Separating Ethanol (extraction rate: 95.0%)
+  2. Separating Water (extraction rate: 5.0%)
+  3. Separating Carbon Dioxide (extraction rate: 0.0%)
+  4. Separating Microbial Biomass (extraction rate: 0.0%)
+[2024-12-08 21:53:52] DEBUG - Processing separation unit operation: Dehydration
+Separation operations:
+  1. Separating Water (extraction rate: 99.0%)
+  2. Separating Ethanol (extraction rate: 0.5%)
+[2024-12-08 21:53:52] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Ethanol (rate: 90.0%)
+  2. Converting Glucose → Carbon Dioxide (rate: 90.0%)
+[2024-12-08 21:54:00] DEBUG - Processing conversion unit operation: Waste Treatment
+Conversion operations:
+  1. Converting Stillage → Biogas (rate: 50.0%)
+  2. Converting Stillage → Carbon Dioxide (rate: 30.0%)
+[2024-12-08 21:54:00] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-08 21:54:00] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-08 21:54:00] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-08 21:54:00] DEBUG - Skipping operational parameters for unit operation 'Fuel-Grade Ethanol Sink' of type 'sink'
+[2024-12-08 21:54:00] DEBUG - Skipping operational parameters for unit operation 'Treated Effluent Sink' of type 'sink'
+[2024-12-08 21:54:00] DEBUG - Skipping operational parameters for unit operation 'Biogas Sink' of type 'sink'
+[2024-12-08 21:54:00] DEBUG - Skipping operational parameters for unit operation 'Pretreatment Agent Source' of type 'source'
+[2024-12-08 21:54:00] INFO - v1 DAG agent processing complete.
+[2024-12-08 21:54:00] INFO - Workflow completed successfully.

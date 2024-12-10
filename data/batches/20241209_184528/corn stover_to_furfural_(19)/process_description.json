@@ -1,0 +1,305 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Lignocellulosic biomass consisting of approximately 35-40% cellulose, 25-30% hemicellulose, 15-20% lignin, and minor amounts of ash and extractives.",
+      "key_specs": "Moisture content typically around 10-15%. Particle size may vary but often reduced to 1-2 cm for processing. Ash content should be minimized to reduce catalyst fouling.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Furfural",
+      "composition": "Furfural (C5H4O2) with typical purity levels of 98-99% for industrial applications.",
+      "key_specs": "Commercial grade furfural with low moisture content (<0.5%) and minimal impurities such as methanol or acetic acid. Meets ASTM standards for furfural purity.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The initial step involves preparing the corn stover feedstock for processing. This includes size reduction and drying. The corn stover, which is a lignocellulosic biomass, is typically received with a moisture content of 10-15% and varying particle sizes. The material is first subjected to mechanical milling to reduce the particle size to approximately 1-2 cm, which is optimal for subsequent processing. The milled biomass is then dried to further reduce the moisture content, minimizing energy consumption in later stages and preventing catalyst deactivation.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Ash content is minimized during preparation to reduce catalyst fouling in later stages."
+    },
+    "acid_hydrolysis": {
+      "unit_operation_id": "acid_hydrolysis",
+      "name": "Acid Hydrolysis",
+      "description": "The prepared corn stover undergoes acid hydrolysis to break down the hemicellulose into its constituent sugars, primarily xylose. A dilute acid solution is used to catalyze the hydrolysis reaction, which cleaves the hemicellulosic bonds. This step is crucial for converting the biomass into fermentable sugars, which are precursors for furfural production.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Dilute Acid Solution"
+      ],
+      "output_streams": [
+        "Hydrolyzed Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of acid and its concentration are critical to maximize xylose yield while minimizing degradation products."
+    },
+    "furfural_production": {
+      "unit_operation_id": "furfural_production",
+      "name": "Furfural Production",
+      "description": "The hydrolyzed biomass is subjected to catalytic dehydration to convert xylose into furfural. This process involves the use of a solid acid catalyst that facilitates the removal of water molecules from xylose, forming furfural. The reaction is conducted in a reactor designed to optimize contact between the catalyst and the xylose-rich stream.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolyzed Biomass"
+      ],
+      "output_streams": [
+        "Furfural-Rich Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Catalyst selection and reactor design are crucial for maximizing furfural yield and minimizing by-product formation."
+    },
+    "separation_and_purification": {
+      "unit_operation_id": "separation_and_purification",
+      "name": "Separation and Purification",
+      "description": "The furfural-rich stream undergoes separation and purification to isolate high-purity furfural. This involves distillation, where furfural is separated based on its boiling point. The distillation process is designed to achieve a purity level of 98-99%, suitable for industrial applications. Any residual water and impurities such as methanol or acetic acid are removed to meet commercial specifications.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Furfural-Rich Stream"
+      ],
+      "output_streams": [
+        "Purified Furfural",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "The distillation column design is optimized for energy efficiency and product purity."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "The waste stream from the purification process is treated to minimize environmental impact. This involves neutralization of residual acids and biological treatment of organic components. The treated water can be recycled back into the process or safely discharged, while solid residues are managed according to environmental regulations.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [
+        "Treated Effluent"
+      ],
+      "parameters": {},
+      "additional_info": "Waste treatment is designed to comply with environmental standards and reduce the process's ecological footprint."
+    },
+    "by-product_utilization": {
+      "unit_operation_id": "by-product_utilization",
+      "name": "By-product Utilization",
+      "description": "Unreacted cellulose and lignin from the hydrolyzed biomass are separated and utilized. These components can be processed further to produce value-added products such as biofuels or biochemicals, enhancing the overall economic viability of the process.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Hydrolyzed Biomass"
+      ],
+      "output_streams": [
+        "Cellulose and Lignin Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Valorization of by-products is key to improving the process's sustainability and profitability."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Lignocellulosic biomass consisting of cellulose, hemicellulose, lignin, and minor components.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Moisture": 0,
+        "Ash": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Size-reduced and dried corn stover ready for chemical processing.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "acid_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Dilute Acid Solution": {
+      "name": "Dilute Acid Solution",
+      "stream_id": "dilute acid solution",
+      "description": "Acid solution used to catalyze the hydrolysis of hemicellulose.",
+      "stream_type": "core",
+      "source": null,
+      "target": "acid_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Acid": 0
+      }
+    },
+    "Hydrolyzed Biomass": {
+      "name": "Hydrolyzed Biomass",
+      "stream_id": "hydrolyzed biomass",
+      "description": "Biomass with hemicellulose broken down into sugars, primarily xylose.",
+      "stream_type": "core",
+      "source": "acid_hydrolysis",
+      "target": "by-product_utilization",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylose": 0,
+        "Cellulose": 0,
+        "Lignin": 0,
+        "Residual Acid": 0
+      }
+    },
+    "Furfural-Rich Stream": {
+      "name": "Furfural-Rich Stream",
+      "stream_id": "furfural_rich stream",
+      "description": "Stream containing furfural along with unreacted sugars and by-products.",
+      "stream_type": "core",
+      "source": "furfural_production",
+      "target": "separation_and_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Furfural": 0,
+        "Unreacted Xylose": 0,
+        "By-products": 0
+      }
+    },
+    "Purified Furfural": {
+      "name": "Purified Furfural",
+      "stream_id": "purified furfural",
+      "description": "High-purity furfural suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "separation_and_purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Furfural": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "Stream containing impurities and by-products removed during purification.",
+      "stream_type": "core",
+      "source": "separation_and_purification",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Methanol": 0,
+        "Acetic Acid": 0,
+        "Unreacted Sugars": 0
+      }
+    },
+    "Treated Effluent": {
+      "name": "Treated Effluent",
+      "stream_id": "treated effluent",
+      "description": "Water and residues that have been treated for safe discharge or recycling.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Neutralized Salts": 0
+      }
+    },
+    "Cellulose and Lignin Stream": {
+      "name": "Cellulose and Lignin Stream",
+      "stream_id": "cellulose and lignin stream",
+      "description": "Separated cellulose and lignin for further processing or sale.",
+      "stream_type": "core",
+      "source": "by-product_utilization",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Lignin": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Acid": {
+      "name": "Acid",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Acid": {
+      "name": "Residual Acid",
+      "properties": {}
+    },
+    "Furfural": {
+      "name": "Furfural",
+      "properties": {}
+    },
+    "Unreacted Xylose": {
+      "name": "Unreacted Xylose",
+      "properties": {}
+    },
+    "By-products": {
+      "name": "By-products",
+      "properties": {}
+    },
+    "Methanol": {
+      "name": "Methanol",
+      "properties": {}
+    },
+    "Acetic Acid": {
+      "name": "Acetic Acid",
+      "properties": {}
+    },
+    "Unreacted Sugars": {
+      "name": "Unreacted Sugars",
+      "properties": {}
+    },
+    "Neutralized Salts": {
+      "name": "Neutralized Salts",
+      "properties": {}
+    }
+  }
+}

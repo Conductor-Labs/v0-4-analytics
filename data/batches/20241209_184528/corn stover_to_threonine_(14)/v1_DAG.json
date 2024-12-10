@@ -1,0 +1,561 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Corn stover is a lignocellulosic biomass, typically requiring pretreatment to break down cellulose and hemicellulose into fermentable sugars.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Threonine",
+      "composition": "L-Threonine (98-99%), Moisture (0.5-1%), Impurities (0.5-1%)",
+      "key_specs": "Threonine is an essential amino acid, typically produced at a high purity suitable for animal feed or pharmaceutical applications.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to break down the complex lignocellulosic structure of corn stover into simpler components, primarily focusing on cellulose and hemicellulose. This step is crucial as it enhances the accessibility of enzymes to the polysaccharides, facilitating their conversion into fermentable sugars. The process typically involves mechanical, chemical, or a combination of methods such as steam explosion or acid hydrolysis. The choice of pretreatment method impacts the efficiency of subsequent enzymatic hydrolysis and fermentation.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Disruption of cellulose to help increase accessibility for enzymatic hydrolysis.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Degradation Products",
+            "conversionRate": 0.1
+          },
+          {
+            "description": "Breakdown of hemicellulose leading to partial hydrolysis and formation of degradation products for better enzymatic accessibility.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Degradation Products",
+            "conversionRate": 0.15
+          },
+          {
+            "description": "Partial degradation of lignin, reducing barriers for cellulose and hemicellulose accessibility.",
+            "inputComponent": "Lignin",
+            "outputComponent": "Degradation Products",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The pretreatment process may generate inhibitory compounds that need to be managed in subsequent steps."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Enzymes such as cellulases and hemicellulases are employed to catalyze the breakdown of polysaccharides into monosaccharides. This step is critical for maximizing sugar yield, which directly influences the efficiency of the fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose is broken down by cellulases into glucose.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Hemicellulose is broken down by hemicellulases into xylose.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.65
+          }
+        ]
+      },
+      "additional_info": "The enzymatic hydrolysis is typically conducted at specific temperature and pH conditions to optimize enzyme activity."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of sugars into L-Threonine using a genetically engineered bacterial strain. This bioprocess is carried out in a bioreactor where conditions such as oxygen supply, temperature, and pH are tightly controlled to optimize the growth and metabolic activity of the bacteria, ensuring high yield and productivity of L-Threonine.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Bacterial Culture",
+        "Oxygen Supply"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "Carbon Dioxide"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of Glucose into L-Threonine",
+            "inputComponent": "Glucose",
+            "outputComponent": "L-Threonine",
+            "conversionRate": 0.65
+          },
+          {
+            "description": "Conversion of Glucose into Carbon Dioxide",
+            "inputComponent": "Glucose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.25
+          },
+          {
+            "description": "Conversion of Xylose into L-Threonine",
+            "inputComponent": "Xylose",
+            "outputComponent": "L-Threonine",
+            "conversionRate": 0.5
+          },
+          {
+            "description": "Conversion of Xylose into Carbon Dioxide",
+            "inputComponent": "Xylose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.2
+          }
+        ]
+      },
+      "additional_info": "Aerobic conditions are maintained to support bacterial growth and threonine production."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of bacterial cells from the fermentation broth. Typically, centrifugation or filtration techniques are employed to achieve this separation. The removal of biomass is essential to facilitate the downstream purification of L-Threonine.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Cell-Free Broth",
+        "Bacterial Biomass"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Cell separation from fermentation broth to isolate L-Threonine and bacterial biomass.",
+            "component": "L-Threonine",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Cell separation from fermentation broth to isolate L-Threonine and bacterial biomass.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Cell separation from fermentation broth to isolate L-Threonine and bacterial biomass.",
+            "component": "Bacterial Biomass",
+            "extractionRate": 0.99
+          }
+        ]
+      },
+      "additional_info": "The separated biomass can be used as a nutrient source or disposed of as waste."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation focuses on isolating and concentrating L-Threonine from the cell-free broth. Techniques such as crystallization, ion-exchange chromatography, or membrane filtration may be employed to achieve the desired purity levels. This step is crucial to meet the specifications for pharmaceutical or animal feed applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Cell-Free Broth"
+      ],
+      "output_streams": [
+        "Purified L-Threonine",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "The process of isolating and concentrating L-Threonine from cell-free broth to meet high purity standards.",
+            "component": "L-Threonine",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "The process involves the diversion of residual sugars and impurities present in the cell-free broth into the waste stream.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The choice of purification method impacts the purity and yield of L-Threonine."
+    },
+    "drying": {
+      "unit_operation_id": "drying",
+      "name": "Drying",
+      "description": "In the drying unit operation, the purified L-Threonine is dried to achieve the desired moisture content, typically using techniques such as spray drying or freeze drying. This step is essential to ensure product stability and ease of handling during packaging and distribution.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified L-Threonine"
+      ],
+      "output_streams": [
+        "Dried L-Threonine"
+      ],
+      "parameters": {},
+      "additional_info": "The drying process parameters are optimized to prevent degradation of L-Threonine."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is the primary feedstock for the process. It consists of lignocellulosic biomass containing approximately 35-40% cellulose, 25-30% hemicellulose, 15-20% lignin, 5-10% ash, and 5-10% moisture. The raw corn stover requires pretreatment to break down the cellulose and hemicellulose into fermentable sugars for subsequent processing.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which contains cellulases and hemicellulases. These enzymes are critical for the enzymatic hydrolysis process, where they facilitate the breakdown of polysaccharides present in the pretreated biomass into fermentable sugars. The Enzyme Solution is supplied at a volumetric scale necessary to ensure efficient conversion during the enzymatic hydrolysis step of the process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial culture source": {
+      "unit_operation_id": "bacterial culture source",
+      "name": "Bacterial Culture Source",
+      "description": "This unit operation serves as a source for the Bacterial Culture stream, which consists of genetically engineered bacterial cells specifically designed for the production of L-Threonine. The Bacterial Culture is essential for the fermentation process, where these cells will convert sugars into L-Threonine. The operation ensures a consistent supply of viable bacterial cells to maintain optimal fermentation conditions.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Bacterial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial biomass sink": {
+      "unit_operation_id": "bacterial biomass sink",
+      "name": "Bacterial Biomass Sink",
+      "description": "This unit operation serves as a sink for the separated bacterial biomass from the cell separation process. The Bacterial Biomass consists of concentrated bacterial cells that may be further processed for various applications, such as biogas production, or disposed of as waste. This sink ensures the safe handling and management of the bacterial biomass, maintaining process integrity and environmental compliance.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Bacterial Biomass"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as the sink for the Waste Stream generated during the purification of L-Threonine. It collects residual sugars and impurities that are by-products of the purification process. The Waste Stream Sink ensures proper disposal or treatment of these materials, minimizing environmental impact and adhering to regulatory standards.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "dried l_threonine sink": {
+      "unit_operation_id": "dried l_threonine sink",
+      "name": "Dried L-Threonine Sink",
+      "description": "This unit operation serves as the final sink for the Dried L-Threonine stream, which consists of L-Threonine with reduced moisture content, ready for packaging. It ensures the proper handling and storage of the product before distribution, maintaining quality and preventing contamination.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Dried L-Threonine"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "oxygen supply": {
+      "unit_operation_id": "oxygen supply",
+      "name": "Oxygen Supply",
+      "description": "The Oxygen Supply unit operation serves as a source for the oxygen stream required in the fermentation process. It provides a continuous flow of oxygen to the bioreactor, ensuring that aerobic conditions are maintained. This is crucial for the bacterial metabolism, facilitating the conversion of sugars into L-Threonine. The unit operation is designed to deliver the necessary oxygen at the required volumetric scale for optimal fermentation performance.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Oxygen Supply"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "carbon dioxide sink": {
+      "unit_operation_id": "carbon dioxide sink",
+      "name": "Carbon Dioxide Sink",
+      "description": "This unit operation serves as a sink for the Carbon Dioxide stream generated during the fermentation process. Carbon dioxide is produced as a by-product of the aerobic metabolism of the bacterial culture used in the fermentation of sugars to produce L-Threonine. The Carbon Dioxide Sink collects and manages the release of carbon dioxide, ensuring that it is safely vented or captured for further use, thereby minimizing environmental impact.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Carbon Dioxide"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw lignocellulosic biomass feedstock, consisting of cellulose, hemicellulose, lignin, ash, and moisture.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "The biomass after pretreatment, with disrupted lignocellulosic structure, making cellulose and hemicellulose more accessible.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Degradation Products": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases to facilitate the breakdown of polysaccharides.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulases": 0,
+        "Hemicellulases": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, ready for fermentation.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Residual Enzymes": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of genetically engineered bacteria capable of producing L-Threonine.",
+      "stream_type": "core",
+      "source": "bacterial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Cells": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "The broth containing L-Threonine, bacterial biomass, and residual sugars.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "L-Threonine": 0,
+        "Bacterial Biomass": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Cell-Free Broth": {
+      "name": "Cell-Free Broth",
+      "stream_id": "cell_free broth",
+      "description": "The broth after removal of bacterial biomass, containing L-Threonine and residual sugars.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "L-Threonine": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "stream_id": "bacterial biomass",
+      "description": "Separated bacterial cells, which may be processed further or disposed of.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "bacterial biomass sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Cells": 0
+      }
+    },
+    "Purified L-Threonine": {
+      "name": "Purified L-Threonine",
+      "stream_id": "purified l_threonine",
+      "description": "High-purity L-Threonine suitable for end-use applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying",
+      "flow_rate": 0.0,
+      "components": {
+        "L-Threonine": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "Residual impurities and by-products removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Dried L-Threonine": {
+      "name": "Dried L-Threonine",
+      "stream_id": "dried l_threonine",
+      "description": "L-Threonine with reduced moisture content, ready for packaging.",
+      "stream_type": "core",
+      "source": "drying",
+      "target": "dried l_threonine sink",
+      "flow_rate": 0.0,
+      "components": {
+        "L-Threonine": 0
+      }
+    },
+    "Oxygen Supply": {
+      "name": "Oxygen Supply",
+      "stream_id": "oxygen supply",
+      "description": "Oxygen is supplied to the bioreactor to maintain aerobic conditions necessary for the bacterial metabolism and conversion of sugars into L-Threonine.",
+      "stream_type": "aux",
+      "source": "oxygen supply",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0
+      }
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "stream_id": "carbon dioxide",
+      "description": "Carbon dioxide is a by-product of the aerobic fermentation process, resulting from the metabolic activity of the bacteria.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "carbon dioxide sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Degradation Products": {
+      "name": "Degradation Products",
+      "properties": {}
+    },
+    "Cellulases": {
+      "name": "Cellulases",
+      "properties": {}
+    },
+    "Hemicellulases": {
+      "name": "Hemicellulases",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Enzymes": {
+      "name": "Residual Enzymes",
+      "properties": {}
+    },
+    "Bacterial Cells": {
+      "name": "Bacterial Cells",
+      "properties": {}
+    },
+    "L-Threonine": {
+      "name": "L-Threonine",
+      "properties": {}
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    }
+  }
+}

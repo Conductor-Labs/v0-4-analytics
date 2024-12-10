@@ -1,0 +1,586 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Biomass feedstock with high cellulose and hemicellulose content, typically requires pretreatment to enhance digestibility and conversion efficiency.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Sorbitol",
+      "composition": "C6H14O6 (100%)",
+      "key_specs": "Commercial grade sorbitol with a purity of at least 98%, suitable for use in food, pharmaceuticals, and cosmetics. Typically produced as a syrup or crystalline solid.",
+      "volumetric_scale": "50,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to prepare the corn stover for subsequent enzymatic hydrolysis. This involves breaking down the lignocellulosic structure to increase the accessibility of cellulose and hemicellulose. The process typically uses a combination of physical, chemical, or thermal methods, such as steam explosion or dilute acid treatment, to disrupt the lignin matrix and enhance the digestibility of the biomass.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Water/Steam",
+        "Acid (if applicable)"
+      ],
+      "output_streams": [
+        "Pretreated Biomass",
+        "Wastewater"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Hemicellulose is hydrolyzed into sugars through acid treatment during the pretreatment process, increasing its accessibility for fermentation.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Solubilized Hemicellulose",
+            "conversionRate": 0.4
+          }
+        ]
+      },
+      "additional_info": "The choice of pretreatment method can significantly impact the efficiency of downstream processes and the overall economics of the sorbitol production."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis. Enzymes such as cellulases and hemicellulases are added to the biomass to catalyze the breakdown of cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This step is crucial for converting the complex carbohydrates into simpler sugars that can be further processed into sorbitol.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose is broken down into glucose through the action of cellulase.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Hemicellulose is hydrolyzed into xylose and other minor sugars through the action of hemicellulase.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.65
+          }
+        ]
+      },
+      "additional_info": "The efficiency of enzymatic hydrolysis is influenced by factors such as enzyme loading, reaction time, and the degree of pretreatment."
+    },
+    "filtration_and_separation": {
+      "unit_operation_id": "filtration_and_separation",
+      "name": "Filtration and Separation",
+      "description": "This unit operation involves the separation of the liquid sugar solution from the solid residues. Filtration is used to remove unreacted biomass components, such as lignin and ash, from the sugar-rich solution. This step ensures that the subsequent catalytic hydrogenation process is not hindered by solid impurities.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution"
+      ],
+      "output_streams": [
+        "Clarified Sugar Solution",
+        "Solid Residues"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "The process of separating glucose and xylose from solid residues (lignin and ash) using a filtration medium.",
+            "component": "Glucose",
+            "extractionRate": 0.98
+          },
+          {
+            "description": "The process of separating glucose and xylose from solid residues (lignin and ash) using a filtration medium.",
+            "component": "Xylose",
+            "extractionRate": 0.98
+          },
+          {
+            "description": "The process of separating glucose and xylose from solid residues (lignin and ash) using a filtration medium.",
+            "component": "Lignin",
+            "extractionRate": 0.02
+          },
+          {
+            "description": "The process of separating glucose and xylose from solid residues (lignin and ash) using a filtration medium.",
+            "component": "Ash",
+            "extractionRate": 0.02
+          }
+        ]
+      },
+      "additional_info": "The solid residues can be further processed or used as a byproduct for energy generation or other applications."
+    },
+    "catalytic_hydrogenation": {
+      "unit_operation_id": "catalytic_hydrogenation",
+      "name": "Catalytic Hydrogenation",
+      "description": "In this critical unit operation, the clarified sugar solution undergoes catalytic hydrogenation to convert glucose into sorbitol. This process involves the use of a metal catalyst, typically nickel or ruthenium, under hydrogen gas. The hydrogenation reaction reduces the aldehyde group in glucose to form sorbitol, a sugar alcohol.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Clarified Sugar Solution",
+        "Hydrogen Gas",
+        "Catalyst"
+      ],
+      "output_streams": [
+        "Sorbitol Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "In the catalytic hydrogenation unit operation, glucose is converted into sorbitol through a reaction that reduces the aldehyde group of glucose, facilitated by a metal catalyst in the presence of hydrogen gas.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Sorbitol",
+            "conversionRate": 0.9
+          }
+        ]
+      },
+      "additional_info": "The choice of catalyst and reaction conditions are crucial for achieving high conversion rates and selectivity towards sorbitol."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to separate sorbitol from the reaction mixture. This typically involves a combination of evaporation, crystallization, and/or chromatography to achieve the desired purity levels. The goal is to produce commercial-grade sorbitol with a purity of at least 98%, suitable for various applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Sorbitol Solution"
+      ],
+      "output_streams": [
+        "Purified Sorbitol",
+        "Residual Sugars"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Purification of sorbitol from a solution containing xylose by utilizing various separation techniques to maximize sorbitol purity.",
+            "component": "Sorbitol",
+            "extractionRate": 0.98
+          },
+          {
+            "description": "Minor components, primarily xylose, remain in the residual sugars as an output of the separation process.",
+            "component": "Xylose",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The purification process must be carefully controlled to minimize product loss and ensure the economic viability of the process."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "In the final unit operation, the purified sorbitol is dried and packaged for distribution. Depending on the desired end product form, sorbitol can be dried to produce a crystalline solid or concentrated into a syrup. Packaging is done in a manner that preserves product quality and facilitates transportation and storage.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Sorbitol"
+      ],
+      "output_streams": [
+        "Packaged Sorbitol"
+      ],
+      "parameters": {},
+      "additional_info": "The choice between crystalline and syrup forms depends on market demand and application requirements."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is the initial feedstock consisting of untreated corn stover. The composition includes cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). This biomass feedstock is characterized by its high cellulose and hemicellulose content, making it suitable for subsequent pretreatment processes to enhance digestibility and conversion efficiency in the production of sorbitol.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which contains cellulase and hemicellulase enzymes essential for the enzymatic hydrolysis of pretreated biomass. The Enzyme Solution is critical for breaking down cellulose and hemicellulose into fermentable sugars, facilitating the production of sorbitol in the subsequent processes. The unit operation ensures a consistent supply of the enzyme solution at the required concentration and volume for optimal reaction conditions.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid residues sink": {
+      "unit_operation_id": "solid residues sink",
+      "name": "Solid Residues Sink",
+      "description": "This unit operation serves as a sink for the Solid Residues stream, which consists of unreacted biomass components including Lignin and Ash. The Solid Residues Sink is designed to collect and manage the solid waste generated during the biomass conversion process, ensuring that these materials are properly handled, either for disposal, further processing, or potential recovery of valuable components.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Residues"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "hydrogen gas source": {
+      "unit_operation_id": "hydrogen gas source",
+      "name": "Hydrogen Gas Source",
+      "description": "This unit operation serves as a source for the Hydrogen Gas stream, which is essential for the catalytic hydrogenation process in the production of Sorbitol. The Hydrogen Gas stream consists of pure hydrogen, which is utilized in the reduction reaction to convert the clarified sugar solution into sorbitol solution. This operation ensures a continuous supply of hydrogen gas at the required purity and flow rate to meet the demands of the downstream processes.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Hydrogen Gas"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "residual sugars sink": {
+      "unit_operation_id": "residual sugars sink",
+      "name": "Residual Sugars Sink",
+      "description": "This unit operation serves as a sink for the residual sugars stream, primarily consisting of unreacted xylose. The residual sugars can be recycled back into the process for further conversion or utilized in other downstream applications, such as fermentation or as a feedstock for other chemical processes. This operation ensures that valuable resources are not wasted and can be effectively integrated into the overall process flow.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Residual Sugars"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "packaged sorbitol sink": {
+      "unit_operation_id": "packaged sorbitol sink",
+      "name": "Packaged Sorbitol Sink",
+      "description": "This unit operation serves as the final sink for the Packaged Sorbitol stream, which is the end product of the sorbitol production process. It represents the point where the purified sorbitol is either packaged as a crystalline solid or as a syrup, ready for market distribution. This operation ensures that the product meets quality specifications and is prepared for shipping to customers in various industries such as food, pharmaceuticals, and cosmetics.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Packaged Sorbitol"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "water/steam source": {
+      "unit_operation_id": "water/steam source",
+      "name": "Water/Steam Source",
+      "description": "This unit operation serves as a source for the Water/Steam stream, which is utilized in the pretreatment process of biomass feedstock. The stream consists of water or steam that aids in the breakdown of the lignocellulosic structure of Corn Stover. It is essential for processes such as steam explosion or dilute acid treatment, which enhance the disruption of the lignin matrix, thereby improving the digestibility of cellulose and hemicellulose for subsequent enzymatic hydrolysis.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Water/Steam"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "acid source": {
+      "unit_operation_id": "acid source",
+      "name": "Acid Source",
+      "description": "This unit operation serves as a source for the acid stream, specifically sulfuric acid, which is utilized in the pretreatment phase of the biomass conversion process. The acid is critical for the dilute acid treatment, aiding in the breakdown of the lignocellulosic structure of corn stover. By hydrolyzing hemicellulose, it releases fermentable sugars and enhances the accessibility of cellulose for subsequent enzymatic hydrolysis. This stream is essential for improving the overall efficiency of the biomass conversion process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Acid (if applicable)"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "wastewater sink": {
+      "unit_operation_id": "wastewater sink",
+      "name": "Wastewater Sink",
+      "description": "This unit operation serves as a sink for the wastewater stream generated during the pretreatment process. The wastewater contains solubilized hemicellulose, residual acids, and other by-products. It is crucial to manage this stream effectively, as it typically requires treatment before disposal or recycling to minimize environmental impact and comply with regulatory standards.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Wastewater"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "catalyst source": {
+      "unit_operation_id": "catalyst source",
+      "name": "Catalyst Source",
+      "description": "This unit operation serves as a source for the catalyst stream, which consists of metal catalysts such as nickel and ruthenium. These catalysts are essential for the catalytic hydrogenation process, facilitating the conversion of glucose into sorbitol. The catalyst stream is supplied in the required quantities to ensure optimal reaction conditions and efficiency in the production of sorbitol.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Catalyst"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The initial feedstock consisting of untreated corn stover.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Corn stover that has undergone pretreatment to increase cellulose and hemicellulose accessibility.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "filtration_and_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Clarified Sugar Solution": {
+      "name": "Clarified Sugar Solution",
+      "stream_id": "clarified sugar solution",
+      "description": "A purified sugar solution free from solid residues, ready for hydrogenation.",
+      "stream_type": "core",
+      "source": "filtration_and_separation",
+      "target": "catalytic_hydrogenation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0
+      }
+    },
+    "Solid Residues": {
+      "name": "Solid Residues",
+      "stream_id": "solid residues",
+      "description": "Solid waste consisting of unreacted biomass components.",
+      "stream_type": "core",
+      "source": "filtration_and_separation",
+      "target": "solid residues sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Hydrogen Gas": {
+      "name": "Hydrogen Gas",
+      "stream_id": "hydrogen gas",
+      "description": "A stream of hydrogen gas used for the reduction reaction.",
+      "stream_type": "core",
+      "source": "hydrogen gas source",
+      "target": "catalytic_hydrogenation",
+      "flow_rate": 0.0,
+      "components": {
+        "Hydrogen": 0
+      }
+    },
+    "Sorbitol Solution": {
+      "name": "Sorbitol Solution",
+      "stream_id": "sorbitol solution",
+      "description": "A solution containing sorbitol and unreacted sugars, primarily xylose.",
+      "stream_type": "core",
+      "source": "catalytic_hydrogenation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0,
+        "Xylose": 0
+      }
+    },
+    "Purified Sorbitol": {
+      "name": "Purified Sorbitol",
+      "stream_id": "purified sorbitol",
+      "description": "High-purity sorbitol suitable for commercial use.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0
+      }
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "stream_id": "residual sugars",
+      "description": "A stream containing unreacted sugars, primarily xylose, which can be recycled or used in other processes.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "residual sugars sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Xylose": 0
+      }
+    },
+    "Packaged Sorbitol": {
+      "name": "Packaged Sorbitol",
+      "stream_id": "packaged sorbitol",
+      "description": "The final product, either as a crystalline solid or syrup, ready for market distribution.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": "packaged sorbitol sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Sorbitol": 0
+      }
+    },
+    "Water/Steam": {
+      "name": "Water/Steam",
+      "stream_id": "water/steam",
+      "description": "A stream of water or steam used in the pretreatment process to facilitate the breakdown of the lignocellulosic structure. This is typically employed in processes like steam explosion or dilute acid treatment to enhance the disruption of the lignin matrix and improve the digestibility of cellulose and hemicellulose.",
+      "stream_type": "aux",
+      "source": "water/steam source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0
+      }
+    },
+    "Acid (if applicable)": {
+      "name": "Acid (if applicable)",
+      "stream_id": "acid (if applicable)",
+      "description": "An acid stream, such as sulfuric acid, used in dilute acid treatment to aid in breaking down the lignocellulosic structure. It helps in hydrolyzing hemicellulose to release sugars and makes cellulose more accessible for enzymatic action.",
+      "stream_type": "aux",
+      "source": "acid source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Sulfuric Acid": 0
+      }
+    },
+    "Wastewater": {
+      "name": "Wastewater",
+      "stream_id": "wastewater",
+      "description": "A wastewater stream that may contain solubilized hemicellulose, residual acids, and other by-products generated during the pretreatment process. This stream typically requires treatment before disposal or recycling.",
+      "stream_type": "aux",
+      "source": "pretreatment",
+      "target": "wastewater sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Solubilized Hemicellulose": 0,
+        "Residual Acids": 0
+      }
+    },
+    "Catalyst": {
+      "name": "Catalyst",
+      "stream_id": "catalyst",
+      "description": "The metal catalyst, typically nickel or ruthenium, required for the catalytic hydrogenation process to convert glucose into sorbitol.",
+      "stream_type": "aux",
+      "source": "catalyst source",
+      "target": "catalytic_hydrogenation",
+      "flow_rate": 0.0,
+      "components": {
+        "Nickel": 0,
+        "Ruthenium": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Hydrogen": {
+      "name": "Hydrogen",
+      "properties": {}
+    },
+    "Sorbitol": {
+      "name": "Sorbitol",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Sulfuric Acid": {
+      "name": "Sulfuric Acid",
+      "properties": {}
+    },
+    "Solubilized Hemicellulose": {
+      "name": "Solubilized Hemicellulose",
+      "properties": {}
+    },
+    "Residual Acids": {
+      "name": "Residual Acids",
+      "properties": {}
+    },
+    "Nickel": {
+      "name": "Nickel",
+      "properties": {}
+    },
+    "Ruthenium": {
+      "name": "Ruthenium",
+      "properties": {}
+    }
+  }
+}

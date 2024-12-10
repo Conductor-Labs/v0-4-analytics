@@ -1,0 +1,522 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Citric Acid",
+      "composition": "C6H8O7",
+      "key_specs": "Food-grade, purity > 99.5%, free from microbial contamination, suitable for use in food and beverage industry",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to break down the lignocellulosic structure of corn stover, making cellulose and hemicellulose accessible for enzymatic hydrolysis. This involves mechanical, chemical, or a combination of methods such as steam explosion, acid hydrolysis, or alkaline treatment. The goal is to disrupt the lignin structure and partially hydrolyze hemicellulose, increasing the surface area for enzyme action.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method can significantly affect the downstream process efficiency and cost."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Hydrolysis of cellulose to produce glucose using cellulases from the enzyme solution.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.8
+          },
+          {
+            "description": "Hydrolysis of hemicellulose to produce xylose using hemicellulases from the enzyme solution.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.6
+          }
+        ]
+      },
+      "additional_info": "The efficiency of hydrolysis depends on enzyme loading, reaction time, and the degree of pretreatment."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic fermentation of the sugar solution using a citric acid-producing strain of bacteria, such as Aspergillus niger. The bacteria metabolize the sugars, primarily glucose, to produce citric acid as a metabolic byproduct.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Bacterial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Aspergillus niger metabolizes glucose primarily into citric acid.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Citric Acid",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Glucose is also converted into microbial biomass and other fermentation byproducts.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Biomass and Byproducts",
+            "conversionRate": 0.15
+          },
+          {
+            "description": "Xylose is partially used by Aspergillus niger to form biomass and byproducts.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Biomass and Byproducts",
+            "conversionRate": 0.3
+          },
+          {
+            "description": "The remaining xylose is retained as residual sugars after fermentation.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Residual Sugars",
+            "conversionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "Aerobic conditions are maintained to optimize citric acid production, and the process may require pH control and nutrient supplementation."
+    },
+    "broth_filtration": {
+      "unit_operation_id": "broth_filtration",
+      "name": "Broth Filtration",
+      "description": "This unit operation involves the separation of solid biomass and other particulates from the fermentation broth to obtain a clear solution containing citric acid. Filtration methods such as microfiltration or centrifugation are employed to achieve this separation.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Filtered Broth",
+        "Solid Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of Citric Acid from the fermentation broth after filtration.",
+            "component": "Citric Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of Residual Sugars from the fermentation broth after filtration.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Retention of Biomass during the filtration process as solid waste.",
+            "component": "Biomass",
+            "extractionRate": 0.05
+          },
+          {
+            "description": "Retention of Byproducts during the filtration process as solid waste.",
+            "component": "Byproducts",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The solid waste can be further processed or disposed of according to environmental regulations."
+    },
+    "citric_acid_recovery": {
+      "unit_operation_id": "citric_acid_recovery",
+      "name": "Citric Acid Recovery",
+      "description": "In this unit operation, citric acid is recovered from the filtered broth through crystallization or solvent extraction. The process involves concentrating the citric acid solution and inducing crystallization by cooling or adding a precipitating agent. Solvent extraction may involve the use of organic solvents to selectively extract citric acid.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Filtered Broth"
+      ],
+      "output_streams": [
+        "Crude Citric Acid",
+        "Mother Liquor"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "The separation of citric acid from the filtered broth through crystallization or solvent extraction, leading to the formation of solid citric acid crystals.",
+            "component": "Citric Acid",
+            "extractionRate": 0.85
+          },
+          {
+            "description": "The separation of residual sugars from the solution, which occurs during the crystallization of citric acid and results in the mother liquor that may still contain some sugars.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.05
+          }
+        ]
+      },
+      "additional_info": "The choice between crystallization and solvent extraction depends on the desired purity and economic considerations."
+    },
+    "citric_acid_purification": {
+      "unit_operation_id": "citric_acid_purification",
+      "name": "Citric Acid Purification",
+      "description": "This unit operation involves the purification of crude citric acid to meet food-grade specifications. Techniques such as recrystallization, activated carbon treatment, or ion exchange may be used to remove impurities and achieve the desired purity level.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Citric Acid"
+      ],
+      "output_streams": [
+        "Purified Citric Acid"
+      ],
+      "parameters": {},
+      "additional_info": "The purification process ensures that the final product meets regulatory standards for food-grade citric acid."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "The waste treatment unit operation handles the treatment and disposal of waste streams generated throughout the process, including solid waste from filtration and mother liquor from citric acid recovery. Biological treatment, chemical neutralization, or incineration may be employed to minimize environmental impact.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Solid Waste",
+        "Mother Liquor"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Biological treatment of solid waste through composting or anaerobic digestion to break down organic material into treated biomass.",
+            "inputComponent": "Biomass",
+            "outputComponent": "Treated Biomass",
+            "conversionRate": 0.8
+          },
+          {
+            "description": "Chemical neutralization of impurities in the mother liquor using neutralizing agents to stabilize and convert them into neutralized forms.",
+            "inputComponent": "Impurities",
+            "outputComponent": "Neutralized Impurities",
+            "conversionRate": 0.9
+          }
+        ]
+      },
+      "additional_info": "Effective waste management is crucial for the sustainability and regulatory compliance of the process."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is a lignocellulosic biomass feedstock. It consists of a mixture of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). The Raw Corn Stover is delivered at an industrial scale of 100,000 kg/day and requires pretreatment to break down cellulose and hemicellulose into fermentable sugars for subsequent processing in the production of citric acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which contains cellulases and hemicellulases. These enzymes are crucial for catalyzing the hydrolysis of cellulose and hemicellulose into fermentable sugars during the enzymatic hydrolysis process. The Enzyme Solution is produced at an industrial scale to ensure a continuous supply for the subsequent processing steps.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "bacterial culture source": {
+      "unit_operation_id": "bacterial culture source",
+      "name": "Bacterial Culture Source",
+      "description": "This unit operation serves as a source for the Bacterial Culture stream, which contains a culture of citric acid-producing bacteria, specifically Aspergillus niger. This culture is essential for the fermentation process, where it will be introduced to the Sugar Solution to produce Citric Acid. The Bacterial Culture is maintained under controlled conditions to ensure optimal growth and activity, providing a consistent and reliable source of microorganisms for the fermentation stage.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Bacterial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified citric acid sink": {
+      "unit_operation_id": "purified citric acid sink",
+      "name": "Purified Citric Acid Sink",
+      "description": "This unit operation serves as the final sink for the purified citric acid stream, which is produced at a high purity level (>99.5%). The purified citric acid is suitable for use in food and beverage applications, ensuring it is free from microbial contamination and meets food-grade standards. This sink represents the endpoint of the citric acid production process, where the final product is collected and prepared for packaging or distribution.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Citric Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "treated waste sink": {
+      "unit_operation_id": "treated waste sink",
+      "name": "Treated Waste Sink",
+      "description": "This unit operation serves as the final sink for the treated waste stream, which consists of treated biomass and neutralized impurities. The treated waste is ready for disposal or further processing, having undergone necessary treatment to meet environmental discharge standards. This ensures compliance with regulatory requirements and minimizes environmental impact.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Treated Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw biomass feedstock consisting of cellulose, hemicellulose, lignin, ash, and moisture.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignin structure and exposed cellulose and hemicellulose, ready for enzymatic hydrolysis.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases to catalyze the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulases": 0,
+        "Hemicellulases": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, along with residual lignin and ash.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of citric acid-producing bacteria, typically Aspergillus niger.",
+      "stream_type": "core",
+      "source": "bacterial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Aspergillus niger": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing citric acid, residual sugars, biomass, and other fermentation byproducts.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_filtration",
+      "flow_rate": 0.0,
+      "components": {
+        "Citric Acid": 0,
+        "Residual Sugars": 0,
+        "Biomass": 0,
+        "Byproducts": 0
+      }
+    },
+    "Filtered Broth": {
+      "name": "Filtered Broth",
+      "stream_id": "filtered broth",
+      "description": "A clear solution containing citric acid and residual sugars, free from solid particulates.",
+      "stream_type": "core",
+      "source": "broth_filtration",
+      "target": "citric_acid_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Citric Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Solid biomass and other particulates separated from the broth.",
+      "stream_type": "core",
+      "source": "broth_filtration",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Biomass": 0,
+        "Byproducts": 0
+      }
+    },
+    "Crude Citric Acid": {
+      "name": "Crude Citric Acid",
+      "stream_id": "crude citric acid",
+      "description": "Crystallized citric acid, which may contain impurities and requires further purification.",
+      "stream_type": "core",
+      "source": "citric_acid_recovery",
+      "target": "citric_acid_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Citric Acid": 0
+      }
+    },
+    "Mother Liquor": {
+      "name": "Mother Liquor",
+      "stream_id": "mother liquor",
+      "description": "The remaining solution after citric acid crystallization, containing residual sugars and impurities.",
+      "stream_type": "core",
+      "source": "citric_acid_recovery",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Purified Citric Acid": {
+      "name": "Purified Citric Acid",
+      "stream_id": "purified citric acid",
+      "description": "High-purity citric acid suitable for food and beverage applications.",
+      "stream_type": "core",
+      "source": "citric_acid_purification",
+      "target": "purified citric acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Citric Acid": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Waste streams that have been treated to meet environmental discharge standards.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": "treated waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Treated Biomass": 0,
+        "Neutralized Impurities": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulases": {
+      "name": "Cellulases",
+      "properties": {}
+    },
+    "Hemicellulases": {
+      "name": "Hemicellulases",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Aspergillus niger": {
+      "name": "Aspergillus niger",
+      "properties": {}
+    },
+    "Citric Acid": {
+      "name": "Citric Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Biomass": {
+      "name": "Biomass",
+      "properties": {}
+    },
+    "Byproducts": {
+      "name": "Byproducts",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Treated Biomass": {
+      "name": "Treated Biomass",
+      "properties": {}
+    },
+    "Neutralized Impurities": {
+      "name": "Neutralized Impurities",
+      "properties": {}
+    }
+  }
+}

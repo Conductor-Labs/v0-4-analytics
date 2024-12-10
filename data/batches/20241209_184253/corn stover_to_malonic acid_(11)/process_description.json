@@ -1,0 +1,326 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (40-50%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%)",
+      "key_specs": "Corn stover should be pre-treated to enhance cellulose accessibility, typically requiring particle size reduction and possible chemical or enzymatic treatment to break down lignin and hemicellulose.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Malonic Acid",
+      "composition": "C3H4O4",
+      "key_specs": "Industrial-grade malonic acid with a purity of at least 98%. It should be free from fermentation by-products and residual biomass. The product is typically in crystalline form.",
+      "volumetric_scale": "10,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pre-treatment": {
+      "unit_operation_id": "pre-treatment",
+      "name": "Pre-treatment",
+      "description": "The pre-treatment unit operation is crucial for enhancing the accessibility of cellulose in corn stover. This involves mechanical size reduction to decrease particle size, followed by chemical or enzymatic treatment to break down lignin and hemicellulose. The goal is to expose cellulose fibers, making them more amenable to subsequent hydrolysis. Chemical treatments may involve the use of dilute acids or alkalis, while enzymatic treatments utilize specific enzymes that target lignin and hemicellulose bonds.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pre-treated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Particle size reduction is typically achieved using milling equipment. Chemical pre-treatment may require neutralization steps to remove residual chemicals."
+    },
+    "hydrolysis": {
+      "unit_operation_id": "hydrolysis",
+      "name": "Hydrolysis",
+      "description": "In the hydrolysis unit operation, the pre-treated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This process involves the addition of cellulase and hemicellulase enzymes, which catalyze the breakdown of polysaccharides into monosaccharides. The efficiency of this step is critical for maximizing sugar yield, which directly impacts the subsequent fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pre-treated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "Enzymatic hydrolysis is typically conducted in stirred tank reactors to ensure thorough mixing and contact between enzymes and biomass."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic fermentation of the sugar solution using a selected strain of yeast or fungi capable of converting sugars into malonic acid. This biological process requires careful control of oxygen levels, as well as nutrient supplementation to support microbial growth and activity. The fermentation is carried out in bioreactors designed to maintain optimal conditions for the production of malonic acid.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of microorganism is critical for achieving high yields of malonic acid. Oxygen transfer and agitation are key design considerations for the bioreactor."
+    },
+    "separation": {
+      "unit_operation_id": "separation",
+      "name": "Separation",
+      "description": "In the separation unit operation, the fermentation broth is processed to separate malonic acid from other components. This typically involves a series of steps such as centrifugation to remove biomass, followed by filtration and solvent extraction to isolate malonic acid. The goal is to achieve a high-purity product while minimizing losses and waste generation.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Malonic Acid Solution",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Solvent extraction may involve the use of organic solvents that selectively dissolve malonic acid. Careful selection of solvents and process conditions is essential to ensure product purity and environmental compliance."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation focuses on refining the crude malonic acid solution to meet industrial-grade specifications. This involves crystallization, where malonic acid is precipitated out of solution and collected as crystals. The process may include multiple recrystallization steps to achieve the desired purity level of at least 98%, ensuring the removal of any remaining impurities or by-products.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Crude Malonic Acid Solution"
+      ],
+      "output_streams": [
+        "Purified Malonic Acid",
+        "Mother Liquor"
+      ],
+      "parameters": {},
+      "additional_info": "Crystallization conditions such as temperature and solvent choice are optimized to maximize yield and purity. The mother liquor may be recycled or treated as waste."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "The final unit operation involves drying the purified malonic acid crystals to remove any residual moisture, followed by packaging for distribution. Drying is typically conducted using vacuum or air dryers to achieve the desired moisture content. The dried product is then packaged in suitable containers to protect it from environmental factors and ensure safe transport.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Malonic Acid"
+      ],
+      "output_streams": [
+        "Packaged Malonic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging materials are selected based on the product's sensitivity to moisture and light. The final product must meet regulatory standards for purity and safety."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover consisting of cellulose, hemicellulose, lignin, and ash.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Pre-treated Biomass": {
+      "name": "Pre-treated Biomass",
+      "stream_id": "pre_treated biomass",
+      "description": "Corn stover that has undergone size reduction and chemical or enzymatic treatment to enhance cellulose accessibility.",
+      "stream_type": "core",
+      "source": "pre-treatment",
+      "target": "hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": null,
+      "target": "hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, with residual lignin and ash.",
+      "stream_type": "core",
+      "source": "hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "A culture of yeast or fungi capable of producing malonic acid.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing malonic acid, unconverted sugars, microbial biomass, and residual lignin and ash.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Malonic Acid": 0,
+        "Glucose": 0,
+        "Xylose": 0,
+        "Biomass": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Crude Malonic Acid Solution": {
+      "name": "Crude Malonic Acid Solution",
+      "stream_id": "crude malonic acid solution",
+      "description": "A solution enriched in malonic acid, with reduced levels of impurities.",
+      "stream_type": "core",
+      "source": "separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Malonic Acid": 0,
+        "Water": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing residual biomass, lignin, and other impurities.",
+      "stream_type": "core",
+      "source": "separation",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Biomass": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Purified Malonic Acid": {
+      "name": "Purified Malonic Acid",
+      "stream_id": "purified malonic acid",
+      "description": "High-purity malonic acid in crystalline form, suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Malonic Acid": 0
+      }
+    },
+    "Mother Liquor": {
+      "name": "Mother Liquor",
+      "stream_id": "mother liquor",
+      "description": "A solution containing residual impurities and uncrystallized malonic acid.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Impurities": 0
+      }
+    },
+    "Packaged Malonic Acid": {
+      "name": "Packaged Malonic Acid",
+      "stream_id": "packaged malonic acid",
+      "description": "Dried and packaged malonic acid crystals, ready for distribution.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Malonic Acid": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "Malonic Acid": {
+      "name": "Malonic Acid",
+      "properties": {}
+    },
+    "Biomass": {
+      "name": "Biomass",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    }
+  }
+}

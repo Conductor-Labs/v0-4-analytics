@@ -1,0 +1,116 @@
+[2024-12-09 18:45:28] INFO - Starting run 6 for user prompt: Process that converts corn stover to Fumaric Acid via chemical or catalytic transformation
+[2024-12-09 18:45:28] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Fumaric Acid via chemical or catalytic transformation
+[2024-12-09 18:45:28] INFO - Starting process description agent.
+[2024-12-09 18:45:28] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Fumaric Acid via chemical or catalytic transformation
+[2024-12-09 18:45:32] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Lignocellulosic biomass, typically requires pretreatment to enhance accessibility of cellulose and hemicellulose","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Fumaric Acid","composition":"C4H4O4","key_specs":"Industrial grade, typically >99% purity, used in food and beverage industry as well as in resin production","volumetric_scale":"20,000 metric tons per year"}]}
+[2024-12-09 18:45:32] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:45:32] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Lignocellulosic biomass, typically requires pretreatment to enhance accessibility of cellulose and hemicellulose', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Fumaric Acid', 'composition': 'C4H4O4', 'key_specs': 'Industrial grade, typically >99% purity, used in food and beverage industry as well as in resin production', 'volumetric_scale': '20,000 metric tons per year'}]}
+[2024-12-09 18:45:51] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Feedstock Preparation","order":1,"description":"The corn stover, a lignocellulosic biomass, is initially prepared for processing. This involves size reduction through mechanical milling to increase the surface area and improve the efficiency of subsequent pretreatment processes. The moisture content is adjusted to optimal levels for the pretreatment stage.","input_streams":[{"name":"Raw Corn Stover","description":"Unprocessed corn stover with natural moisture content and particle size.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Prepared Corn Stover","description":"Corn stover with reduced particle size and adjusted moisture content, ready for pretreatment.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"additional_info":"Particle size reduction is crucial for enhancing the efficiency of chemical reactions in later stages."},{"name":"Pretreatment","order":2,"description":"The prepared corn stover undergoes a pretreatment process to break down the lignin structure and enhance the accessibility of cellulose and hemicellulose. This is typically achieved using a dilute acid hydrolysis method, which helps in depolymerizing hemicellulose into fermentable sugars.","input_streams":[{"name":"Prepared Corn Stover","description":"Corn stover with reduced particle size and adjusted moisture content.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]},{"name":"Dilute Acid Solution","description":"A dilute acid solution used to hydrolyze hemicellulose.","components":["Water","Acid"]}],"output_streams":[{"name":"Hydrolyzed Biomass","description":"Biomass with hemicellulose broken down into fermentable sugars, lignin partially solubilized.","components":["Cellulose","Sugars","Lignin","Ash"]}],"additional_info":"The choice of acid and concentration is critical to maximize sugar yield while minimizing degradation products."},{"name":"Enzymatic Hydrolysis","order":3,"description":"The hydrolyzed biomass is subjected to enzymatic hydrolysis to convert cellulose into glucose. Specific cellulase enzymes are used to catalyze the breakdown of cellulose into fermentable sugars, primarily glucose.","input_streams":[{"name":"Hydrolyzed Biomass","description":"Biomass with hemicellulose broken down into fermentable sugars.","components":["Cellulose","Sugars","Lignin","Ash"]},{"name":"Cellulase Enzymes","description":"Enzymes that catalyze the breakdown of cellulose into glucose.","components":["Cellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in glucose and other sugars, with residual lignin and ash.","components":["Glucose","Sugars","Lignin","Ash"]}],"additional_info":"Enzyme loading and reaction time are optimized to maximize glucose yield."},{"name":"Fermentation","order":4,"description":"The sugar solution is fermented using a genetically engineered microorganism capable of converting glucose and other sugars into fumaric acid. The fermentation process is conducted under anaerobic conditions to optimize fumaric acid production.","input_streams":[{"name":"Sugar Solution","description":"A solution rich in glucose and other sugars, with residual lignin and ash.","components":["Glucose","Sugars","Lignin","Ash"]},{"name":"Microorganism Culture","description":"Genetically engineered microorganisms for fumaric acid production.","components":["Microorganisms"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing fumaric acid, unconverted sugars, biomass, and other by-products.","components":["Fumaric Acid","Sugars","Biomass","By-products"]}],"additional_info":"The choice of microorganism and fermentation conditions are crucial for high yield and productivity."},{"name":"Product Recovery","order":5,"description":"Fumaric acid is recovered from the fermentation broth through a series of separation processes. This typically involves filtration to remove biomass, followed by crystallization to purify fumaric acid from the solution.","input_streams":[{"name":"Fermentation Broth","description":"A mixture containing fumaric acid, unconverted sugars, biomass, and other by-products.","components":["Fumaric Acid","Sugars","Biomass","By-products"]}],"output_streams":[{"name":"Crude Fumaric Acid","description":"Partially purified fumaric acid crystals, with some impurities.","components":["Fumaric Acid","Impurities"]},{"name":"Filtrate","description":"Liquid stream containing unconverted sugars and other soluble impurities.","components":["Sugars","By-products"]}],"additional_info":"Crystallization parameters are optimized to maximize fumaric acid purity and yield."},{"name":"Purification","order":6,"description":"The crude fumaric acid is further purified to achieve industrial-grade purity levels. This may involve recrystallization and washing steps to remove remaining impurities and achieve the desired purity.","input_streams":[{"name":"Crude Fumaric Acid","description":"Partially purified fumaric acid crystals, with some impurities.","components":["Fumaric Acid","Impurities"]}],"output_streams":[{"name":"Purified Fumaric Acid","description":"High-purity fumaric acid suitable for industrial applications.","components":["Fumaric Acid"]}],"additional_info":"Achieving >99% purity is essential for meeting industrial specifications."},{"name":"Waste Management","order":7,"description":"The process generates various waste streams, including lignin-rich residues, unconverted sugars, and other by-products. These are managed through appropriate waste treatment processes, which may include anaerobic digestion for energy recovery or composting.","input_streams":[{"name":"Filtrate","description":"Liquid stream containing unconverted sugars and other soluble impurities.","components":["Sugars","By-products"]},{"name":"Solid Residues","description":"Solid waste containing lignin and other non-fermentable components.","components":["Lignin","Ash"]}],"output_streams":[{"name":"Treated Waste","description":"Environmentally safe waste streams after treatment.","components":["Treated Water","Biogas","Compost"]}],"additional_info":"Waste valorization strategies can enhance the overall sustainability and economics of the process."}]}
+[2024-12-09 18:45:51] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Feedstock Preparation'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Prepared Corn Stover' for output of unit operation 'Feedstock Preparation'.
+[2024-12-09 18:45:51] DEBUG - Added unit operation 'Feedstock Preparation' with ID 'feedstock_preparation' to process flow.
+[2024-12-09 18:45:51] DEBUG - Reusing existing stream 'Prepared Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Dilute Acid Solution' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Hydrolyzed Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:45:51] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:45:51] DEBUG - Reusing existing stream 'Hydrolyzed Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Cellulase Enzymes' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:51] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:45:51] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Microorganism Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:45:51] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:45:51] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Product Recovery'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Crude Fumaric Acid' for output of unit operation 'Product Recovery'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Filtrate' for output of unit operation 'Product Recovery'.
+[2024-12-09 18:45:51] DEBUG - Added unit operation 'Product Recovery' with ID 'product_recovery' to process flow.
+[2024-12-09 18:45:51] DEBUG - Reusing existing stream 'Crude Fumaric Acid' for input of unit operation 'Purification'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Purified Fumaric Acid' for output of unit operation 'Purification'.
+[2024-12-09 18:45:51] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:45:51] DEBUG - Reusing existing stream 'Filtrate' for input of unit operation 'Waste Management'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Solid Residues' for input of unit operation 'Waste Management'.
+[2024-12-09 18:45:51] DEBUG - Created new stream 'Treated Waste' for output of unit operation 'Waste Management'.
+[2024-12-09 18:45:51] DEBUG - Added unit operation 'Waste Management' with ID 'waste_management' to process flow.
+[2024-12-09 18:45:51] INFO - Process flow built successfully.
+[2024-12-09 18:45:51] INFO - Starting v1 DAG agent.
+[2024-12-09 18:45:51] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:51] DEBUG - Adding edge from 'feedstock_preparation' to 'pretreatment' via stream 'Prepared Corn Stover'.
+[2024-12-09 18:45:51] DEBUG - Stream 'Dilute Acid Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:51] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Hydrolyzed Biomass'.
+[2024-12-09 18:45:51] DEBUG - Stream 'Cellulase Enzymes' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:51] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:45:51] DEBUG - Stream 'Microorganism Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:51] DEBUG - Adding edge from 'fermentation' to 'product_recovery' via stream 'Fermentation Broth'.
+[2024-12-09 18:45:51] DEBUG - Adding edge from 'product_recovery' to 'purification' via stream 'Crude Fumaric Acid'.
+[2024-12-09 18:45:51] DEBUG - Adding edge from 'product_recovery' to 'waste_management' via stream 'Filtrate'.
+[2024-12-09 18:45:51] DEBUG - Stream 'Purified Fumaric Acid' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:51] DEBUG - Stream 'Solid Residues' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:51] DEBUG - Stream 'Treated Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:51] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:45:52] DEBUG - No missing streams identified for unit operation: Feedstock Preparation
+[2024-12-09 18:45:52] DEBUG - No missing streams identified for unit operation: Pretreatment
+[2024-12-09 18:45:53] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:45:54] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 18:45:54] DEBUG - No missing streams identified for unit operation: Product Recovery
+[2024-12-09 18:45:55] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:45:57] DEBUG - No missing streams identified for unit operation: Waste Management
+[2024-12-09 18:45:58] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:45:59] DEBUG - Added source unit operation 'Dilute Acid Solution Source' with ID 'dilute acid solution source' for stream 'Dilute Acid Solution'
+[2024-12-09 18:46:00] DEBUG - Added source unit operation 'Cellulase Enzyme Source' with ID 'cellulase enzyme source' for stream 'Cellulase Enzymes'
+[2024-12-09 18:46:01] DEBUG - Added source unit operation 'Microorganism Culture Source' with ID 'microorganism culture source' for stream 'Microorganism Culture'
+[2024-12-09 18:46:03] DEBUG - Added sink unit operation 'Purified Fumaric Acid Sink' with ID 'purified fumaric acid sink' for stream 'Purified Fumaric Acid'
+[2024-12-09 18:46:04] DEBUG - Added source unit operation 'Solid Residues Source' with ID 'solid residues source' for stream 'Solid Residues'
+[2024-12-09 18:46:05] DEBUG - Added sink unit operation 'Treated Waste Sink' with ID 'treated waste sink' for stream 'Treated Waste'
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'raw corn stover source' to 'feedstock_preparation' via stream 'Raw Corn Stover'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'feedstock_preparation' to 'pretreatment' via stream 'Prepared Corn Stover'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'dilute acid solution source' to 'pretreatment' via stream 'Dilute Acid Solution'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Hydrolyzed Biomass'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'cellulase enzyme source' to 'enzymatic_hydrolysis' via stream 'Cellulase Enzymes'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'microorganism culture source' to 'fermentation' via stream 'Microorganism Culture'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'fermentation' to 'product_recovery' via stream 'Fermentation Broth'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'product_recovery' to 'purification' via stream 'Crude Fumaric Acid'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'product_recovery' to 'waste_management' via stream 'Filtrate'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'purification' to 'purified fumaric acid sink' via stream 'Purified Fumaric Acid'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'solid residues source' to 'waste_management' via stream 'Solid Residues'.
+[2024-12-09 18:46:05] DEBUG - Adding edge from 'waste_management' to 'treated waste sink' via stream 'Treated Waste'.
+[2024-12-09 18:46:05] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:46:05] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:46:08] DEBUG - No conversion or separation parameters identified for unit operation: Feedstock Preparation
+[2024-12-09 18:46:13] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Hemicellulose → Sugars (rate: 70.0%)
+  2. Converting Lignin → Solubilized Lignin (rate: 30.0%)
+[2024-12-09 18:46:19] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 80.0%)
+[2024-12-09 18:46:25] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Fumaric Acid (rate: 60.0%)
+  2. Converting Sugars → Fumaric Acid (rate: 40.0%)
+[2024-12-09 18:46:32] DEBUG - Processing separation unit operation: Product Recovery
+Separation operations:
+  1. Separating Fumaric Acid (extraction rate: 90.0%)
+  2. Separating Sugars (extraction rate: 10.0%)
+  3. Separating By-products (extraction rate: 10.0%)
+[2024-12-09 18:46:41] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Fumaric Acid (extraction rate: 98.0%)
+  2. Separating Impurities (extraction rate: 2.0%)
+[2024-12-09 18:46:48] DEBUG - Processing conversion unit operation: Waste Management
+Conversion operations:
+  1. Converting Sugars → Biogas (rate: 75.0%)
+  2. Converting By-products → Biogas (rate: 50.0%)
+  3. Converting By-products → Treated Water (rate: 25.0%)
+  4. Converting Lignin → Compost (rate: 85.0%)
+[2024-12-09 18:46:48] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:46:48] DEBUG - Skipping operational parameters for unit operation 'Dilute Acid Solution Source' of type 'source'
+[2024-12-09 18:46:48] DEBUG - Skipping operational parameters for unit operation 'Cellulase Enzyme Source' of type 'source'
+[2024-12-09 18:46:48] DEBUG - Skipping operational parameters for unit operation 'Microorganism Culture Source' of type 'source'
+[2024-12-09 18:46:48] DEBUG - Skipping operational parameters for unit operation 'Purified Fumaric Acid Sink' of type 'sink'
+[2024-12-09 18:46:48] DEBUG - Skipping operational parameters for unit operation 'Solid Residues Source' of type 'source'
+[2024-12-09 18:46:48] DEBUG - Skipping operational parameters for unit operation 'Treated Waste Sink' of type 'sink'
+[2024-12-09 18:46:48] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:46:48] INFO - Workflow completed successfully.

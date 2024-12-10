@@ -1,0 +1,123 @@
+[2024-12-09 18:45:28] INFO - Starting run 20 for user prompt: Process that converts corn stover to Glutamic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:28] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Glutamic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:28] INFO - Starting process description agent.
+[2024-12-09 18:45:28] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Glutamic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:32] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (10-15%)","key_specs":"Lignocellulosic biomass with high cellulose and hemicellulose content, requires pretreatment to enhance digestibility","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Glutamic Acid","composition":"C5H9NO4","key_specs":"Food-grade, purity > 98%, suitable for use in food additives and flavor enhancers","volumetric_scale":"10,000 metric tons per year"}]}
+[2024-12-09 18:45:32] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:45:32] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (10-15%)', 'key_specs': 'Lignocellulosic biomass with high cellulose and hemicellulose content, requires pretreatment to enhance digestibility', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Glutamic Acid', 'composition': 'C5H9NO4', 'key_specs': 'Food-grade, purity > 98%, suitable for use in food additives and flavor enhancers', 'volumetric_scale': '10,000 metric tons per year'}]}
+[2024-12-09 18:45:49] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is designed to enhance the digestibility of the lignocellulosic biomass, corn stover, by breaking down its complex structure. This process typically involves a combination of mechanical, chemical, and/or thermal methods to disrupt the lignin structure and increase the accessibility of cellulose and hemicellulose. Common methods include dilute acid hydrolysis, steam explosion, or alkaline treatment. The goal is to produce a material that is more amenable to enzymatic hydrolysis in subsequent steps.","input_streams":[{"name":"Raw Corn Stover","description":"Untreated corn stover consisting of cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Corn stover with reduced lignin content and increased cellulose and hemicellulose accessibility.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"additional_info":"The choice of pretreatment method can significantly affect the efficiency of downstream processes and the overall economics of the process."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. Enzymes such as cellulases and hemicellulases are used to catalyze the breakdown of polysaccharides into monosaccharides. This step is crucial for preparing the feedstock for fermentation.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with enhanced cellulose and hemicellulose accessibility.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]},{"name":"Enzyme Solution","description":"A solution containing cellulases and hemicellulases.","components":["Cellulases","Hemicellulases"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars, primarily glucose and xylose, along with residual lignin and other components.","components":["Glucose","Xylose","Lignin","Ash","Moisture"]}],"additional_info":"The efficiency of this step depends on enzyme activity, which can be influenced by factors such as temperature and pH."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the aerobic conversion of sugars into glutamic acid using yeast or fungal strains. The microorganisms metabolize the sugars, producing glutamic acid as a primary metabolite. This process requires careful control of aeration, nutrient supply, and other fermentation conditions to optimize yield and productivity.","input_streams":[{"name":"Sugar Solution","description":"A solution containing fermentable sugars for microbial conversion.","components":["Glucose","Xylose","Lignin","Ash","Moisture"]},{"name":"Microbial Culture","description":"Yeast or fungal strains capable of producing glutamic acid.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing glutamic acid, residual sugars, microbial biomass, and other fermentation by-products.","components":["Glutamic Acid","Residual Sugars","Microbial Biomass","Lignin"]}],"additional_info":"The choice of microorganism and fermentation conditions are critical for maximizing glutamic acid production."},{"name":"Broth Separation","order":4,"description":"This unit operation involves separating the fermentation broth into solid and liquid fractions. The solid fraction, primarily consisting of microbial biomass and unreacted lignin, is removed to facilitate downstream processing of the liquid fraction, which contains the target product, glutamic acid.","input_streams":[{"name":"Fermentation Broth","description":"A mixture containing glutamic acid, residual sugars, and biomass.","components":["Glutamic Acid","Residual Sugars","Microbial Biomass","Lignin"]}],"output_streams":[{"name":"Liquid Fraction","description":"The liquid portion of the broth, enriched in glutamic acid and residual sugars.","components":["Glutamic Acid","Residual Sugars"]},{"name":"Solid Fraction","description":"The solid portion containing microbial biomass and lignin.","components":["Microbial Biomass","Lignin"]}],"additional_info":"Centrifugation or filtration techniques are commonly used for this separation."},{"name":"Purification","order":5,"description":"The purification unit operation focuses on isolating and purifying glutamic acid from the liquid fraction. Techniques such as crystallization, ion exchange, or solvent extraction may be employed to achieve the desired purity levels. The goal is to produce food-grade glutamic acid with a purity greater than 98%.","input_streams":[{"name":"Liquid Fraction","description":"A solution containing glutamic acid and residual sugars.","components":["Glutamic Acid","Residual Sugars"]}],"output_streams":[{"name":"Purified Glutamic Acid","description":"High-purity glutamic acid suitable for food-grade applications.","components":["Glutamic Acid"]},{"name":"Waste Stream","description":"Residual impurities and by-products from the purification process.","components":["Residual Sugars","Impurities"]}],"additional_info":"The choice of purification method impacts the final product quality and process economics."},{"name":"Drying and Packaging","order":6,"description":"In this final unit operation, the purified glutamic acid is dried to remove any remaining moisture and then packaged for distribution. The drying process ensures the stability and shelf-life of the product, while packaging is designed to protect the product during storage and transport.","input_streams":[{"name":"Purified Glutamic Acid","description":"Glutamic acid with high purity, ready for final processing.","components":["Glutamic Acid"]}],"output_streams":[{"name":"Packaged Glutamic Acid","description":"Final product, ready for distribution and use in food applications.","components":["Glutamic Acid"]}],"additional_info":"Drying methods such as spray drying or tray drying may be used, and packaging materials are selected based on product stability requirements."}]}
+[2024-12-09 18:45:49] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:45:49] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:45:49] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:49] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:45:49] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:45:49] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:45:49] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Broth Separation'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Liquid Fraction' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Solid Fraction' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:45:49] DEBUG - Added unit operation 'Broth Separation' with ID 'broth_separation' to process flow.
+[2024-12-09 18:45:49] DEBUG - Reusing existing stream 'Liquid Fraction' for input of unit operation 'Purification'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Purified Glutamic Acid' for output of unit operation 'Purification'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Waste Stream' for output of unit operation 'Purification'.
+[2024-12-09 18:45:49] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:45:49] DEBUG - Reusing existing stream 'Purified Glutamic Acid' for input of unit operation 'Drying and Packaging'.
+[2024-12-09 18:45:49] DEBUG - Created new stream 'Packaged Glutamic Acid' for output of unit operation 'Drying and Packaging'.
+[2024-12-09 18:45:49] DEBUG - Added unit operation 'Drying and Packaging' with ID 'drying_and_packaging' to process flow.
+[2024-12-09 18:45:49] INFO - Process flow built successfully.
+[2024-12-09 18:45:49] INFO - Starting v1 DAG agent.
+[2024-12-09 18:45:49] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:49] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:45:49] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:49] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:45:49] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:49] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:45:49] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Liquid Fraction'.
+[2024-12-09 18:45:49] DEBUG - Stream 'Solid Fraction' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:49] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified Glutamic Acid'.
+[2024-12-09 18:45:49] DEBUG - Stream 'Waste Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:49] DEBUG - Stream 'Packaged Glutamic Acid' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:49] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:45:53] DEBUG - Added auxiliary input stream 'Chemical Additives' to unit operation 'Pretreatment'
+  - Description: Chemical agents used in the pretreatment process to help break down the lignocellulosic structure. These may include acids, bases, or other chemicals depending on the specific pretreatment method used.
+  - Components: Dilute Acid, Alkaline Solution, Other Pretreatment Chemicals
+[2024-12-09 18:45:53] DEBUG - Added auxiliary output stream 'Byproduct Emissions' to unit operation 'Pretreatment'
+  - Description: Gaseous or liquid byproducts that may be released during the pretreatment process, particularly if chemical reactions or steam explosions are involved.
+  - Components: CO2, Volatile Organic Compounds, Water Vapor
+[2024-12-09 18:45:54] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:45:56] DEBUG - Added auxiliary input stream 'Air' to unit operation 'Fermentation'
+  - Description: Used to provide oxygen necessary for the aerobic fermentation process, ensuring that the microorganisms have sufficient oxygen to metabolize sugars into glutamic acid.
+  - Components: Oxygen, Nitrogen
+[2024-12-09 18:45:56] DEBUG - No missing streams identified for unit operation: Broth Separation
+[2024-12-09 18:45:57] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:45:57] DEBUG - No missing streams identified for unit operation: Drying and Packaging
+[2024-12-09 18:45:59] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:46:00] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:46:01] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 18:46:02] DEBUG - Added sink unit operation 'Solid Fraction Sink' with ID 'solid fraction sink' for stream 'Solid Fraction'
+[2024-12-09 18:46:03] DEBUG - Added sink unit operation 'Waste Stream Sink' with ID 'waste stream sink' for stream 'Waste Stream'
+[2024-12-09 18:46:05] DEBUG - Added sink unit operation 'Packaged Glutamic Acid Sink' with ID 'packaged glutamic acid sink' for stream 'Packaged Glutamic Acid'
+[2024-12-09 18:46:06] DEBUG - Added source unit operation 'Chemical Additives Source' with ID 'chemical additives source' for stream 'Chemical Additives'
+[2024-12-09 18:46:08] DEBUG - Added sink unit operation 'Byproduct Emissions Sink' with ID 'byproduct emissions sink' for stream 'Byproduct Emissions'
+[2024-12-09 18:46:09] DEBUG - Added source unit operation 'Air Supply' with ID 'air supply' for stream 'Air'
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Liquid Fraction'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'broth_separation' to 'solid fraction sink' via stream 'Solid Fraction'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified Glutamic Acid'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'purification' to 'waste stream sink' via stream 'Waste Stream'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'drying_and_packaging' to 'packaged glutamic acid sink' via stream 'Packaged Glutamic Acid'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'chemical additives source' to 'pretreatment' via stream 'Chemical Additives'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'pretreatment' to 'byproduct emissions sink' via stream 'Byproduct Emissions'.
+[2024-12-09 18:46:09] DEBUG - Adding edge from 'air supply' to 'fermentation' via stream 'Air'.
+[2024-12-09 18:46:09] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:46:09] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:46:17] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Cellulose → CO2 (rate: 5.0%)
+  2. Converting Hemicellulose → Volatile Organic Compounds (rate: 2.0%)
+  3. Converting Lignin → Volatile Organic Compounds (rate: 10.0%)
+[2024-12-09 18:46:25] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 70.0%)
+  2. Converting Hemicellulose → Xylose (rate: 60.0%)
+[2024-12-09 18:46:33] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Glutamic Acid (rate: 85.0%)
+  2. Converting Xylose → Glutamic Acid (rate: 70.0%)
+  3. Converting Glucose → Microbial Biomass (rate: 10.0%)
+  4. Converting Xylose → Microbial Biomass (rate: 5.0%)
+[2024-12-09 18:46:39] DEBUG - Processing separation unit operation: Broth Separation
+Separation operations:
+  1. Separating Glutamic Acid (extraction rate: 90.0%)
+  2. Separating Residual Sugars (extraction rate: 85.0%)
+  3. Separating Microbial Biomass (extraction rate: 95.0%)
+  4. Separating Lignin (extraction rate: 90.0%)
+[2024-12-09 18:46:47] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Glutamic Acid (extraction rate: 98.0%)
+  2. Separating Residual Sugars (extraction rate: 2.0%)
+  3. Separating Glutamic Acid (extraction rate: 98.0%)
+  4. Separating Glutamic Acid (extraction rate: 98.0%)
+  5. Separating Residual Sugars (extraction rate: 2.0%)
+[2024-12-09 18:46:50] DEBUG - No conversion or separation parameters identified for unit operation: Drying and Packaging
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Solid Fraction Sink' of type 'sink'
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Waste Stream Sink' of type 'sink'
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Packaged Glutamic Acid Sink' of type 'sink'
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Chemical Additives Source' of type 'source'
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Byproduct Emissions Sink' of type 'sink'
+[2024-12-09 18:46:50] DEBUG - Skipping operational parameters for unit operation 'Air Supply' of type 'source'
+[2024-12-09 18:46:50] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:46:50] INFO - Workflow completed successfully.

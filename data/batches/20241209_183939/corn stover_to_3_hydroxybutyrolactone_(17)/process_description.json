@@ -1,0 +1,351 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, typically requires pretreatment to break down complex carbohydrates into fermentable sugars.",
+      "volumetric_scale": "1000 metric tons per day"
+    }
+  ],
+  "products": [
+    {
+      "name": "3-Hydroxybutyrolactone",
+      "composition": "C4H6O2",
+      "key_specs": "Purity > 99%, suitable for use as an intermediate in chemical synthesis or as a solvent. Must meet industrial standards for chemical intermediates.",
+      "volumetric_scale": "100 metric tons per day"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The initial step involves preparing the corn stover feedstock for further processing. This includes size reduction and drying. The corn stover, which is a lignocellulosic biomass, is first subjected to mechanical milling to reduce its particle size, enhancing the surface area for subsequent chemical reactions. The milled biomass is then dried to reduce moisture content, which is crucial for efficient chemical pretreatment and conversion processes.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Size reduction is typically achieved using hammer mills or knife mills. Moisture content is reduced to below 10%."
+    },
+    "chemical_pretreatment": {
+      "unit_operation_id": "chemical_pretreatment",
+      "name": "Chemical Pretreatment",
+      "description": "The prepared corn stover undergoes chemical pretreatment to break down the lignocellulosic structure, making the cellulose and hemicellulose more accessible for hydrolysis. This is typically achieved using dilute acid or alkaline solutions, which help to solubilize hemicellulose and disrupt lignin structures. The pretreatment process is crucial for increasing the yield of fermentable sugars in subsequent steps.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Chemical Solution"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "Common chemicals used include sulfuric acid or sodium hydroxide. The choice of chemical affects the downstream processing and sugar yield."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this step, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Specific enzymes, such as cellulases and hemicellulases, are added to catalyze the breakdown of polysaccharides into glucose and xylose. This step is critical for maximizing sugar yield, which directly impacts the efficiency of the subsequent fermentation process.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {},
+      "additional_info": "Enzyme loading and reaction time are key parameters influencing the hydrolysis efficiency and cost."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolysate is fermented using a microbial culture capable of converting sugars into 3-Hydroxybutyrolactone (3-HBL). This bioconversion process involves the use of genetically engineered microorganisms that can efficiently produce 3-HBL from glucose and xylose. The fermentation is carried out in bioreactors under controlled conditions to optimize yield and productivity.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolysate",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of microorganism and fermentation conditions are critical for achieving high conversion rates and product titers."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "The fermentation broth is processed to recover 3-Hydroxybutyrolactone. This involves separation techniques such as centrifugation to remove microbial biomass, followed by solvent extraction or distillation to isolate and purify 3-HBL. The goal is to achieve a high-purity product suitable for industrial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Purified 3-Hydroxybutyrolactone",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "Purification methods are chosen based on the desired purity and economic considerations. Waste streams may require treatment before disposal."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "The waste streams generated from the process, including residual biomass, lignin, and other by-products, are treated to minimize environmental impact. This may involve biological treatment, incineration, or conversion into value-added products such as biochar or biogas. Effective waste management is essential for sustainable and economically viable production.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Waste treatment strategies are selected based on regulatory requirements and potential for resource recovery."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover directly from agricultural sources.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover that has been milled and dried, ready for pretreatment.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "chemical_pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Chemical Solution": {
+      "name": "Chemical Solution",
+      "stream_id": "chemical solution",
+      "description": "A dilute acid or alkaline solution used for pretreatment.",
+      "stream_type": "core",
+      "source": null,
+      "target": "chemical_pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Acid or Alkali": 0,
+        "Water": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignocellulosic structure, enriched in accessible cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "chemical_pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Soluble Sugars": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0,
+        "Water": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, along with residual lignin.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Genetically engineered microorganisms for 3-HBL production.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Microorganisms": 0,
+        "Nutrients": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing 3-Hydroxybutyrolactone, unconverted sugars, microbial biomass, and by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxybutyrolactone": 0,
+        "Residual Sugars": 0,
+        "Biomass": 0,
+        "By-products": 0
+      }
+    },
+    "Purified 3-Hydroxybutyrolactone": {
+      "name": "Purified 3-Hydroxybutyrolactone",
+      "stream_id": "purified 3_hydroxybutyrolactone",
+      "description": "High-purity 3-Hydroxybutyrolactone suitable for industrial use.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "3-Hydroxybutyrolactone": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "Residual biomass and by-products from the separation process.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Biomass": 0,
+        "By-products": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Environmentally safe waste ready for disposal or further use.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Treated Biomass": 0,
+        "Inert Residues": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Acid or Alkali": {
+      "name": "Acid or Alkali",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Soluble Sugars": {
+      "name": "Soluble Sugars",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Microorganisms": {
+      "name": "Microorganisms",
+      "properties": {}
+    },
+    "Nutrients": {
+      "name": "Nutrients",
+      "properties": {}
+    },
+    "3-Hydroxybutyrolactone": {
+      "name": "3-Hydroxybutyrolactone",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Biomass": {
+      "name": "Biomass",
+      "properties": {}
+    },
+    "By-products": {
+      "name": "By-products",
+      "properties": {}
+    },
+    "Treated Biomass": {
+      "name": "Treated Biomass",
+      "properties": {}
+    },
+    "Inert Residues": {
+      "name": "Inert Residues",
+      "properties": {}
+    }
+  }
+}

@@ -1,0 +1,109 @@
+[2024-12-09 21:08:43] INFO - Starting run 11 for user prompt: Process that converts corn stover to Citric acid via bacterial aerobic fermentation
+[2024-12-09 21:08:43] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Citric acid via bacterial aerobic fermentation
+[2024-12-09 21:08:44] INFO - Starting process description agent.
+[2024-12-09 21:08:44] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Citric acid via bacterial aerobic fermentation
+[2024-12-09 21:08:48] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars","volumetric_scale":"100,000 kg/day"}],"products":[{"name":"Citric Acid","composition":"C6H8O7","key_specs":"Food-grade, purity > 99.5%, free from microbial contamination, suitable for use in food and beverage industry","volumetric_scale":"10,000 kg/day"}]}
+[2024-12-09 21:08:48] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 21:08:48] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Lignocellulosic biomass, requires pretreatment to break down cellulose and hemicellulose into fermentable sugars', 'volumetric_scale': '100,000 kg/day'}], 'products': [{'name': 'Citric Acid', 'composition': 'C6H8O7', 'key_specs': 'Food-grade, purity > 99.5%, free from microbial contamination, suitable for use in food and beverage industry', 'volumetric_scale': '10,000 kg/day'}]}
+[2024-12-09 21:09:32] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is designed to break down the lignocellulosic structure of corn stover, making cellulose and hemicellulose accessible for enzymatic hydrolysis. This involves mechanical, chemical, or a combination of methods such as steam explosion, acid hydrolysis, or alkaline treatment. The goal is to disrupt the lignin structure and partially hydrolyze hemicellulose, increasing the surface area for enzyme action.","input_streams":[{"name":"Raw Corn Stover","description":"The raw biomass feedstock consisting of cellulose, hemicellulose, lignin, ash, and moisture.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Biomass","description":"Biomass with disrupted lignin structure and exposed cellulose and hemicellulose, ready for enzymatic hydrolysis.","components":["Cellulose","Hemicellulose","Lignin","Ash"]}],"additional_info":"The choice of pretreatment method can significantly affect the downstream process efficiency and cost."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass with exposed cellulose and hemicellulose, ready for enzymatic action.","components":["Cellulose","Hemicellulose","Lignin","Ash"]},{"name":"Enzyme Solution","description":"A solution containing cellulases and hemicellulases to catalyze the hydrolysis of cellulose and hemicellulose.","components":["Cellulases","Hemicellulases"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars, primarily glucose and xylose, along with residual lignin and ash.","components":["Glucose","Xylose","Lignin","Ash"]}],"additional_info":"The efficiency of hydrolysis depends on enzyme loading, reaction time, and the degree of pretreatment."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the aerobic fermentation of the sugar solution using a citric acid-producing strain of bacteria, such as Aspergillus niger. The bacteria metabolize the sugars, primarily glucose, to produce citric acid as a metabolic byproduct.","input_streams":[{"name":"Sugar Solution","description":"A solution containing fermentable sugars derived from enzymatic hydrolysis.","components":["Glucose","Xylose","Lignin","Ash"]},{"name":"Bacterial Culture","description":"A culture of citric acid-producing bacteria, typically Aspergillus niger.","components":["Aspergillus niger"]}],"output_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing citric acid, residual sugars, biomass, and other fermentation byproducts.","components":["Citric Acid","Residual Sugars","Biomass","Byproducts"]}],"additional_info":"Aerobic conditions are maintained to optimize citric acid production, and the process may require pH control and nutrient supplementation."},{"name":"Broth Filtration","order":4,"description":"This unit operation involves the separation of solid biomass and other particulates from the fermentation broth to obtain a clear solution containing citric acid. Filtration methods such as microfiltration or centrifugation are employed to achieve this separation.","input_streams":[{"name":"Fermentation Broth","description":"A mixture containing citric acid, residual sugars, biomass, and byproducts.","components":["Citric Acid","Residual Sugars","Biomass","Byproducts"]}],"output_streams":[{"name":"Filtered Broth","description":"A clear solution containing citric acid and residual sugars, free from solid particulates.","components":["Citric Acid","Residual Sugars"]},{"name":"Solid Waste","description":"Solid biomass and other particulates separated from the broth.","components":["Biomass","Byproducts"]}],"additional_info":"The solid waste can be further processed or disposed of according to environmental regulations."},{"name":"Citric Acid Recovery","order":5,"description":"In this unit operation, citric acid is recovered from the filtered broth through crystallization or solvent extraction. The process involves concentrating the citric acid solution and inducing crystallization by cooling or adding a precipitating agent. Solvent extraction may involve the use of organic solvents to selectively extract citric acid.","input_streams":[{"name":"Filtered Broth","description":"A clear solution containing citric acid and residual sugars.","components":["Citric Acid","Residual Sugars"]}],"output_streams":[{"name":"Crude Citric Acid","description":"Crystallized citric acid, which may contain impurities and requires further purification.","components":["Citric Acid"]},{"name":"Mother Liquor","description":"The remaining solution after citric acid crystallization, containing residual sugars and impurities.","components":["Residual Sugars","Impurities"]}],"additional_info":"The choice between crystallization and solvent extraction depends on the desired purity and economic considerations."},{"name":"Citric Acid Purification","order":6,"description":"This unit operation involves the purification of crude citric acid to meet food-grade specifications. Techniques such as recrystallization, activated carbon treatment, or ion exchange may be used to remove impurities and achieve the desired purity level.","input_streams":[{"name":"Crude Citric Acid","description":"Crystallized citric acid containing impurities.","components":["Citric Acid"]}],"output_streams":[{"name":"Purified Citric Acid","description":"High-purity citric acid suitable for food and beverage applications.","components":["Citric Acid"]}],"additional_info":"The purification process ensures that the final product meets regulatory standards for food-grade citric acid."},{"name":"Waste Treatment","order":7,"description":"The waste treatment unit operation handles the treatment and disposal of waste streams generated throughout the process, including solid waste from filtration and mother liquor from citric acid recovery. Biological treatment, chemical neutralization, or incineration may be employed to minimize environmental impact.","input_streams":[{"name":"Solid Waste","description":"Solid biomass and other particulates separated from the broth.","components":["Biomass","Byproducts"]},{"name":"Mother Liquor","description":"The remaining solution after citric acid crystallization, containing residual sugars and impurities.","components":["Residual Sugars","Impurities"]}],"output_streams":[{"name":"Treated Waste","description":"Waste streams that have been treated to meet environmental discharge standards.","components":["Treated Biomass","Neutralized Impurities"]}],"additional_info":"Effective waste management is crucial for the sustainability and regulatory compliance of the process."}]}
+[2024-12-09 21:09:32] DEBUG - Process flow loaded successfully.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 21:09:32] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 21:09:32] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 21:09:32] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 21:09:32] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Bacterial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 21:09:32] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 21:09:32] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Broth Filtration'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Filtered Broth' for output of unit operation 'Broth Filtration'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Solid Waste' for output of unit operation 'Broth Filtration'.
+[2024-12-09 21:09:32] DEBUG - Added unit operation 'Broth Filtration' with ID 'broth_filtration' to process flow.
+[2024-12-09 21:09:32] DEBUG - Reusing existing stream 'Filtered Broth' for input of unit operation 'Citric Acid Recovery'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Crude Citric Acid' for output of unit operation 'Citric Acid Recovery'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Mother Liquor' for output of unit operation 'Citric Acid Recovery'.
+[2024-12-09 21:09:32] DEBUG - Added unit operation 'Citric Acid Recovery' with ID 'citric_acid_recovery' to process flow.
+[2024-12-09 21:09:32] DEBUG - Reusing existing stream 'Crude Citric Acid' for input of unit operation 'Citric Acid Purification'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Purified Citric Acid' for output of unit operation 'Citric Acid Purification'.
+[2024-12-09 21:09:32] DEBUG - Added unit operation 'Citric Acid Purification' with ID 'citric_acid_purification' to process flow.
+[2024-12-09 21:09:32] DEBUG - Reusing existing stream 'Solid Waste' for input of unit operation 'Waste Treatment'.
+[2024-12-09 21:09:32] DEBUG - Reusing existing stream 'Mother Liquor' for input of unit operation 'Waste Treatment'.
+[2024-12-09 21:09:32] DEBUG - Created new stream 'Treated Waste' for output of unit operation 'Waste Treatment'.
+[2024-12-09 21:09:32] DEBUG - Added unit operation 'Waste Treatment' with ID 'waste_treatment' to process flow.
+[2024-12-09 21:09:32] INFO - Process flow built successfully.
+[2024-12-09 21:09:32] INFO - Starting v1 DAG agent.
+[2024-12-09 21:09:32] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:32] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 21:09:32] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:32] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 21:09:32] DEBUG - Stream 'Bacterial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:32] DEBUG - Adding edge from 'fermentation' to 'broth_filtration' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:32] DEBUG - Adding edge from 'broth_filtration' to 'citric_acid_recovery' via stream 'Filtered Broth'.
+[2024-12-09 21:09:32] DEBUG - Adding edge from 'broth_filtration' to 'waste_treatment' via stream 'Solid Waste'.
+[2024-12-09 21:09:32] DEBUG - Adding edge from 'citric_acid_recovery' to 'citric_acid_purification' via stream 'Crude Citric Acid'.
+[2024-12-09 21:09:32] DEBUG - Adding edge from 'citric_acid_recovery' to 'waste_treatment' via stream 'Mother Liquor'.
+[2024-12-09 21:09:32] DEBUG - Stream 'Purified Citric Acid' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:32] DEBUG - Stream 'Treated Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 21:09:32] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:32] DEBUG - No missing streams identified for unit operation: Pretreatment
+[2024-12-09 21:09:33] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 21:09:33] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 21:09:34] DEBUG - No missing streams identified for unit operation: Broth Filtration
+[2024-12-09 21:09:34] DEBUG - No missing streams identified for unit operation: Citric Acid Recovery
+[2024-12-09 21:09:35] DEBUG - No missing streams identified for unit operation: Citric Acid Purification
+[2024-12-09 21:09:35] DEBUG - No missing streams identified for unit operation: Waste Treatment
+[2024-12-09 21:09:37] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 21:09:38] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 21:09:40] DEBUG - Added source unit operation 'Bacterial Culture Source' with ID 'bacterial culture source' for stream 'Bacterial Culture'
+[2024-12-09 21:09:42] DEBUG - Added sink unit operation 'Purified Citric Acid Sink' with ID 'purified citric acid sink' for stream 'Purified Citric Acid'
+[2024-12-09 21:09:43] DEBUG - Added sink unit operation 'Treated Waste Sink' with ID 'treated waste sink' for stream 'Treated Waste'
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'bacterial culture source' to 'fermentation' via stream 'Bacterial Culture'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'fermentation' to 'broth_filtration' via stream 'Fermentation Broth'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'broth_filtration' to 'citric_acid_recovery' via stream 'Filtered Broth'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'broth_filtration' to 'waste_treatment' via stream 'Solid Waste'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'citric_acid_recovery' to 'citric_acid_purification' via stream 'Crude Citric Acid'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'citric_acid_recovery' to 'waste_treatment' via stream 'Mother Liquor'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'citric_acid_purification' to 'purified citric acid sink' via stream 'Purified Citric Acid'.
+[2024-12-09 21:09:43] DEBUG - Adding edge from 'waste_treatment' to 'treated waste sink' via stream 'Treated Waste'.
+[2024-12-09 21:09:43] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 21:09:43] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 21:09:48] DEBUG - No conversion or separation parameters identified for unit operation: Pretreatment
+[2024-12-09 21:09:55] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 80.0%)
+  2. Converting Hemicellulose → Xylose (rate: 60.0%)
+[2024-12-09 21:10:03] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Citric Acid (rate: 85.0%)
+  2. Converting Glucose → Biomass and Byproducts (rate: 15.0%)
+  3. Converting Xylose → Biomass and Byproducts (rate: 30.0%)
+  4. Converting Xylose → Residual Sugars (rate: 70.0%)
+[2024-12-09 21:10:12] DEBUG - Processing separation unit operation: Broth Filtration
+Separation operations:
+  1. Separating Citric Acid (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 90.0%)
+  3. Separating Biomass (extraction rate: 5.0%)
+  4. Separating Byproducts (extraction rate: 5.0%)
+[2024-12-09 21:10:19] DEBUG - Processing separation unit operation: Citric Acid Recovery
+Separation operations:
+  1. Separating Citric Acid (extraction rate: 85.0%)
+  2. Separating Residual Sugars (extraction rate: 5.0%)
+[2024-12-09 21:10:24] DEBUG - No conversion or separation parameters identified for unit operation: Citric Acid Purification
+[2024-12-09 21:10:33] DEBUG - Processing conversion unit operation: Waste Treatment
+Conversion operations:
+  1. Converting Biomass → Treated Biomass (rate: 80.0%)
+  2. Converting Impurities → Neutralized Impurities (rate: 90.0%)
+[2024-12-09 21:10:33] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 21:10:33] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 21:10:33] DEBUG - Skipping operational parameters for unit operation 'Bacterial Culture Source' of type 'source'
+[2024-12-09 21:10:33] DEBUG - Skipping operational parameters for unit operation 'Purified Citric Acid Sink' of type 'sink'
+[2024-12-09 21:10:33] DEBUG - Skipping operational parameters for unit operation 'Treated Waste Sink' of type 'sink'
+[2024-12-09 21:10:33] INFO - v1 DAG agent processing complete.
+[2024-12-09 21:10:33] INFO - Workflow completed successfully.

@@ -1,0 +1,110 @@
+[2024-12-09 18:39:39] INFO - Starting run 18 for user prompt: Process that converts corn stover to Acetoin via yeast or fungal aerobic Fermentation
+[2024-12-09 18:39:39] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Acetoin via yeast or fungal aerobic Fermentation
+[2024-12-09 18:39:39] INFO - Starting process description agent.
+[2024-12-09 18:39:39] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Acetoin via yeast or fungal aerobic Fermentation
+[2024-12-09 18:39:42] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Primarily composed of cellulose (40-50%), hemicellulose (25-30%), and lignin (15-20%)","key_specs":"Corn stover is the non-grain part of corn plants, including leaves, stalks, and cobs. It requires pretreatment to break down lignocellulosic structure for fermentation.","volumetric_scale":"100,000 kg per day"}],"products":[{"name":"Acetoin","composition":"C4H8O2","key_specs":"Typically requires a purity of 95% or higher for commercial applications. Acetoin is used in food flavoring and as a chemical intermediate.","volumetric_scale":"10,000 kg per day"}]}
+[2024-12-09 18:39:42] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:39:42] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Primarily composed of cellulose (40-50%), hemicellulose (25-30%), and lignin (15-20%)', 'key_specs': 'Corn stover is the non-grain part of corn plants, including leaves, stalks, and cobs. It requires pretreatment to break down lignocellulosic structure for fermentation.', 'volumetric_scale': '100,000 kg per day'}], 'products': [{'name': 'Acetoin', 'composition': 'C4H8O2', 'key_specs': 'Typically requires a purity of 95% or higher for commercial applications. Acetoin is used in food flavoring and as a chemical intermediate.', 'volumetric_scale': '10,000 kg per day'}]}
+[2024-12-09 18:40:01] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is crucial for breaking down the lignocellulosic structure of corn stover to make the cellulose and hemicellulose accessible for enzymatic hydrolysis. This process typically involves the use of physical, chemical, or a combination of methods such as steam explosion, dilute acid, or alkaline treatment. The goal is to disrupt the lignin structure and partially hydrolyze hemicellulose, enhancing the digestibility of the biomass.","input_streams":[{"name":"Raw Corn Stover","description":"The raw biomass feedstock consisting of the non-grain parts of corn plants.","components":["Cellulose","Hemicellulose","Lignin"]}],"output_streams":[{"name":"Pretreated Biomass","description":"The corn stover after pretreatment, with a more accessible cellulose and hemicellulose structure.","components":["Cellulose","Hemicellulose","Lignin"]}],"additional_info":"The choice of pretreatment method can significantly affect the downstream processing efficiency and cost. Waste streams may include lignin-rich residues."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to the biomass slurry to catalyze the breakdown of polysaccharides into simple sugars like glucose and xylose.","input_streams":[{"name":"Pretreated Biomass","description":"Biomass that has undergone pretreatment, ready for enzymatic action.","components":["Cellulose","Hemicellulose","Lignin"]},{"name":"Enzyme Solution","description":"A solution containing cellulase and hemicellulase enzymes.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.","components":["Glucose","Xylose","Lignin"]}],"additional_info":"The efficiency of this step is critical for maximizing sugar yield, which directly impacts the fermentation process."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the conversion of sugars into acetoin using yeast or fungal cultures under aerobic conditions. The microorganisms metabolize the sugars, producing acetoin as a primary metabolite. This process requires careful control of aeration, nutrient supply, and microbial growth conditions to optimize acetoin yield.","input_streams":[{"name":"Sugar Solution","description":"The hydrolysate containing fermentable sugars from the enzymatic hydrolysis step.","components":["Glucose","Xylose"]},{"name":"Microbial Culture","description":"Yeast or fungal strains capable of converting sugars to acetoin.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"A mixture containing acetoin, unconverted sugars, microbial biomass, and other metabolites.","components":["Acetoin","Residual Sugars","Microbial Biomass"]}],"additional_info":"The choice of microorganism and fermentation conditions can significantly influence the yield and purity of acetoin."},{"name":"Broth Separation","order":4,"description":"In this unit operation, the fermentation broth is subjected to solid-liquid separation to remove microbial biomass and other insolubles. This is typically achieved using centrifugation or filtration techniques, resulting in a clarified liquid containing acetoin and residual sugars.","input_streams":[{"name":"Fermentation Broth","description":"The output from the fermentation process containing acetoin and other components.","components":["Acetoin","Residual Sugars","Microbial Biomass"]}],"output_streams":[{"name":"Clarified Broth","description":"A liquid stream containing acetoin and residual sugars, free from solid biomass.","components":["Acetoin","Residual Sugars"]},{"name":"Biomass Waste","description":"Solid waste stream consisting of microbial biomass and other insolubles.","components":["Microbial Biomass"]}],"additional_info":"Efficient separation is crucial to minimize product loss and prepare the broth for downstream purification."},{"name":"Purification","order":5,"description":"The purification unit operation involves the extraction and concentration of acetoin from the clarified broth. Techniques such as distillation, solvent extraction, or membrane filtration may be employed to achieve the desired acetoin purity. The goal is to isolate acetoin with a purity of 95% or higher, suitable for commercial applications.","input_streams":[{"name":"Clarified Broth","description":"The liquid stream from the broth separation step, containing acetoin and residual sugars.","components":["Acetoin","Residual Sugars"]}],"output_streams":[{"name":"Purified Acetoin","description":"High-purity acetoin suitable for commercial use.","components":["Acetoin"]},{"name":"Waste Stream","description":"A stream containing impurities and residual components removed during purification.","components":["Residual Sugars","Impurities"]}],"additional_info":"The choice of purification method impacts the overall process economics and environmental footprint."},{"name":"Product Storage and Packaging","order":6,"description":"In this final unit operation, the purified acetoin is stored and packaged for distribution. This involves transferring the acetoin into appropriate storage containers under controlled conditions to maintain its quality and stability. Packaging is done in compliance with regulatory standards for chemical products.","input_streams":[{"name":"Purified Acetoin","description":"Acetoin with high purity obtained from the purification process.","components":["Acetoin"]}],"output_streams":[{"name":"Packaged Acetoin","description":"The final product ready for distribution and sale.","components":["Acetoin"]}],"additional_info":"Storage conditions such as temperature and humidity control are vital to prevent degradation of acetoin."}]}
+[2024-12-09 18:40:01] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Pretreated Biomass' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:40:01] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:40:01] DEBUG - Reusing existing stream 'Pretreated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:40:01] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:40:01] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:40:01] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:40:01] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Broth Separation'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Clarified Broth' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Biomass Waste' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:40:01] DEBUG - Added unit operation 'Broth Separation' with ID 'broth_separation' to process flow.
+[2024-12-09 18:40:01] DEBUG - Reusing existing stream 'Clarified Broth' for input of unit operation 'Purification'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Purified Acetoin' for output of unit operation 'Purification'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Waste Stream' for output of unit operation 'Purification'.
+[2024-12-09 18:40:01] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:40:01] DEBUG - Reusing existing stream 'Purified Acetoin' for input of unit operation 'Product Storage and Packaging'.
+[2024-12-09 18:40:01] DEBUG - Created new stream 'Packaged Acetoin' for output of unit operation 'Product Storage and Packaging'.
+[2024-12-09 18:40:01] DEBUG - Added unit operation 'Product Storage and Packaging' with ID 'product_storage_and_packaging' to process flow.
+[2024-12-09 18:40:01] INFO - Process flow built successfully.
+[2024-12-09 18:40:01] INFO - Starting v1 DAG agent.
+[2024-12-09 18:40:01] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:01] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:40:01] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:01] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:40:01] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:01] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:40:01] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Clarified Broth'.
+[2024-12-09 18:40:01] DEBUG - Stream 'Biomass Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:01] DEBUG - Adding edge from 'purification' to 'product_storage_and_packaging' via stream 'Purified Acetoin'.
+[2024-12-09 18:40:01] DEBUG - Stream 'Waste Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:01] DEBUG - Stream 'Packaged Acetoin' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:40:01] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:40:06] DEBUG - Added auxiliary input stream 'Chemical Additive' to unit operation 'Pretreatment'
+  - Description: Chemical additives are often used in the pretreatment process to facilitate the breakdown of lignocellulosic biomass. These could include acids, alkalis, or other chemicals that aid in the disruption of the lignin structure and partial hydrolysis of hemicellulose.
+  - Components: Acid, Alkali, Chemical Catalyst
+[2024-12-09 18:40:06] DEBUG - Added auxiliary output stream 'Byproducts' to unit operation 'Pretreatment'
+  - Description: Byproducts generated from the pretreatment process may include degradation products of hemicellulose and lignin, which could be present as soluble organics or inhibitors that need to be removed or managed in subsequent processes.
+  - Components: Soluble Organics, Inhibitors
+[2024-12-09 18:40:07] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:40:07] DEBUG - No missing streams identified for unit operation: Fermentation
+[2024-12-09 18:40:07] DEBUG - No missing streams identified for unit operation: Broth Separation
+[2024-12-09 18:40:08] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:40:08] DEBUG - No missing streams identified for unit operation: Product Storage and Packaging
+[2024-12-09 18:40:11] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:40:13] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:40:14] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 18:40:16] DEBUG - Added sink unit operation 'Biomass Waste Sink' with ID 'biomass waste sink' for stream 'Biomass Waste'
+[2024-12-09 18:40:18] DEBUG - Added sink unit operation 'Waste Stream Sink' with ID 'waste stream sink' for stream 'Waste Stream'
+[2024-12-09 18:40:19] DEBUG - Added sink unit operation 'Packaged Acetoin Sink' with ID 'packaged acetoin sink' for stream 'Packaged Acetoin'
+[2024-12-09 18:40:20] DEBUG - Added source unit operation 'Chemical Additive Source' with ID 'chemical additive source' for stream 'Chemical Additive'
+[2024-12-09 18:40:21] DEBUG - Added sink unit operation 'Byproducts Sink' with ID 'byproducts sink' for stream 'Byproducts'
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Biomass'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Clarified Broth'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'broth_separation' to 'biomass waste sink' via stream 'Biomass Waste'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'purification' to 'product_storage_and_packaging' via stream 'Purified Acetoin'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'purification' to 'waste stream sink' via stream 'Waste Stream'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'product_storage_and_packaging' to 'packaged acetoin sink' via stream 'Packaged Acetoin'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'chemical additive source' to 'pretreatment' via stream 'Chemical Additive'.
+[2024-12-09 18:40:21] DEBUG - Adding edge from 'pretreatment' to 'byproducts sink' via stream 'Byproducts'.
+[2024-12-09 18:40:21] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:40:21] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:40:31] DEBUG - Processing conversion unit operation: Pretreatment
+Conversion operations:
+  1. Converting Hemicellulose → Soluble Organics (rate: 25.0%)
+[2024-12-09 18:40:38] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 80.0%)
+[2024-12-09 18:40:48] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Acetoin (rate: 30.0%)
+  2. Converting Xylose → Acetoin (rate: 25.0%)
+[2024-12-09 18:41:00] DEBUG - Processing separation unit operation: Broth Separation
+Separation operations:
+  1. Separating Acetoin (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 90.0%)
+  3. Separating Microbial Biomass (extraction rate: 5.0%)
+[2024-12-09 18:41:09] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Acetoin (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 5.0%)
+[2024-12-09 18:41:13] DEBUG - No conversion or separation parameters identified for unit operation: Product Storage and Packaging
+[2024-12-09 18:41:13] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:41:13] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:41:13] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 18:41:13] DEBUG - Skipping operational parameters for unit operation 'Biomass Waste Sink' of type 'sink'
+[2024-12-09 18:41:13] DEBUG - Skipping operational parameters for unit operation 'Waste Stream Sink' of type 'sink'
+[2024-12-09 18:41:13] DEBUG - Skipping operational parameters for unit operation 'Packaged Acetoin Sink' of type 'sink'
+[2024-12-09 18:41:13] DEBUG - Skipping operational parameters for unit operation 'Chemical Additive Source' of type 'source'
+[2024-12-09 18:41:13] DEBUG - Skipping operational parameters for unit operation 'Byproducts Sink' of type 'sink'
+[2024-12-09 18:41:13] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:41:13] INFO - Workflow completed successfully.

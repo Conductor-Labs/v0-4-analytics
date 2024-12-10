@@ -1,0 +1,358 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass, typically requires pretreatment to break down cellulose and hemicellulose into fermentable sugars.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Fumaric Acid",
+      "composition": "C4H4O4",
+      "key_specs": "Industrial grade, purity >99%, used in food and beverage industry as an acidulant, and in the manufacture of resins and plastics.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to prepare the corn stover for enzymatic hydrolysis by breaking down the lignocellulosic structure. This involves the use of physical, chemical, or a combination of methods to disrupt the lignin structure and increase the accessibility of cellulose and hemicellulose. Common methods include steam explosion, acid pretreatment, or alkaline pretreatment. The goal is to increase the yield of fermentable sugars in subsequent steps.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method can significantly affect the overall process economics and environmental impact."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated biomass is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are used to catalyze the breakdown of these polysaccharides into simple sugars like glucose and xylose. This step is crucial for maximizing sugar yield, which directly impacts the efficiency of the subsequent fermentation process.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The efficiency of this step depends on enzyme loading, reaction time, and the specific activity of the enzymes used."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of sugars into fumaric acid using a suitable bacterial strain. This process requires careful control of oxygen levels, as well as other parameters such as temperature and pH, to optimize the production of fumaric acid. The bacteria metabolize the sugars, producing fumaric acid as a primary metabolite.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Bacterial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of bacterial strain and fermentation conditions are critical for maximizing fumaric acid yield and minimizing by-products."
+    },
+    "broth_separation": {
+      "unit_operation_id": "broth_separation",
+      "name": "Broth Separation",
+      "description": "In this unit operation, the fermentation broth is subjected to solid-liquid separation to remove bacterial biomass and other insoluble materials. This is typically achieved using centrifugation or filtration techniques. The goal is to obtain a clarified liquid stream containing fumaric acid and residual sugars.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Solid Waste"
+      ],
+      "parameters": {},
+      "additional_info": "The solid waste can be further processed for potential recovery of bacterial biomass or disposed of according to environmental regulations."
+    },
+    "fumaric_acid_recovery": {
+      "unit_operation_id": "fumaric_acid_recovery",
+      "name": "Fumaric Acid Recovery",
+      "description": "This unit operation involves the recovery and purification of fumaric acid from the clarified broth. Techniques such as crystallization or extraction are employed to isolate fumaric acid from the solution. The aim is to achieve high purity levels suitable for industrial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth"
+      ],
+      "output_streams": [
+        "Crude Fumaric Acid",
+        "Mother Liquor"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of recovery method affects the purity and yield of fumaric acid, as well as the overall process cost."
+    },
+    "fumaric_acid_purification": {
+      "unit_operation_id": "fumaric_acid_purification",
+      "name": "Fumaric Acid Purification",
+      "description": "The final purification step involves refining the crude fumaric acid to meet industrial-grade specifications. This may involve additional crystallization steps, washing, and drying to achieve the desired purity level (>99%).",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Fumaric Acid"
+      ],
+      "output_streams": [
+        "Purified Fumaric Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Achieving high purity is essential for the product's application in food, beverage, and other industries."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "This unit operation deals with the treatment and disposal of waste streams generated throughout the process. This includes the treatment of mother liquor and solid waste to minimize environmental impact. Techniques such as biological treatment, incineration, or recycling may be employed depending on the nature of the waste.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Mother Liquor",
+        "Solid Waste"
+      ],
+      "output_streams": [
+        "Treated Effluent"
+      ],
+      "parameters": {},
+      "additional_info": "Effective waste management is crucial for compliance with environmental regulations and for the sustainability of the process."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The initial feedstock consisting of lignocellulosic biomass.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Corn stover that has been processed to increase the accessibility of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of bacteria capable of converting sugars to fumaric acid under aerobic conditions.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacteria": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing fumaric acid, residual sugars, and bacterial biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Fumaric Acid": 0,
+        "Residual Sugars": 0,
+        "Bacterial Biomass": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A liquid stream containing dissolved fumaric acid and residual sugars, free from solid biomass.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "fumaric_acid_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Fumaric Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Solid materials separated from the fermentation broth, primarily consisting of bacterial biomass.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Biomass": 0
+      }
+    },
+    "Crude Fumaric Acid": {
+      "name": "Crude Fumaric Acid",
+      "stream_id": "crude fumaric acid",
+      "description": "Partially purified fumaric acid, which may require further purification to meet industrial specifications.",
+      "stream_type": "core",
+      "source": "fumaric_acid_recovery",
+      "target": "fumaric_acid_purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Fumaric Acid": 0
+      }
+    },
+    "Mother Liquor": {
+      "name": "Mother Liquor",
+      "stream_id": "mother liquor",
+      "description": "The remaining liquid after fumaric acid recovery, containing residual sugars and impurities.",
+      "stream_type": "core",
+      "source": "fumaric_acid_recovery",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Purified Fumaric Acid": {
+      "name": "Purified Fumaric Acid",
+      "stream_id": "purified fumaric acid",
+      "description": "High-purity fumaric acid suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "fumaric_acid_purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Fumaric Acid": 0
+      }
+    },
+    "Treated Effluent": {
+      "name": "Treated Effluent",
+      "stream_id": "treated effluent",
+      "description": "Environmentally safe effluent suitable for discharge or reuse.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Treated Impurities": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Bacteria": {
+      "name": "Bacteria",
+      "properties": {}
+    },
+    "Fumaric Acid": {
+      "name": "Fumaric Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Treated Impurities": {
+      "name": "Treated Impurities",
+      "properties": {}
+    }
+  }
+}

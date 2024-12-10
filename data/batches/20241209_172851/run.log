@@ -1,0 +1,55 @@
+[2024-12-09 17:28:51] INFO - Starting batch run.
+[2024-12-09 17:28:51] INFO - Batch directory: data\batches\20241209_172851
+[2024-12-09 17:28:51] INFO - Launching 3 parallel runs.
+[2024-12-09 17:28:51] ERROR - Run 3 (prompt: Process that converts corn stover to Glycerol via yeast or fungal aerobic Fermentation) raised an exception: setup_logger() got an unexpected keyword argument 'run_index'
+Traceback (most recent call last):
+  File "c:\Users\Jesse\Documents\Climate\Conductor\Prototypes\v0-4-2\v0-4-2\batch_run.py", line 150, in run_batch
+    _, final_run_dir, process_flow = future.result()
+                                     ^^^^^^^^^^^^^^^
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Jesse\Documents\Climate\Conductor\Prototypes\v0-4-2\v0-4-2\batch_run.py", line 42, in run_single
+    run_logger = setup_logger(run_dir, run_index=run_index)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: setup_logger() got an unexpected keyword argument 'run_index'
+[2024-12-09 17:28:51] ERROR - Run 1 (prompt: Process that converts corn stover to 3-Hydroxy propionic acid via yeast or fungal aerobic Fermentation) raised an exception: setup_logger() got an unexpected keyword argument 'run_index'
+Traceback (most recent call last):
+  File "c:\Users\Jesse\Documents\Climate\Conductor\Prototypes\v0-4-2\v0-4-2\batch_run.py", line 150, in run_batch
+    _, final_run_dir, process_flow = future.result()
+                                     ^^^^^^^^^^^^^^^
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Jesse\Documents\Climate\Conductor\Prototypes\v0-4-2\v0-4-2\batch_run.py", line 42, in run_single
+    run_logger = setup_logger(run_dir, run_index=run_index)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: setup_logger() got an unexpected keyword argument 'run_index'
+[2024-12-09 17:28:51] ERROR - Run 2 (prompt: Process that converts corn stover to 3-Hydroxy propionic acid via bacterial aerobic fermentation) raised an exception: setup_logger() got an unexpected keyword argument 'run_index'
+Traceback (most recent call last):
+  File "c:\Users\Jesse\Documents\Climate\Conductor\Prototypes\v0-4-2\v0-4-2\batch_run.py", line 150, in run_batch
+    _, final_run_dir, process_flow = future.result()
+                                     ^^^^^^^^^^^^^^^
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\Jesse\anaconda3\envs\tea_env\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Jesse\Documents\Climate\Conductor\Prototypes\v0-4-2\v0-4-2\batch_run.py", line 42, in run_single
+    run_logger = setup_logger(run_dir, run_index=run_index)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: setup_logger() got an unexpected keyword argument 'run_index'
+[2024-12-09 17:28:51] INFO - Batch run complete.

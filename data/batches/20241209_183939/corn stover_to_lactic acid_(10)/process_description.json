@@ -1,0 +1,319 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-45%), Hemicellulose (25-35%), Lignin (15-20%), Ash and other components (5-10%)",
+      "key_specs": "Typically requires pre-treatment to break down lignocellulosic structure for fermentation. Moisture content should be controlled to optimize fermentation efficiency.",
+      "volumetric_scale": "100,000 kg/day"
+    }
+  ],
+  "products": [
+    {
+      "name": "Lactic Acid",
+      "composition": "Lactic acid (C3H6O3) with potential impurities such as unreacted sugars and by-products from fermentation",
+      "key_specs": "Commercial grade lactic acid typically requires a purity of 85-90% for industrial applications. Optical purity (L-lactic acid) may be specified depending on the application.",
+      "volumetric_scale": "50,000 kg/day"
+    }
+  ],
+  "unit_operations": {
+    "pre-treatment": {
+      "unit_operation_id": "pre-treatment",
+      "name": "Pre-treatment",
+      "description": "The pre-treatment unit operation is crucial for preparing corn stover for fermentation. This step involves mechanical, chemical, or a combination of methods to break down the lignocellulosic structure of corn stover, making cellulose and hemicellulose more accessible for enzymatic hydrolysis. Typically, this involves size reduction through milling, followed by chemical treatment using dilute acid or alkali to disrupt the lignin structure and enhance the digestibility of the biomass.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pre-treated Biomass"
+      ],
+      "parameters": {},
+      "additional_info": "The moisture content of the corn stover is controlled to optimize the efficiency of the pre-treatment process."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pre-treated biomass undergoes enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to the biomass slurry, catalyzing the breakdown of polysaccharides into monosaccharides like glucose and xylose. This step is critical for maximizing sugar yield, which directly impacts the efficiency of subsequent fermentation.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pre-treated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {},
+      "additional_info": "The enzymatic hydrolysis is typically conducted at controlled temperatures to optimize enzyme activity."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the anaerobic conversion of sugars into lactic acid by lactic acid bacteria. The sugar solution is inoculated with a suitable strain of bacteria, such as Lactobacillus species, under anaerobic conditions. The bacteria metabolize the sugars, producing lactic acid as the primary product, along with minor amounts of by-products.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Bacterial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {},
+      "additional_info": "Anaerobic conditions are maintained throughout the fermentation process to ensure optimal bacterial activity."
+    },
+    "separation": {
+      "unit_operation_id": "separation",
+      "name": "Separation",
+      "description": "This unit operation involves the separation of lactic acid from the fermentation broth. Techniques such as centrifugation and filtration are employed to remove bacterial biomass and other solid residues. The clarified liquid, containing lactic acid and residual sugars, is then subjected to further purification processes.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Lactic Acid Solution",
+        "Solid Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Solid waste from this process can be treated and potentially used as a nutrient source or disposed of according to environmental regulations."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "In the purification unit operation, the clarified lactic acid solution undergoes further processing to achieve the desired purity levels. Techniques such as ion exchange, solvent extraction, and distillation are used to remove impurities and concentrate lactic acid. This step is essential to meet commercial-grade specifications for lactic acid purity and optical isomerism, if required.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Lactic Acid Solution"
+      ],
+      "output_streams": [
+        "Purified Lactic Acid",
+        "Waste Stream"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of purification method may depend on the required optical purity and end-use application of the lactic acid."
+    },
+    "product_storage_and_handling": {
+      "unit_operation_id": "product_storage_and_handling",
+      "name": "Product Storage and Handling",
+      "description": "The final unit operation involves the storage and handling of purified lactic acid. The product is stored in appropriate containers to prevent contamination and degradation. Considerations for storage include maintaining a stable temperature and protecting the product from light and air exposure to preserve its quality.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Lactic Acid"
+      ],
+      "output_streams": [
+        "Stored Lactic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Storage facilities must comply with safety and regulatory standards to ensure product integrity and safety."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Corn stover as collected from agricultural fields, consisting of stalks, leaves, and cobs.",
+      "stream_type": "core",
+      "source": null,
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Pre-treated Biomass": {
+      "name": "Pre-treated Biomass",
+      "stream_id": "pre_treated biomass",
+      "description": "Corn stover that has been mechanically and chemically treated to increase the accessibility of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "pre-treatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": null,
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars, primarily glucose and xylose, ready for fermentation.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Residual Lignin": 0
+      }
+    },
+    "Bacterial Culture": {
+      "name": "Bacterial Culture",
+      "stream_id": "bacterial culture",
+      "description": "A culture of lactic acid bacteria used to inoculate the fermentation medium.",
+      "stream_type": "core",
+      "source": null,
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactobacillus": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing lactic acid, unreacted sugars, bacterial biomass, and minor by-products.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0,
+        "Unreacted Sugars": 0,
+        "Bacterial Biomass": 0
+      }
+    },
+    "Clarified Lactic Acid Solution": {
+      "name": "Clarified Lactic Acid Solution",
+      "stream_id": "clarified lactic acid solution",
+      "description": "A liquid stream containing lactic acid and residual sugars, free from solid biomass.",
+      "stream_type": "core",
+      "source": "separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0,
+        "Unreacted Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Solid residues removed from the fermentation broth, primarily bacterial biomass.",
+      "stream_type": "core",
+      "source": "separation",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Bacterial Biomass": 0
+      }
+    },
+    "Purified Lactic Acid": {
+      "name": "Purified Lactic Acid",
+      "stream_id": "purified lactic acid",
+      "description": "High-purity lactic acid suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "product_storage_and_handling",
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities and residual sugars removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Unreacted Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Stored Lactic Acid": {
+      "name": "Stored Lactic Acid",
+      "stream_id": "stored lactic acid",
+      "description": "Lactic acid ready for distribution or further processing.",
+      "stream_type": "core",
+      "source": "product_storage_and_handling",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Lactic Acid": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Residual Lignin": {
+      "name": "Residual Lignin",
+      "properties": {}
+    },
+    "Lactobacillus": {
+      "name": "Lactobacillus",
+      "properties": {}
+    },
+    "Lactic Acid": {
+      "name": "Lactic Acid",
+      "properties": {}
+    },
+    "Unreacted Sugars": {
+      "name": "Unreacted Sugars",
+      "properties": {}
+    },
+    "Bacterial Biomass": {
+      "name": "Bacterial Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    }
+  }
+}

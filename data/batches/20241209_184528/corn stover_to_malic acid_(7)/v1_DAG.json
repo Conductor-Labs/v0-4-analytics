@@ -1,0 +1,498 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants. It is typically pretreated to enhance enzymatic hydrolysis.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Malic Acid",
+      "composition": "C4H6O5 (Malic Acid)",
+      "key_specs": "Commercial-grade malic acid with a purity of at least 99%. It is used in food and beverage industries as an acidulant and flavor enhancer.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The pretreatment unit operation is designed to prepare the corn stover for enzymatic hydrolysis. This involves breaking down the lignocellulosic structure to increase the accessibility of cellulose and hemicellulose. Common methods include dilute acid, alkaline, or steam explosion pretreatment. The goal is to disrupt the lignin matrix and partially hydrolyze hemicellulose, making the cellulose more amenable to enzymatic attack.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Pretreated Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "The choice of pretreatment method can significantly affect downstream processing efficiency and cost."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pretreated corn stover is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pretreated Corn Stover",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulases hydrolyze cellulose, a polysaccharide, into glucose monomers through enzymatic reactions.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Hemicellulases break down hemicellulose, a heteropolysaccharide, into xylose and other sugars.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "The efficiency of this step is crucial for maximizing sugar yield and minimizing enzyme costs."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the aerobic conversion of sugars into malic acid using yeast or fungal strains. The microorganisms metabolize glucose and xylose under controlled conditions to produce malic acid as a primary metabolite. Oxygen is supplied to maintain aerobic conditions, and nutrients may be added to support microbial growth.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture",
+        "Oxygen Supply"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Sugar fermentation process utilizing microbial culture to convert glucose into malic acid under aerobic conditions.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Malic Acid",
+            "conversionRate": 0.7
+          },
+          {
+            "description": "Sugar fermentation process utilizing microbial culture to convert xylose into malic acid under aerobic conditions.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Malic Acid",
+            "conversionRate": 0.5
+          }
+        ]
+      },
+      "additional_info": "The choice of microorganism and fermentation conditions can significantly impact yield and productivity."
+    },
+    "broth_separation": {
+      "unit_operation_id": "broth_separation",
+      "name": "Broth Separation",
+      "description": "This unit operation involves the separation of the fermentation broth to recover malic acid. Techniques such as centrifugation or filtration are used to remove microbial biomass and other solids, leaving a clarified solution of malic acid.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Malic Acid Solution",
+        "Solid Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of malic acid from fermentation broth using centrifugation or filtration techniques to obtain a clarified malic acid solution.",
+            "component": "Malic Acid",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Separation of residual sugars from fermentation broth using centrifugation or filtration techniques to obtain a clarified malic acid solution.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.9
+          },
+          {
+            "description": "Separation of microbial biomass from fermentation broth using centrifugation or filtration techniques, resulting in solid waste.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.05
+          },
+          {
+            "description": "Separation of lignin from fermentation broth using centrifugation or filtration techniques, resulting in solid waste.",
+            "component": "Lignin",
+            "extractionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "Efficient separation is critical to minimize product loss and prepare for further purification."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to increase the purity of malic acid to commercial standards. This may involve crystallization, ion exchange, or solvent extraction techniques to remove impurities and concentrate malic acid.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Malic Acid Solution"
+      ],
+      "output_streams": [
+        "Purified Malic Acid",
+        "Impurity Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Extraction of Malic Acid from the clarified solution, enhancing its purity for commercial use.",
+            "component": "Malic Acid",
+            "extractionRate": 0.995
+          },
+          {
+            "description": "Separation of Residual Sugars from the clarified solution, resulting in an impurity stream.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.01
+          }
+        ]
+      },
+      "additional_info": "Achieving the desired purity level is essential for product quality and marketability."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "In this final unit operation, the purified malic acid is dried to remove any remaining moisture and then packaged for distribution. The drying process ensures that the product meets the required specifications for moisture content, and packaging is done to protect the product during storage and transport.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Malic Acid"
+      ],
+      "output_streams": [
+        "Commercial-Grade Malic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "Proper drying and packaging are crucial to maintain product stability and quality during storage."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is the raw agricultural residue consisting of leaves, stalks, and cobs from maize plants. The stream contains a mixture of components including Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), and Moisture (5-10%). It is typically supplied at a volumetric scale of 100,000 metric tons per year and is intended for pretreatment to enhance enzymatic hydrolysis in subsequent unit operations.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as the source for the Enzyme Solution, which contains a mixture of cellulases and hemicellulases. These enzymes are crucial for the enzymatic hydrolysis of pretreated corn stover, breaking down complex carbohydrates into fermentable sugars. The Enzyme Solution is prepared to ensure optimal activity and concentration of the enzymes, facilitating efficient conversion during the hydrolysis process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "microbial culture source": {
+      "unit_operation_id": "microbial culture source",
+      "name": "Microbial Culture Source",
+      "description": "This unit operation serves as a source for the Microbial Culture stream, which consists of yeast and fungal strains specifically selected for their ability to efficiently convert sugars into malic acid during the fermentation process. The microbial culture is essential for the fermentation stage of the process flow, where it interacts with the sugar solution to produce malic acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Microbial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solid waste sink": {
+      "unit_operation_id": "solid waste sink",
+      "name": "Solid Waste Sink",
+      "description": "This unit operation serves as the final sink for the Solid Waste stream, which consists of separated solids including microbial biomass and lignin. The Solid Waste Sink is designed to handle the disposal or further processing of these residual materials generated from the fermentation and separation processes. It ensures the safe and efficient management of waste, minimizing environmental impact and complying with regulatory standards.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solid Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "impurity sink": {
+      "unit_operation_id": "impurity sink",
+      "name": "Impurity Sink",
+      "description": "This unit operation serves as a sink for the Impurity Stream, which contains removed impurities and residual sugars from the purification process of malic acid. The Impurity Sink is designed to collect and manage the residual sugars that are not part of the final product, ensuring that they are properly handled and disposed of or processed further if necessary.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Impurity Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "commercial_grade malic acid sink": {
+      "unit_operation_id": "commercial_grade malic acid sink",
+      "name": "Commercial-Grade Malic Acid Sink",
+      "description": "This unit operation serves as the final sink for the stream of Commercial-Grade Malic Acid, which is the end product of the malic acid production process. It represents the point where the dried and packaged malic acid is stored and prepared for sale and distribution. The unit ensures that the product meets the required specifications for purity and quality, ready for shipment to customers in the food and beverage industries.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Commercial-Grade Malic Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "oxygen supply": {
+      "unit_operation_id": "oxygen supply",
+      "name": "Oxygen Supply",
+      "description": "This unit operation serves as a source for the Oxygen Supply stream, providing the necessary oxygen to maintain aerobic conditions during the fermentation process. The oxygen is crucial for enabling microorganisms, such as yeast and fungi, to efficiently metabolize sugars, leading to the production of malic acid. The operation ensures a consistent and adequate supply of oxygen to support optimal fermentation conditions.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Oxygen Supply"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The raw agricultural residue consisting of leaves, stalks, and cobs from maize plants.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pretreated Corn Stover": {
+      "name": "Pretreated Corn Stover",
+      "stream_id": "pretreated corn stover",
+      "description": "Corn stover that has undergone structural disruption to enhance enzymatic hydrolysis efficiency.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulases and hemicellulases for hydrolysis.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Yeast or fungal strains capable of converting sugars to malic acid.",
+      "stream_type": "core",
+      "source": "microbial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing malic acid, residual sugars, microbial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "broth_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Malic Acid": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0,
+        "Lignin": 0
+      }
+    },
+    "Clarified Malic Acid Solution": {
+      "name": "Clarified Malic Acid Solution",
+      "stream_id": "clarified malic acid solution",
+      "description": "A solution containing malic acid with reduced solids content.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Malic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Solid Waste": {
+      "name": "Solid Waste",
+      "stream_id": "solid waste",
+      "description": "Separated solids including microbial biomass and lignin.",
+      "stream_type": "core",
+      "source": "broth_separation",
+      "target": "solid waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0,
+        "Lignin": 0
+      }
+    },
+    "Purified Malic Acid": {
+      "name": "Purified Malic Acid",
+      "stream_id": "purified malic acid",
+      "description": "High-purity malic acid suitable for commercial use.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Malic Acid": 0
+      }
+    },
+    "Impurity Stream": {
+      "name": "Impurity Stream",
+      "stream_id": "impurity stream",
+      "description": "A stream containing removed impurities and residual sugars.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "impurity sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0
+      }
+    },
+    "Commercial-Grade Malic Acid": {
+      "name": "Commercial-Grade Malic Acid",
+      "stream_id": "commercial_grade malic acid",
+      "description": "Dried and packaged malic acid ready for sale and distribution.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": "commercial_grade malic acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Malic Acid": 0
+      }
+    },
+    "Oxygen Supply": {
+      "name": "Oxygen Supply",
+      "stream_id": "oxygen supply",
+      "description": "Oxygen is needed to maintain aerobic conditions during the fermentation process, enabling the microorganisms to metabolize sugars efficiently.",
+      "stream_type": "aux",
+      "source": "oxygen supply",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Oxygen": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "Malic Acid": {
+      "name": "Malic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Oxygen": {
+      "name": "Oxygen",
+      "properties": {}
+    }
+  }
+}

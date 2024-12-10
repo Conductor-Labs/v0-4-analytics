@@ -1,0 +1,636 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Typically requires pre-treatment to break down lignocellulosic structure for enzymatic access. Low-cost, abundant agricultural residue.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Succinic Acid",
+      "composition": "Succinic acid (C4H6O4) with potential impurities such as acetic acid, formic acid, and other organic acids",
+      "key_specs": "Industrial grade with purity >99%. Used in food, pharmaceuticals, and as a precursor for biodegradable polymers. Requires purification steps to meet commercial specifications.",
+      "volumetric_scale": "20,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pre-treatment": {
+      "unit_operation_id": "pre-treatment",
+      "name": "Pre-treatment",
+      "description": "The pre-treatment unit operation is designed to break down the lignocellulosic structure of corn stover, making cellulose and hemicellulose more accessible for enzymatic hydrolysis. This is typically achieved through a combination of physical, chemical, and/or biological methods. Physical methods may include size reduction through milling, while chemical methods often involve the use of dilute acid or alkaline solutions to disrupt the lignin structure. The goal is to increase the surface area and porosity of the biomass, facilitating subsequent enzymatic action.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Chemical Additives"
+      ],
+      "output_streams": [
+        "Pre-treated Biomass",
+        "Byproduct Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Lignin is separated from the corn stover during the pre-treatment process, primarily through solubilization and disruption of its structure.",
+            "component": "Lignin",
+            "extractionRate": 0.6
+          },
+          {
+            "description": "Ash is a byproduct that is removed during the chemical treatment process, resulting in a lower concentration of ash in the biomass.",
+            "component": "Ash",
+            "extractionRate": 0.5
+          },
+          {
+            "description": "Residual chemicals used in the pre-treatment process are also partially separated and become part of the byproduct stream.",
+            "component": "Residual Chemicals",
+            "extractionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "Pre-treatment is crucial for efficient enzymatic hydrolysis and can significantly impact the overall economics of the process."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pre-treated biomass is subjected to enzymatic hydrolysis. Specific enzymes, such as cellulases and hemicellulases, are added to the biomass to catalyze the breakdown of cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. This process is typically carried out in a bioreactor where conditions such as temperature and pH are optimized for enzyme activity.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pre-treated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Enzymatic hydrolysis of cellulose into glucose.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.9
+          },
+          {
+            "description": "Enzymatic hydrolysis of hemicellulose into xylose.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.8
+          }
+        ]
+      },
+      "additional_info": "The efficiency of enzymatic hydrolysis is a key determinant of the overall yield of fermentable sugars."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the conversion of fermentable sugars into succinic acid by microbial action. Specific strains of bacteria, such as Actinobacillus succinogenes or engineered E. coli, are used to ferment the sugars under anaerobic conditions. The bioreactor is maintained at conditions optimal for microbial growth and succinic acid production.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolysate",
+        "Inoculum",
+        "CO2 Stream"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "Off-gas"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Biological conversion of glucose to succinic acid by the microbial culture under anaerobic conditions.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Succinic Acid",
+            "conversionRate": 0.7
+          },
+          {
+            "description": "Biological conversion of xylose to succinic acid by the microbial culture under anaerobic conditions.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Succinic Acid",
+            "conversionRate": 0.65
+          },
+          {
+            "description": "Role of carbon dioxide as a co-reactant in the carboxylation reactions contributing to succinic acid formation.",
+            "inputComponent": "CO2",
+            "outputComponent": "Succinic Acid",
+            "conversionRate": 0.3
+          }
+        ]
+      },
+      "additional_info": "The choice of microorganism and fermentation conditions can significantly influence the yield and productivity of succinic acid."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "In this unit operation, microbial cells are separated from the fermentation broth. This is typically achieved through centrifugation or filtration, which removes the biomass and leaves behind a clarified broth containing succinic acid and other soluble components.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Broth",
+        "Biomass Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Complete removal of microbial biomass from the fermentation broth using centrifugation or filtration.",
+            "component": "Microbial Biomass",
+            "extractionRate": 1.0
+          },
+          {
+            "description": "Succinic acid remains in the clarified broth after the separation from biomass.",
+            "component": "Succinic Acid",
+            "extractionRate": 0.0
+          },
+          {
+            "description": "Residual sugars are also retained in the clarified broth post separation.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.0
+          }
+        ]
+      },
+      "additional_info": "Efficient cell separation is essential to minimize product loss and prepare the broth for downstream purification."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation is designed to isolate and purify succinic acid from the clarified broth. This may involve a series of steps such as crystallization, ion exchange, and solvent extraction to remove impurities and concentrate the succinic acid to the desired purity level.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Broth"
+      ],
+      "output_streams": [
+        "Purified Succinic Acid",
+        "Waste Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Crystallization process to separate succinic acid from the solution by cooling or evaporative crystallization, concentrating the pure product.",
+            "component": "Succinic Acid",
+            "extractionRate": 0.99
+          },
+          {
+            "description": "Ion exchange process using resins to selectively adsorb and remove impurities or residual sugars without affecting succinic acid.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.0
+          },
+          {
+            "description": "Solvent extraction process to enhance the selective dissolution and extraction of succinic acid, improving product purity.",
+            "component": "Succinic Acid",
+            "extractionRate": 0.99
+          }
+        ]
+      },
+      "additional_info": "Achieving the required purity (>99%) is critical for meeting commercial specifications and can impact the economic viability of the process."
+    },
+    "product_drying": {
+      "unit_operation_id": "product_drying",
+      "name": "Product Drying",
+      "description": "In this final unit operation, the purified succinic acid is dried to obtain the solid product. This is typically achieved through spray drying or rotary drying, which removes any remaining moisture and results in a stable, free-flowing powder.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Succinic Acid"
+      ],
+      "output_streams": [
+        "Dried Succinic Acid"
+      ],
+      "parameters": {},
+      "additional_info": "The drying process must be carefully controlled to prevent degradation of the product and ensure consistent quality."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is the initial feedstock consisting of untreated corn stover. The stream contains a mixture of cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). It is typically sourced from agricultural residues and requires pre-treatment to break down its lignocellulosic structure for subsequent enzymatic hydrolysis. This operation is critical for providing the necessary biomass for the production of succinic acid in the overall process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as the source for the Enzyme Solution, which contains cellulase and hemicellulase enzymes. These enzymes are crucial for the enzymatic hydrolysis of pre-treated biomass, facilitating the conversion of complex carbohydrates into fermentable sugars. The Enzyme Solution is prepared to optimal concentrations to ensure efficient hydrolysis, contributing to the overall yield of succinic acid in the fermentation process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "biomass waste sink": {
+      "unit_operation_id": "biomass waste sink",
+      "name": "Biomass Waste Sink",
+      "description": "This unit operation serves as a sink for the Biomass Waste stream, which consists of separated microbial biomass. The biomass can either be repurposed as a by-product for further use in bioenergy production, animal feed, or composting, or it can be disposed of in an environmentally responsible manner. The unit operation ensures proper handling and management of this waste stream to minimize environmental impact.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Biomass Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "waste stream sink": {
+      "unit_operation_id": "waste stream sink",
+      "name": "Waste Stream Sink",
+      "description": "This unit operation serves as the final sink for the Waste Stream, which includes residual sugars and impurities that are removed during the purification process of succinic acid production. The Waste Stream Sink is designed to safely collect and manage the byproducts of the purification process, ensuring that impurities are disposed of in an environmentally responsible manner while minimizing any potential impact on the surrounding ecosystem.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Waste Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "dried succinic acid sink": {
+      "unit_operation_id": "dried succinic acid sink",
+      "name": "Dried Succinic Acid Sink",
+      "description": "This unit operation serves as the final sink for the dried succinic acid product, which is a solid form of succinic acid ready for packaging and distribution. The unit operation ensures that the dried product is collected efficiently and prepared for storage or shipment, maintaining the quality and integrity of the product for industrial applications.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Dried Succinic Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "chemical additives source": {
+      "unit_operation_id": "chemical additives source",
+      "name": "Chemical Additives Source",
+      "description": "This unit operation serves as a source for the Chemical Additives stream, which includes dilute acids and alkaline solutions. These additives are critical in the pre-treatment process of corn stover, facilitating the breakdown of its lignocellulosic structure. By disrupting lignin, the additives enhance the accessibility of cellulose and hemicellulose, thereby improving the efficiency of subsequent enzymatic hydrolysis and fermentation stages.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Chemical Additives"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "byproduct stream sink": {
+      "unit_operation_id": "byproduct stream sink",
+      "name": "Byproduct Stream Sink",
+      "description": "This unit operation serves as a sink for the Byproduct Stream generated during the pre-treatment process of Corn Stover. It collects and manages the byproducts and residues, which include dissolved lignin, solubilized ash, and residual chemicals. The purpose of this sink is to ensure proper handling and potential further processing or disposal of these materials, minimizing environmental impact and optimizing resource recovery.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Byproduct Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "inoculum source": {
+      "unit_operation_id": "inoculum source",
+      "name": "Inoculum Source",
+      "description": "This unit operation serves as the source for the Inoculum stream, which contains the microbial culture essential for initiating and sustaining the fermentation process. The inoculum consists of two key microbial components: Actinobacillus succinogenes and engineered strains of E. coli, both of which are crucial for the efficient conversion of sugars derived from hydrolysate into succinic acid. This stream is vital for ensuring the fermentation process operates effectively and achieves the desired product yield.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Inoculum"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "co2 stream source": {
+      "unit_operation_id": "co2 stream source",
+      "name": "CO2 Stream Source",
+      "description": "The CO2 Stream Source is a unit operation that provides a continuous supply of carbon dioxide (CO2) for the fermentation process in the production of succinic acid. This stream is crucial as CO2 serves as a carbon source, enhancing the carboxylation reactions during fermentation. The CO2 is typically sourced from either fermentation off-gases or captured from industrial processes, ensuring a sustainable and efficient supply for the bioconversion of sugars into succinic acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "CO2 Stream"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "off_gas sink": {
+      "unit_operation_id": "off_gas sink",
+      "name": "Off-gas Sink",
+      "description": "This unit operation serves as a sink for the off-gas stream generated during the fermentation process. The off-gas stream primarily consists of carbon dioxide (CO2), hydrogen (H2), and nitrogen (N2). This sink is designed to safely collect and manage these gases, preventing their release into the atmosphere and allowing for potential recovery or treatment options. The off-gas may be further processed for CO2 capture, utilization, or disposal, depending on the facility's environmental and economic goals.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Off-gas"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "The initial feedstock consisting of untreated corn stover.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pre-treated Biomass": {
+      "name": "Pre-treated Biomass",
+      "stream_id": "pre_treated biomass",
+      "description": "Corn stover that has undergone pre-treatment to enhance enzymatic accessibility.",
+      "stream_type": "core",
+      "source": "pre-treatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A solution containing cellulase and hemicellulase enzymes.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A mixture containing fermentable sugars resulting from the enzymatic breakdown of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing succinic acid, residual sugars, and microbial biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Succinic Acid": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Clarified Broth": {
+      "name": "Clarified Broth",
+      "stream_id": "clarified broth",
+      "description": "A liquid stream containing succinic acid and residual sugars, free of microbial biomass.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Succinic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Biomass Waste": {
+      "name": "Biomass Waste",
+      "stream_id": "biomass waste",
+      "description": "Separated microbial biomass which can be used as a by-product or disposed of.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "biomass waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0
+      }
+    },
+    "Purified Succinic Acid": {
+      "name": "Purified Succinic Acid",
+      "stream_id": "purified succinic acid",
+      "description": "High-purity succinic acid suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "product_drying",
+      "flow_rate": 0.0,
+      "components": {
+        "Succinic Acid": 0
+      }
+    },
+    "Waste Stream": {
+      "name": "Waste Stream",
+      "stream_id": "waste stream",
+      "description": "A stream containing impurities and residual components removed during purification.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Dried Succinic Acid": {
+      "name": "Dried Succinic Acid",
+      "stream_id": "dried succinic acid",
+      "description": "Solid succinic acid product ready for packaging and distribution.",
+      "stream_type": "core",
+      "source": "product_drying",
+      "target": "dried succinic acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Succinic Acid": 0
+      }
+    },
+    "Chemical Additives": {
+      "name": "Chemical Additives",
+      "stream_id": "chemical additives",
+      "description": "Chemical additives are used in the pre-treatment process to aid in breaking down the lignocellulosic structure of corn stover. These could include dilute acids or alkaline solutions that help in disrupting the lignin and making cellulose and hemicellulose more accessible.",
+      "stream_type": "aux",
+      "source": "chemical additives source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Dilute Acid": 0,
+        "Alkaline Solution": 0
+      }
+    },
+    "Byproduct Stream": {
+      "name": "Byproduct Stream",
+      "stream_id": "byproduct stream",
+      "description": "This stream may contain byproducts and residues from the pre-treatment process, including dissolved lignin and other solubilized materials that are separated from the desired cellulose and hemicellulose components.",
+      "stream_type": "aux",
+      "source": "pre-treatment",
+      "target": "byproduct stream sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Dissolved Lignin": 0,
+        "Solubilized Ash": 0,
+        "Residual Chemicals": 0
+      }
+    },
+    "Inoculum": {
+      "name": "Inoculum",
+      "stream_id": "inoculum",
+      "description": "The inoculum stream contains the microbial culture required to initiate and sustain the fermentation process for the conversion of sugars to succinic acid.",
+      "stream_type": "aux",
+      "source": "inoculum source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Actinobacillus succinogenes": 0,
+        "Engineered E. coli": 0
+      }
+    },
+    "CO2 Stream": {
+      "name": "CO2 Stream",
+      "stream_id": "co2 stream",
+      "description": "CO2 is often required as a carbon source in certain succinic acid fermentations. It contributes to the carboxylation reactions taking place in the fermentation process.",
+      "stream_type": "aux",
+      "source": "co2 stream source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "CO2": 0
+      }
+    },
+    "Off-gas": {
+      "name": "Off-gas",
+      "stream_id": "off_gas",
+      "description": "The off-gas stream contains gases released during fermentation, such as CO2 and potentially other gases like hydrogen or nitrogen.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "off_gas sink",
+      "flow_rate": 0.0,
+      "components": {
+        "CO2": 0,
+        "H2": 0,
+        "N2": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Succinic Acid": {
+      "name": "Succinic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Dilute Acid": {
+      "name": "Dilute Acid",
+      "properties": {}
+    },
+    "Alkaline Solution": {
+      "name": "Alkaline Solution",
+      "properties": {}
+    },
+    "Dissolved Lignin": {
+      "name": "Dissolved Lignin",
+      "properties": {}
+    },
+    "Solubilized Ash": {
+      "name": "Solubilized Ash",
+      "properties": {}
+    },
+    "Residual Chemicals": {
+      "name": "Residual Chemicals",
+      "properties": {}
+    },
+    "Actinobacillus succinogenes": {
+      "name": "Actinobacillus succinogenes",
+      "properties": {}
+    },
+    "Engineered E. coli": {
+      "name": "Engineered E. coli",
+      "properties": {}
+    },
+    "CO2": {
+      "name": "CO2",
+      "properties": {}
+    },
+    "H2": {
+      "name": "H2",
+      "properties": {}
+    },
+    "N2": {
+      "name": "N2",
+      "properties": {}
+    }
+  }
+}

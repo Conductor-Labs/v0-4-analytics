@@ -1,0 +1,119 @@
+[2024-12-09 18:45:28] INFO - Starting run 3 for user prompt: Process that converts corn stover to Aspartic Acid via enzymatic biotransformation
+[2024-12-09 18:45:28] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Aspartic Acid via enzymatic biotransformation
+[2024-12-09 18:45:28] INFO - Starting process description agent.
+[2024-12-09 18:45:28] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Aspartic Acid via enzymatic biotransformation
+[2024-12-09 18:45:32] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Lignocellulosic biomass with high cellulose and hemicellulose content, low moisture content preferred for efficient processing","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Aspartic Acid","composition":"Aspartic Acid (C4H7NO4)","key_specs":"High purity (>99%) suitable for commercial applications in food, pharmaceuticals, and biodegradable polymers","volumetric_scale":"10,000 metric tons per year"}]}
+[2024-12-09 18:45:32] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:45:32] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Lignocellulosic biomass with high cellulose and hemicellulose content, low moisture content preferred for efficient processing', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Aspartic Acid', 'composition': 'Aspartic Acid (C4H7NO4)', 'key_specs': 'High purity (>99%) suitable for commercial applications in food, pharmaceuticals, and biodegradable polymers', 'volumetric_scale': '10,000 metric tons per year'}]}
+[2024-12-09 18:45:50] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pre-treatment","order":1,"description":"The pre-treatment unit operation involves the mechanical and chemical processing of corn stover to prepare it for enzymatic hydrolysis. This step is crucial for breaking down the lignocellulosic structure, primarily targeting the disruption of lignin and hemicellulose to expose cellulose fibers. Mechanical size reduction is typically performed using milling equipment to reduce the particle size, enhancing the surface area for subsequent chemical treatment. Chemical pre-treatment often involves the use of dilute acid or alkaline solutions to solubilize hemicellulose and partially remove lignin, making cellulose more accessible to enzymes.","input_streams":[{"name":"Raw Corn Stover","description":"Lignocellulosic biomass feedstock consisting of corn stalks, leaves, and cobs.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pre-treated Biomass","description":"Biomass with reduced lignin and hemicellulose content, with cellulose fibers exposed for enzymatic action.","components":["Cellulose","Reduced Hemicellulose","Reduced Lignin"]}],"additional_info":"Pre-treatment conditions such as acid concentration and residence time are optimized to maximize cellulose availability while minimizing sugar degradation."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pre-treated biomass undergoes enzymatic hydrolysis to convert cellulose and remaining hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to the biomass slurry, catalyzing the breakdown of polysaccharides into monosaccharides like glucose and xylose. This step is critical for maximizing sugar yield, which directly impacts the efficiency of subsequent fermentation processes.","input_streams":[{"name":"Pre-treated Biomass","description":"Biomass with reduced lignin and hemicellulose content, with cellulose fibers exposed for enzymatic action.","components":["Cellulose","Reduced Hemicellulose"]},{"name":"Enzyme Solution","description":"A cocktail of cellulases and hemicellulases to facilitate the breakdown of cellulose and hemicellulose into sugars.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars derived from the enzymatic breakdown of cellulose and hemicellulose.","components":["Glucose","Xylose"]}],"additional_info":"The enzymatic hydrolysis is conducted under controlled conditions to optimize enzyme activity and sugar yield."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the conversion of sugars into aspartic acid using a genetically engineered microbial strain. The sugar solution from enzymatic hydrolysis is inoculated with microorganisms capable of metabolizing glucose and xylose into aspartic acid. This biotransformation is carried out in bioreactors designed to maintain optimal conditions for microbial growth and product formation.","input_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars derived from the enzymatic breakdown of cellulose and hemicellulose.","components":["Glucose","Xylose"]},{"name":"Microbial Culture","description":"Genetically engineered microorganisms capable of converting sugars into aspartic acid.","components":["Microbial Cells"]}],"output_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing aspartic acid, residual sugars, microbial biomass, and other metabolites.","components":["Aspartic Acid","Residual Sugars","Microbial Biomass"]}],"additional_info":"The fermentation process is monitored for pH, temperature, and nutrient levels to ensure high yield and productivity."},{"name":"Cell Separation","order":4,"description":"This unit operation involves the separation of microbial cells from the fermentation broth. The broth is subjected to centrifugation or filtration to remove the biomass, leaving behind a clarified solution containing aspartic acid and residual sugars. This step is essential for reducing the load on downstream purification processes.","input_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing aspartic acid, residual sugars, microbial biomass, and other metabolites.","components":["Aspartic Acid","Residual Sugars","Microbial Biomass"]}],"output_streams":[{"name":"Clarified Solution","description":"A solution containing aspartic acid and residual sugars, with reduced microbial biomass.","components":["Aspartic Acid","Residual Sugars"]},{"name":"Biomass Waste","description":"Separated microbial biomass, which can be used as animal feed or for other applications.","components":["Microbial Biomass"]}],"additional_info":"Efficient separation techniques are crucial to minimize product loss and enhance the purity of the aspartic acid solution."},{"name":"Purification","order":5,"description":"The purification unit operation focuses on isolating high-purity aspartic acid from the clarified solution. Techniques such as crystallization, ion exchange, and chromatography are employed to remove impurities and concentrate the aspartic acid. This step is vital for achieving the desired product specifications for commercial applications.","input_streams":[{"name":"Clarified Solution","description":"A solution containing aspartic acid and residual sugars, with reduced microbial biomass.","components":["Aspartic Acid","Residual Sugars"]}],"output_streams":[{"name":"Purified Aspartic Acid","description":"High-purity aspartic acid suitable for commercial applications.","components":["Aspartic Acid"]},{"name":"Impurity Stream","description":"A stream containing removed impurities and residual sugars.","components":["Residual Sugars","Impurities"]}],"additional_info":"Purification processes are optimized to achieve >99% purity of aspartic acid, meeting industry standards for food and pharmaceutical applications."},{"name":"Drying and Packaging","order":6,"description":"In the final unit operation, the purified aspartic acid is dried and packaged for distribution. The drying process removes any remaining moisture, ensuring product stability and shelf life. The dried product is then packaged in suitable containers to protect it from contamination and degradation during storage and transport.","input_streams":[{"name":"Purified Aspartic Acid","description":"High-purity aspartic acid suitable for commercial applications.","components":["Aspartic Acid"]}],"output_streams":[{"name":"Final Aspartic Acid Product","description":"Dried and packaged aspartic acid ready for distribution and use in various applications.","components":["Aspartic Acid"]}],"additional_info":"Packaging materials are selected based on the product's sensitivity to environmental factors such as moisture and light."}]}
+[2024-12-09 18:45:50] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pre-treatment'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Pre-treated Biomass' for output of unit operation 'Pre-treatment'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Pre-treatment' with ID 'pre-treatment' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Pre-treated Biomass' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Cell Separation'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Clarified Solution' for output of unit operation 'Cell Separation'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Biomass Waste' for output of unit operation 'Cell Separation'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Cell Separation' with ID 'cell_separation' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Clarified Solution' for input of unit operation 'Purification'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Purified Aspartic Acid' for output of unit operation 'Purification'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Impurity Stream' for output of unit operation 'Purification'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:45:50] DEBUG - Reusing existing stream 'Purified Aspartic Acid' for input of unit operation 'Drying and Packaging'.
+[2024-12-09 18:45:50] DEBUG - Created new stream 'Final Aspartic Acid Product' for output of unit operation 'Drying and Packaging'.
+[2024-12-09 18:45:50] DEBUG - Added unit operation 'Drying and Packaging' with ID 'drying_and_packaging' to process flow.
+[2024-12-09 18:45:50] INFO - Process flow built successfully.
+[2024-12-09 18:45:50] INFO - Starting v1 DAG agent.
+[2024-12-09 18:45:50] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'pre-treatment' to 'enzymatic_hydrolysis' via stream 'Pre-treated Biomass'.
+[2024-12-09 18:45:50] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:45:50] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'fermentation' to 'cell_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'cell_separation' to 'purification' via stream 'Clarified Solution'.
+[2024-12-09 18:45:50] DEBUG - Stream 'Biomass Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified Aspartic Acid'.
+[2024-12-09 18:45:50] DEBUG - Stream 'Impurity Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] DEBUG - Stream 'Final Aspartic Acid Product' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:50] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:45:56] DEBUG - Added auxiliary input stream 'Pre-treatment Chemicals' to unit operation 'Pre-treatment'
+  - Description: Chemicals used in the pre-treatment process, which may include dilute acid or alkaline solutions, are necessary for the solubilization of hemicellulose and partial removal of lignin.
+  - Components: Dilute Acid or Alkaline Solution
+[2024-12-09 18:45:56] DEBUG - Added auxiliary output stream 'Solubilized Hemicellulose and Lignin' to unit operation 'Pre-treatment'
+  - Description: A stream containing solubilized hemicellulose and lignin components removed during the chemical pre-treatment process.
+  - Components: Solubilized Hemicellulose, Solubilized Lignin
+[2024-12-09 18:45:57] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:46:00] DEBUG - Added auxiliary output stream 'By-product Gas Stream' to unit operation 'Fermentation'
+  - Description: During the fermentation process, microbial metabolism can produce gases such as carbon dioxide as by-products, which need to be vented or captured.
+  - Components: Carbon Dioxide
+[2024-12-09 18:46:01] DEBUG - No missing streams identified for unit operation: Cell Separation
+[2024-12-09 18:46:01] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:46:02] DEBUG - No missing streams identified for unit operation: Drying and Packaging
+[2024-12-09 18:46:03] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:46:04] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:46:05] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 18:46:06] DEBUG - Added sink unit operation 'Biomass Waste Sink' with ID 'biomass waste sink' for stream 'Biomass Waste'
+[2024-12-09 18:46:08] DEBUG - Added sink unit operation 'Impurity Sink' with ID 'impurity sink' for stream 'Impurity Stream'
+[2024-12-09 18:46:09] DEBUG - Added sink unit operation 'Final Aspartic Acid Sink' with ID 'final aspartic acid sink' for stream 'Final Aspartic Acid Product'
+[2024-12-09 18:46:10] DEBUG - Added source unit operation 'Pre-treatment Chemicals Source' with ID 'pre_treatment chemicals source' for stream 'Pre-treatment Chemicals'
+[2024-12-09 18:46:11] DEBUG - Added sink unit operation 'Solubilized Hemicellulose and Lignin Sink' with ID 'solubilized hemicellulose and lignin sink' for stream 'Solubilized Hemicellulose and Lignin'
+[2024-12-09 18:46:13] DEBUG - Added sink unit operation 'By-product Gas Sink' with ID 'by_product gas sink' for stream 'By-product Gas Stream'
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'raw corn stover source' to 'pre-treatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'pre-treatment' to 'enzymatic_hydrolysis' via stream 'Pre-treated Biomass'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'fermentation' to 'cell_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'cell_separation' to 'purification' via stream 'Clarified Solution'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'cell_separation' to 'biomass waste sink' via stream 'Biomass Waste'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified Aspartic Acid'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'purification' to 'impurity sink' via stream 'Impurity Stream'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'drying_and_packaging' to 'final aspartic acid sink' via stream 'Final Aspartic Acid Product'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'pre_treatment chemicals source' to 'pre-treatment' via stream 'Pre-treatment Chemicals'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'pre-treatment' to 'solubilized hemicellulose and lignin sink' via stream 'Solubilized Hemicellulose and Lignin'.
+[2024-12-09 18:46:13] DEBUG - Adding edge from 'fermentation' to 'by_product gas sink' via stream 'By-product Gas Stream'.
+[2024-12-09 18:46:13] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:46:13] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:46:19] DEBUG - Processing separation unit operation: Pre-treatment
+Separation operations:
+  1. Separating Hemicellulose (extraction rate: 80.0%)
+  2. Separating Lignin (extraction rate: 50.0%)
+[2024-12-09 18:46:27] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Reduced Hemicellulose → Xylose (rate: 70.0%)
+[2024-12-09 18:46:36] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Aspartic Acid (rate: 75.0%)
+  2. Converting Xylose → Aspartic Acid (rate: 60.0%)
+  3. Converting Glucose → Carbon Dioxide (rate: 20.0%)
+  4. Converting Xylose → Carbon Dioxide (rate: 10.0%)
+[2024-12-09 18:46:43] DEBUG - Processing separation unit operation: Cell Separation
+Separation operations:
+  1. Separating Microbial Biomass (extraction rate: 95.0%)
+  2. Separating Aspartic Acid (extraction rate: 1.0%)
+  3. Separating Residual Sugars (extraction rate: 2.0%)
+[2024-12-09 18:46:49] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Aspartic Acid (extraction rate: 99.0%)
+  2. Separating Residual Sugars (extraction rate: 1.0%)
+  3. Separating Aspartic Acid (extraction rate: 99.0%)
+[2024-12-09 18:46:53] DEBUG - No conversion or separation parameters identified for unit operation: Drying and Packaging
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'Biomass Waste Sink' of type 'sink'
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'Impurity Sink' of type 'sink'
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'Final Aspartic Acid Sink' of type 'sink'
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'Pre-treatment Chemicals Source' of type 'source'
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'Solubilized Hemicellulose and Lignin Sink' of type 'sink'
+[2024-12-09 18:46:53] DEBUG - Skipping operational parameters for unit operation 'By-product Gas Sink' of type 'sink'
+[2024-12-09 18:46:53] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:46:53] INFO - Workflow completed successfully.

@@ -1,0 +1,159 @@
+unit_op,count
+enzymatic_hydrolysis,90
+fermentation,90
+distillation,90
+dehydration,90
+raw corn stover source,89
+pretreatment,87
+fuel_grade ethanol sink,74
+feedstock_preparation,71
+yeast culture source,60
+waste_management,43
+dilute acid solution source,41
+enzyme solution source,35
+carbon dioxide sink,35
+treated waste sink,33
+stillage sink,17
+water sink,17
+waste_treatment,17
+cellulase enzyme source,16
+biogas sink,14
+enzyme source,13
+lignin residue source,12
+pretreatment chemicals source,11
+feedstock_handling_and_preparation,10
+enzyme mixture source,10
+lignin residues source,9
+treated effluent sink,9
+denatured ethanol sink,8
+anhydrous ethanol sink,8
+acid/steam source,7
+microorganism source,6
+denaturant source,6
+acid or steam source,6
+treated wastewater sink,6
+water stream sink,5
+denaturing,5
+animal feed sink,5
+byproduct gases sink,4
+carbon dioxide source,4
+microorganism culture source,4
+distillation bottoms sink,4
+waste_management_and_by-product_recovery,4
+pretreatment agent source,4
+processed waste sink,4
+wastewater sink,4
+denaturing_and_storage,3
+enzyme cocktail source,3
+lignin_rich residue sink,3
+dehydrated water sink,3
+off_gas sink,3
+cellulase enzymes source,3
+recovered lignin sink,3
+gaseous emissions sink,3
+lignin_rich stream sink,3
+residual lignin source,3
+water vapor sink,2
+carbon dioxide gas sink,2
+solid residues sink,2
+chemical solution source,2
+solubilized hemicellulose sink,2
+distillation residue sink,2
+pre-treatment,2
+water source,2
+pretreatment off_gas sink,2
+waste_management_and_byproduct_recovery,2
+pretreatment effluent sink,2
+dilute acid source,2
+enzyme addition source,2
+recovered by_products sink,2
+residual solids sink,2
+process residues source,2
+processed stillage sink,2
+chemical pretreatment agent source,2
+solid waste sink,2
+acid solution source,2
+waste sink,2
+treated waste streams sink,2
+enzyme addition,2
+waste_treatment_and_by-product_recovery,2
+unconverted biomass source,1
+soluble degradation products sink,1
+soluble sugars sink,1
+energy recovery sink,1
+animal feed additives sink,1
+recovered energy sink,1
+boiler flue gas sink,1
+boiler fuel sink,1
+pre_treatment residue sink,1
+feedstock_handling,1
+recovered water sink,1
+microbial culture source,1
+chemical additives source,1
+by_products from pretreatment source,1
+byproduct sink,1
+solid residues source,1
+yeast inoculum source,1
+lignin residue sink,1
+waste_management_and_by-product_utilization,1
+acid recovery sink,1
+feedstock_preprocessing,1
+byproduct gas emissions sink,1
+byproduct gas sink,1
+off_gas treatment sink,1
+nutrient solution source,1
+yeast inoculum,1
+water or acid source,1
+lignin cake sink,1
+solid by_products sink,1
+gasoline source,1
+yeast or microorganism culture source,1
+dehydration waste sink,1
+digestate sink,1
+neutralization agent source,1
+lignin by_products sink,1
+microbial biomass source,1
+acid/alkali solution source,1
+waste_treatment_and_management,1
+microorganisms source,1
+yeast or microorganisms source,1
+denaturant addition,1
+microorganism inoculum source,1
+acid_containing effluent sink,1
+acid or alkali solution source,1
+process water source,1
+preprocessing,1
+dilute acid or steam source,1
+waste water sink,1
+degradation products sink,1
+pretreatment reagents source,1
+energy recovery unit,1
+yeast or microorganism inoculum source,1
+pretreatment by_products sink,1
+waste gas sink,1
+pretreatment catalyst/agent source,1
+lignin by_product sink,1
+off_gases sink,1
+corn stover feedstock source,1
+soluble byproducts sink,1
+chemical_pre-treatment,1
+yeast source,1
+pre_treatment chemicals source,1
+water/acid or steam source,1
+dilute acid/steam source,1
+water and acid source,1
+moisture sink,1
+treated water sink,1
+waste disposal sink,1
+process residuals source,1
+byproduct removal sink,1
+solubilized hemicellulose and lignin sink,1
+energy sink,1
+steam source,1
+lignin fuel sink,1
+waste gas treatment sink,1
+chemical agent source,1
+lignin and degradation products sink,1
+waste treatment sink,1
+waste stream sink,1
+by_products from fermentation source,1

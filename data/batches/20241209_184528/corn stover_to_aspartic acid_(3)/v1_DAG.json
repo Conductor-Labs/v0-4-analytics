@@ -1,0 +1,590 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Lignocellulosic biomass with high cellulose and hemicellulose content, low moisture content preferred for efficient processing",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Aspartic Acid",
+      "composition": "Aspartic Acid (C4H7NO4)",
+      "key_specs": "High purity (>99%) suitable for commercial applications in food, pharmaceuticals, and biodegradable polymers",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "pre-treatment": {
+      "unit_operation_id": "pre-treatment",
+      "name": "Pre-treatment",
+      "description": "The pre-treatment unit operation involves the mechanical and chemical processing of corn stover to prepare it for enzymatic hydrolysis. This step is crucial for breaking down the lignocellulosic structure, primarily targeting the disruption of lignin and hemicellulose to expose cellulose fibers. Mechanical size reduction is typically performed using milling equipment to reduce the particle size, enhancing the surface area for subsequent chemical treatment. Chemical pre-treatment often involves the use of dilute acid or alkaline solutions to solubilize hemicellulose and partially remove lignin, making cellulose more accessible to enzymes.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover",
+        "Pre-treatment Chemicals"
+      ],
+      "output_streams": [
+        "Pre-treated Biomass",
+        "Solubilized Hemicellulose and Lignin"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of hemicellulose from pre-treated biomass",
+            "component": "Hemicellulose",
+            "extractionRate": 0.8
+          },
+          {
+            "description": "Separation of lignin from pre-treated biomass",
+            "component": "Lignin",
+            "extractionRate": 0.5
+          }
+        ]
+      },
+      "additional_info": "Pre-treatment conditions such as acid concentration and residence time are optimized to maximize cellulose availability while minimizing sugar degradation."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this unit operation, the pre-treated biomass undergoes enzymatic hydrolysis to convert cellulose and remaining hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to the biomass slurry, catalyzing the breakdown of polysaccharides into monosaccharides like glucose and xylose. This step is critical for maximizing sugar yield, which directly impacts the efficiency of subsequent fermentation processes.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Pre-treated Biomass",
+        "Enzyme Solution"
+      ],
+      "output_streams": [
+        "Sugar Solution"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Hydrolysis of cellulose to glucose using cellulase enzymes.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Hydrolysis of hemicellulose to xylose using hemicellulase enzymes.",
+            "inputComponent": "Reduced Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "The enzymatic hydrolysis is conducted under controlled conditions to optimize enzyme activity and sugar yield."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The fermentation unit operation involves the conversion of sugars into aspartic acid using a genetically engineered microbial strain. The sugar solution from enzymatic hydrolysis is inoculated with microorganisms capable of metabolizing glucose and xylose into aspartic acid. This biotransformation is carried out in bioreactors designed to maintain optimal conditions for microbial growth and product formation.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Sugar Solution",
+        "Microbial Culture"
+      ],
+      "output_streams": [
+        "Fermentation Broth",
+        "By-product Gas Stream"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Fermentation of glucose into aspartic acid by microbial metabolism.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Aspartic Acid",
+            "conversionRate": 0.75
+          },
+          {
+            "description": "Fermentation of xylose into aspartic acid by microbial metabolism.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Aspartic Acid",
+            "conversionRate": 0.6
+          },
+          {
+            "description": "Metabolic conversion of glucose resulting in the by-product carbon dioxide.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.2
+          },
+          {
+            "description": "Metabolic conversion of xylose resulting in the by-product carbon dioxide.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Carbon Dioxide",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "The fermentation process is monitored for pH, temperature, and nutrient levels to ensure high yield and productivity."
+    },
+    "cell_separation": {
+      "unit_operation_id": "cell_separation",
+      "name": "Cell Separation",
+      "description": "This unit operation involves the separation of microbial cells from the fermentation broth. The broth is subjected to centrifugation or filtration to remove the biomass, leaving behind a clarified solution containing aspartic acid and residual sugars. This step is essential for reducing the load on downstream purification processes.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Clarified Solution",
+        "Biomass Waste"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of microbial biomass from the fermentation broth using centrifugation or filtration to reduce the load on downstream processes.",
+            "component": "Microbial Biomass",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Minimal extraction of aspartic acid during the separation process, primarily retained in the clarified solution for purification.",
+            "component": "Aspartic Acid",
+            "extractionRate": 0.01
+          },
+          {
+            "description": "Minimal extraction of residual sugars during the separation process, mainly retained in the clarified solution for purification.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.02
+          }
+        ]
+      },
+      "additional_info": "Efficient separation techniques are crucial to minimize product loss and enhance the purity of the aspartic acid solution."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The purification unit operation focuses on isolating high-purity aspartic acid from the clarified solution. Techniques such as crystallization, ion exchange, and chromatography are employed to remove impurities and concentrate the aspartic acid. This step is vital for achieving the desired product specifications for commercial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Clarified Solution"
+      ],
+      "output_streams": [
+        "Purified Aspartic Acid",
+        "Impurity Stream"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Crystallization process to isolate solid aspartic acid from liquid.",
+            "component": "Aspartic Acid",
+            "extractionRate": 0.99
+          },
+          {
+            "description": "Ion exchange to selectively bind residual ionic impurities, allowing aspartic acid to pass through.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.01
+          },
+          {
+            "description": "Chromatography to separate and concentrate aspartic acid based on interactions with stationary and mobile phases.",
+            "component": "Aspartic Acid",
+            "extractionRate": 0.99
+          }
+        ]
+      },
+      "additional_info": "Purification processes are optimized to achieve >99% purity of aspartic acid, meeting industry standards for food and pharmaceutical applications."
+    },
+    "drying_and_packaging": {
+      "unit_operation_id": "drying_and_packaging",
+      "name": "Drying and Packaging",
+      "description": "In the final unit operation, the purified aspartic acid is dried and packaged for distribution. The drying process removes any remaining moisture, ensuring product stability and shelf life. The dried product is then packaged in suitable containers to protect it from contamination and degradation during storage and transport.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Purified Aspartic Acid"
+      ],
+      "output_streams": [
+        "Final Aspartic Acid Product"
+      ],
+      "parameters": {},
+      "additional_info": "Packaging materials are selected based on the product's sensitivity to environmental factors such as moisture and light."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which is a lignocellulosic biomass feedstock composed of corn stalks, leaves, and cobs. The composition includes cellulose (35-40%), hemicellulose (25-30%), lignin (15-20%), ash (5-10%), and moisture (5-10%). This biomass is essential for the subsequent pre-treatment process, where it will be processed to enhance the availability of fermentable sugars for the production of aspartic acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme solution source": {
+      "unit_operation_id": "enzyme solution source",
+      "name": "Enzyme Solution Source",
+      "description": "This unit operation serves as a source for the Enzyme Solution, which is a specialized blend of cellulases and hemicellulases. These enzymes are crucial for the enzymatic hydrolysis process, as they catalyze the breakdown of cellulose and hemicellulose present in pre-treated biomass into fermentable sugars. The Enzyme Solution is supplied in a concentrated form to ensure optimal efficiency during the hydrolysis stage, contributing significantly to the overall yield of sugars necessary for subsequent fermentation.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzyme Solution"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "microbial culture source": {
+      "unit_operation_id": "microbial culture source",
+      "name": "Microbial Culture Source",
+      "description": "This unit operation serves as a source for the Microbial Culture stream, which consists of genetically engineered microorganisms specifically designed to efficiently convert sugars into aspartic acid during the fermentation process. The microbial cells in this stream are crucial for the fermentation step, where they utilize the sugar solution derived from enzymatic hydrolysis to produce aspartic acid.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Microbial Culture"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "biomass waste sink": {
+      "unit_operation_id": "biomass waste sink",
+      "name": "Biomass Waste Sink",
+      "description": "This unit operation serves as a sink for the Biomass Waste stream, which consists of separated microbial biomass. The biomass can be utilized for various applications, including animal feed, bioenergy production, or as a raw material for bioproducts. The sink ensures proper handling and storage of the biomass waste, facilitating its subsequent use or disposal in an environmentally friendly manner.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Biomass Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "impurity sink": {
+      "unit_operation_id": "impurity sink",
+      "name": "Impurity Sink",
+      "description": "This unit operation serves as the final sink for the Impurity Stream, which consists of residual sugars and impurities removed during the purification process of Aspartic Acid. The Impurity Sink is designed to collect and manage waste materials from the purification stage, ensuring that the production process adheres to environmental regulations and minimizes waste disposal issues.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Impurity Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "final aspartic acid sink": {
+      "unit_operation_id": "final aspartic acid sink",
+      "name": "Final Aspartic Acid Sink",
+      "description": "This unit operation serves as the final sink for the Final Aspartic Acid Product stream. It is designed to receive the dried and packaged aspartic acid, ensuring that the product is ready for distribution and use in various applications, including food, pharmaceuticals, and biodegradable polymers. The unit operation guarantees the integrity and quality of the final product before it leaves the production facility.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Final Aspartic Acid Product"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pre_treatment chemicals source": {
+      "unit_operation_id": "pre_treatment chemicals source",
+      "name": "Pre-treatment Chemicals Source",
+      "description": "This unit operation serves as a source for the pre-treatment chemicals required in the biomass processing. The pre-treatment chemicals, which may include dilute acid or alkaline solutions, are essential for the solubilization of hemicellulose and partial removal of lignin from the raw corn stover. This step is critical for enhancing the accessibility of cellulose for subsequent enzymatic hydrolysis, thereby improving the overall efficiency of the biomass conversion process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Pre-treatment Chemicals"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "solubilized hemicellulose and lignin sink": {
+      "unit_operation_id": "solubilized hemicellulose and lignin sink",
+      "name": "Solubilized Hemicellulose and Lignin Sink",
+      "description": "This unit operation serves as a sink for the Solubilized Hemicellulose and Lignin stream, which consists of the solubilized components extracted during the pre-treatment of corn stover. The stream is directed here for further processing or disposal, depending on the downstream requirements. Proper management of this stream is crucial for maximizing resource recovery and minimizing waste in the overall process.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Solubilized Hemicellulose and Lignin"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "by_product gas sink": {
+      "unit_operation_id": "by_product gas sink",
+      "name": "By-product Gas Sink",
+      "description": "This unit operation serves as a sink for the By-product Gas Stream generated during the fermentation process. It is designed to vent or capture carbon dioxide produced by microbial metabolism, ensuring that excess gas is safely managed and does not accumulate in the system. The operation may include gas scrubbing or collection systems to minimize environmental impact and optimize gas handling.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "By-product Gas Stream"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Lignocellulosic biomass feedstock consisting of corn stalks, leaves, and cobs.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Pre-treated Biomass": {
+      "name": "Pre-treated Biomass",
+      "stream_id": "pre_treated biomass",
+      "description": "Biomass with reduced lignin and hemicellulose content, with cellulose fibers exposed for enzymatic action.",
+      "stream_type": "core",
+      "source": "pre-treatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Reduced Hemicellulose": 0,
+        "Reduced Lignin": 0
+      }
+    },
+    "Enzyme Solution": {
+      "name": "Enzyme Solution",
+      "stream_id": "enzyme solution",
+      "description": "A cocktail of cellulases and hemicellulases to facilitate the breakdown of cellulose and hemicellulose into sugars.",
+      "stream_type": "core",
+      "source": "enzyme solution source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A solution rich in fermentable sugars derived from the enzymatic breakdown of cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0
+      }
+    },
+    "Microbial Culture": {
+      "name": "Microbial Culture",
+      "stream_id": "microbial culture",
+      "description": "Genetically engineered microorganisms capable of converting sugars into aspartic acid.",
+      "stream_type": "core",
+      "source": "microbial culture source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Cells": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A complex mixture containing aspartic acid, residual sugars, microbial biomass, and other metabolites.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "cell_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Aspartic Acid": 0,
+        "Residual Sugars": 0,
+        "Microbial Biomass": 0
+      }
+    },
+    "Clarified Solution": {
+      "name": "Clarified Solution",
+      "stream_id": "clarified solution",
+      "description": "A solution containing aspartic acid and residual sugars, with reduced microbial biomass.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Aspartic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Biomass Waste": {
+      "name": "Biomass Waste",
+      "stream_id": "biomass waste",
+      "description": "Separated microbial biomass, which can be used as animal feed or for other applications.",
+      "stream_type": "core",
+      "source": "cell_separation",
+      "target": "biomass waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Microbial Biomass": 0
+      }
+    },
+    "Purified Aspartic Acid": {
+      "name": "Purified Aspartic Acid",
+      "stream_id": "purified aspartic acid",
+      "description": "High-purity aspartic acid suitable for commercial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "drying_and_packaging",
+      "flow_rate": 0.0,
+      "components": {
+        "Aspartic Acid": 0
+      }
+    },
+    "Impurity Stream": {
+      "name": "Impurity Stream",
+      "stream_id": "impurity stream",
+      "description": "A stream containing removed impurities and residual sugars.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "impurity sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Residual Sugars": 0,
+        "Impurities": 0
+      }
+    },
+    "Final Aspartic Acid Product": {
+      "name": "Final Aspartic Acid Product",
+      "stream_id": "final aspartic acid product",
+      "description": "Dried and packaged aspartic acid ready for distribution and use in various applications.",
+      "stream_type": "core",
+      "source": "drying_and_packaging",
+      "target": "final aspartic acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Aspartic Acid": 0
+      }
+    },
+    "Pre-treatment Chemicals": {
+      "name": "Pre-treatment Chemicals",
+      "stream_id": "pre_treatment chemicals",
+      "description": "Chemicals used in the pre-treatment process, which may include dilute acid or alkaline solutions, are necessary for the solubilization of hemicellulose and partial removal of lignin.",
+      "stream_type": "aux",
+      "source": "pre_treatment chemicals source",
+      "target": "pre-treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Dilute Acid or Alkaline Solution": 0
+      }
+    },
+    "Solubilized Hemicellulose and Lignin": {
+      "name": "Solubilized Hemicellulose and Lignin",
+      "stream_id": "solubilized hemicellulose and lignin",
+      "description": "A stream containing solubilized hemicellulose and lignin components removed during the chemical pre-treatment process.",
+      "stream_type": "aux",
+      "source": "pre-treatment",
+      "target": "solubilized hemicellulose and lignin sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Solubilized Hemicellulose": 0,
+        "Solubilized Lignin": 0
+      }
+    },
+    "By-product Gas Stream": {
+      "name": "By-product Gas Stream",
+      "stream_id": "by_product gas stream",
+      "description": "During the fermentation process, microbial metabolism can produce gases such as carbon dioxide as by-products, which need to be vented or captured.",
+      "stream_type": "aux",
+      "source": "fermentation",
+      "target": "by_product gas sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Carbon Dioxide": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Reduced Hemicellulose": {
+      "name": "Reduced Hemicellulose",
+      "properties": {}
+    },
+    "Reduced Lignin": {
+      "name": "Reduced Lignin",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Microbial Cells": {
+      "name": "Microbial Cells",
+      "properties": {}
+    },
+    "Aspartic Acid": {
+      "name": "Aspartic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Microbial Biomass": {
+      "name": "Microbial Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Dilute Acid or Alkaline Solution": {
+      "name": "Dilute Acid or Alkaline Solution",
+      "properties": {}
+    },
+    "Solubilized Hemicellulose": {
+      "name": "Solubilized Hemicellulose",
+      "properties": {}
+    },
+    "Solubilized Lignin": {
+      "name": "Solubilized Lignin",
+      "properties": {}
+    },
+    "Carbon Dioxide": {
+      "name": "Carbon Dioxide",
+      "properties": {}
+    }
+  }
+}

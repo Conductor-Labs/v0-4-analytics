@@ -1,0 +1,103 @@
+[2024-12-09 18:45:28] INFO - Starting run 7 for user prompt: Process that converts corn stover to Malic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:28] INFO - Starting TEA workflow for user prompt: Process that converts corn stover to Malic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:28] INFO - Starting process description agent.
+[2024-12-09 18:45:28] DEBUG - Starting describe_feedstock_and_target_product with user_prompt: Process that converts corn stover to Malic acid via yeast or fungal aerobic fermentation
+[2024-12-09 18:45:33] DEBUG - Received response from OpenAI API: {"feedstocks":[{"name":"Corn Stover","composition":"Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)","key_specs":"Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants. It is typically pretreated to enhance enzymatic hydrolysis.","volumetric_scale":"100,000 metric tons per year"}],"products":[{"name":"Malic Acid","composition":"C4H6O5 (Malic Acid)","key_specs":"Commercial-grade malic acid with a purity of at least 99%. It is used in food and beverage industries as an acidulant and flavor enhancer.","volumetric_scale":"10,000 metric tons per year"}]}
+[2024-12-09 18:45:33] DEBUG - Feedstocks and products loaded successfully.
+[2024-12-09 18:45:33] DEBUG - Starting describe_process_flow with feedstock_product_description: {'feedstocks': [{'name': 'Corn Stover', 'composition': 'Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)', 'key_specs': 'Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants. It is typically pretreated to enhance enzymatic hydrolysis.', 'volumetric_scale': '100,000 metric tons per year'}], 'products': [{'name': 'Malic Acid', 'composition': 'C4H6O5 (Malic Acid)', 'key_specs': 'Commercial-grade malic acid with a purity of at least 99%. It is used in food and beverage industries as an acidulant and flavor enhancer.', 'volumetric_scale': '10,000 metric tons per year'}]}
+[2024-12-09 18:45:48] DEBUG - Received response from OpenAI API: {"unit_operations":[{"name":"Pretreatment","order":1,"description":"The pretreatment unit operation is designed to prepare the corn stover for enzymatic hydrolysis. This involves breaking down the lignocellulosic structure to increase the accessibility of cellulose and hemicellulose. Common methods include dilute acid, alkaline, or steam explosion pretreatment. The goal is to disrupt the lignin matrix and partially hydrolyze hemicellulose, making the cellulose more amenable to enzymatic attack.","input_streams":[{"name":"Raw Corn Stover","description":"The raw agricultural residue consisting of leaves, stalks, and cobs from maize plants.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"output_streams":[{"name":"Pretreated Corn Stover","description":"Corn stover that has undergone structural disruption to enhance enzymatic hydrolysis efficiency.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]}],"additional_info":"The choice of pretreatment method can significantly affect downstream processing efficiency and cost."},{"name":"Enzymatic Hydrolysis","order":2,"description":"In this unit operation, the pretreated corn stover is subjected to enzymatic hydrolysis to convert cellulose and hemicellulose into fermentable sugars. Enzymes such as cellulases and hemicellulases are added to catalyze the breakdown of polysaccharides into monosaccharides like glucose and xylose.","input_streams":[{"name":"Pretreated Corn Stover","description":"Corn stover that has been structurally modified to enhance enzymatic access.","components":["Cellulose","Hemicellulose","Lignin","Ash","Moisture"]},{"name":"Enzyme Solution","description":"A solution containing cellulases and hemicellulases for hydrolysis.","components":["Cellulase","Hemicellulase"]}],"output_streams":[{"name":"Sugar Solution","description":"A solution rich in fermentable sugars derived from the hydrolysis of cellulose and hemicellulose.","components":["Glucose","Xylose","Lignin","Ash"]}],"additional_info":"The efficiency of this step is crucial for maximizing sugar yield and minimizing enzyme costs."},{"name":"Fermentation","order":3,"description":"The fermentation unit operation involves the aerobic conversion of sugars into malic acid using yeast or fungal strains. The microorganisms metabolize glucose and xylose under controlled conditions to produce malic acid as a primary metabolite. Oxygen is supplied to maintain aerobic conditions, and nutrients may be added to support microbial growth.","input_streams":[{"name":"Sugar Solution","description":"A solution containing fermentable sugars from enzymatic hydrolysis.","components":["Glucose","Xylose","Lignin","Ash"]},{"name":"Microbial Culture","description":"Yeast or fungal strains capable of converting sugars to malic acid.","components":["Yeast","Fungi"]}],"output_streams":[{"name":"Fermentation Broth","description":"A complex mixture containing malic acid, residual sugars, microbial biomass, and other metabolites.","components":["Malic Acid","Residual Sugars","Microbial Biomass","Lignin"]}],"additional_info":"The choice of microorganism and fermentation conditions can significantly impact yield and productivity."},{"name":"Broth Separation","order":4,"description":"This unit operation involves the separation of the fermentation broth to recover malic acid. Techniques such as centrifugation or filtration are used to remove microbial biomass and other solids, leaving a clarified solution of malic acid.","input_streams":[{"name":"Fermentation Broth","description":"The output from the fermentation process containing malic acid and other components.","components":["Malic Acid","Residual Sugars","Microbial Biomass","Lignin"]}],"output_streams":[{"name":"Clarified Malic Acid Solution","description":"A solution containing malic acid with reduced solids content.","components":["Malic Acid","Residual Sugars"]},{"name":"Solid Waste","description":"Separated solids including microbial biomass and lignin.","components":["Microbial Biomass","Lignin"]}],"additional_info":"Efficient separation is critical to minimize product loss and prepare for further purification."},{"name":"Purification","order":5,"description":"The purification unit operation is designed to increase the purity of malic acid to commercial standards. This may involve crystallization, ion exchange, or solvent extraction techniques to remove impurities and concentrate malic acid.","input_streams":[{"name":"Clarified Malic Acid Solution","description":"A solution with malic acid and some residual impurities.","components":["Malic Acid","Residual Sugars"]}],"output_streams":[{"name":"Purified Malic Acid","description":"High-purity malic acid suitable for commercial use.","components":["Malic Acid"]},{"name":"Impurity Stream","description":"A stream containing removed impurities and residual sugars.","components":["Residual Sugars"]}],"additional_info":"Achieving the desired purity level is essential for product quality and marketability."},{"name":"Drying and Packaging","order":6,"description":"In this final unit operation, the purified malic acid is dried to remove any remaining moisture and then packaged for distribution. The drying process ensures that the product meets the required specifications for moisture content, and packaging is done to protect the product during storage and transport.","input_streams":[{"name":"Purified Malic Acid","description":"Malic acid with high purity ready for final processing.","components":["Malic Acid"]}],"output_streams":[{"name":"Commercial-Grade Malic Acid","description":"Dried and packaged malic acid ready for sale and distribution.","components":["Malic Acid"]}],"additional_info":"Proper drying and packaging are crucial to maintain product stability and quality during storage."}]}
+[2024-12-09 18:45:48] DEBUG - Process flow loaded successfully.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Raw Corn Stover' for input of unit operation 'Pretreatment'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Pretreated Corn Stover' for output of unit operation 'Pretreatment'.
+[2024-12-09 18:45:48] DEBUG - Added unit operation 'Pretreatment' with ID 'pretreatment' to process flow.
+[2024-12-09 18:45:48] DEBUG - Reusing existing stream 'Pretreated Corn Stover' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Enzyme Solution' for input of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Sugar Solution' for output of unit operation 'Enzymatic Hydrolysis'.
+[2024-12-09 18:45:48] DEBUG - Added unit operation 'Enzymatic Hydrolysis' with ID 'enzymatic_hydrolysis' to process flow.
+[2024-12-09 18:45:48] DEBUG - Reusing existing stream 'Sugar Solution' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Microbial Culture' for input of unit operation 'Fermentation'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Fermentation Broth' for output of unit operation 'Fermentation'.
+[2024-12-09 18:45:48] DEBUG - Added unit operation 'Fermentation' with ID 'fermentation' to process flow.
+[2024-12-09 18:45:48] DEBUG - Reusing existing stream 'Fermentation Broth' for input of unit operation 'Broth Separation'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Clarified Malic Acid Solution' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Solid Waste' for output of unit operation 'Broth Separation'.
+[2024-12-09 18:45:48] DEBUG - Added unit operation 'Broth Separation' with ID 'broth_separation' to process flow.
+[2024-12-09 18:45:48] DEBUG - Reusing existing stream 'Clarified Malic Acid Solution' for input of unit operation 'Purification'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Purified Malic Acid' for output of unit operation 'Purification'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Impurity Stream' for output of unit operation 'Purification'.
+[2024-12-09 18:45:48] DEBUG - Added unit operation 'Purification' with ID 'purification' to process flow.
+[2024-12-09 18:45:48] DEBUG - Reusing existing stream 'Purified Malic Acid' for input of unit operation 'Drying and Packaging'.
+[2024-12-09 18:45:48] DEBUG - Created new stream 'Commercial-Grade Malic Acid' for output of unit operation 'Drying and Packaging'.
+[2024-12-09 18:45:48] DEBUG - Added unit operation 'Drying and Packaging' with ID 'drying_and_packaging' to process flow.
+[2024-12-09 18:45:48] INFO - Process flow built successfully.
+[2024-12-09 18:45:48] INFO - Starting v1 DAG agent.
+[2024-12-09 18:45:48] DEBUG - Stream 'Raw Corn Stover' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:48] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Corn Stover'.
+[2024-12-09 18:45:48] DEBUG - Stream 'Enzyme Solution' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:48] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:45:48] DEBUG - Stream 'Microbial Culture' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:48] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:45:48] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Clarified Malic Acid Solution'.
+[2024-12-09 18:45:48] DEBUG - Stream 'Solid Waste' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:48] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified Malic Acid'.
+[2024-12-09 18:45:48] DEBUG - Stream 'Impurity Stream' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:48] DEBUG - Stream 'Commercial-Grade Malic Acid' is missing a source or target and will not be included in the DAG.
+[2024-12-09 18:45:48] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:45:48] DEBUG - No missing streams identified for unit operation: Pretreatment
+[2024-12-09 18:45:49] DEBUG - No missing streams identified for unit operation: Enzymatic Hydrolysis
+[2024-12-09 18:45:51] DEBUG - Added auxiliary input stream 'Oxygen Supply' to unit operation 'Fermentation'
+  - Description: Oxygen is needed to maintain aerobic conditions during the fermentation process, enabling the microorganisms to metabolize sugars efficiently.
+  - Components: Oxygen
+[2024-12-09 18:45:52] DEBUG - No missing streams identified for unit operation: Broth Separation
+[2024-12-09 18:45:52] DEBUG - No missing streams identified for unit operation: Purification
+[2024-12-09 18:45:53] DEBUG - No missing streams identified for unit operation: Drying and Packaging
+[2024-12-09 18:45:54] DEBUG - Added source unit operation 'Raw Corn Stover Source' with ID 'raw corn stover source' for stream 'Raw Corn Stover'
+[2024-12-09 18:45:55] DEBUG - Added source unit operation 'Enzyme Solution Source' with ID 'enzyme solution source' for stream 'Enzyme Solution'
+[2024-12-09 18:45:56] DEBUG - Added source unit operation 'Microbial Culture Source' with ID 'microbial culture source' for stream 'Microbial Culture'
+[2024-12-09 18:45:58] DEBUG - Added sink unit operation 'Solid Waste Sink' with ID 'solid waste sink' for stream 'Solid Waste'
+[2024-12-09 18:45:59] DEBUG - Added sink unit operation 'Impurity Sink' with ID 'impurity sink' for stream 'Impurity Stream'
+[2024-12-09 18:46:00] DEBUG - Added sink unit operation 'Commercial-Grade Malic Acid Sink' with ID 'commercial_grade malic acid sink' for stream 'Commercial-Grade Malic Acid'
+[2024-12-09 18:46:02] DEBUG - Added source unit operation 'Oxygen Supply' with ID 'oxygen supply' for stream 'Oxygen Supply'
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'raw corn stover source' to 'pretreatment' via stream 'Raw Corn Stover'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'pretreatment' to 'enzymatic_hydrolysis' via stream 'Pretreated Corn Stover'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'enzyme solution source' to 'enzymatic_hydrolysis' via stream 'Enzyme Solution'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'enzymatic_hydrolysis' to 'fermentation' via stream 'Sugar Solution'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'microbial culture source' to 'fermentation' via stream 'Microbial Culture'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'fermentation' to 'broth_separation' via stream 'Fermentation Broth'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'broth_separation' to 'purification' via stream 'Clarified Malic Acid Solution'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'broth_separation' to 'solid waste sink' via stream 'Solid Waste'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'purification' to 'drying_and_packaging' via stream 'Purified Malic Acid'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'purification' to 'impurity sink' via stream 'Impurity Stream'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'drying_and_packaging' to 'commercial_grade malic acid sink' via stream 'Commercial-Grade Malic Acid'.
+[2024-12-09 18:46:02] DEBUG - Adding edge from 'oxygen supply' to 'fermentation' via stream 'Oxygen Supply'.
+[2024-12-09 18:46:02] INFO - Process flow successfully represented as a DAG.
+[2024-12-09 18:46:02] INFO - DAG validation successful. All streams and unit operations are correctly connected.
+[2024-12-09 18:46:06] DEBUG - No conversion or separation parameters identified for unit operation: Pretreatment
+[2024-12-09 18:46:13] DEBUG - Processing conversion unit operation: Enzymatic Hydrolysis
+Conversion operations:
+  1. Converting Cellulose → Glucose (rate: 85.0%)
+  2. Converting Hemicellulose → Xylose (rate: 70.0%)
+[2024-12-09 18:46:20] DEBUG - Processing conversion unit operation: Fermentation
+Conversion operations:
+  1. Converting Glucose → Malic Acid (rate: 70.0%)
+  2. Converting Xylose → Malic Acid (rate: 50.0%)
+[2024-12-09 18:46:28] DEBUG - Processing separation unit operation: Broth Separation
+Separation operations:
+  1. Separating Malic Acid (extraction rate: 95.0%)
+  2. Separating Residual Sugars (extraction rate: 90.0%)
+  3. Separating Microbial Biomass (extraction rate: 5.0%)
+  4. Separating Lignin (extraction rate: 10.0%)
+[2024-12-09 18:46:34] DEBUG - Processing separation unit operation: Purification
+Separation operations:
+  1. Separating Malic Acid (extraction rate: 99.5%)
+  2. Separating Residual Sugars (extraction rate: 1.0%)
+[2024-12-09 18:46:39] DEBUG - No conversion or separation parameters identified for unit operation: Drying and Packaging
+[2024-12-09 18:46:39] DEBUG - Skipping operational parameters for unit operation 'Raw Corn Stover Source' of type 'source'
+[2024-12-09 18:46:39] DEBUG - Skipping operational parameters for unit operation 'Enzyme Solution Source' of type 'source'
+[2024-12-09 18:46:39] DEBUG - Skipping operational parameters for unit operation 'Microbial Culture Source' of type 'source'
+[2024-12-09 18:46:39] DEBUG - Skipping operational parameters for unit operation 'Solid Waste Sink' of type 'sink'
+[2024-12-09 18:46:39] DEBUG - Skipping operational parameters for unit operation 'Impurity Sink' of type 'sink'
+[2024-12-09 18:46:39] DEBUG - Skipping operational parameters for unit operation 'Commercial-Grade Malic Acid Sink' of type 'sink'
+[2024-12-09 18:46:39] DEBUG - Skipping operational parameters for unit operation 'Oxygen Supply' of type 'source'
+[2024-12-09 18:46:39] INFO - v1 DAG agent processing complete.
+[2024-12-09 18:46:39] INFO - Workflow completed successfully.

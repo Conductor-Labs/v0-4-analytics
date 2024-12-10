@@ -1,0 +1,660 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Primarily composed of cellulose (40-50%), hemicellulose (25-30%), and lignin (15-20%)",
+      "key_specs": "Moisture content should be below 15% for optimal processing. Particle size should be reduced to less than 2 mm for efficient hydrolysis.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Itaconic Acid",
+      "composition": "C5H6O4, typically produced at a purity of 99% for industrial applications",
+      "key_specs": "Commercial grade itaconic acid should have a purity of at least 99%. It is typically sold as a white crystalline powder.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover, which is primarily composed of cellulose, hemicellulose, and lignin, is first prepared for processing. This involves reducing the particle size to less than 2 mm to increase the surface area for enzymatic action. The moisture content is also reduced to below 15% to ensure optimal processing conditions. Mechanical milling and drying are typical methods used in this step.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Separation of water from solid biomass during the moisture content reduction process in feedstock preparation.",
+            "component": "Water",
+            "extractionRate": 0.9
+          }
+        ]
+      },
+      "additional_info": "Particle size reduction is crucial for efficient hydrolysis in subsequent steps."
+    },
+    "pretreatment": {
+      "unit_operation_id": "pretreatment",
+      "name": "Pretreatment",
+      "description": "The prepared corn stover undergoes a pretreatment process to break down the lignin structure and make cellulose and hemicellulose more accessible for enzymatic hydrolysis. This can be achieved using chemical methods such as dilute acid or alkaline treatment, or physical methods like steam explosion.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Pretreatment Chemicals"
+      ],
+      "output_streams": [
+        "Pretreated Biomass"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Disruption of the lignin structure in corn stover using dilute acid or alkali treatment to enhance the accessibility of cellulose and hemicellulose for enzymatic hydrolysis.",
+            "inputComponent": "Corn Stover (Lignin, Cellulose, Hemicellulose)",
+            "outputComponent": "Pretreated Biomass (Lignin, Cellulose, Hemicellulose)",
+            "conversionRate": 0.0
+          }
+        ]
+      },
+      "additional_info": "The choice of pretreatment method affects the efficiency of subsequent hydrolysis and fermentation steps."
+    },
+    "enzymatic_hydrolysis": {
+      "unit_operation_id": "enzymatic_hydrolysis",
+      "name": "Enzymatic Hydrolysis",
+      "description": "In this step, enzymes are added to the pretreated biomass to hydrolyze cellulose and hemicellulose into fermentable sugars such as glucose and xylose. This process is crucial for converting the complex carbohydrates into simpler sugars that can be utilized by microorganisms in fermentation.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Pretreated Biomass",
+        "Enzymes"
+      ],
+      "output_streams": [
+        "Hydrolysate",
+        "Water"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Cellulose is hydrolyzed by cellulase enzymes to produce glucose, utilizing the exposed cellulose structures after biomass pretreatment.",
+            "inputComponent": "Cellulose",
+            "outputComponent": "Glucose",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Hemicellulose is broken down by hemicellulase enzymes, resulting in a mixture of xylose and other sugars as products of the hydrolysis process.",
+            "inputComponent": "Hemicellulose",
+            "outputComponent": "Xylose",
+            "conversionRate": 0.7
+          }
+        ]
+      },
+      "additional_info": "The efficiency of hydrolysis is dependent on enzyme activity and the extent of pretreatment."
+    },
+    "fermentation": {
+      "unit_operation_id": "fermentation",
+      "name": "Fermentation",
+      "description": "The hydrolysate is subjected to aerobic fermentation using yeast or fungal strains capable of converting sugars into itaconic acid. This biological process involves the microorganisms metabolizing the sugars under controlled conditions to produce the target product.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Hydrolysate",
+        "Microorganisms"
+      ],
+      "output_streams": [
+        "Fermentation Broth"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Conversion of glucose into itaconic acid through microbial fermentation.",
+            "inputComponent": "Glucose",
+            "outputComponent": "Itaconic Acid",
+            "conversionRate": 0.85
+          },
+          {
+            "description": "Fermentation of xylose to produce itaconic acid, although at a lower efficiency than glucose.",
+            "inputComponent": "Xylose",
+            "outputComponent": "Itaconic Acid",
+            "conversionRate": 0.65
+          },
+          {
+            "description": "Conversion of other fermentable sugars into itaconic acid based on microbial capacities and conditions.",
+            "inputComponent": "Other Sugars",
+            "outputComponent": "Itaconic Acid",
+            "conversionRate": 0.5
+          }
+        ]
+      },
+      "additional_info": "Oxygen supply and nutrient balance are critical for maximizing itaconic acid yield."
+    },
+    "product_recovery": {
+      "unit_operation_id": "product_recovery",
+      "name": "Product Recovery",
+      "description": "The fermentation broth is processed to recover itaconic acid. This typically involves filtration to remove biomass, followed by crystallization or extraction to isolate itaconic acid from the solution. The goal is to achieve a high purity product suitable for industrial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Fermentation Broth"
+      ],
+      "output_streams": [
+        "Crude Itaconic Acid",
+        "Biomass and Impurities",
+        "Water and Solvent (if applicable)"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Isolation of itaconic acid from fermentation broth using crystallization or solvent extraction after filtrating biomass.",
+            "component": "Itaconic Acid",
+            "extractionRate": 0.85
+          },
+          {
+            "description": "Filtration process that separates microbial cells and solid impurities from the liquid broth.",
+            "component": "Biomass",
+            "extractionRate": 0.95
+          },
+          {
+            "description": "Residual sugars remaining in the aqueous phase post-separation.",
+            "component": "Residual Sugars",
+            "extractionRate": 0.2
+          }
+        ]
+      },
+      "additional_info": "The choice of recovery method impacts the purity and yield of itaconic acid."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude itaconic acid is further purified to achieve the desired commercial grade purity of 99%. This can be accomplished through recrystallization, distillation, or advanced filtration techniques to remove impurities and concentrate the product.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Crude Itaconic Acid"
+      ],
+      "output_streams": [
+        "Purified Itaconic Acid"
+      ],
+      "parameters": {
+        "separations": [
+          {
+            "description": "Crude itaconic acid is purified through recrystallization.",
+            "component": "Itaconic Acid",
+            "extractionRate": 0.99
+          },
+          {
+            "description": "Impurities are removed through advanced filtration and distillation.",
+            "component": "Impurities",
+            "extractionRate": 0.01
+          }
+        ]
+      },
+      "additional_info": "Purification is critical to meet commercial specifications and ensure product quality."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "The process generates various waste streams, including residual biomass, spent enzymes, and other by-products. These waste streams are treated to minimize environmental impact, often involving biological treatment, composting, or energy recovery.",
+      "unit_operation_type": "process",
+      "order": 7,
+      "input_streams": [
+        "Process Waste Streams"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {
+        "conversions": [
+          {
+            "description": "Residual biomass is subjected to biological treatment methods, which include composting and anaerobic digestion, breaking down complex organic matter into simpler, environmentally benign compounds.",
+            "inputComponent": "Biomass",
+            "outputComponent": "Treated Biomass",
+            "conversionRate": 0.7
+          },
+          {
+            "description": "Biomass is decomposed using microbial activity to transform it into stable organic matter, including biogas in case of anaerobic digestion.",
+            "inputComponent": "Biomass",
+            "outputComponent": "Gases",
+            "conversionRate": 0.2
+          },
+          {
+            "description": "The water is produced as part of the treatment process, contributing to the overall stabilization of the waste components.",
+            "inputComponent": "Biomass",
+            "outputComponent": "Water",
+            "conversionRate": 0.1
+          }
+        ]
+      },
+      "additional_info": "Effective waste management is essential for sustainable and environmentally friendly operation."
+    },
+    "raw corn stover source": {
+      "unit_operation_id": "raw corn stover source",
+      "name": "Raw Corn Stover Source",
+      "description": "This unit operation serves as the source for the Raw Corn Stover stream, which consists of unprocessed corn stover containing cellulose, hemicellulose, lignin, and water. The raw material is characterized by high moisture content and large particle size, which necessitates subsequent processing steps to optimize for hydrolysis. The stream is supplied at an industrial scale of 100,000 metric tons per year, ensuring a consistent feedstock supply for the subsequent unit operations in the process flow.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Raw Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "enzyme source": {
+      "unit_operation_id": "enzyme source",
+      "name": "Enzyme Source",
+      "description": "This unit operation serves as the source for the Enzymes stream, which is an enzymatic cocktail designed to break down cellulose and hemicellulose into fermentable sugars. The stream contains key components such as cellulase and hemicellulase, which are essential for the enzymatic hydrolysis process in the production of Itaconic Acid from biomass. The Enzyme Source is critical for ensuring the availability of these enzymes at the required scale for efficient hydrolysis, facilitating the conversion of pretreated biomass into hydrolysate.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Enzymes"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "microorganism source": {
+      "unit_operation_id": "microorganism source",
+      "name": "Microorganism Source",
+      "description": "This unit operation serves as a source for the 'Microorganisms' stream, which consists of yeast and fungal strains essential for the fermentation process. The microorganisms are cultivated and harvested to ensure a consistent and viable population for optimal fermentation performance. This source unit operation is critical for maintaining the biological activity required for converting sugars into itaconic acid during the fermentation phase of the process.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Microorganisms"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "purified itaconic acid sink": {
+      "unit_operation_id": "purified itaconic acid sink",
+      "name": "Purified Itaconic Acid Sink",
+      "description": "This unit operation serves as the final sink for the purified itaconic acid stream, which is produced at a purity of 99% and is suitable for various industrial applications. The purified itaconic acid is collected and stored for distribution, ensuring that it meets the required specifications for commercial use.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Purified Itaconic Acid"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "process waste stream source": {
+      "unit_operation_id": "process waste stream source",
+      "name": "Process Waste Stream Source",
+      "description": "This unit operation serves as a source for the Process Waste Streams generated during the production of Itaconic Acid. It collects and provides the residual biomass, spent enzymes, and other by-products that arise from various stages of the process, including enzymatic hydrolysis and fermentation. The waste stream is crucial for further treatment and recovery processes, ensuring efficient waste management and minimizing environmental impact.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Process Waste Streams"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "treated waste sink": {
+      "unit_operation_id": "treated waste sink",
+      "name": "Treated Waste Sink",
+      "description": "This unit operation serves as the final sink for the treated waste stream generated from the waste treatment process. It is designed to handle environmentally safe waste that is suitable for disposal or potential reuse. The sink ensures that the treated biomass, water, and gases are managed appropriately, adhering to environmental regulations and sustainability practices.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Treated Waste"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "pretreatment chemicals source": {
+      "unit_operation_id": "pretreatment chemicals source",
+      "name": "Pretreatment Chemicals Source",
+      "description": "This unit operation serves as a source for the pretreatment chemicals required in the pretreatment process of biomass. The pretreatment chemicals, which include acids (such as sulfuric acid), alkalis (like sodium hydroxide), and water, are essential for breaking down the lignin structure in the biomass. This enhances the accessibility of cellulose and hemicellulose, facilitating more efficient enzymatic hydrolysis in subsequent processing steps.",
+      "unit_operation_type": "source",
+      "order": 0,
+      "input_streams": [],
+      "output_streams": [
+        "Pretreatment Chemicals"
+      ],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "water sink": {
+      "unit_operation_id": "water sink",
+      "name": "Water Sink",
+      "description": "This unit operation serves as a sink for the water produced during the enzymatic hydrolysis process. It collects the water that is released as a by-product when cellulose and hemicellulose are broken down into simpler sugars. The water collected in this sink can be treated or reused in other parts of the process, ensuring efficient resource management and minimizing waste.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Water"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "biomass and impurities sink": {
+      "unit_operation_id": "biomass and impurities sink",
+      "name": "Biomass and Impurities Sink",
+      "description": "This unit operation serves as a sink for the 'Biomass and Impurities' stream, which is generated during the filtration step of the product recovery process. The stream contains residual biomass and impurities that need to be separated from the itaconic acid to ensure the desired product purity of the final product. The sink effectively collects and manages these unwanted components, facilitating their subsequent treatment or disposal.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Biomass and Impurities"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    },
+    "water and solvent sink": {
+      "unit_operation_id": "water and solvent sink",
+      "name": "Water and Solvent Sink",
+      "description": "This unit operation serves as the sink for the 'Water and Solvent (if applicable)' stream, which consists of water and solvents used during the extraction or crystallization processes in the recovery of itaconic acid. The purpose of this sink is to effectively manage and process the removal of these components, ensuring that the crude product can be obtained without contamination from residual solvents or water. Proper handling and treatment of this stream are essential to maintain product purity and comply with environmental regulations.",
+      "unit_operation_type": "sink",
+      "order": 0,
+      "input_streams": [
+        "Water and Solvent (if applicable)"
+      ],
+      "output_streams": [],
+      "parameters": {},
+      "additional_info": ""
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Unprocessed corn stover with high moisture content and large particle size.",
+      "stream_type": "core",
+      "source": "raw corn stover source",
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Water": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover with reduced particle size and moisture content, ready for further processing.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Pretreated Biomass": {
+      "name": "Pretreated Biomass",
+      "stream_id": "pretreated biomass",
+      "description": "Biomass with disrupted lignin structure, exposing cellulose and hemicellulose for enzymatic action.",
+      "stream_type": "core",
+      "source": "pretreatment",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0
+      }
+    },
+    "Enzymes": {
+      "name": "Enzymes",
+      "stream_id": "enzymes",
+      "description": "Enzymatic cocktail designed to break down cellulose and hemicellulose into sugars.",
+      "stream_type": "core",
+      "source": "enzyme source",
+      "target": "enzymatic_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulase": 0,
+        "Hemicellulase": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A mixture containing fermentable sugars derived from cellulose and hemicellulose.",
+      "stream_type": "core",
+      "source": "enzymatic_hydrolysis",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Other Sugars": 0
+      }
+    },
+    "Microorganisms": {
+      "name": "Microorganisms",
+      "stream_id": "microorganisms",
+      "description": "Yeast or fungal strains used for fermentation.",
+      "stream_type": "core",
+      "source": "microorganism source",
+      "target": "fermentation",
+      "flow_rate": 0.0,
+      "components": {
+        "Yeast": 0,
+        "Fungi": 0
+      }
+    },
+    "Fermentation Broth": {
+      "name": "Fermentation Broth",
+      "stream_id": "fermentation broth",
+      "description": "A mixture containing itaconic acid, residual sugars, and microbial biomass.",
+      "stream_type": "core",
+      "source": "fermentation",
+      "target": "product_recovery",
+      "flow_rate": 0.0,
+      "components": {
+        "Itaconic Acid": 0,
+        "Residual Sugars": 0,
+        "Biomass": 0
+      }
+    },
+    "Crude Itaconic Acid": {
+      "name": "Crude Itaconic Acid",
+      "stream_id": "crude itaconic acid",
+      "description": "Itaconic acid with impurities, requiring further purification.",
+      "stream_type": "core",
+      "source": "product_recovery",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Itaconic Acid": 0,
+        "Impurities": 0
+      }
+    },
+    "Purified Itaconic Acid": {
+      "name": "Purified Itaconic Acid",
+      "stream_id": "purified itaconic acid",
+      "description": "High purity itaconic acid suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "purified itaconic acid sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Itaconic Acid": 0
+      }
+    },
+    "Process Waste Streams": {
+      "name": "Process Waste Streams",
+      "stream_id": "process waste streams",
+      "description": "Residual biomass, spent enzymes, and other by-products from the process.",
+      "stream_type": "core",
+      "source": "process waste stream source",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Biomass": 0,
+        "Enzymes": 0,
+        "By-products": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Environmentally safe waste suitable for disposal or reuse.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": "treated waste sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Treated Biomass": 0,
+        "Water": 0,
+        "Gases": 0
+      }
+    },
+    "Pretreatment Chemicals": {
+      "name": "Pretreatment Chemicals",
+      "stream_id": "pretreatment chemicals",
+      "description": "Chemicals used during the pretreatment process to break down the lignin structure and enhance the accessibility of cellulose and hemicellulose. This could include dilute acids or alkaline solutions, depending on the specific pretreatment method used.",
+      "stream_type": "aux",
+      "source": "pretreatment chemicals source",
+      "target": "pretreatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Acid (e.g., sulfuric acid)": 0,
+        "Alkali (e.g., sodium hydroxide)": 0,
+        "Water": 0
+      }
+    },
+    "Water": {
+      "name": "Water",
+      "stream_id": "water",
+      "description": "During the enzymatic hydrolysis, water is typically produced or released as a by-product as the cellulose and hemicellulose are broken down into simpler sugars.",
+      "stream_type": "aux",
+      "source": "enzymatic_hydrolysis",
+      "target": "water sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0
+      }
+    },
+    "Biomass and Impurities": {
+      "name": "Biomass and Impurities",
+      "stream_id": "biomass and impurities",
+      "description": "This stream would contain the biomass and impurities removed from the fermentation broth during the filtration step of the product recovery process. These components need to be separated from the itaconic acid to achieve the desired product purity.",
+      "stream_type": "aux",
+      "source": "product_recovery",
+      "target": "biomass and impurities sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Biomass": 0,
+        "Impurities": 0
+      }
+    },
+    "Water and Solvent (if applicable)": {
+      "name": "Water and Solvent (if applicable)",
+      "stream_id": "water and solvent (if applicable)",
+      "description": "This stream would include water and any solvents used during the extraction or crystallization processes in the recovery of itaconic acid. The removal of these components is crucial for obtaining the crude product.",
+      "stream_type": "aux",
+      "source": "product_recovery",
+      "target": "water and solvent sink",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Solvent": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Cellulase": {
+      "name": "Cellulase",
+      "properties": {}
+    },
+    "Hemicellulase": {
+      "name": "Hemicellulase",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Other Sugars": {
+      "name": "Other Sugars",
+      "properties": {}
+    },
+    "Yeast": {
+      "name": "Yeast",
+      "properties": {}
+    },
+    "Fungi": {
+      "name": "Fungi",
+      "properties": {}
+    },
+    "Itaconic Acid": {
+      "name": "Itaconic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Biomass": {
+      "name": "Biomass",
+      "properties": {}
+    },
+    "Impurities": {
+      "name": "Impurities",
+      "properties": {}
+    },
+    "Enzymes": {
+      "name": "Enzymes",
+      "properties": {}
+    },
+    "By-products": {
+      "name": "By-products",
+      "properties": {}
+    },
+    "Treated Biomass": {
+      "name": "Treated Biomass",
+      "properties": {}
+    },
+    "Gases": {
+      "name": "Gases",
+      "properties": {}
+    },
+    "Acid (e.g., sulfuric acid)": {
+      "name": "Acid (e.g., sulfuric acid)",
+      "properties": {}
+    },
+    "Alkali (e.g., sodium hydroxide)": {
+      "name": "Alkali (e.g., sodium hydroxide)",
+      "properties": {}
+    },
+    "Solvent": {
+      "name": "Solvent",
+      "properties": {}
+    }
+  }
+}

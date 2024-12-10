@@ -1,0 +1,332 @@
+{
+  "feedstocks": [
+    {
+      "name": "Corn Stover",
+      "composition": "Cellulose (35-40%), Hemicellulose (25-30%), Lignin (15-20%), Ash (5-10%), Moisture (5-10%)",
+      "key_specs": "Corn stover is an agricultural residue consisting of the leaves, stalks, and cobs of maize plants after the grain is harvested. It is typically collected and processed in a dry form to reduce moisture content, which is crucial for efficient conversion processes.",
+      "volumetric_scale": "100,000 metric tons per year"
+    }
+  ],
+  "products": [
+    {
+      "name": "Levulinic Acid",
+      "composition": "Levulinic acid (C5H8O3) with typical purity levels of 95-99%",
+      "key_specs": "Levulinic acid is a platform chemical with applications in the production of biofuels, pharmaceuticals, and plasticizers. Commercial production requires high purity levels, typically above 95%, to meet industrial standards for downstream applications.",
+      "volumetric_scale": "10,000 metric tons per year"
+    }
+  ],
+  "unit_operations": {
+    "feedstock_preparation": {
+      "unit_operation_id": "feedstock_preparation",
+      "name": "Feedstock Preparation",
+      "description": "The corn stover is initially collected and transported to the processing facility. Here, it undergoes a preparation step to ensure optimal size and moisture content for subsequent processing. The stover is typically shredded or milled to reduce particle size, which increases the surface area for chemical reactions. Moisture content is adjusted by drying to achieve a level that facilitates efficient conversion in later stages.",
+      "unit_operation_type": "process",
+      "order": 1,
+      "input_streams": [
+        "Raw Corn Stover"
+      ],
+      "output_streams": [
+        "Prepared Corn Stover"
+      ],
+      "parameters": {},
+      "additional_info": "Particle size reduction and moisture control are critical to enhance the efficiency of the subsequent hydrolysis step."
+    },
+    "acid_hydrolysis": {
+      "unit_operation_id": "acid_hydrolysis",
+      "name": "Acid Hydrolysis",
+      "description": "The prepared corn stover is subjected to acid hydrolysis, where it is mixed with a dilute acid solution, typically sulfuric acid. This process breaks down the cellulose and hemicellulose into fermentable sugars, primarily glucose and xylose. The lignin component remains largely unreacted and is separated in later stages. The hydrolysis is conducted in a reactor designed to withstand corrosive conditions.",
+      "unit_operation_type": "process",
+      "order": 2,
+      "input_streams": [
+        "Prepared Corn Stover",
+        "Dilute Acid Solution"
+      ],
+      "output_streams": [
+        "Hydrolysate"
+      ],
+      "parameters": {},
+      "additional_info": "The acid concentration and reaction time are optimized to maximize sugar yield while minimizing degradation products."
+    },
+    "neutralization_and_separation": {
+      "unit_operation_id": "neutralization_and_separation",
+      "name": "Neutralization and Separation",
+      "description": "The hydrolysate is neutralized using a base, such as calcium hydroxide, to precipitate out gypsum and reduce the acidity of the solution. The neutralized mixture is then subjected to solid-liquid separation to remove the solid lignin and gypsum byproducts, leaving behind a sugar-rich liquid stream.",
+      "unit_operation_type": "process",
+      "order": 3,
+      "input_streams": [
+        "Hydrolysate",
+        "Neutralizing Agent"
+      ],
+      "output_streams": [
+        "Sugar Solution",
+        "Solid Residue"
+      ],
+      "parameters": {},
+      "additional_info": "The solid residue can be further processed or used as a fuel source for energy recovery."
+    },
+    "catalytic_conversion": {
+      "unit_operation_id": "catalytic_conversion",
+      "name": "Catalytic Conversion",
+      "description": "The sugar solution undergoes catalytic conversion to levulinic acid. This is typically achieved using a bifunctional catalyst that facilitates the dehydration of sugars to form intermediates, which are then rehydrated to produce levulinic acid. The process is conducted in a reactor under controlled conditions to maximize yield and selectivity towards levulinic acid.",
+      "unit_operation_type": "process",
+      "order": 4,
+      "input_streams": [
+        "Sugar Solution"
+      ],
+      "output_streams": [
+        "Crude Levulinic Acid Mixture"
+      ],
+      "parameters": {},
+      "additional_info": "Catalyst selection and reactor design are crucial to achieving high conversion rates and product purity."
+    },
+    "purification": {
+      "unit_operation_id": "purification",
+      "name": "Purification",
+      "description": "The crude levulinic acid mixture is purified to achieve the desired product purity. This involves a series of separation processes, such as distillation and extraction, to remove impurities like formic acid and residual sugars. The goal is to produce levulinic acid with a purity level of 95-99%, suitable for commercial applications.",
+      "unit_operation_type": "process",
+      "order": 5,
+      "input_streams": [
+        "Crude Levulinic Acid Mixture"
+      ],
+      "output_streams": [
+        "Purified Levulinic Acid",
+        "Impurity Stream"
+      ],
+      "parameters": {},
+      "additional_info": "The purification process is designed to minimize product loss and ensure compliance with industrial purity standards."
+    },
+    "waste_treatment": {
+      "unit_operation_id": "waste_treatment",
+      "name": "Waste Treatment",
+      "description": "The waste streams generated throughout the process, including the solid residues and impurity streams, are treated to minimize environmental impact. This may involve biological treatment, incineration, or recycling of byproducts. The goal is to ensure that the process is sustainable and complies with environmental regulations.",
+      "unit_operation_type": "process",
+      "order": 6,
+      "input_streams": [
+        "Solid Residue",
+        "Impurity Stream"
+      ],
+      "output_streams": [
+        "Treated Waste"
+      ],
+      "parameters": {},
+      "additional_info": "Efficient waste management is crucial for the economic and environmental viability of the process."
+    }
+  },
+  "streams": {
+    "Raw Corn Stover": {
+      "name": "Raw Corn Stover",
+      "stream_id": "raw corn stover",
+      "description": "Collected corn stover consisting of leaves, stalks, and cobs in a dry form.",
+      "stream_type": "core",
+      "source": null,
+      "target": "feedstock_preparation",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0,
+        "Moisture": 0
+      }
+    },
+    "Prepared Corn Stover": {
+      "name": "Prepared Corn Stover",
+      "stream_id": "prepared corn stover",
+      "description": "Corn stover that has been size-reduced and dried to optimal moisture content.",
+      "stream_type": "core",
+      "source": "feedstock_preparation",
+      "target": "acid_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Cellulose": 0,
+        "Hemicellulose": 0,
+        "Lignin": 0,
+        "Ash": 0
+      }
+    },
+    "Dilute Acid Solution": {
+      "name": "Dilute Acid Solution",
+      "stream_id": "dilute acid solution",
+      "description": "A dilute solution of sulfuric acid used to catalyze the hydrolysis reaction.",
+      "stream_type": "core",
+      "source": null,
+      "target": "acid_hydrolysis",
+      "flow_rate": 0.0,
+      "components": {
+        "Water": 0,
+        "Sulfuric Acid": 0
+      }
+    },
+    "Hydrolysate": {
+      "name": "Hydrolysate",
+      "stream_id": "hydrolysate",
+      "description": "A mixture containing sugars, unreacted lignin, and residual acid.",
+      "stream_type": "core",
+      "source": "acid_hydrolysis",
+      "target": "neutralization_and_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0,
+        "Lignin": 0,
+        "Sulfuric Acid": 0
+      }
+    },
+    "Neutralizing Agent": {
+      "name": "Neutralizing Agent",
+      "stream_id": "neutralizing agent",
+      "description": "A base used to neutralize the acid in the hydrolysate.",
+      "stream_type": "core",
+      "source": null,
+      "target": "neutralization_and_separation",
+      "flow_rate": 0.0,
+      "components": {
+        "Calcium Hydroxide": 0
+      }
+    },
+    "Sugar Solution": {
+      "name": "Sugar Solution",
+      "stream_id": "sugar solution",
+      "description": "A liquid stream rich in glucose and xylose, with reduced acidity.",
+      "stream_type": "core",
+      "source": "neutralization_and_separation",
+      "target": "catalytic_conversion",
+      "flow_rate": 0.0,
+      "components": {
+        "Glucose": 0,
+        "Xylose": 0
+      }
+    },
+    "Solid Residue": {
+      "name": "Solid Residue",
+      "stream_id": "solid residue",
+      "description": "A solid stream containing lignin and gypsum.",
+      "stream_type": "core",
+      "source": "neutralization_and_separation",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Lignin": 0,
+        "Calcium Sulfate": 0
+      }
+    },
+    "Crude Levulinic Acid Mixture": {
+      "name": "Crude Levulinic Acid Mixture",
+      "stream_id": "crude levulinic acid mixture",
+      "description": "A mixture containing levulinic acid, formic acid, and residual sugars.",
+      "stream_type": "core",
+      "source": "catalytic_conversion",
+      "target": "purification",
+      "flow_rate": 0.0,
+      "components": {
+        "Levulinic Acid": 0,
+        "Formic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Purified Levulinic Acid": {
+      "name": "Purified Levulinic Acid",
+      "stream_id": "purified levulinic acid",
+      "description": "Levulinic acid with high purity, suitable for industrial applications.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Levulinic Acid": 0
+      }
+    },
+    "Impurity Stream": {
+      "name": "Impurity Stream",
+      "stream_id": "impurity stream",
+      "description": "A stream containing removed impurities such as formic acid and residual sugars.",
+      "stream_type": "core",
+      "source": "purification",
+      "target": "waste_treatment",
+      "flow_rate": 0.0,
+      "components": {
+        "Formic Acid": 0,
+        "Residual Sugars": 0
+      }
+    },
+    "Treated Waste": {
+      "name": "Treated Waste",
+      "stream_id": "treated waste",
+      "description": "Environmentally safe waste streams ready for disposal or reuse.",
+      "stream_type": "core",
+      "source": "waste_treatment",
+      "target": null,
+      "flow_rate": 0.0,
+      "components": {
+        "Treated Lignin": 0,
+        "Treated Impurities": 0
+      }
+    }
+  },
+  "components": {
+    "Cellulose": {
+      "name": "Cellulose",
+      "properties": {}
+    },
+    "Hemicellulose": {
+      "name": "Hemicellulose",
+      "properties": {}
+    },
+    "Lignin": {
+      "name": "Lignin",
+      "properties": {}
+    },
+    "Ash": {
+      "name": "Ash",
+      "properties": {}
+    },
+    "Moisture": {
+      "name": "Moisture",
+      "properties": {}
+    },
+    "Water": {
+      "name": "Water",
+      "properties": {}
+    },
+    "Sulfuric Acid": {
+      "name": "Sulfuric Acid",
+      "properties": {}
+    },
+    "Glucose": {
+      "name": "Glucose",
+      "properties": {}
+    },
+    "Xylose": {
+      "name": "Xylose",
+      "properties": {}
+    },
+    "Calcium Hydroxide": {
+      "name": "Calcium Hydroxide",
+      "properties": {}
+    },
+    "Calcium Sulfate": {
+      "name": "Calcium Sulfate",
+      "properties": {}
+    },
+    "Levulinic Acid": {
+      "name": "Levulinic Acid",
+      "properties": {}
+    },
+    "Formic Acid": {
+      "name": "Formic Acid",
+      "properties": {}
+    },
+    "Residual Sugars": {
+      "name": "Residual Sugars",
+      "properties": {}
+    },
+    "Treated Lignin": {
+      "name": "Treated Lignin",
+      "properties": {}
+    },
+    "Treated Impurities": {
+      "name": "Treated Impurities",
+      "properties": {}
+    }
+  }
+}
