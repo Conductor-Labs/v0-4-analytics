@@ -1,0 +1,235 @@
+unit_op,count
+raw corn stover source,62
+fermentation,60
+enzymatic_hydrolysis,56
+pretreatment,50
+enzyme solution source,45
+purification,41
+waste stream sink,29
+microbial culture source,20
+waste_treatment,19
+feedstock_preparation,18
+cell_separation,18
+drying_and_packaging,17
+pretreatment chemicals source,16
+bacterial culture source,16
+treated waste sink,15
+product_recovery,14
+biomass waste sink,13
+carbon dioxide sink,12
+oxygen supply,12
+solid waste sink,12
+pre-treatment,11
+broth_separation,11
+nutrient solution source,10
+enzyme source,8
+dilute acid solution source,7
+impurity stream sink,6
+treated effluent sink,6
+separation_and_purification,6
+air supply,5
+separation,5
+chemical additives source,5
+water or steam source,4
+packaged xylitol sink,4
+hydrolysis,4
+water source,4
+water sink,4
+purified glycerol sink,4
+mother liquor sink,3
+purified fumaric acid sink,3
+glycerol_purification,3
+product_drying,3
+microorganism source,3
+waste_management,3
+impurity sink,3
+aqueous waste sink,3
+gaseous emissions sink,3
+broth_clarification,3
+solid residues sink,3
+drying,3
+purified acetoin sink,3
+microbial inoculum source,3
+catalyst source,3
+crystallization,2
+filtrate sink,2
+pure arabitol sink,2
+yeast culture source,2
+process waste source,2
+purified arabitol sink,2
+pretreatment effluent sink,2
+cell biomass sink,2
+packaged glucaric acid sink,2
+acid_hydrolysis,2
+solid fraction sink,2
+citric_acid_recovery,2
+broth_filtration,2
+water/steam source,2
+air supply unit,2
+dried succinic acid sink,2
+product_recovery_and_purification,2
+off_gas sink,2
+chemical agents source,2
+acid source,2
+water or acid/alkali solution source,2
+steam source,2
+aeration stream source,2
+purified lactic acid sink,2
+acetoin_recovery,2
+yeast/fungal culture source,2
+wastewater sink,2
+acetoin_purification,2
+sulfuric acid source,1
+solid biomass sink,1
+filtration_and_separation,1
+hydrogen gas source,1
+catalytic_hydrogenation,1
+calcium hydroxide source,1
+dehydration,1
+filtration,1
+packaged citric acid sink,1
+citric_acid_purification,1
+nutrient medium source,1
+purified citric acid sink,1
+distillation,1
+stillage sink,1
+calcium sulfate sink,1
+concentration_and_crystallization,1
+packaging,1
+aconitic_acid_recovery,1
+acid or alkaline solution source,1
+purified sorbitol sink,1
+threonine sink,1
+acid/steam source,1
+bacterial biomass sink,1
+dried l_threonine sink,1
+purified aconitic acid sink,1
+residual sugars sink,1
+enzyme addition source,1
+chemical pretreatment agent source,1
+packaged sorbitol sink,1
+pre_treatment residuals sink,1
+hydrolysis agent source,1
+inhibitor removal by_products sink,1
+fuel_grade ethanol sink,1
+purified levulinic acid sink,1
+aeration source,1
+biomass and impurities sink,1
+glutamic acid product sink,1
+liquid effluent sink,1
+purified itaconic acid sink,1
+dilute acid or steam source,1
+process waste stream source,1
+purified lysine sink,1
+lysine_purification,1
+water and solvent sink,1
+crystalline glucaric acid sink,1
+lysine_recovery,1
+neutralization_and_separation,1
+catalytic_conversion,1
+water or chemical agents source,1
+lignin_rich stream sink,1
+neutralizing agent source,1
+dried lysine product sink,1
+crystallization_and_drying,1
+detoxification,1
+acid residue sink,1
+chemical source,1
+corn stover feed source,1
+oxygen supply source,1
+microorganism inoculum source,1
+concentration,1
+concentrated gluconic acid sink,1
+enzymatic additives,1
+inhibitors or by_products sink,1
+final_purification_and_drying,1
+pure gluconic acid sink,1
+lignin_rich residue sink,1
+dried sorbitol sink,1
+final sorbitol product sink,1
+waste biomass sink,1
+dilute acid source,1
+purified gluconolactone sink,1
+degraded lignin sink,1
+fumaric_acid_purification,1
+co2 stream source,1
+packaged serine sink,1
+solubilized hemicellulose and byproducts sink,1
+gas emission sink,1
+acid solution source,1
+neutralization agent source,1
+acid hydrolysis byproducts sink,1
+product_storage_and_handling,1
+packaged lactic acid sink,1
+chemical/enzyme addition,1
+packaged malonic acid sink,1
+solvent stream sink,1
+pure malonic acid sink,1
+biomass residue sink,1
+purified propionic acid sink,1
+crystalline serine sink,1
+serine_recovery,1
+serine sink,1
+enzyme cocktail source,1
+lactic acid bacteria inoculum source,1
+liquid effluent source,1
+pretreatment byproducts sink,1
+product_packaging,1
+chemical_conversion,1
+product_purification,1
+high_purity 3_hydroxy butyrolactone sink,1
+pretreatment chemical agents source,1
+purified 3_hydroxypropionic acid sink,1
+water/acid solution source,1
+lignin waste sink,1
+packaged 3_hydroxypropionic acid sink,1
+glycerol sink,1
+water for pretreatment,1
+chemical agent source,1
+bacterial inoculum source,1
+impurity waste sink,1
+off_gases sink,1
+cellulase enzymes source,1
+soluble hemicellulose extract sink,1
+cell pellet sink,1
+size_reduction,1
+inoculum source,1
+process waste streams source,1
+purified furfural sink,1
+cellulose and lignin sink,1
+water vapor sink,1
+packaged glutamic acid sink,1
+byproduct emissions sink,1
+commercial_grade malic acid sink,1
+acid_recovery_and_purification,1
+oxygen supply unit,1
+dried malic acid sink,1
+acid/alkali solution source,1
+final succinic acid product sink,1
+chemical treatment solution source,1
+solubilized lignin and hemicellulose sink,1
+succinic_acid_recovery,1
+purified succinic acid sink,1
+chemical additive source,1
+byproduct stream sink,1
+by-product_utilization,1
+furfural_production,1
+solid residues source,1
+carbon dioxide exhaust sink,1
+lignin residue sink,1
+final_purification,1
+chemical reagents source,1
+water supply source,1
+acid or alkali solution source,1
+waste treatment sink,1
+final aspartic acid product sink,1
+dried aspartic acid sink,1
+microorganism culture source,1
+nutrient and trace element solution source,1
+final aspartic acid sink,1
+pre_treatment chemicals source,1
+solubilized hemicellulose and lignin sink,1
+by_product gas sink,1
+fumaric_acid_recovery,1
+cellulase enzyme source,1
+enzyme mixture source,1
